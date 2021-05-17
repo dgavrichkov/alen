@@ -55,7 +55,6 @@
         "gulp-svg-sprite": "^1.5.0",
         "gulp-watch": "^5.0.0",
         "gulp-webp": "^4.0.1",
-        "husky": "^4.2.1",
         "imagemin-giflossy": "^5.1.10",
         "imagemin-jpeg-recompress": "~7.0.0",
         "imagemin-mozjpeg": "^9.0.0",
@@ -73,11 +72,6 @@
     },
     "dependencies": {
         "smart-grid": "^2.1.2"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
     },
     "lint-staged": {
         "!(_*).scss": [
