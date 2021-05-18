@@ -1,12 +1,4 @@
 {
-    "name": "gulp-pug-starter",
-    "description": "Frontend development with pleasure",
-    "author": "Andrey Gorokhov",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/andreyalexeich/gulp-pug-starter.git"
-    },
-    "license": "MIT",
     "scripts": {
         "dev": "gulp",
         "build": "gulp prod --production",
