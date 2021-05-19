@@ -1,0 +1,18 @@
+@mixin defaultBtn {
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    font-size: 16px;
+    line-height: 47px;
+    display: inline-block;
+    border-radius: 200px;
+    padding: 0 27px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: none;
+    border: 0;
+}
+
+@mixin btnGray {
+    color: #292929;
+    background: #ebebeb;
+}
