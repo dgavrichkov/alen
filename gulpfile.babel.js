@@ -33,16 +33,11 @@ const requireDir = require("require-dir"),
         },
         images: {
             src: [
-                "./src/img/**/*.{jpg,jpeg,png,gif,tiff,svg}",
-                "!./src/img/favicon/*.{jpg,jpeg,png,gif,tiff}"
+                "./src/images/**/*.{jpg,jpeg,png,gif,tiff,svg}",
+                "!./src/images/favicon/*.{jpg,jpeg,png,gif,tiff}"
             ],
-            dist: "./dist/img/",
-            watch: "./src/img/**/*.{jpg,jpeg,png,gif,svg}"
-        },
-        sprites: {
-            src: "./src/img/svg/*.svg",
-            dist: "./dist/img/sprites/",
-            watch: "./src/img/svg/*.svg"
+            dist: "./dist/images/",
+            watch: "./src/images/**/*.{jpg,jpeg,png,gif,svg}"
         },
         fonts: {
             src: "./src/fonts/**/*.{woff,woff2,otf,ttf}",
@@ -50,8 +45,8 @@ const requireDir = require("require-dir"),
             watch: "./src/fonts/**/*.{woff,woff2,otf,ttf}"
         },
         favicons: {
-            src: "./src/img/favicon/*.{jpg,jpeg,png,gif,tiff}",
-            dist: "./dist/img/favicons/",
+            src: "./src/images/favicon/*.{jpg,jpeg,png,gif,tiff}",
+            dist: "./dist/images/favicons/",
         },
         gzip: {
             src: "./src/.htaccess",
@@ -64,10 +59,10 @@ requireDir("./gulp-tasks/");
 export { paths };
 
 export const development = gulp.series("clean", "smart-grid",
-    gulp.parallel(["views", "styles", "scripts", "images", "webp", "sprites", "fonts", "favicons"]),
+    gulp.parallel(["views", "styles", "scripts", "images", "webp", "fonts", "favicons"]),
     gulp.parallel("serve"));
 
 export const prod = gulp.series("clean",
-    gulp.parallel(["views", "styles", "scripts", "images", "webp", "sprites", "fonts", "favicons", "gzip"]));
+    gulp.parallel(["views", "styles", "scripts", "images", "webp", "fonts", "favicons", "gzip"]));
 
 export default development;
