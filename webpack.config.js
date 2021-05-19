@@ -33,7 +33,8 @@ module.exports = {
                     enforce: true
                 }
             }
-        }
+        },
+        minimize: false,
     },
 
     module: {
