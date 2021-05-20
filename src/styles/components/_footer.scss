@@ -63,7 +63,6 @@
         @include to(1024px) {
             height: 50px;
             overflow: hidden;
-            padding-right: 20px;
             cursor: pointer;
             position: relative;
             &::after {
@@ -72,7 +71,7 @@
                 width: 11px;
                 height: 6px;
                 display: block;
-                right: 20px;
+                right: 0px;
                 background-repeat: no-repeat;
                 background-size: contain;
                 background-position: center;
@@ -98,6 +97,10 @@
             margin-bottom: 0;
             cursor: pointer
         }
+        @include to(640px) {
+            font-size: 10px;
+            line-height: 12px;
+        }
         text-decoration: none;
         font-style: normal;
         font-weight: 500;
@@ -112,9 +115,22 @@
 
     &__title + &__title {
         margin-bottom: 51px;
+        @include to(1024px) {
+            margin-bottom: 26px;
+        }
     }
 
     &__menu-link {
+        @include to(1024px) {
+            margin-bottom: 0;
+        }
+        @include to(640px) {
+            font-size: 14px;
+            line-height: 25px;
+            &:last-child {
+                padding-bottom: 20px;
+            }
+        }
         text-decoration: none;
         font-style: normal;
         font-weight: 300;
@@ -234,6 +250,9 @@
     }
 
     &__sub-info {
+        @include to(1024px) {
+            display: none;
+        }
         font-style: normal;
         font-weight: 300;
         font-size: 10px;
