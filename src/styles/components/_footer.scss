@@ -1,20 +1,33 @@
 .footer {
+    @include to(1024px) {
+        padding: 0 20px;
+        border-top: none;
+    }
+
     padding: 100px 43px;
     padding-bottom: 80px;
     border-top: 1px solid #e5e5e5;
 
     &__inner {
         display: flex;
+        @include to(1024px) {
+            flex-wrap: wrap;
+        }
     }
 
     &__col {
+        @include to(1024px) {
+            flex-basis: 100%;
+        }
         flex-basis: 25%;
 
         &:nth-child(2) {
             @include to(1400px) {
                 padding-left: 10px;
             }
-
+            @include to(1024px) {
+                padding: 0;
+            }
             padding-left: 70px;
         }
 
@@ -22,7 +35,9 @@
             @include to(1400px) {
                 padding-left: 10px;
             }
-
+            @include to(1024px) {
+                padding: 0;
+            }
             padding-left: 98px;
         }
 
@@ -30,12 +45,59 @@
             @include to(1400px) {
                 padding-left: 50px;
             }
-
+            @include to(1024px) {
+                padding: 0;
+            }
             padding-left: 139px;
+        }
+        &:last-child {
+            @include to(1024px) {
+                .footer__title:nth-child(2) {
+                    border-bottom: 1px solid #e5e5e5;
+                }
+            }
+        }
+    }
+
+    &__item {
+        @include to(1024px) {
+            height: 50px;
+            overflow: hidden;
+            padding-right: 20px;
+            cursor: pointer;
+            position: relative;
+            &::after {
+                position: absolute;
+                content: "";
+                width: 11px;
+                height: 6px;
+                display: block;
+                right: 20px;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+                background-image: url(../images/srt_dropDown.png);
+                transition: 0.3s ease-in-out;
+                top: 23px;
+                pointer-events: none;
+            }
+
+            &.is-active {
+                height: auto;
+                &::after {
+                    transform: rotate(180deg);
+                }
+            }
         }
     }
 
     &__title {
+        @include to(1024px) {
+            border-top: 1px solid #e5e5e5;
+            padding: 18px 0;
+            margin-bottom: 0;
+            cursor: pointer
+        }
         text-decoration: none;
         font-style: normal;
         font-weight: 500;
@@ -51,8 +113,6 @@
     &__title + &__title {
         margin-bottom: 51px;
     }
-
-    &__menu {}
 
     &__menu-link {
         text-decoration: none;
@@ -168,6 +228,9 @@
         font-size: 14px;
         line-height: 143%;
         color: #9a9a9a;
+        @include to(1024px) {
+            padding-bottom: 25px;
+        }
     }
 
     &__sub-info {
