@@ -12,8 +12,12 @@ header.header
             a(href="press.html").header__menu-item Пресс-центр
             a(href="contacts.html").header__menu-item Контакты
         .header__mobile-btns 
-            a(href="tel:+7 (812) 579-55-81").header__mobile-call icon-phone 
-            button(type="button").header__mobile-burger icon-burger
+            a(href="tel:+7 (812) 579-55-81").header__mobile-call
+                span.icon 
+                span.visually-hidden +7 (812) 579-55-81
+            button(type="button").header__mobile-burger
+                span
+                p.visually-hidden Открыть меню
         a.header__mobile-search-back icon-chevron-back
         .header__mobile-menu.mobile-menu
             nav.mobile-menu__list 
