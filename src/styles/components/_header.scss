@@ -10,6 +10,10 @@
     background: transparent;
 
     &__inner {
+        @include to(1024px) {
+            height: 62px;
+            justify-content: space-between;
+        }
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -17,6 +21,11 @@
     }
 
     &__logo {
+        @include to(1024px) {
+            height: 22px;
+            width: 63px;
+            margin-left: 20px;
+        }
         width: 120px;
         height: 40px;
         margin-left: 40px;

@@ -1,7 +1,11 @@
 .shortabout {
     padding-bottom: 70px;
-
+    padding-top: 70px;
     &__inner {
+        @include to(768px) {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
         padding-top: 110px;
         padding-bottom: 67px;
         display: flex;
