@@ -1,0 +1,21 @@
+extends ../layouts/default
+include ../helpers/mixins
+
+block variables
+	- const title = "A-len project category"
+
+block content
+	div.page
+		div.page__header
+			include ../../blocks/modules/header/header.pug
+		main.page__main
+			h1 Projects on category
+
+			//- page bar
+			//- projects list on category - wide mosaic
+
+
+		div.page__popup
+
+		div.page__footer
+			include ../../blocks/modules/footer/footer.pug
