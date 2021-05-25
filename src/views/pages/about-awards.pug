@@ -9,14 +9,35 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 About awards
-
 			//- hero banner just image
-
+			section.hero
+				figure.hero__figure
+					picture
 			//- section text 
-
+			section.text-section
+				div.text-section__inner
+					div.text-box
+					div.numbers-block
+						div.numbers-block__item
+							b.numbers-block__value 130+
+							span.numbers-block__description призовых мест в архитектурных конкурсах
+						div.numbers-block__item
+							b.numbers-block__value 34
+							span.numbers-block__description достижения в сфере жилищного строительства
+						div.numbers-block__item
+							b.numbers-block__value 2
+							span.numbers-block__description премии правительств субъектов федерации
 			//- section awards list 
-
+			section.awards-section
+				ul.awards-section__inner
+					li.awards-section__item
+						article.award-card
+							a(href).award-card__pic
+								picture
+							div.award-card__content
+								b.award-card__cap 
+								b.award-card__head 
+								div.award-card__text
 		div.page__popup
 
 		div.page__footer

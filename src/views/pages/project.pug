@@ -9,24 +9,131 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 Project
-
 			//- section hero block width info and actions
-			
-			//- section photo
+			section.hero.hero--info
+				figure.hero__figure 
+				div.hero__infobar
+					div.hero__text-sup Санкт-Петербург — 2011
+					h2.hero__text-title Объекты инфраструктуры Пассажирского Порта Санкт-Петербург «Морской фасад»
+				ul.hero__types 
+					li.hero__type 
+						a.hero__type-link.pill-btn.pill-btn--mist(href="projects-list.html") Жилые здания и комплексы
+			//- section gallery
+			section.gallery-preview
+				div.gallery-preview__inner
+					figure 
+						picture
+					button.gallery-preview__load.pill-btn(type="button") Фото и видео
 
 			//- section-compose project
+			section.compose
+				div.compose__inner
+					h2.compose__title 
+				ul.compose__list 
+					li.compose__item 
+						article.item-card 
+							figure.item-card__figure
+								picture 
+							div.item-card__content
+								h3.item-card__cap Морской вокзал №1 (круизный)
+							a(href="project.html").item-card__overlink
+					li.compose__item 
+						article.item-card 
+							figure.item-card__figure
+								picture 
+							div.item-card__content
+								h3.item-card__cap Морской вокзал №1 (круизный)
+							a(href="project.html").item-card__overlink
+					li.compose__item 
+						article.item-card 
+							figure.item-card__figure
+								picture 
+							div.item-card__content
+								h3.item-card__cap Морской вокзал №1 (круизный)
+							a(href="project.html").item-card__overlink
+					li.compose__item 
+						article.item-card 
+							figure.item-card__figure
+								picture 
+							div.item-card__content
+								h3.item-card__cap Морской вокзал №1 (круизный)
+							a(href="project.html").item-card__overlink
+					li.compose__item 
+						article.item-card 
+							figure.item-card__figure
+								picture 
+							div.item-card__content
+								h3.item-card__cap Морской вокзал №1 (круизный)
+							a(href="project.html").item-card__overlink
+					li.compose__item 
+						article.item-card 
+							figure.item-card__figure
+								picture 
+							div.item-card__content
+								h3.item-card__cap Морской вокзал №1 (круизный)
+							a(href="project.html").item-card__overlink
 
 			//- section text
-
+			section.text-section
+				div.text-section__inner
+					div.text-box
+						p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo neque ex omnis at, dicta voluptatibus porro ipsam eos autem doloremque corrupti odio rerum voluptates libero earum commodi et ad cumque.
+						p В проект нас пригласил воронежский девелопер Евгений Хамин и его компания ВДК, которая искала мастерскую, способную «перерисовать» архитектуру уже строящегося жилого комплекса. Девелопер в поиске свежих идей обращался к нескольким московским и петербургским бюро, нам посчастливилось познакомиться с этим энергичным человеком как раз в тот момент, когда у него сложилось представление о том, какую архитектуру он хотел бы видеть в своих проектах. И это представление удивительным образом легко легло на нашу концепцию «Идеальный дом / Идеальная квартира / Идеальный ландшафт».
+						p Морской пассажирский терминал включает здания паромного и круизных вокзалов; надземные галереи, связывающие выходы из круизных судов со вторым этажом паромного терминала; центр управления портом (ЦУП); служебные здания пунктов пропуска
 			//- section map
-
+			section.project-map 
+				div.project-map__inner
+					div.project-map__main
+					article.project-map__info
+						div.project-map__text Санкт-Петербург, территория Невской губы Финского залива, западнее Васильевского острова
+						a.project-map__link.pill-btn(href="tomap")
 			//- section info
+			section.info-section
+				div.info-section__inner
+					div.infoslider
+						header.infoslider__head
+							div.infoslider__tab Цифры и факты
+							div.infoslider__tab Награды
+							div.infoslider__tab Пресса
+						div.infoslider__body
+							div.infoslider__item
+								ul.infoslider__content 
+									li.infoslider__option
+										div.infoslider__option-key Площадь участка
+										div.infoslider__option-value 29,39 Га
+							div.infoslider__item
+								ul.infoslider__content 
+									li.infoslider__option
+										div.infoslider__option-key Площадь застройки
+										div.infoslider__option-value 18 553,8 м2
+							div.infoslider__item
+								ul.infoslider__content 
+									li.infoslider__option
+										div.infoslider__option-key Общая площадь зданий
+										div.infoslider__option-value 31 521 м2
 
 			//- section tiles items
-
+			section.items-section 
+				div.items-section__inner
+					//- just items
+					ul.item-section__items 
+						li.item-section__item 
+							article.item-card
+								figure.item-card__figure
+									picture 
+								div.item-card__content
+									h3.item-card__cap Морской вокзал №1 (круизный)
+								a(href="project.html").item-card__overlink
+						li.item-section__item 
+							article.item-card
+								figure.item-card__figure
+									picture 
+								div.item-card__content
+									h3.item-card__cap Мышь (кродется)
+								a(href="project.html").item-card__overlink
 			//- page goback
-
+			div.page__goback
+				a(href="projects-list.html").pill-btn.page__goback-btn Назад
 		div.page__popup
 
 		div.page__footer

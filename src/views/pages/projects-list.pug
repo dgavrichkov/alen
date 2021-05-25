@@ -9,11 +9,55 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 Projects on category
-
 			//- page bar
+			section.page-bar
+				h1.page-bar__title Жилые здания и комплексы
+				a.page-bar__link.pill-btn(href="geo.html") География строительства
 			//- projects list on category - wide mosaic
-
+			section.tiles.projects-section 
+				ul.tiles__list 
+					li.tiles__tile
+						article.project-card 
+							figure
+								picture
+							a.project-card__link(href="project.html")
+								span.project-card__city Санкт-Петербург
+								span.project-card__link-txt Мультиформатный жилой комплекс «Golden City»
+					li.tiles__tile
+						article.project-card 
+							figure
+								picture
+							a.project-card__link(href="project.html")
+								span.project-card__city Москва
+								span.project-card__link-txt Жилой комплекс на Нагатинской набережной
+					li.tiles__tile
+						article.project-card 
+							figure
+								picture
+							a.project-card__link(href="project.html")
+								span.project-card__city Санкт-Петербург
+								span.project-card__link-txt Мультиформатный жилой комплекс «Golden City»
+					li.tiles__tile
+						article.project-card 
+							figure
+								picture
+							a.project-card__link(href="project.html")
+								span.project-card__city Москва
+								span.project-card__link-txt Жилой комплекс на Нагатинской набережной
+					li.tiles__tile
+						article.project-card 
+							figure
+								picture
+							a.project-card__link(href="project.html")
+								span.project-card__city Санкт-Петербург
+								span.project-card__link-txt Мультиформатный жилой комплекс «Golden City»
+					li.tiles__tile
+						article.project-card 
+							figure
+								picture
+							a.project-card__link(href="project.html")
+								span.project-card__city Москва
+								span.project-card__link-txt Жилой комплекс на Нагатинской набережной
 
 		div.page__popup
 

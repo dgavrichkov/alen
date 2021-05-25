@@ -9,15 +9,56 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 Services
 
 			//- hero banner just image
-
+			section.hero
+				figure.hero__figure
+					picture
 			//- section text 
-
-
+			section.text-section
+				div.text-section__inner
+					div.text-box
+						h1 Архитектура
+						p За этим словом – множество стадий, этапов и подэтапов, эскизов, проектных материалов и согласований к ним. За ним – творческий поиск и системный подход, совещания и совмещение разнообразных мнений, неординарные решения и разрешения на их воплощение в жизнь, на строительство.
+						p В составе услуг архитектурного бюро «А.Лен» в Санкт-Петербурге:
+						ul
+							li генеральное проектирование: разработка проектов любой степени сложности «с нуля» и «под ключ»;
+							li предварительная оценка возможностей застройки земельного участка, проработка сценариев, в т.ч. оценка возможности отклонения от предельных параметров разрешенного строительства, реконструкции объектов капитального строительства;
+							li разработка архитектурной концепции;
+							li создание брендинга проекта;
+							li подготовка документации для получения разрешения на условно разрешенный вид использования земельного участка (УРВИ);
+						p Архитектурное бюро «А.Лен» в разработке проектной и рабочей документации применяет программное обеспечение официального партнера - компании Autodesk. «А.Лен» является держателем нескольких десятков лицензий на пакет программ Architecture Engineering & Construction Collection, включая полный набор передовых решений для BIM проектирования. В пакет входят Revit, AutoCAD, 3ds Max, Civil 3D и другие.
+						p Для заказчиков, не имеющих собственного стандарта проектирования с использованием информационного моделирования зданий и сооружений, бюро «А.Лен» предлагает свой внутренний стандарт с определением оптимального объема BIM проектирования. 
+						h2 Подробнее об услугах «А.Лен»:
 
 			//- services wide mosaic
+			section.tiles.services-section 
+				ul.tiles__list 
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="service.html")
+								span.wide-card__link-txt Генеральное проектирование
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="service.html")
+								span.wide-card__link-txt Градостроительная оценка
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="service.html")
+								span.wide-card__link-txt Разработка архитектурной концепции
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="service.html")
+								span.wide-card__link-txt Брендинг проекта
+
 
 
 		div.page__popup

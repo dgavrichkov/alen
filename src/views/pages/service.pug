@@ -9,16 +9,39 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 Service one
-
 			//- hero banner just image
-
+			section.hero
+				figure.hero__figure
+					picture
 			//- section text 
-
+			section.text-section
+				div.text-section__inner
+					div.text-box
+						p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur provident fugit error sint saepe distinctio, quibusdam, beatae quisquam quia dolore repellendus, commodi a consequuntur sapiente. Quis reprehenderit repellat amet laborum.
 			//- slider tiles - chosen projects
-
+			section.chosen-projects 
+				div.chosen-projects__inner
+					h2.chosen-projects__title Избранные проекты
+					div.chosen-slider
+						div.chosen-slider__wrapper
+							div.chosen-slider__slide
+								article.item-card 
+									figure.item-card__figure
+										picture 
+									div.item-card__content
+										h3.item-card__cap Мышь (кродется)
+									a(href="project.html").item-card__overlink
+							div.chosen-slider__slide
+								article.item-card 
+									figure.item-card__figure
+										picture 
+									div.item-card__content
+										h3.item-card__cap Мышь (кродется)
+									a(href="project.html").item-card__overlink
+						div.chosen-slider__navigation
 			//- goback
-
+			div.page__goback
+				a(href="projects-list.html").pill-btn.page__goback-btn Назад
 
 		div.page__popup
 

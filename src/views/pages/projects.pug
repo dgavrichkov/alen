@@ -9,11 +9,85 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 Projects
-
 			//- page bar
+			section.page-bar
+				h1.page-bar__title Категории проектов
+				a.page-bar__link.pill-btn(href="geo.html") География строительства
 			//- projects categories list - wide mosaic
-
+			section.tiles.projects-section 
+				ul.tiles__list 
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Избранное
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Новые проекты
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Жилые здания и комплексы
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Градостроительные проекты, мастер-планы
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Спортивные объекты
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Музеи и театры
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Отели и апартаменты
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Офисные здания
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Реновация и реконструкция
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Торговые комплексы
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Автоцентры
+					li.tiles__tile
+						article.wide-card 
+							figure
+								picture
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Объекты транспортной инфраструктуры
 
 		div.page__popup
 

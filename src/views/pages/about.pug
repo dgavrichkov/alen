@@ -9,18 +9,31 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 About
-
 			//- hero banner just image
-
+			section.hero
+				figure.hero__figure
+					picture
 			//- section text
-
-			//- section person-card
-
-			//- section text
-
+			section.text-section
+				div.text-section__inner
+					div.text-box
+						p Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, nisi cupiditate totam tempore provident dolorum porro deserunt velit fugit labore iure quas excepturi ad commodi placeat, maxime quasi accusantium minus.
+					div.author-box
+						figure 
+							picture 
+						div.author-box__content
+							p «Архитектура – это наука, законы развития которой схожи с математикой. И если на школьном уровне базовые знания доступны большинству, то в стадии пика зрелости высший уровень доступен немногим. Это тот наиболее ценный период, когда технические знания не управляют архитектором, а становятся обязательными помощниками».
+							div.author-box__bottom
+								a.author-box__name(href="about-oreshkin.html") Сергей Орешкин
+								div.author-box__state Основатель и руководитель Архитектурного бюро «А.Лен»
+					div.text-box
+						p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit ea possimus placeat recusandae aperiam suscipit, rem dolores ipsa dolor quidem corrupti eligendi! Fuga et asperiores veniam voluptatum. Magnam, dignissimos sint!
 			//- section photo
-
+			section.gallery-preview
+				div.gallery-preview__inner
+					figure 
+						picture
+					button.gallery-preview__load.pill-btn(type="button") Фото и видео
 
 		div.page__popup
 
