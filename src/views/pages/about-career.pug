@@ -9,11 +9,28 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 About career
-
 			//- hero banner just image
-
-			//- section text 
+			section.hero
+				figure.hero__figure
+					picture
+			//- section text
+			section.text-section
+				div.text-section__inner
+					div.text-box
+						h1 Карьера
+						h4 За годы работы наша компания приобрела весомый опыт и – особо ценное – доверие заказчиков, поручающих специалистам Архитектурного бюро «А.Лен» разработку и ведение проектов высокой сложности.
+						p Добившись устойчивого положения в области архитектурного проектирования, мы идем в ногу со временем, не останавливаемся на достигнутом и постоянно совершенствуемся. На этом пути мы открыты для сотрудничества как со специалистами высокой квалификации, так и с целеустремленными выпускниками ВУЗов.
+						p Если Вы настроены на результат, обладаете желанием работать творчески и упорно, мы будем рады принять Вас в команду «А.Лен».
+						h4 Для рассмотрения Вашей кандидатуры предлагаем отправить резюме с указанием названия вакансии:
+						div.row
+							div.row__item
+								p По e-mail: #[br] #[b office@a-len.ru]
+							div.row__item
+								p Или позвонить: #[br] #[b +7 (812) 579-55-81]
+							div.row__item
+								p Вы можете воспользоваться бланком для заполнения резюме
+								a.pill-btn(href="blanc.doc" download) Скачать бланк
+						p Если Вы хотите работать в Архитектурном бюро «А.Лен», но не нашли подходящей вакансии, можете выслать свое резюме с указанием интересующего направления, диапазона Ваших знаний и профессионального опыта. Все резюме вносятся в базу данных отдела персонала и рассматриваются при появлении соответствующей вакансии.
 			//- -- hero
 			//- -- simble
 			//- -- contacts
@@ -21,6 +38,36 @@ block content
 
 
 		div.page__popup
-
+			//- пока заготовка, попапы надо продумать покрепче
+			div.popup__item(id="careers")
+				div.popup__box
+					div.popup__title Отправить резюме
+					div.popup__form
+						form.form.send-resume-form(action="")
+							.form__input.form__box
+								label(for="")
+								input(type="text") 
+							.form__input.form__box
+								label(for="")
+								input(type="text")
+							.form__input.form__box
+								label(for="")
+								input(type="text") 
+							.form__input.form__box
+								label(for="")
+								input(type="text")
+							.form__textarea.form__box
+								label(for="")
+								textarea(name="")
+							.form__file.form__box
+								label(for="")
+								input(type="file")
+								div.form__filelist
+									label(for="")
+									ul 
+			div.popup__item
+				div.popup__box
+					div.popup__title Спасибо. Мы свяжемся с вами в скором времени.
+					a.pill-btn(href="#careers") Отправить еще одно резюме
 		div.page__footer
 			include ../../blocks/modules/footer/footer.pug

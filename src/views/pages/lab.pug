@@ -9,14 +9,51 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 Lab
-
 			//- hero banner just image
-
+			section.hero
+				figure.hero__figure
+					picture
 			//- section text
-
+			section.text-section
+				div.text-section__inner
+					div.text-box
+						h1 Лаборатория
+						p Более 10 лет в составе креативной группы Архитектурного бюро «А.Лен» работает Архитектурная лаборатория, исследующая закономерности развития различных элементов и методов проектирования жилых комплексов.
+						p Нами собран значительный объем материалов по типологии квартир из российского и зарубежного опыта, как за последние годы, так и за предшествующие периоды. В итоге мы сформировали несколько программ, оптимизирующих процессы проектирования жилых комплексов и существенно помогающих девелоперам и застройщикам.
+						h4 Программы:
 			//- section wide tiles
-
+			section.tiles.lab-tiles
+				ul.tiles__list
+					li.tiles__tile
+						article.wide-card
+							figure
+								picture
+							a.wide-card__link(href="lab-apartments.html")
+								span.wide-card__link-txt Идеальные квартиры «А.Лен»
+					li.tiles__tile
+						article.wide-card
+							figure
+								picture
+							a.wide-card__link(href="lab-colors.html")
+								span.wide-card__link-txt Цветовая лаборатория «А.Лен»
+					li.tiles__tile
+						article.wide-card
+							figure
+								picture
+							a.wide-card__link(href="lab-toolkit.html")
+								span.wide-card__link-txt A.Len Architectural Toolkit
+					li.tiles__tile
+						article.wide-card
+							figure
+								picture
+							a.wide-card__link(href="lab-brick.html")
+								span.wide-card__link-txt A.Len Brickwork
+					li.tiles__tile
+						article.wide-card
+							figure
+								picture
+							a.wide-card__link(href="lab-info.html")
+								span.wide-card__link-txt Маркетинговая инфографика «А.Лен»
 
 		div.page__popup
 

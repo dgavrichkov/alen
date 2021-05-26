@@ -9,12 +9,62 @@ block content
 		div.page__header
 			include ../../blocks/modules/header/header.pug
 		main.page__main
-			h1 About sertificates
-
 			//- hero banner just image
-
+			section.hero
+				figure.hero__figure
+					picture
 			//- section sertificates grid
-
+			section.sertificate-section 
+				div.sertificate-section__inner
+					div.text-box
+						h1 Сертификаты
+					ul.sertificates.sertificate-section__list
+						li.sertificates__item
+							//- call solo gallery view
+							article.item-card.item-card--sertificate 
+								figure.item-card__figure
+									picture 
+								div.item-card__content
+									h3.item-card__cap Свидетельство СРО ООО «Проектно-производственной фирмы «А.Лен»
+								a(href="project.html").item-card__overlink
+						li.sertificates__item
+							article.item-card.item-card--sertificate 
+								figure.item-card__figure
+									picture 
+								div.item-card__content
+									h3.item-card__cap Приложение к свидетельству СРО ООО «Проектно-производственной фирмы «А.Лен»
+								a(href="project.html").item-card__overlink
+						li.sertificates__item
+							article.item-card.item-card--sertificate 
+								figure.item-card__figure
+									picture 
+								div.item-card__content
+									h3.item-card__cap Выписка СРО ООО «Проектно-производственной фирмы «А.Лен»
+								a(href="project.html").item-card__overlink
+					div.text-block
+						p Имеется допуск на подготовку проектной документации в отношении особо опасных, технически сложных и уникальных объектов капитального строительства.
+					ul.sertificates.sertificate-section__list
+						li.sertificates__item
+							article.item-card.item-card--sertificate 
+								figure.item-card__figure
+									picture 
+								div.item-card__content
+									h3.item-card__cap Свидетельство СРО ООО «Архитектурное бюро «А.Лен»
+								a(href="project.html").item-card__overlink
+						li.sertificates__item
+							article.item-card.item-card--sertificate 
+								figure.item-card__figure
+									picture 
+								div.item-card__content
+									h3.item-card__cap Приложение к свидетельству СРО ООО «Архитектурное бюро «А.Лен»
+								a(href="project.html").item-card__overlink
+						li.sertificates__item
+							article.item-card.item-card--sertificate 
+								figure.item-card__figure
+									picture 
+								div.item-card__content
+									h3.item-card__cap Выписка СРО ООО «Архитектурное бюро «А.Лен»
+								a(href="project.html").item-card__overlink
 		div.page__popup
 
 		div.page__footer
