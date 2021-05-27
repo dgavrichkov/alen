@@ -1,227 +1,277 @@
 .header {
-    position: fixed;
-    z-index: 10;
-    height: 95px;
-    width: 100%;
-    left: 0;
-    top: 0;
+	position: fixed;
+	z-index: 10;
+	height: 95px;
+	width: 100%;
+	left: 0;
+	top: 0;
 
-    transition: opacity 0.3s, top 0.3s, background 0.3s, border-bottom 0.3s;
-    background: transparent;
+	transition: opacity 0.3s, top 0.3s, background 0.3s, border-bottom 0.3s;
+	background: transparent;
 
-    &__inner {
-        @include to(1024px) {
-            height: 62px;
-            justify-content: space-between;
-        }
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 100%;
-    }
+	&__inner {
+		@include to(1024px) {
+			height: 62px;
+			justify-content: space-between;
+		}
 
-    &__logo {
-        @include to(1024px) {
-            height: 22px;
-            width: 63px;
-            margin-left: 20px;
-        }
-        width: 120px;
-        height: 40px;
-        margin-left: 40px;
-        transition: opacity 0.3s;
-        position: relative;
-        opacity: 0.8;
-        z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		height: 100%;
+	}
 
-        &::before {
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            content: "";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transition: opacity 0.3s;
-            background-image: url(../images/logo.png);
-        }
+	&__logo {
+		@include to(1024px) {
+			height: 22px;
+			width: 63px;
+			margin-left: 20px;
+		}
 
-        &::after {
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            content: "";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            opacity: 0;
-            height: 100%;
-            transition: opacity 0.3s;
-            background-image: url(../images/logo_b.png);
-        }
-    }
+		width: 120px;
+		height: 40px;
+		margin-left: 40px;
+		transition: opacity 0.3s;
+		position: relative;
+		opacity: 0.8;
+		z-index: 2;
 
-    &__search {
-        position: absolute;
-        z-index: 2;
-        left: 50%;
-        top: 40px;
-        transform: translate(-50%, 0);
-        display: flex;
-        transition: all 1s;
+		&::before {
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transition: opacity 0.3s;
+			background-image: url(../images/logo.png);
+		}
 
-        @include to(1400px) {
-            left: auto;
-            right: 700px;
-            transform: translate(50%, 0);
-        }
+		&::after {
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			opacity: 0;
+			height: 100%;
+			transition: opacity 0.3s;
+			background-image: url(../images/logo_b.png);
+		}
+	}
 
-        @include to(1024px) {
-            display: none;
-            top: 78px;
-            right: 27px;
-        }
+	&__search {
+		position: absolute;
+		z-index: 2;
+		left: 50%;
+		top: 40px;
+		transform: translate(-50%, 0);
+		display: flex;
+		transition: all 1s;
 
-        &-btn {
-            background-color: transparent;
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            border: none;
-            display: block;
-            width: 37px;
-            height: 17px;
-            padding: 0;
-            padding-bottom: 10px;
-            opacity: 0.7;
-            background-image: url(../images/search.png);
-            transition: 0.3s ease-in-out;
-        }
-    }
+		@include to(1400px) {
+			left: auto;
+			right: 700px;
+			transform: translate(50%, 0);
+		}
 
-    &__menu {
-        display: flex;
-        align-items: center;
-        transition: all 1s;
-        margin-left: auto;
-    }
+		@include to(1024px) {
+			display: none;
+			top: 78px;
+			right: 27px;
+		}
 
-    &__menu-item {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 16px;
-        color: #ffffff;
-        margin-right: 41px;
-        transition: all 0.3s ease-in-out;
-        opacity: 0.7;
-        @include to(1024px) {
-            display: none;
-        }
-    }
+		&-btn {
+			background-color: transparent;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			border: none;
+			display: block;
+			width: 37px;
+			height: 17px;
+			padding: 0;
+			padding-bottom: 10px;
+			opacity: 0.7;
+			background-image: url(../images/search.png);
+			transition: 0.3s ease-in-out;
+		}
+	}
 
-    &__mobile-btns {
-        display: none;
-        margin-right: 20px;
-        position: relative;
-        z-index: 1;
-        transition: all 0.3s;
-        @include to(1024px) {
-            display: flex;
-        }
-    }
-    &__mobile-call {
-        margin-right: 30px;
-        width: 20px;
-        height: 20px;
-        .icon {
-            width: 20px;
-            height: 20px;
-            background-image: url('../images/phone.png');
-            background-size: contain;
-        }
-    }
-    &__mobile-burger {
-        width: 26px;
-        height: 20px;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        background: transparent;
-        border: none;
-        padding: 0;
+	&__menu {
+		display: flex;
+		align-items: center;
+		transition: all 1s;
+		margin-left: auto;
+	}
 
-        span {
-            &::before {
-                display: block;
-                width: 100%;
-                height: 2px;
-                background: #ffffff;
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(8px);
-                transition: transform 0.3s;
-            }
-            &::after {
-                display: block;
-                width: 100%;
-                height: 2px;
-                background: #ffffff;
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-10px);
-                transition: transform 0.3s;
-            }
-        }
-        &::before {
-            content: "";
-            position: absolute;
-            transition: opacity 0.3s;
-            top: 50%;
-            left: 0;
-            margin-top: -1px;
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: #ffffff;
-        }
-    }
+	&__menu-item {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 16px;
+		color: #ffffff;
+		margin-right: 41px;
+		transition: all 0.3s ease-in-out;
+		opacity: 0.7;
 
-    &__mobile-search-back {
-        display: none;
-    }
+		@include to(1024px) {
+			display: none;
+		}
+	}
 
-    &__mobile-menu {
-        display: none;
-    }
+	&__mobile-btns {
+		display: none;
+		margin-right: 20px;
+		position: relative;
+		z-index: 1;
+		transition: all 0.3s;
 
-    &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        left: 0;
-        top: 0;
-        z-index: -1;
-        transition: all 0.6s;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0) 100%);
-    }
+		@include to(1024px) {
+			display: flex;
+		}
+	}
 
-    &.burger-open {
-        .header__mobile-burger {
-            &::before {
-                opacity: 0;
-            }
-        }
-    }
+	&__mobile-call {
+		margin-right: 30px;
+		width: 20px;
+		height: 20px;
+
+		.icon {
+			width: 20px;
+			height: 20px;
+			background-image: url('../images/phone.png');
+			background-size: contain;
+		}
+	}
+
+	&__mobile-burger {
+		width: 26px;
+		height: 20px;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		background: transparent;
+		border: none;
+		padding: 0;
+
+		span {
+			&::before {
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: #ffffff;
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(8px);
+				transition: transform 0.3s;
+			}
+
+			&::after {
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: #ffffff;
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-10px);
+				transition: transform 0.3s;
+			}
+		}
+
+		&::before {
+			content: "";
+			position: absolute;
+			transition: opacity 0.3s;
+			top: 50%;
+			left: 0;
+			margin-top: -1px;
+			display: block;
+			width: 100%;
+			height: 2px;
+			background: #ffffff;
+		}
+	}
+
+	&__mobile-search-back {
+		display: none;
+	}
+
+	&__mobile-menu {
+		display: none;
+	}
+
+	&__submenu {
+		position: absolute;
+		width: 100%;
+		top: 100%;
+		left: 0;
+	}
+
+	&::before {
+		content: "";
+		display: block;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: -1;
+		transition: all 0.6s;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0) 100%);
+	}
+
+	&.burger-open {
+		.header__mobile-burger {
+			&::before {
+				opacity: 0;
+			}
+		}
+	}
+}
+
+// TODO - адаптив и состояния
+.submenu {
+	padding: 30px 0;
+	padding-right: 40px;
+	background: #ffffff;
+	opacity: 0;
+	transition: all 0.3s;
+	border-top: 1px solid #dedede;
+	border-bottom: 1px solid #dedede;
+
+	&.is-visible {
+		opacity: 1;
+		z-index: 1;
+	}
+
+	&__nav {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		width: 100%;
+	}
+
+	&__link {
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 17px;
+		text-align: right;
+		color: #292929;
+		transition: 0.3s ease-in-out;
+		opacity: 0.7;
+		margin-left: 30px;
+	}
 }
