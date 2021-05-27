@@ -1,11 +1,14 @@
 .tiles {
-    
-    &__list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
 
-    &__tile {
+	&__list {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
 
-    }
+	&__tile {
+		border-bottom: 1px solid #000000;
+		&:nth-child(2n + 1) {
+			border-right: 1px solid #000000;
+		}
+	}
 }
