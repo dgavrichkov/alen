@@ -1,0 +1,9 @@
+.text-section {
+	&__inner {
+		@include defaultColGrid;
+	}
+	&__item {
+		// стандартное размещение
+		grid-column: 4 / span 6;
+	}
+}
