@@ -1,0 +1,41 @@
+.item-card {
+	&__figure {
+		img {
+			border: 1px solid #292929;
+		}
+	}
+	&__content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #bfbdb7;
+		padding: 30px;
+		color: #ffffff;
+	}
+
+	&__cap {
+		font-weight: normal;
+		font-size: 17px;
+		line-height: 28px;
+	}
+
+	&__overlink {
+
+	}
+
+	&--sertificate {
+		.item-card__figure {
+			position: relative;
+			width: 100%;
+			padding-bottom: 147%;
+			img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}

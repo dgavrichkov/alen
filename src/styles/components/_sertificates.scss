@@ -1,0 +1,14 @@
+.sertificates {
+	grid-column: 3 / span 8;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	column-gap: 22px;
+	margin-bottom: 80px;
+
+	&:last-child {
+		margin-bottom: 90px;
+	}
+
+	&__item {}
+}
