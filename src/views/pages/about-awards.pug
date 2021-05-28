@@ -17,30 +17,55 @@ block content
 			//- section text 
 			section.text-section
 				div.text-section__inner
-					div.text-box
+					div.text-box.text-section__item
 						h1 Награды
 						p Начав свою деятельность в 1991 году, когда Санкт-Петербург еще был Ленинградом, Архитектурное бюро «А.Лен» своими работами последовательно создает себе репутацию лидирующего проектировщика в наиболее активных направлениях строительства. В разные годы это могли быть коттеджи и коттеджные поселки, автоцентры, гостиницы и отели, жилые комплексы. Подтверждение тому – коллекция наград международных и национальных архитектурных конкурсов и премий, включая государственные награды.
-					div.numbers-block
-						div.numbers-block__item
-							b.numbers-block__value 130+
-							span.numbers-block__description призовых мест в архитектурных конкурсах
-						div.numbers-block__item
-							b.numbers-block__value 34
-							span.numbers-block__description достижения в сфере жилищного строительства
-						div.numbers-block__item
-							b.numbers-block__value 2
-							span.numbers-block__description премии правительств субъектов федерации
+					div.numbers-box.numbers-box--awards.text-section__item
+						dl
+							dt 130+
+							dd призовых мест в архитектурных конкурсах
+						dl
+							dt 34
+							dd достижения в сфере жилищного строительства
+						dl
+							dt 2
+							dd премии правительств субъектов федерации
 			//- section awards list 
 			section.awards-section
-				ul.awards-section__inner
-					li.awards-section__item
+				div.awards-section__inner
+					h2.awards-section__title Основные награды
+					div.awards-section__item
 						article.award-card
-							a(href).award-card__pic
+							a.award-card__picture(href="award")
 								picture
-							div.award-card__content
-								b.award-card__cap 
-								b.award-card__head 
-								div.award-card__text
+									img(src="images/award-1.jpg" alt="")
+							b.award-card__cap 2018
+							h3.award-card__head Золотой диплом IX Российской национальной премии по ландшафтной архитектуре
+							div.award-card__text проект  #[a «Парковая линия».] Благоустройство набережной на намывной территории» в Екатеринбурге»»
+					div.awards-section__item
+						article.award-card
+							a.award-card__picture(href="award")
+								picture
+									img(src="images/award-2.jpg" alt="")
+							b.award-card__cap 2018
+							h3.award-card__head Золотой диплом IX Российской национальной премии по ландшафтной архитектуре
+							div.award-card__text проект  #[a «Парковая линия».] Благоустройство набережной на намывной территории» в Екатеринбурге»»
+					div.awards-section__item
+						article.award-card
+							a.award-card__picture(href="award")
+								picture
+									img(src="images/award-3.jpg" alt="")
+							b.award-card__cap 2018
+							h3.award-card__head Золотой диплом IX Российской национальной премии по ландшафтной архитектуре
+							div.award-card__text проект  #[a «Парковая линия».] Благоустройство набережной на намывной территории» в Екатеринбурге»»
+					div.awards-section__item
+						article.award-card
+							a.award-card__picture(href="award")
+								picture
+									img(src="images/award-4.jpg" alt="")
+							b.award-card__cap 2018
+							h3.award-card__head Золотой диплом IX Российской национальной премии по ландшафтной архитектуре
+							div.award-card__text проект  #[a «Парковая линия».] Благоустройство набережной на намывной территории» в Екатеринбурге»»
 		div.page__popup
 
 		div.page__footer

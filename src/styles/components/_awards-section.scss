@@ -1,0 +1,21 @@
+.awards-section {
+	padding-bottom: 90px;
+	&__inner {
+		@include defaultColGrid;
+	}
+	&__title {
+		grid-column: 4 / span 6;
+		font-weight: normal;
+		font-size: 23px;
+		line-height: 36px;
+		color: #292929;
+		margin-top: 64px;
+		margin-bottom: 25px;
+	}
+	&__item {
+		grid-column: 4 / span 6;
+		&:not(:last-child) {
+			margin-bottom: 31px;
+		}
+	}
+}

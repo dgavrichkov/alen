@@ -21,4 +21,10 @@
 		line-height: 32px;
 		color: #292929;
 	}
+
+
+	&--awards {
+		grid-template-columns: 1fr 1fr 1fr;
+		padding-top: 11px;
+	}
 }
