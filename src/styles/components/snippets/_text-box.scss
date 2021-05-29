@@ -72,11 +72,28 @@
 			background: #000;
 		}
 	}
-	a {
+
+	b {
+		font-weight: 500;
+	}
+
+	a:not(.pill-btn) {
 		color: #0058dd;
 	}
 
 	&--short {
 		max-width: 580px;
+	}
+
+	* {
+		&.no-mt {
+			margin-top: 0;
+		}
+	}
+
+	& > * {
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 }

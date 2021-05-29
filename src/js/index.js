@@ -4,3 +4,6 @@
 import footerAccordeon from "%modules%/footer/footer";
 
 footerAccordeon();
+
+
+// careerAccordeon

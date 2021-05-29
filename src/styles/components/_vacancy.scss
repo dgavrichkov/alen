@@ -1,0 +1,36 @@
+.vacancy {
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 93px;
+		padding: 0 30px 0 20px;
+		border-top: 1px solid #DADADA;
+		cursor: pointer;
+		
+		h3 {
+			font-weight: normal;
+			font-size: 17px;
+			line-height: 36px;
+			color: #292929;
+		}
+		
+		button {
+			border: none;
+			background-color: transparent;
+			width: 20px;
+			height: 20px;
+			background-size: 17px 10px;
+			background-position: center;
+			background-image: $icon-chevron;
+			background-repeat: no-repeat;
+		}
+	}
+
+	&__body {
+		background: #F4F4F4;
+		overflow: hidden;
+		height: 0;
+	}
+}

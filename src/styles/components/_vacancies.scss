@@ -1,0 +1,29 @@
+.vacancies {
+	&__inner {
+		@include defaultColGrid;
+		margin-bottom: 90px;
+	}
+
+	&__title {
+		font-weight: normal;
+		font-size: 23px;
+		line-height: 36px;
+		color: #292929;
+		margin-bottom: 30px;
+
+		grid-column: 4 / span 6;
+	}
+
+	&__list {
+		grid-column: 4 / span 6;
+	}
+
+	&__item {
+		&:last-child {
+			.vacancy {
+				border-bottom: 1px solid #DADADA;
+			}
+		}
+	}
+	
+}

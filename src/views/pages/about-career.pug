@@ -17,25 +17,41 @@ block content
 			//- section text
 			section.text-section
 				div.text-section__inner
-					div.text-box
+					div.text-box.text-section__item
 						h1 Карьера
 						h4 За годы работы наша компания приобрела весомый опыт и – особо ценное – доверие заказчиков, поручающих специалистам Архитектурного бюро «А.Лен» разработку и ведение проектов высокой сложности.
 						p Добившись устойчивого положения в области архитектурного проектирования, мы идем в ногу со временем, не останавливаемся на достигнутом и постоянно совершенствуемся. На этом пути мы открыты для сотрудничества как со специалистами высокой квалификации, так и с целеустремленными выпускниками ВУЗов.
 						p Если Вы настроены на результат, обладаете желанием работать творчески и упорно, мы будем рады принять Вас в команду «А.Лен».
-						h4 Для рассмотрения Вашей кандидатуры предлагаем отправить резюме с указанием названия вакансии:
-						div.row
-							div.row__item
+						h4.no-mt Для рассмотрения Вашей кандидатуры предлагаем отправить резюме с указанием названия вакансии:
+						div.resume-contact-box
+							div
 								p По e-mail: #[br] #[b office@a-len.ru]
-							div.row__item
+							div
 								p Или позвонить: #[br] #[b +7 (812) 579-55-81]
-							div.row__item
+							div
 								p Вы можете воспользоваться бланком для заполнения резюме
 								a.pill-btn(href="blanc.doc" download) Скачать бланк
 						p Если Вы хотите работать в Архитектурном бюро «А.Лен», но не нашли подходящей вакансии, можете выслать свое резюме с указанием интересующего направления, диапазона Ваших знаний и профессионального опыта. Все резюме вносятся в базу данных отдела персонала и рассматриваются при появлении соответствующей вакансии.
-			//- -- hero
-			//- -- simble
-			//- -- contacts
-			//- -- vacancies accordeon (на сайте сейчас отсутствует)
+			section.vacancies
+				div.vacancies__inner
+					h2.vacancies__title В настоящее время в компании открыты следующие вакансии:
+					ul.vacancies__list
+						li.vacancies__item
+							article.vacancy
+								header.vacancy__head
+									h3 Ведущий инженер ВК
+									button(type="button")
+								div.vacancy__body
+									p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque, beatae. Fuga, fugit vel. Consequuntur quibusdam minima reiciendis minus amet eius deleniti. Nesciunt culpa eligendi quasi aspernatur placeat qui et veritatis.
+									a(href="откликнуться").pill-btn.pill-btn--mist Откликнуться
+						li.vacancies__item
+							article.vacancy
+								header.vacancy__head
+									h3 Бухгалтер по расчету заработной платы
+									button(type="button")
+								div.vacancy__body
+									p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque, beatae. Fuga, fugit vel. Consequuntur quibusdam minima reiciendis minus amet eius deleniti. Nesciunt culpa eligendi quasi aspernatur placeat qui et veritatis.
+									a(href="откликнуться").pill-btn.pill-btn--mist Откликнуться
 
 
 		div.page__popup
