@@ -1,0 +1,60 @@
+.project-map {
+	margin-bottom: 90px;
+	&__inner {
+		padding: 0 40px;
+		position: relative;
+	}
+
+	&__main {
+		background: #f3f3f3;
+		position: relative;
+		&::after {
+			content: '';
+			display: block;
+			padding-top: 43.53%;
+			width: 100%;
+		}
+	}
+
+	&__info {
+		position: absolute;
+		top: 0;
+		left: 40px;
+		color: #fff;
+		width: 35%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.7);
+		padding-left: 80px;
+		padding-right: 70px;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+
+		z-index: 2;
+	}
+
+	&__text {
+		font-weight: 300;
+		font-size: 28px;
+		line-height: 145%;
+		color: #ffffff;
+		margin-bottom: 140px;
+		max-width: 100%;
+	}
+
+	&__link {
+		background: rgba(255, 255, 255, 0.12);
+		border-radius: 23.5px;
+		font-family: Rubik;
+		font-style: normal;
+		display: inline-block;
+		padding: 0 25px;
+		font-weight: 300;
+		font-size: 16px;
+		line-height: 47px;
+		text-align: center;
+		color: #ffffff;
+	}
+}
