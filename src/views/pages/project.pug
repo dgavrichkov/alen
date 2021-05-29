@@ -101,20 +101,34 @@ block content
 				div.info-section__inner
 					div.infoslider
 						header.infoslider__head
-							div.infoslider__tab Цифры и факты
-							div.infoslider__tab Награды
-							div.infoslider__tab Пресса
+							div.infoslider__tabs
+								div.infoslider__tab Цифры и факты
+								div.infoslider__tab Награды
+								div.infoslider__tab Пресса
+								div.infoslider__indicator
+									div.infoslider__indicator-caret
 						div.infoslider__body
 							div.infoslider__item
 								ul.infoslider__content 
 									li.infoslider__option
 										div.infoslider__option-key Площадь участка
 										div.infoslider__option-value 29,39 Га
+									li.infoslider__option
+										div.infoslider__option-key Площадь участка
+										div.infoslider__option-value 29,39 Га
+									li.infoslider__option
+										div.infoslider__option-key Площадь участка
+										div.infoslider__option-value 29,39 Га
 							div.infoslider__item
 								ul.infoslider__content 
 									li.infoslider__option
-										div.infoslider__option-key Площадь застройки
-										div.infoslider__option-value 18 553,8 м2
+										div.infoslider__option-big С.И. Орешкин - руководитель проекта 
+									li.infoslider__option
+										div.infoslider__option-big Р.В. Андреева - главный архитектор проекта 
+									li.infoslider__option
+										div.infoslider__option-big С.В. Кузьмин - главный инженер проекта 
+									li.infoslider__option
+										div.infoslider__option-big Е.С. Орешкина, Е.А. Белят, В.Ю. Шляга, М.А. Шалина, Н.В. Тимонин, Е.С. Каретина, Н.К. Пальникова, А.В. Храмова - архитекторы  
 							div.infoslider__item
 								ul.infoslider__content 
 									li.infoslider__option
@@ -125,15 +139,15 @@ block content
 			section.items-section 
 				div.items-section__inner
 					//- just items
-					ul.item-section__items 
-						li.item-section__item 
+					ul.items-section__items 
+						li.items-section__item 
 							article.item-card
 								figure.item-card__figure
 									picture 
 								div.item-card__content
 									h3.item-card__cap Морской вокзал №1 (круизный)
 								a(href="project.html").item-card__overlink
-						li.item-section__item 
+						li.items-section__item 
 							article.item-card
 								figure.item-card__figure
 									picture 

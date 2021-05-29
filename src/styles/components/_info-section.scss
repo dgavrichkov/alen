@@ -1,0 +1,90 @@
+.info-section {
+	margin-bottom: 90px;
+	&__inner {
+		@include defaultColGrid;
+	}
+	.infoslider {
+		grid-column: 3 / span 8;
+	}
+}
+
+.infoslider {
+	&__head {
+		margin-bottom: 18px;
+	}
+	&__tabs {
+		display: flex;
+		padding-bottom: 30px;
+		justify-content: center;
+		width: min-content;
+		width: -moz-min-content;
+		width: -webkit-min-content;
+		margin: auto;
+		position: relative;
+	}
+	&__tab {
+		font-weight: 300;
+		font-size: 16px;
+		line-height: 19px;
+		color: #9a9a9a;
+		white-space: nowrap;
+		transition: 0.3s ease-in-out;
+		cursor: pointer;
+		padding: 0 20px;
+		&.is-active {
+			color: #292929;
+			cursor: default;
+			font-weight: 400;
+		}
+	}
+	&__indicator {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		border-bottom: 1px solid #dedede;
+		width: 100%;
+	}
+	&__indicator-caret {
+		background: #292929;
+		position: relative;
+		height: 3px;
+		width: 100px;
+		transition: all 0.5s linear;
+	}
+	&__body {}
+	&__item {
+		
+	}
+	&__content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 20px;
+	}
+	&__option {
+		border-bottom: 1px solid #dedede;
+		padding: 28px 0;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		color: #292929;
+	}
+	&__option-key {
+		font-style: normal;
+		font-weight: 300;
+		font-size: 14px;
+		line-height: 15px;
+		align-self: center;
+	}
+	&__option-value {
+		font-style: normal;
+		font-weight: 300;
+		font-size: 17px;
+		line-height: 32px;
+		align-self: center;
+	}
+	&__option-big {
+		font-style: normal;
+		font-weight: 300;
+		font-size: 17px;
+		line-height: 32px;
+	}
+}

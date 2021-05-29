@@ -1,22 +1,27 @@
 .page {
-
+	&__goback {
+		margin-bottom: 90px;
+		display: flex;
+		justify-content: center;
+	}
 }
 
 .page-bar {
-    margin-top: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	margin-top: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-    background: #fff;
-    height: 125px;
+	background: #fff;
+	height: 125px;
 
-    padding: 0 40px;
-    &__title {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 23px;
-        line-height: 217%;
-        color: #292929;
-    }
+	padding: 0 40px;
+
+	&__title {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 23px;
+		line-height: 217%;
+		color: #292929;
+	}
 }

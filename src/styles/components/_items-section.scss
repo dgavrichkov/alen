@@ -1,0 +1,10 @@
+.items-section {
+	margin-bottom: 90px;
+	&__inner {
+		@include defaultColGrid;
+	}
+
+	&__items {
+		grid-column: 3 / span 8;
+	}
+}
