@@ -20,28 +20,40 @@ block content
 					div.text-box
 						h1 Маркетинговая инфографика «А.Лен»
 						p Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, rerum rem inventore sequi corrupti dolores atque quae laboriosam qui! Placeat, rerum? Nostrum obcaecati sed unde sit a? Reiciendis, quae inventore!
-			//- section gallery
-
-			//- section slider tiles
-			section.items-slider-section
-				div.items-slider-section__inner
-					h2.items-slider-section__title Программа применена в объектах
-					div.items-slider
-						div.items-slider__wrapper
+			section.text-section
+				div.text-section__inner
+					div.biglist-box.text-section__item
+						div.biglist-box__title Как это работает
+						dl.biglist-box__item
+							dt 01
+							dd Получаем общие представления о классе застройки от девелопера в виде документа под названием «Квартирография». Выдаем экспертный анализ представленного документа с рекомендациями на основе нашего маркетингового исследования предложений конкурентов в локации объекта.
+						dl.biglist-box__item
+							dt 02
+							dd Производим первичный широкий отбор из запатентованной базы данных «Идеальные квартиры «А.Лен». Дополняем теми типами квартир, которых нет у конкурентов. Предлагаем эксклюзивную линейку квартир для данного комплекса.
+						dl.biglist-box__item
+							dt 03
+							dd После утверждения первичного отбора квартир, конструктивного шага (программа включает в себя модули перекрытий 6.05, 6.65, 7.05, 7.85 м) и объемной модели здания разрабатываем первичные планировки.
+			section.items-section
+				div.items-section__inner
+					h2.items-section__title Программа применена в объектах
+					div.items-section__content
+						div.items-slider
 							div.items-slider__slide
 								article.item-card 
+									a(href="project.html").item-card__overlink
 									figure.item-card__figure
 										picture 
+											img(src="images/item-1.jpg" alt="")
 									div.item-card__content
 										h3.item-card__cap Мышь (кродется)
-									a(href="project.html").item-card__overlink
 							div.items-slider__slide
 								article.item-card 
+									a(href="project.html").item-card__overlink
 									figure.item-card__figure
 										picture 
+											img(src="images/item-2.jpg" alt="")
 									div.item-card__content
 										h3.item-card__cap Мышь (кродется)
-									a(href="project.html").item-card__overlink
 						div.items-slider__navigation
 			//- goback
 			div.page__goback
