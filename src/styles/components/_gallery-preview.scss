@@ -1,0 +1,48 @@
+.gallery-preview {
+	margin-bottom: 90px;
+
+	overflow: hidden;
+	&__inner {
+		padding: 0;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__picture {
+		position: relative;
+		&::before, &::after {
+			content: '';
+			width: 20%;
+			height: 100%;
+			background-color: #fff;
+			position: absolute;
+			top: 0;
+			transition: all 2.5s ease-in-out;
+		}
+		&::before {
+			right: 90%;
+		}
+		&::after {
+			left: 90%;
+		}
+	}
+
+	&__load {
+		margin-top: 30px
+	}
+
+	&.is-animed {
+		.gallery-preview__picture {
+			&::before {
+				right: 100%;
+			}
+			&::after {
+				left: 100%;
+			}
+		}
+	}
+}
