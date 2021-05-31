@@ -4,6 +4,12 @@
 		display: flex;
 		justify-content: center;
 	}
+	
+	&__goback-btn {
+		padding: 0 45px;
+		text-transform: capitalize;
+		font-weight: 500;
+	}
 }
 
 .page-bar {
