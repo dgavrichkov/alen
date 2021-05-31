@@ -7,5 +7,14 @@
 	&__item {
 		// стандартное размещение
 		grid-column: 4 / span 6;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&--sertificates {
+		.text-box {
+			margin-bottom: 50px;
+		}
 	}
 }
