@@ -1,7 +1,8 @@
 .text-section {
+	margin-bottom: 90px;
+
 	&__inner {
 		@include defaultColGrid;
-		margin-bottom: 90px;
 	}
 	&__item {
 		// стандартное размещение

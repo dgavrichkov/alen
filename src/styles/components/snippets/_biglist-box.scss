@@ -1,0 +1,41 @@
+.biglist-box {
+	&__title {
+		font-family: Rubik;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 23px;
+		line-height: 36px;
+		color: #292929;
+		margin-bottom: 60px;
+	}
+
+	&__item {
+		border-bottom: 1px solid #dadada;
+		padding: 42px 0;
+		display: flex;
+
+		dt {
+			flex-basis: 150px;
+			font-family: Rubik;
+			font-style: normal;
+			font-weight: 300;
+			font-size: 64px;
+			line-height: 68px;
+			color: #292929;
+		}
+
+		dd {
+			font-family: Rubik;
+			flex-basis: calc(100% - 150px);
+			font-style: normal;
+			font-weight: 300;
+			font-size: 17px;
+			line-height: 27px;
+			color: #292929;
+		}
+
+		&:first-of-type {
+			border-top: 1px solid #dadada;
+		}
+	}
+}

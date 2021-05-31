@@ -3,10 +3,20 @@
 	&__inner {
 		@include defaultColGrid;
 	}
-
-	&__items {
+	&__title {
 		grid-column: 3 / span 8;
-		
+
+		font-weight: normal;
+		font-size: 23px;
+		line-height: 46px;
+		color: #292929;
+		text-align: left;
+		margin-bottom: 13px;
+	}
+	&__content {
+		grid-column: 3 / span 8;
+	}
+	&__items {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		column-gap: 20px;

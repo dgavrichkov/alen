@@ -17,18 +17,17 @@ block content
 			//- section text
 			section.text-section
 				div.text-section__inner
-					div.text-box.content
+					div.text-box.text-section__item
 						h1
 							div «Идеальные квартиры «А.Лен» и
 							div «Идеальные апартаменты «А.Лен»
+							br
 						h4 Установите эталон квартир с самого начала проекта!
 						a.pill-btn(href="#brochure") Заказать брошюру о программе «Идеальные квартиры «А.Лен»
-						dl
-							dt Что это
-							dd База знаний о квартирографии, накопленная Архитектурной лабораторией «А.Лен» с 1991 года.
-						dl 
-							dt Для кого и зачем
-							dd Девелоперам и застройщикам «Идеальные квартиры «А.Лен» обеспечивают наглядный и эффективный инструмент продаж квартир и апартаментов. Покупателям квартир в качестве пособия по выбору правильной планировки.
+						h4 Что это
+						p База знаний о квартирографии, накопленная Архитектурной лабораторией «А.Лен» с 1991 года.
+						h4 Для кого и зачем
+						p Девелоперам и застройщикам «Идеальные квартиры «А.Лен» обеспечивают наглядный и эффективный инструмент продаж квартир и апартаментов. Покупателям квартир в качестве пособия по выбору правильной планировки.
 						h4 Это достигается
 						ul
 							li Отбором по нужным параметрам набора планировок квартир из базы более 10 000 вариантов в четырех классах и четырех конструктивных шагах;
@@ -50,13 +49,16 @@ block content
 							li Дополнительные конкурентные преимущества для жилого комплекса: трансформеры, удобство эксплуатации, экономичность строительства;
 							li Сохранение идеи жилого комплекса от концепции до постройки;
 							li Как результат, высокая финансовая экономия для застройщика.
-					div.doc-box.content
+			section.text-section
+				div.text-section__inner
+					div.doc-box.text-section__item
 						a(href="sertificate").doc-box__pic
-							picture 
+							picture
+								img(src="images/doc-apartments.jpg" alt="свидетельство")
 						div.doc-box__description
 							b.doc-box__cap "Идеальные квартиры" - зарегистрированная разработка "А.Лен"
 							p.doc-box__txt Свидетельство Федеральной службы по интеллектуальной собственности (Роспатент) №2018670024 от 31.10.2018 г.
-					div.biglist-box.content
+					div.biglist-box.text-section__item
 						div.biglist-box__title Как это работает
 						dl.biglist-box__item
 							dt 01
@@ -67,28 +69,28 @@ block content
 						dl.biglist-box__item
 							dt 03
 							dd После утверждения первичного отбора квартир, конструктивного шага (программа включает в себя модули перекрытий 6.05, 6.65, 7.05, 7.85 м) и объемной модели здания разрабатываем первичные планировки.
-			//- section gallery
 
-			//- section slider tiles
-			section.items-slider-section
-				div.items-slider-section__inner
-					h2.items-slider-section__title Программа применена в объектах
-					div.items-slider
-						div.items-slider__wrapper
+			section.items-section
+				div.items-section__inner
+					h2.items-section__title Программа применена в объектах
+					div.items-section__content
+						div.items-slider
 							div.items-slider__slide
 								article.item-card 
+									a(href="project.html").item-card__overlink
 									figure.item-card__figure
-										picture 
+										picture
+											img(src="images/item-1.jpg" alt="")
 									div.item-card__content
 										h3.item-card__cap Мышь (кродется)
-									a(href="project.html").item-card__overlink
 							div.items-slider__slide
 								article.item-card 
+									a(href="project.html").item-card__overlink
 									figure.item-card__figure
 										picture 
+											img(src="images/item-2.jpg" alt="")
 									div.item-card__content
 										h3.item-card__cap Мышь (кродется)
-									a(href="project.html").item-card__overlink
 						div.items-slider__navigation
 			//- goback
 			div.page__goback

@@ -1,0 +1,41 @@
+.doc-box {
+	display: flex;
+	background: #ffffff;
+	border: 1px solid #e5e5e5;
+	
+	margin-bottom: 90px;
+
+	&__pic {
+		border: 1px solid #000000;
+		width: 40%;
+		img {
+			width: auto;
+			height: auto;
+			max-width: 100%;
+		}
+	}
+
+	&__description {
+		width: 60%;
+		padding: 0 60px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: left;
+	}
+
+	&__cap {
+		font-weight: normal;
+		font-size: 21px;
+		line-height: 38px;
+		color: #292929;
+		margin-bottom: 35px;
+	}
+
+	&__txt {
+		font-weight: 300;
+		font-size: 17px;
+		line-height: 32px;
+		color: #292929;
+	}
+}
