@@ -26,18 +26,20 @@ block content
 			//- section gallery 
 			section.gallery-preview
 				div.gallery-preview__inner
-					figure 
-						picture
-					button.gallery-preview__load.pill-btn(type="button") Фото и видео
+					div.gallery-preview__content
+						figure.gallery-preview__picture
+							picture
+								img(src="images/project-gallery-preview.jpg")
+						button.gallery-preview__load.pill-btn(type="button") Фото и видео
 			//- section actions bar
 			section.actions-bar 
 				div.actions-bar__inner
 					a(href="back").pill-btn.actions-bar__goback Назад
 					button(type="button").pill-btn.actions-bar__share Поделиться
 					div.actions-bar__share-links
-						a(href="fb").actions-bar__share-item
+						a(href="fb" data-social-item="facebook").actions-bar__share-item
 							span Facebook
-						a(href="vk").actions-bar__share-item
+						a(href="vk" data-social-item="vkontakte").actions-bar__share-item
 							span Vkontakte
 			//- section comments list
 			sections.comments
@@ -49,89 +51,102 @@ block content
 								b.comment-item__name Евгений Голяка:
 								div.comment-item__date 15 сентября 2019
 								div.comment-item__text Интересный обзор. Хорошо написано! 
-								button.comments-item__reply.pill-btn(type="button") Ответить
+								button.comment-item__reply.pill-btn(type="button") Ответить
 								div.comment-item__replies
 									div.comment-item__replies-cap Ответы
 									div.comment-item__replies-item 
 										article.comment-item
 											b.comment-item__name Евгений Голяка:
 											div.comment-item__date 15 сентября 2019
-											div.comment-item__text ок 
+											div.comment-item__text ок
+									div.comment-item__replies-item 
+										article.comment-item
+											b.comment-item__name Евгений Голяка:
+											div.comment-item__date 16 сентября 2019
+											div.comment-item__text я передумал
 						li.comments__item
 							article.comment-item
 								b.comment-item__name Евгений Голяка:
 								div.comment-item__date 15 сентября 2019
 								div.comment-item__text Интересный обзор. Хорошо написано! 
-								button.comments-item__reply.pill-btn(type="button") Ответить
+								button.comment-item__reply.pill-btn(type="button") Ответить
 				//- add comments
 				div.comments__inner
 					h2.comments__title Оставить комментарий
 					form.comments__form.comments-form.form
 						div.comments-form__text
 							div.form__textarea.form__box
-								label(for="").form__label
+								label(for="").form__label Комментарий#[span *]
 								textarea
 						div.comments-form__name
 							div.form__inputbox.form__box
-								label(for="").form__label
+								label(for="").form__label Имя#[span *]
 								input(type="text")
 						div.comments-form__email
 							div.form__inputbox.form__box
-								label(for="").form__label
+								label(for="").form__label E-mail#[span *]
 								input(type="text")
 						div.comments-form__agree
 							div.form__checkbox.form__box
-								input(type="text")
-								label(for="")
+								input(type="checkbox" required id="form-agree" name="form-agree")
+								label(for="form-agree") Даю согласие на обработку персональных данных в соответствии с политикой конфиденциальности
 						div.comments-form__remember
 							div.form__checkbox.form__box
-								input(type="text") 
-								label(for="")
+								input(type="checkbox" id="form-save" name="form-save") 
+								label(for="form-save") Сохранить имя, адрес электронной почты, чтобы в следующий раз оставить комментарий
 						div.comments-form__submit
-							button.pill-btn(type="submit")
+							button.pill-btn(type="submit") Отправить
 
 			//- section slider tiles - other news
-			section.other-news 
-				div.other-news__inner 
-					div.other-news__slider
-						div.other-news__slider-wrapper
-							div.other-news__slide
-								article.item-card.item-card--press
-									figure.item-card__figure
-										picture 
-									div.item-card__content
-										div.item-card__date 24 сентября 2019
-										h3.item-card__title Архитектурные фавориты петербургских девелоперов
-										//- max 4 rows
-										div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
-							div.other-news__slide
-								article.item-card.item-card--press
-									figure.item-card__figure
-										picture 
-									div.item-card__content
-										div.item-card__date 24 сентября 2019
-										h3.item-card__title Архитектурные фавориты петербургских девелоперов
-										//- max 4 rows
-										div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
-							div.other-news__slide
-								article.item-card.item-card--press
-									figure.item-card__figure
-										picture 
-									div.item-card__content
-										div.item-card__date 24 сентября 2019
-										h3.item-card__title Архитектурные фавориты петербургских девелоперов
-										//- max 4 rows
-										div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
-							div.other-news__slide
-								article.item-card.item-card--press
-									figure.item-card__figure
-										picture 
-									div.item-card__content
-										div.item-card__date 24 сентября 2019
-										h3.item-card__title Архитектурные фавориты петербургских девелоперов
-										//- max 4 rows
-										div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
-						div.other-news__slider-nav
+			section.items-section 
+				div.items-section__inner
+					h2.items-section__title Другие новости
+					div.items-section__content
+						div.other-news
+							div.other-news__slider-wrapper
+								div.other-news__slide
+									article.item-card.item-card--press
+										a.item-card__overlink(href="press-one.html")
+										figure.item-card__figure
+											picture
+												img(src="images/press-3.jpg")
+										div.item-card__content
+											div.item-card__date 24 сентября 2019
+											h3.item-card__title Архитектурные фавориты петербургских девелоперов
+											//- max 4 rows
+											div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
+								div.other-news__slide
+									article.item-card.item-card--press
+										a.item-card__overlink(href="press-one.html")
+										figure.item-card__figure
+											picture 
+												img(src="images/press-2.jpg")
+										div.item-card__content
+											div.item-card__date 24 сентября 2019
+											h3.item-card__title Архитектурные фавориты петербургских девелоперов
+											//- max 4 rows
+											div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
+								div.other-news__slide
+									article.item-card.item-card--press
+										figure.item-card__figure
+											picture 
+												img(src="images/press-2.jpg")
+										div.item-card__content
+											div.item-card__date 24 сентября 2019
+											h3.item-card__title Архитектурные фавориты петербургских девелоперов
+											//- max 4 rows
+											div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
+								div.other-news__slide
+									article.item-card.item-card--press
+										figure.item-card__figure
+											picture 
+												img(src="images/press-2.jpg")
+										div.item-card__content
+											div.item-card__date 24 сентября 2019
+											h3.item-card__title Архитектурные фавориты петербургских девелоперов
+											//- max 4 rows
+											div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
+							div.other-news__slider-nav
 		div.page__popup
 
 		div.page__footer

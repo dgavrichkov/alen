@@ -86,4 +86,11 @@
 		line-height: 133%;
 		color: #ffffff;
 	}
+
+
+	&--nogradient {
+		.hero__figure::after {
+			display: none;
+		}
+	}
 }

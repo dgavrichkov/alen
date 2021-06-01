@@ -1,0 +1,13 @@
+.press-items {
+	margin-bottom: 90px;
+	&__inner {
+		@include defaultColGrid;
+	}
+	&__list {
+		grid-column: 3 / span 8;
+		
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+	}
+}

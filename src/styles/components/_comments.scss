@@ -1,0 +1,84 @@
+.comments {
+	@include defaultColGrid;
+	margin-bottom: 90px;
+	&__inner {
+		grid-column: 4 / span 6;
+	}
+	
+	&__title {
+		font-weight: normal;
+		font-size: 40px;
+		line-height: 68px;
+		color: #292929;
+		margin-bottom: 40px;
+		margin-top: 70px;
+	}
+
+	&__list {}
+	&__item {
+		padding-top: 26px;
+		padding-bottom: 30px;
+		border-bottom: 1px solid #DADADA;
+	}
+
+}
+
+.comments-form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+
+	&__text {
+		grid-column: 1 / -1;
+	}
+}
+
+.comment-item {
+	&__name {
+		display: block;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 22px;
+		color: #292929;
+		margin-bottom: 12px;
+	}
+
+	&__date {
+		font-weight: 300;
+		font-size: 15px;
+		line-height: 18px;
+		color: #9A9A9A;
+		margin-bottom: 13px;
+	}
+
+	&__text {
+		font-weight: 300;
+		font-size: 15px;
+		line-height: 20px;
+		color: #292929;
+	}
+
+	&__reply {
+		margin-top: 27px;
+	}
+
+	&__replies {
+		padding-left: 70px;
+		padding-top: 27px;
+	}
+
+	&__replies-cap {
+		font-weight: 300;
+		font-size: 15px;
+		line-height: 18px;
+		color: #9A9A9A;
+		margin-bottom: 20px;
+	}
+	&__replies-item {
+		padding-top: 18px;
+		border-top: 1px solid #DADADA;
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	}
+}

@@ -10,7 +10,7 @@ block content
 			include ../../blocks/modules/header/header.pug
 		main.page__main
 			//- hero banner just image
-			section.hero
+			section.hero.hero--nogradient
 				figure.hero__figure
 					picture
 						img(src="images/hero-press.jpg" alt="")
@@ -22,63 +22,68 @@ block content
 						span Присоединяйтесь к нам
 						ul.press-socials 
 							li.press-socials__item 
-								a.press-socials__link(href="sss")
+								a.press-socials__link(href="sss" data-social-item="facebook")
 									span Facebook
 							li.press-socials__item 
-								a.press-socials__link(href="sss")
+								a.press-socials__link(href="sss" data-social-item="vkontakte")
 									span Vkontakte
 							li.press-socials__item 
-								a.press-socials__link(href="sss")
+								a.press-socials__link(href="sss" data-social-item="instagram")
 									span Instagram
 							li.press-socials__item 
-								a.press-socials__link(href="sss")
+								a.press-socials__link(href="sss" data-social-item="pinterest")
 									span Pinterest
 							li.press-socials__item 
-								a.press-socials__link(href="sss")
+								a.press-socials__link(href="sss" data-social-item="behance")
 									span Behance
 			//- press list tiles
 			section.press-items 
-				ul.press-items__inner
-					li.press-items__item
-						article.item-card.item-card--press 
-							figure.item-card__figure
-								picture 
-							div.item-card__content
-								div.item-card__date 24 сентября 2019
-								h3.item-card__title Архитектурные фавориты петербургских девелоперов
-								//- max 4 rows
-								div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
-							a(href="project.html").item-card__overlink
-					li.press-items__item
-						article.item-card.item-card--press 
-							figure.item-card__figure
-								picture 
-							div.item-card__content
-								div.item-card__date 24 сентября 2019
-								h3.item-card__title Архитектурные фавориты петербургских девелоперов
-								//- max 4 rows
-								div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
-							a(href="project.html").item-card__overlink
-					li.press-items__item
-						article.item-card.item-card--press 
-							figure.item-card__figure
-								picture 
-							div.item-card__content
-								div.item-card__date 24 сентября 2019
-								h3.item-card__title Архитектурные фавориты петербургских девелоперов
-								//- max 4 rows
-								div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
-							a(href="project.html").item-card__overlink
-					li.press-items__item
-						article.item-card.item-card--press 
-							figure.item-card__figure
-								picture 
-							div.item-card__content
-								div.item-card__date 24 сентября 2019
-								h3.item-card__title Архитектурные фавориты петербургских девелоперов
-								//- max 4 rows
-								div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
-							a(href="project.html").item-card__overlink
+				div.press-items__inner
+					ul.press-items__list
+						li.press-items__item
+							article.item-card.item-card--press 
+								a(href="press-one.html").item-card__overlink
+								figure.item-card__figure
+									picture
+										img(src="images/press-1.jpg")
+								div.item-card__content
+									div.item-card__date 24 сентября 2019
+									h3.item-card__title Архитектурные фавориты петербургских девелоперов
+									//- max 4 rows
+									div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
+						li.press-items__item
+							article.item-card.item-card--press 
+								a(href="press-one.html").item-card__overlink
+								figure.item-card__figure
+									picture 
+										img(src="images/press-2.jpg")
+								div.item-card__content
+									div.item-card__date 24 сентября 2019
+									h3.item-card__title Архитектурные фавориты петербургских девелоперов
+									//- max 4 rows
+									div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
+						li.press-items__item
+							article.item-card.item-card--press 
+								a(href="press-one.html").item-card__overlink
+								figure.item-card__figure
+									picture 
+										img(src="images/press-3.jpg")
+								div.item-card__content
+									div.item-card__date 24 сентября 2019
+									h3.item-card__title Архитектурные фавориты петербургских девелоперов
+									//- max 4 rows
+									div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
+						li.press-items__item
+							article.item-card.item-card--press 
+								a(href="press-one.html").item-card__overlink
+								figure.item-card__figure
+									picture 
+										img(src="images/press-1.jpg")
+								div.item-card__content
+									div.item-card__date 24 сентября 2019
+									h3.item-card__title Архитектурные фавориты петербургских девелоперов
+									//- max 4 rows
+									div.item-card__description Петербургские девелоперы за последние десятилетия сформировали круг архитектурных фаворитов из числа проектных компаний. Петербургская интернет-газета «Канонер» выяснила, как выбирают и за что ценят современных зодчих, а также попыталась рассмотреть темную ...
 
 		div.page__popup
 

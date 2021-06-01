@@ -1,0 +1,80 @@
+.press-bar {
+	@include defaultColGrid;
+	margin-bottom: 50px;
+	&__inner {
+		grid-column: 3 / span 8;
+
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 20px;
+	}
+	&__title {
+		font-weight: normal;
+		font-size: 40px;
+		line-height: 54px;
+		color: #292929;
+	}
+
+	&__socials {
+		display: flex;
+		align-items: center;
+		& > span {
+			font-weight: normal;
+			font-size: 18px;
+			line-height: 35px;
+			text-align: right;
+			color: #292929;
+			margin-right: 33px;
+		}
+	}
+}
+
+.press-socials {
+	display: flex;
+	&__item {
+
+	}
+
+	&__link {
+		background: #ffffff;
+		border: 1px solid #e5e5e5;
+		box-sizing: border-box;
+		width: 50px;
+		height: 50px;
+		border-radius: 50px;
+		min-width: 50px;
+		margin-right: 19px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s ease-in-out;
+		
+		background-repeat: no-repeat;
+		background-position: center;
+		
+		span {
+			@include visually-hidden;
+		}
+
+		&[data-social-item="facebook"] {
+			background-image: $icon-facebook;
+			background-size: 11px 21px;
+		}
+		&[data-social-item="vkontakte"] {
+			background-image: $icon-vkontakte;
+		}
+		&[data-social-item="instagram"] {
+			background-image: $icon-instagram;
+		}
+		&[data-social-item="pinterest"] {
+			background-image: $icon-pinterest;
+		}
+		&[data-social-item="behance"] {
+			background-image: $icon-behance;
+		}
+		
+		&:hover {
+			background-color: #ebebeb;
+		}
+	}
+}
