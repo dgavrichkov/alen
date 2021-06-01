@@ -1,12 +1,14 @@
-.contacts-map {
+.section-map {
 	margin-bottom: 90px;
 	border-top: 1px solid #e5e5e5;
 	border-bottom: 1px solid #e5e5e5;
+
 	&__inner {
 		height: 660px;
 		position: relative;
 		z-index: 1;
 	}
+
 	&__content {
 		max-width: 520px;
 		position: absolute;
@@ -31,6 +33,7 @@
 	&__item {
 		margin-bottom: 30px;
 	}
+
 	&__label {
 		display: block;
 		font-weight: normal;
@@ -46,8 +49,13 @@
 		font-size: 23px;
 		line-height: 30px;
 		color: #292929;
+
 		a {
 			color: inherit;
 		}
+	}
+
+	&--geography {
+		margin-bottom: 0;
 	}
 }

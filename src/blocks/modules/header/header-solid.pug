@@ -1,0 +1,36 @@
+header.header.header--solid
+    .header__inner 
+        a(href="index.html").header__logo 
+
+        .header__search
+            button.header__search-btn(type="button") 
+            form.header__search-form.visually-hidden
+                input(type="text")
+                button(type="button").header__search-clear
+        nav.header__menu
+            a(href="projects.html").header__menu-item.is-current Проекты
+            a(href="about.html").header__menu-item Компания
+            a(href="services.html").header__menu-item Услуги
+            a(href="lab.html").header__menu-item Лаборатория
+            a(href="press.html").header__menu-item Пресс-центр
+            a(href="contacts.html").header__menu-item Контакты
+        .header__mobile-btns 
+            a(href="tel:+7 (812) 579-55-81").header__mobile-call
+                span.icon 
+                span.visually-hidden +7 (812) 579-55-81
+            button(type="button").header__mobile-burger
+                span
+                p.visually-hidden Открыть меню
+        a.header__mobile-search-back icon-chevron-back
+        .header__mobile-menu.mobile-menu
+            nav.mobile-menu__list 
+                button(type="button").mobile-menu__search
+                    span.mobile-menu__search-icon
+                    span Поиск
+                a(href="projects.html") Проекты
+                a(href="about.html") Компания
+                a(href="services.html") Услуги
+                a(href="lab.html") Лаборатория
+                a(href="press.html") Пресс-центр
+                a(href="contacts.html") Контакты
+                a(href="/en") English

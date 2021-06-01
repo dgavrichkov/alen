@@ -7,14 +7,18 @@ block variables
 block content
 	div.page
 		div.page__header
-			include ../../blocks/modules/header/header.pug
+			include ../../blocks/modules/header/header-solid.pug
 		main.page__main
-			h1 geo
-
 			//- page bar title
-
+			section.page-bar
+				h1.page-bar__title География строительства
+				a.page-bar__link.pill-btn(href="projects.html") Назад
 			//- section geo map
-
+			section.section-map.section-map--geography
+				div.section-map__inner
+					//- сюда вставлять карту
+					div.map
+						img(src="images/geo-thumb.png")
 
 		div.page__popup
 
