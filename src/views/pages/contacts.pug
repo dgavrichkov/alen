@@ -14,18 +14,19 @@ block content
 				h1.page-bar__title Контакты
 
 			//- section map
-			section.contacts-map 
+			section.contacts-map
 				div.contacts-map__inner
 					//- сюда вставлять карту
 					div.map
+						img(src="images/map-thumb.jpg")
 					div.contacts-map__content
 						div.contacts-map__item
-							span Телефон
-							b
+							span.contacts-map__label Телефон
+							div.contacts-map__value
 								a(href="tel:+78125795581") +7 (812) 579-55-81
 						div.contacts-map__item
-							span Адрес офиса:
-							b 
+							span.contacts-map__label Адрес офиса:
+							div.contacts-map__value
 								<span itemprop="address" itemscope="" itemtype="https://schema.org/PostalAddress">
 									| Россия,
 									<span itemprop="postalCode"> 191014</span>,
@@ -34,56 +35,55 @@ block content
 									<span itemprop="streetAddress">ул. Короленко, д. 7</span>
 								</span>
 						div.contacts-map__item
-							span Электронная почта:
-							b 
+							span.contacts-map__label Электронная почта:
+							div.contacts-map__value
 								<a href="mailto:office@a-len.ru">office@a-len.ru</a>
 						div.contacts-map__item
-							span Skype:
-							b 
+							span.contacts-map__label Skype:
+							div.contacts-map__value
 								<a href="skype:ppf.alen?call">ppf.alen</a>
 						div.contacts-map__item
-							span Департамент по работе с заказчиками:
-							b 
+							span.contacts-map__label Департамент по работе с заказчиками:
+							div.contacts-map__value
 								<a href="mailto:jiltsov@a-len.ru">jiltsov@a-len.ru</a>
 			//- section connect
 			section.connect 
 				div.connect__inner
-					div.connect__form
-						header
-							<div class="form_to">
-								<b class="form_title">Задайте вопрос «А.Лен». Найдем ответы!</b>
-								<div class="form_text">
+					div.connect__content
+						header.connect__header
+							div.connect__header-top
+								h2.connect__title Задайте вопрос «А.Лен». Найдем ответы!
+								div.connect__text
 									| Напишите нам Ваш запрос – мы дадим обратную связь.
 									<span class="noWrap">Или позвоните</span>
 									| к нам в офис.
-								</div>
-							</div>
-						form(id="contacts_form").form.connect-form
-							<div class="form__box">
-								<label for="name1" class="form_label">Имя<span>*</span></label>
-								<input type="text" class="form_input" name="name" id="name1" required="" data-parsley-required-message="Поле пустое">
-							</div>
-							<div class="form__box">
-								<label for="mail1" class="form_label">E-mail<span>*</span></label>
-								<input type="text" class="form_input" name="mail" id="mail1" required="" data-parsley-trigger="change" data-parsley-type="email" data-parsley-required-message="Поле пустое" data-parsley-type-message="Введите адрес в формате mail@example.ru">
-							</div>
-							<div class="form__box">
-								<label for="theme1" class="form_label">Тема</label>
-								<input type="text" class="form_input" name="theme" id="theme1">
-							</div>
-							<div class="form__box">
-								<label for="comment1" class="form_label">Вопрос или комментарий<span>*</span></label>
-								<textarea type="text" class="form_input" name="comment" id="comment1" required="" data-parsley-required-message="Поле пустое"></textarea>
-							</div>
+						form(id="contacts_form").form.connect__form
+							div.form__box.form__inputbox
+								label(for="name1").form__label Имя#[span *]
+								<input type="text" name="name" id="name1" required="">
+							
+							div.form__box.form__inputbox
+								label(for="mail1").form__label E-mail#[span *]
+								<input type="text" name="mail" id="mail1" required="">
+							
+							div.form__box.form__inputbox
+								label(for="theme1").form__label Тема
+								<input type="text" name="theme" id="theme1">
+							
+							div.form__box.form__textarea
+								label(for="comment1").form__label Вопрос или комментарий#[span *]
+								textarea(type="text" name="comment" id="comment1" required="")
 							div.form__checkbox.form__box
-								<input required="" name="pp" id="pp1" type="checkbox" data-parsley-trigger="change" data-parsley-multiple="pp"> 
-								<label for="pp1">Даю согласие на обработку персональных данных в соответствии с <a href="/privacy_policy/">политикой конфиденциальности</a></label>
-							button(type="submit").pill-btn Отправить
-						</form>
-						footer
-							<h3>Ищете работу или стажировку? </h3>
-							<div class="form_text">Посмотрите наши вакансии.</div>
-							<a href="/about/career/#career" class="default-btn btn-gray">Вакансии «А.Лен»</a>
+								<input required="" name="pp" id="pp1" type="checkbox"> 
+								<label for="pp1">
+									| Даю согласие на обработку персональных данных в соответствии с <a href="/privacy_policy/">политикой конфиденциальности</a>
+								</label>
+							button(type="submit").pill-btn.connect__submit Отправить
+
+						footer.connect__footer
+							h3.connect__footer-cap Ищете работу или стажировку?
+							div.connect__text Посмотрите наши вакансии.
+							a(href="/about/career/#career").pill-btn Вакансии «А.Лен»
 		div.page__popup
 
 		div.page__footer

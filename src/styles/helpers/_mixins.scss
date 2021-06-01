@@ -1,27 +1,48 @@
 @mixin defaultBtn {
-    font-style: normal;
-    font-weight: normal;
-    text-align: center;
-    font-size: 16px;
-    line-height: 47px;
-    display: inline-block;
-    border-radius: 200px;
-    padding: 0 27px;
-    transition: all 0.3s ease-in-out;
-    box-shadow: none;
-    border: 0;
+	font-style: normal;
+	font-weight: normal;
+	text-align: center;
+	font-size: 16px;
+	line-height: 47px;
+	display: inline-block;
+	border-radius: 200px;
+	padding: 0 27px;
+	transition: all 0.3s ease-in-out;
+	box-shadow: none;
+	border: 0;
+	cursor: pointer;
 }
 
 @mixin btnGray {
-    color: #292929;
-    background: #ebebeb;
-    &:hover {
-        background: #dddddd;
-    }
+	color: #292929;
+	background: #ebebeb;
+
+	&:hover {
+		background: #dddddd;
+	}
 }
 
 @mixin defaultColGrid {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	column-gap: 20px;
+}
+
+@mixin input {
+	display: block;
+	width: 100%;
+	background: #f4f4f4;
+	border-radius: 23.5px;
+	border: 0;
+	resize: none;
+	transition: all 0.3s ease-in-out;
+	padding: 13px 30px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 17px;
+	line-height: 20px;
+	color: #292929;
+	&:hover {
+		background: #dddddd;
+	}
 }

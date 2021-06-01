@@ -1,0 +1,62 @@
+.connect {
+	margin-bottom: 90px;
+
+	&__inner {
+		@include defaultColGrid;
+	}
+
+	&__content {
+		grid-column: 3 / span 8;
+
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto 1fr auto;
+		column-gap: 20px;
+	}
+	
+	&__header {
+		grid-row: 1;
+		max-width: 553px
+	}
+
+	&__title {
+		font-weight: normal;
+		font-size: 40px;
+		line-height: 54px;
+		color: #292929;
+		margin-bottom: 20px;
+		margin-top: -8px;
+	}
+	&__text {
+		font-weight: 300;
+		font-size: 17px;
+		line-height: 32px;
+		color: #292929;
+		margin-bottom: 30px;
+	}
+	&__form {
+		grid-row: 1 / 4;
+		grid-column: 2;
+		justify-self: end;
+		max-width: 520px;
+	}
+	
+
+	&__footer {
+		grid-row: 3;
+		max-width: 553px
+	}
+
+	&__footer-cap {
+		font-weight: normal;
+		font-size: 23px;
+		line-height: 54px;
+		color: #292929;
+		margin: 0;
+		margin-bottom: 6px;
+	}
+
+	&__submit {
+		margin-top: 40px;
+	}
+}

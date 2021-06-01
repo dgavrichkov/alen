@@ -1,0 +1,93 @@
+.form {
+	&__box {
+		margin-bottom: 18px;
+		width: 100%;
+	}
+
+	&__label {
+		font-weight: normal;
+		font-size: 17px;
+		line-height: 20px;
+		color: #292929;
+		display: block;
+		margin-bottom: 19px;
+
+		span {
+			color: #ed4747
+		}
+	}
+
+	&__inputbox {
+		input {
+			@include input;
+		}
+	}
+
+	&__textarea {
+		textarea {
+			@include input;
+			height: 130px;
+			margin-bottom: 20px;
+		}
+	}
+
+	&__file {}
+
+	&__filelist {}
+
+	&__checkbox {
+		padding-left: 45px;
+		margin-bottom: 20px;
+
+		input {
+			display: none;
+		}
+
+		input+label {
+			position: relative;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 12px;
+			line-height: 17px;
+			color: #292929;
+			cursor: pointer;
+
+			&:before {
+				content: "";
+				display: block;
+				background: #f4f4f4;
+				width: 30px;
+				height: 30px;
+				border-radius: 30px;
+				left: -45px;
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				cursor: pointer;
+				transition: all 0.3s ease-in-out;
+			}
+
+			&:after {
+				content: "";
+				display: block;
+				opacity: 0;
+				transition: all 0.3s ease-in-out;
+				background: #292929;
+				position: absolute;
+				border-radius: 12px;
+				width: 12px;
+				height: 12px;
+				left: -36px;
+				top: 50%;
+				transform: translateY(-50%);
+				cursor: pointer;
+			}
+		}
+
+		input:checked+label {
+			&:after {
+				opacity: 1;
+			}
+		}
+	}
+}
