@@ -1,5 +1,17 @@
-// search
+const header = function() {
+    console.log("header");
 
-// burger
+    // scrollfix
 
-// fixed behavior
+    // search
+
+    // scrolling
+
+    // burger
+
+    // dropdown
+
+    // menu
+};
+
+export default header;
