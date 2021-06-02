@@ -30,7 +30,7 @@
 			padding-left: 100px;
 			padding-right: 22px;
 
-			@include to(1400px) {
+			@include to(1440px) {
 				grid-column: 1 / span 6;
 				padding-left: 20px;
 				padding-right: 30px;
@@ -45,7 +45,7 @@
 		&:last-child {
 			grid-column: 7 / span 5;
 
-			@include to(1400px) {
+			@include to(1440px) {
 				grid-column: 7 / span 6;
 				padding-right: 20px;
 			}
