@@ -17,18 +17,22 @@ block content
 			//- section text 
 			section.text-section
 				div.text-section__inner
-					div.text-box
-						p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur provident fugit error sint saepe distinctio, quibusdam, beatae quisquam quia dolore repellendus, commodi a consequuntur sapiente. Quis reprehenderit repellat amet laborum.
+					div.text-box.text-section__item
+						h1 Генеральное проектирование
+						p Что отличает сильную и успешную архитектурную компанию от многих других? 
+						p Среди прочего – опыт реализации собственных архитектурных концепций в качестве генерального проектировщика.
+						p Сбор воедино всех компетенций – архитекторов, конструкторов, инженеров, технологов, специалистов по пожарной безопасности и по обеспечению доступа инвалидов, квалифицированных поставщиков инженерных изысканий, управление процессом проектирования на всех стадиях, от эскизного проекта, проектной документации и положительного заключения экспертизы до выдачи рабочей документации и авторского надзора над процессом строительства, а также последующие контакты со службой эксплуатации объекта – все это составляющие генерального проектирования в «А.Лен».
 			//- slider tiles - chosen projects
-			section.chosen-projects 
-				div.chosen-projects__inner
-					h2.chosen-projects__title Избранные проекты
-					div.items-slider
-						div.items-slider__wrapper
+			section.items-section 
+				div.items-section__inner
+					h2.items-section__title Избранные проекты
+					div.items-section__content
+						div.items-slider
 							div.items-slider__slide
 								article.item-card 
 									figure.item-card__figure
-										picture 
+										picture
+											img(src="images/service-1.jpg")
 									div.item-card__content
 										h3.item-card__cap Мышь (кродется)
 									a(href="project.html").item-card__overlink
@@ -36,6 +40,7 @@ block content
 								article.item-card 
 									figure.item-card__figure
 										picture 
+											img(src="images/service-2.jpg")
 									div.item-card__content
 										h3.item-card__cap Мышь (кродется)
 									a(href="project.html").item-card__overlink
