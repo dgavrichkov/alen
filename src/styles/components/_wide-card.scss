@@ -24,6 +24,9 @@
 	}
 
 	&__link {
+		@include to(640px) {
+			padding: 18px;
+		}
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
@@ -42,6 +45,10 @@
 			);
 	}
 	&__city {
+		@include to(640px) {
+			font-size: 12px;
+			line-height: 14px;
+		}
 		font-weight: 300;
 		font-size: 16px;
 		line-height: 19px;
@@ -50,15 +57,20 @@
 	}
 
 	&__link-txt {
+		@include to(640px) {
+			font-size: 19px;
+			line-height: 23px;
+		}
 		font-weight: 300;
 		font-size: 23px;
 		line-height: 30px;
 		color: #ffffff;
 	}
-
-	&:hover {
-		.wide-card__pic img {
-			transform: scale(1.05);
+	@media (hover: hover) {
+		&:hover {
+			.wide-card__pic img {
+				transform: scale(1.05);
+			}
 		}
 	}
 }

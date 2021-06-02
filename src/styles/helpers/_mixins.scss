@@ -50,6 +50,9 @@
 @mixin bigColumn {
 	width: 100%;
 	padding: 0 40px;
+	@include to(640px) {
+		padding: 0 20px;
+	}
 }
 
 @mixin input {

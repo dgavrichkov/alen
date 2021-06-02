@@ -1,14 +1,20 @@
 .tiles {
 
 	&__list {
+		@include to(640px) {
+			grid-template-columns: 1fr;
+		}
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 	}
 
 	&__tile {
-		border-bottom: 1px solid #000000;
-		&:nth-child(2n + 1) {
-			border-right: 1px solid #000000;
+		@include from(641px) {
+			border-bottom: 1px solid #000000;
+			&:nth-child(2n + 1) {
+				border-right: 1px solid #000000;
+			}
 		}
+		
 	}
 }
