@@ -1,4 +1,6 @@
 .page {
+	overflow: hidden;
+	min-height: 100vh;
 	&__goback {
 		margin-bottom: 90px;
 		display: flex;
