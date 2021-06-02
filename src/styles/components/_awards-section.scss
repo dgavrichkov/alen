@@ -4,7 +4,7 @@
 		padding-bottom: 90px;
 	}
 	&__title {
-		grid-column: 4 / span 6;
+		@include smallColumn;
 		font-weight: normal;
 		font-size: 23px;
 		line-height: 36px;
@@ -13,7 +13,7 @@
 		margin-bottom: 25px;
 	}
 	&__item {
-		grid-column: 4 / span 6;
+		@include smallColumn;
 		&:not(:last-child) {
 			margin-bottom: 31px;
 		}

@@ -1,5 +1,5 @@
 .text-box {
-	grid-column: 4 / span 6;
+	@include smallColumn;
 	margin-bottom: 30px;
 	h1 {
 		font-weight: normal;

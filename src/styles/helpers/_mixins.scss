@@ -28,6 +28,21 @@
 	column-gap: 20px;
 }
 
+@mixin smallColumn {
+	grid-column: 4 / span 6;
+	margin: 0 -6px;
+}
+
+@mixin middleColumn {
+	grid-column: 3 / span 8;
+	margin: 0 -6px;
+}
+
+@mixin bigColumn {
+	width: 100%;
+	padding: 0 40px;
+}
+
 @mixin input {
 	display: block;
 	width: 100%;

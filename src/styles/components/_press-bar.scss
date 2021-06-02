@@ -2,8 +2,8 @@
 	@include defaultColGrid;
 	margin-bottom: 50px;
 	&__inner {
-		grid-column: 3 / span 8;
-
+		@include middleColumn;
+		
 		display: grid;
 		grid-template-columns: 1fr auto;
 		gap: 20px;

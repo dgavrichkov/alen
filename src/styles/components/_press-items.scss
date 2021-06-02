@@ -4,14 +4,15 @@
 		@include defaultColGrid;
 	}
 	&__list {
-		grid-column: 3 / span 8;
-		
+		@include middleColumn;
+
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 20px;
 	}
 	.paginator {
+		@include middleColumn;
+
 		margin-top: 40px;
-		grid-column: 3 / span 8;
 	}
 }

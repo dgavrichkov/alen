@@ -9,7 +9,7 @@
 		};
 
 		& > article {
-			grid-column: 3 / span 8;
+			@include middleColumn;
 		}
 	}
 }

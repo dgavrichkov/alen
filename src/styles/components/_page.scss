@@ -15,16 +15,13 @@
 }
 
 .page-bar {
+	@include bigColumn;
 	margin-top: 100px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
 	background: #fff;
 	height: 125px;
-
-	padding: 0 40px;
-
 	&__title {
 		font-style: normal;
 		font-weight: normal;

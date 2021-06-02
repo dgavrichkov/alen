@@ -1,7 +1,7 @@
 .project-map {
 	margin-bottom: 90px;
 	&__inner {
-		padding: 0 40px;
+		@include bigColumn;
 		position: relative;
 	}
 

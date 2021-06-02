@@ -4,8 +4,7 @@
 		@include defaultColGrid;
 	}
 	&__title {
-		grid-column: 3 / span 8;
-
+		@include middleColumn;
 		font-weight: normal;
 		font-size: 23px;
 		line-height: 46px;
@@ -14,7 +13,7 @@
 		margin-bottom: 13px;
 	}
 	&__content {
-		grid-column: 3 / span 8;
+		@include middleColumn;
 	}
 	&__items {
 		display: grid;

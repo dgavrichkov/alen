@@ -1,5 +1,5 @@
 .author-box {
-	grid-column: 3 / span 8;
+	@include middleColumn;
 	display: flex;
 	margin-bottom: 80px;
 	border: 1px solid #dedede;

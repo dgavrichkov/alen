@@ -1,5 +1,5 @@
 .sertificates {
-	grid-column: 3 / span 8;
+	@include middleColumn;
 
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;

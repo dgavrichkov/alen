@@ -2,7 +2,7 @@
 	@include defaultColGrid;
 	margin-bottom: 90px;
 	&__inner {
-		grid-column: 4 / span 6;
+		@include smallColumn;
 	}
 	
 	&__title {

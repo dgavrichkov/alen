@@ -5,8 +5,7 @@
 		@include defaultColGrid;
 	}
 	&__item {
-		// стандартное размещение
-		grid-column: 4 / span 6;
+		@include smallColumn;
 		&:last-child {
 			margin-bottom: 0;
 		}
