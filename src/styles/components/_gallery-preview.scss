@@ -14,6 +14,9 @@
 
 	&__picture {
 		position: relative;
+		width: 100%;
+		max-width: 1920px;
+
 		&::before, &::after {
 			content: '';
 			width: 20%;
@@ -28,6 +31,9 @@
 		}
 		&::after {
 			left: 90%;
+		}
+		img {
+			max-height: 900px;
 		}
 	}
 

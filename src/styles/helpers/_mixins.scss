@@ -34,11 +34,17 @@
 @mixin smallColumn {
 	grid-column: 4 / span 6;
 	margin: 0 -6px;
+	@include from(1921px) {
+		grid-column: 3 / -3;
+	}
 }
 
 @mixin middleColumn {
 	grid-column: 3 / span 8;
 	margin: 0 -6px;
+	@include from(1921px) {
+		grid-column: 2 / -2;
+	}
 }
 
 @mixin bigColumn {
