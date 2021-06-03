@@ -258,6 +258,9 @@
 		&::after {
 			opacity: 0;
 		}
+		.header__search-btn {
+			background-image: $icon-glass-dark;
+		}
 	}
 }
 

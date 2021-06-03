@@ -50,4 +50,10 @@
 			margin-top: 18px;
 		}
 	}
+
+	&:empty {
+		height: auto;
+		padding: 29px 40px;
+	}
 }
+
