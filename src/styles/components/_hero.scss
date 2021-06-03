@@ -1,10 +1,13 @@
 .hero {
 	@include to(768px) {
 		margin-bottom: 40px;
-		padding-bottom: 95px;
 		height: initial;
-		background: linear-gradient(#000 500px, #fff 0);
 	}
+
+	@include to(640px) {
+		margin-bottom: 30px;
+	}
+
 	background: #000;
 	height: 660px;
 	margin-bottom: 90px;
@@ -16,12 +19,14 @@
 
 	&__figure {
 		@include to(768px) {
-			position: static;
+			position: relative;
 			height: 500px;
-			&::after {
-				height: 500px;
-			}
 		}
+
+		@include to(640px) {
+			height: 300px;
+		}
+
 		margin: 0;
 		position: absolute;
 		top: 0;
@@ -45,7 +50,6 @@
 		}
 	}
 
-
 	&__content {
 		@include to(768px) {
 			position: absolute;
@@ -54,6 +58,7 @@
 			padding-bottom: 0;
 			gap: 16px;
 		}
+
 		position: relative;
 		z-index: 2;
 
@@ -69,6 +74,7 @@
 			padding: 0 20px;
 
 		}
+
 		grid-column: 1 / span 6;
 		padding-left: 40px;
 	}
@@ -81,6 +87,7 @@
 			padding: 0 20px;
 			background: #fff;
 		}
+
 		grid-column: 7 / span 6;
 		justify-self: end;
 		align-self: end;
@@ -92,17 +99,21 @@
 		@include to(768px) {
 			background: #ebebeb;
 			color: #292929;
+
 			&:hover {
 				background: #dddddd;
 				color: #292929;
 			}
 		}
+
 		border-radius: 23.5px;
 		background: rgba(255, 255, 255, 0.2);
 		color: #fff;
 		font-size: 14px;
 		line-height: 37px;
-		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+		transition: background-color 0.3s ease-in-out,
+		color 0.3s ease-in-out;
+
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.25);
 			color: #fff;
@@ -115,6 +126,11 @@
 		line-height: 24px;
 		color: #ffffff;
 		margin-bottom: 8px;
+
+		@include to(640px) {
+			font-size: 12px;
+			line-height: 14px;
+		}
 	}
 
 	&__text-title {
@@ -122,12 +138,27 @@
 		font-size: 25px;
 		line-height: 133%;
 		color: #ffffff;
-	}
 
+		@include to(640px) {
+			font-size: 19px;
+			line-height: 23px;
+		}
+	}
 
 	&--nogradient {
 		.hero__figure::after {
 			display: none;
+		}
+	}
+
+	&--info {
+		@include to(768px) {
+			background: linear-gradient(#000 500px, #fff 0);
+			padding-bottom: 95px;
+		}
+
+		@include to(640px) {
+			background: linear-gradient(#000 300px, #fff 0);
 		}
 	}
 }

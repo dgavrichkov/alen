@@ -7,6 +7,11 @@
 		line-height: 45px;
 		color: #292929;
 		margin-bottom: 50px;
+		@include to(640px) {
+			font-size: 19px;
+			line-height: 34px;
+			margin-bottom: 20px;
+		}
 	}
 
 	h2 {
@@ -16,6 +21,12 @@
 		color: #292929;
 		margin-bottom: 50px;
 		margin-top: 60px;
+		@include to(640px) {
+			font-size: 16px;
+			line-height: 23px;
+			margin-top: 30px;
+			margin-bottom: 20px;
+		}
 	}
 
 	h3 {
@@ -63,6 +74,11 @@
 		color: #292929;
 		position: relative;
 		margin-bottom: 14px;
+		@include to(640px) {
+			font-size: 14px;
+			line-height: 23px;
+			margin-bottom: 7px;
+		}
 
 		&::before {
 			content: "";
