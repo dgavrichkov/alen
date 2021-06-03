@@ -5,6 +5,12 @@
 	}
 
 	&__label {
+		@include to(640px) {
+			font-size: 14px;
+			line-height: 17px;
+			margin-bottom: 8px;
+		}
+
 		font-weight: normal;
 		font-size: 17px;
 		line-height: 20px;
@@ -26,6 +32,11 @@
 	&__textarea {
 		textarea {
 			@include input;
+			@include to(640px) {
+				padding: 10px 20px;
+				font-size: 14px;
+				line-height: 17px;
+			}
 			height: 130px;
 			margin-bottom: 20px;
 		}
@@ -38,6 +49,7 @@
 	&__checkbox {
 		padding-left: 45px;
 		margin-bottom: 20px;
+		min-height: 30px;
 
 		input {
 			display: none;

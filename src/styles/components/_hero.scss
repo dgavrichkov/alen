@@ -1,5 +1,5 @@
 .hero {
-	@include to(768px) {
+	@include to(1024px) {
 		margin-bottom: 40px;
 		height: initial;
 	}
@@ -18,7 +18,7 @@
 	justify-content: flex-end;
 
 	&__figure {
-		@include to(768px) {
+		@include to(1024px) {
 			position: relative;
 			height: 500px;
 		}
@@ -55,12 +55,12 @@
 	}
 
 	&__content {
-		@include to(768px) {
+		@include to(1024px) {
 			position: absolute;
 			bottom: 0;
 			grid-template-rows: auto 95px;
 			padding-bottom: 0;
-			gap: 16px;
+			gap: 20px;
 		}
 
 		position: relative;
@@ -73,7 +73,7 @@
 	}
 
 	&__infobar {
-		@include to(768px) {
+		@include to(1024px) {
 			grid-column: 1 / -1;
 			padding: 0 20px;
 
@@ -84,7 +84,7 @@
 	}
 
 	&__types {
-		@include to(768px) {
+		@include to(1024px) {
 			grid-column: 1 / -1;
 			align-self: center;
 			justify-self: center;
@@ -100,7 +100,7 @@
 	}
 
 	&__type-link {
-		@include to(768px) {
+		@include to(1024px) {
 			background: #ebebeb;
 			color: #292929;
 
@@ -156,13 +156,27 @@
 	}
 
 	&--info {
-		@include to(768px) {
+		@include to(1024px) {
 			background: linear-gradient(#000 500px, #fff 0);
 			padding-bottom: 95px;
 		}
 
 		@include to(640px) {
 			background: linear-gradient(#000 300px, #fff 0);
+		}
+	}
+	&--title {
+		@include to(1024px) {
+			background: linear-gradient(#000 500px, #fff 0);
+		}
+		.hero__content {
+			@include to(1024px) {
+				grid-template-rows: auto;
+				padding-bottom: 35px;
+			}
+			@include to(640px) {
+				padding-bottom: 20px;
+			}
 		}
 	}
 }

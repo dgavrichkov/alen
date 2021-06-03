@@ -105,6 +105,12 @@
 	&:hover {
 		background: #dddddd;
 	}
+
+	@include to(640px) {
+		padding: 10px 20px;
+		font-size: 14px;
+		line-height: 17px;
+	}
 }
 
 @mixin visually-hidden {

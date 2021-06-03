@@ -22,3 +22,15 @@
 .section-mb {
 	margin-bottom: 90px;
 }
+
+.nomobile {
+	@include to(640px) {
+		display: none;
+	}
+}
+
+.nodesktop {
+	@include from(641px) {
+		display: none;
+	}
+}

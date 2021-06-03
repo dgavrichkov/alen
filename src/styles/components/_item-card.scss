@@ -124,5 +124,11 @@
 		.item-card__overlink:hover ~ .item-card__figure img {
 			transform: none;
 		}
+		.item-card__content {
+			@include to(640px) {
+				padding: 20px;
+				height: auto;
+			}
+		}
 	}
 }
