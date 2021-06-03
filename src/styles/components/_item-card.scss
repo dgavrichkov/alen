@@ -23,6 +23,10 @@
 		padding: 30px;
 		color: #ffffff;
 		transition: 0.3s ease-in-out;
+		@include to(640px) {
+			padding: 0 20px;
+			height: 74px;
+		}
 	}
 
 	&__cap {

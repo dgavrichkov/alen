@@ -8,6 +8,10 @@
 	}
 	&__title {
 		@include middleColumn;
+		@include to(640px) {
+			margin-left: 20px;
+			font-size: 16px;
+		}
 		font-weight: normal;
 		font-size: 23px;
 		line-height: 46px;

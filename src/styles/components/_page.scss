@@ -2,6 +2,9 @@
 	overflow: hidden;
 	min-height: 100vh;
 	&__goback {
+		@include to(768px) {
+			margin-bottom: 40px;
+		}
 		margin-bottom: 90px;
 		display: flex;
 		justify-content: center;

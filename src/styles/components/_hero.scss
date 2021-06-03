@@ -24,6 +24,10 @@
 		}
 
 		@include to(640px) {
+			height: 380px;
+		}
+
+		@include to(425px) {
 			height: 300px;
 		}
 
