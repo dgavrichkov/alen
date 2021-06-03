@@ -11,6 +11,11 @@
 	box-shadow: none;
 	border: 0;
 	cursor: pointer;
+	@include to(768px) {
+		font-size: 13px;
+		line-height: 35px;
+		height: 35px;
+	}
 }
 
 @mixin btnGray {
@@ -33,9 +38,25 @@
 
 @mixin smallColumn {
 	grid-column: 4 / span 6;
-	margin: 0 -6px;
+	margin-left: -6px;
+	margin-right: -6px;
 	@include from(1921px) {
 		grid-column: 3 / -3;
+	}
+
+	@include to(1600px) {
+		grid-column: 2 / -2;
+	}
+	@include to(1440px) {
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+	@include to(1024px) {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	@include to(768px) {
+		grid-column: 1 / -1;
 	}
 }
 
@@ -45,12 +66,24 @@
 	@include from(1921px) {
 		grid-column: 2 / -2;
 	}
+	@include to(1600px) {
+		grid-column: 2 / -2;
+	}
+	@include to(1440px) {
+		grid-column: 1 / -1;
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+	@include to(1024px) {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
 }
 
 @mixin bigColumn {
 	width: 100%;
 	padding: 0 40px;
-	@include to(640px) {
+	@include to(1024px) {
 		padding: 0 20px;
 	}
 }

@@ -8,9 +8,11 @@ import header from "%modules%/header/header";
 
 // gallery call
 
+// compose - mobile slider
+
 // gallery
 
-// infoslider, mobile - accordeon
+// infoslider, mobile - accordeon. Dynamic width indicator
 
 // items slider
 

@@ -1,4 +1,10 @@
 .hero {
+	@include to(768px) {
+		margin-bottom: 40px;
+		padding-bottom: 95px;
+		height: initial;
+		background: linear-gradient(#000 500px, #fff 0);
+	}
 	background: #000;
 	height: 660px;
 	margin-bottom: 90px;
@@ -9,6 +15,13 @@
 	justify-content: flex-end;
 
 	&__figure {
+		@include to(768px) {
+			position: static;
+			height: 500px;
+			&::after {
+				height: 500px;
+			}
+		}
 		margin: 0;
 		position: absolute;
 		top: 0;
@@ -18,7 +31,6 @@
 		z-index: 1;
 
 		&::after {
-			// gradient overlay
 			position: absolute;
 			content: "";
 			top: 0;
@@ -35,6 +47,13 @@
 
 
 	&__content {
+		@include to(768px) {
+			position: absolute;
+			bottom: 0;
+			grid-template-rows: auto 95px;
+			padding-bottom: 0;
+			gap: 16px;
+		}
 		position: relative;
 		z-index: 2;
 
@@ -45,11 +64,23 @@
 	}
 
 	&__infobar {
+		@include to(768px) {
+			grid-column: 1 / -1;
+			padding: 0 20px;
+
+		}
 		grid-column: 1 / span 6;
 		padding-left: 40px;
 	}
 
 	&__types {
+		@include to(768px) {
+			grid-column: 1 / -1;
+			align-self: center;
+			justify-self: center;
+			padding: 0 20px;
+			background: #fff;
+		}
 		grid-column: 7 / span 6;
 		justify-self: end;
 		align-self: end;
@@ -58,13 +89,19 @@
 	}
 
 	&__type-link {
-		height: 37px;
+		@include to(768px) {
+			background: #ebebeb;
+			color: #292929;
+			&:hover {
+				background: #dddddd;
+				color: #292929;
+			}
+		}
 		border-radius: 23.5px;
-		padding: 10px 20px;
 		background: rgba(255, 255, 255, 0.2);
 		color: #fff;
 		font-size: 14px;
-		line-height: 17px;
+		line-height: 37px;
 		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.25);

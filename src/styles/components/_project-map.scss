@@ -1,11 +1,19 @@
 .project-map {
+	@include to(768px) {
+		margin-bottom: 40px;
+	}
+
 	margin-bottom: 90px;
 	&__inner {
+		
 		@include bigColumn;
 		position: relative;
 	}
 
 	&__main {
+		@include to(1024px) {
+			margin: 0 -20px;
+		}
 		background: #f3f3f3;
 		position: relative;
 		&::after {
@@ -17,6 +25,16 @@
 	}
 
 	&__info {
+		@include to(1280px) {
+			padding: 20px;
+			justify-content: space-between;
+		}
+		@include to(1024px) {
+			position: static;
+			padding: 0;
+			background: transparent;
+			width: 100%;
+		}
 		position: absolute;
 		top: 0;
 		left: 40px;
@@ -36,6 +54,16 @@
 	}
 
 	&__text {
+		@include to(1280px) {
+			margin-bottom: 20px;
+		}
+		@include to(1024px) {
+			margin-bottom: 20px;
+			margin-top: 30px;
+			font-size: 16px;
+			line-height: 144%;
+			color: #292929;
+		}
 		font-weight: 300;
 		font-size: 28px;
 		line-height: 145%;
@@ -45,6 +73,10 @@
 	}
 
 	&__link {
+		@include to(1024px) {
+			background: #ebebeb;
+			color: #292929;
+		}
 		background: rgba(255, 255, 255, 0.12);
 		border-radius: 23.5px;
 		font-family: Rubik;

@@ -41,7 +41,11 @@
 		line-height: 190%;
 		color: #292929;
 		margin-bottom: 32px;
-		
+		@include to(640px) {
+			font-size: 14px;
+			line-height: 23px;
+			margin-bottom: 18px;
+		}
 	}
 
 	ul {
