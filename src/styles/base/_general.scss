@@ -71,3 +71,10 @@ img {
 		}
 	}
 }
+
+.lab-tiles {
+	margin-top: -30px;
+	@include to(640px) {
+		margin-top: -20px;
+	}
+}
