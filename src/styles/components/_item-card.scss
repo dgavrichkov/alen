@@ -33,6 +33,10 @@
 		font-weight: normal;
 		font-size: 17px;
 		line-height: 28px;
+		@include to(640px) {
+			font-size: 14px;
+			line-height: 23px;
+		}
 	}
 
 	&__overlink {
@@ -78,6 +82,8 @@
 	
 
 	&--sertificate {
+		max-width: 400px;
+		margin: 0 auto;
 		.item-card__figure {
 			padding-bottom: 147%;
 			img {
@@ -89,6 +95,18 @@
 		}
 		.item-card__overlink:hover ~ .item-card__content {
 			background: #bfbdb7;
+		}
+		.item-card__content {
+			@include to(1024px) {
+				font-size: 14px;
+				line-height: 23px;
+				padding: 15px;
+			}
+			@include to(640px) {
+				padding: 15px;
+				height: auto;
+			}
+
 		}
 	}
 

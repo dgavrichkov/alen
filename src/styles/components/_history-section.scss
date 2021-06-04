@@ -1,15 +1,39 @@
 .history-section {
+	margin-bottom: 40px;
+	@include to(768px) {
+		// padding-bottom: 40px;
+		border-bottom: 1px solid #dedede;
+	}
+	
 	&__item {
 		@include defaultColGrid;
+		@include to(1280px) {
+			padding: 50px 0;
+		}
+		@include to(768px) {
+			padding: 0;
+		}
 		padding: 80px 0;
 		padding-top: 75px;
 
 		&:not(:last-child) {
 			border-bottom: 1px solid #dedede;
+			@include to(768px) {
+				border: none;
+			}
 		};
 
 		& > article {
 			@include middleColumn;
+			@include to(768px) {
+				border-top: 1px solid #dedede;
+			}
+		}
+
+		&:last-child > article {
+			@include to(768px) {
+				// border-bottom: 1px solid #dedede;
+			}
 		}
 	}
 }

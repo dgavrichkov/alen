@@ -58,3 +58,16 @@ img {
 		margin-top: -35px;
 	}
 }
+
+.human-section {
+	@include from(1025px) {
+		.text-box {
+			padding-left: calc((100vw / 12 - 20px) / 1.5);
+			padding-right: calc((100vw / 12 - 20px) / 1.5);
+		}
+		.social-box {
+			padding-left: calc((100vw / 12 - 20px) / 1.5);
+			padding-right: calc((100vw / 12 - 20px) / 1.5);
+		}
+	}
+}

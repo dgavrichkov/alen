@@ -17,6 +17,9 @@
 	&--sertificates {
 		.text-box {
 			margin-bottom: 50px;
+			@include to(640px) {
+				margin-bottom: 40px;
+			}
 		}
 	}
 }

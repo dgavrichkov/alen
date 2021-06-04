@@ -8,14 +8,22 @@
 		padding: 0 30px 0 20px;
 		border-top: 1px solid #DADADA;
 		cursor: pointer;
-		
+		@include to(640px) {
+			height: 54px;
+			padding: 0;
+		}
 		h3 {
 			font-weight: normal;
 			font-size: 17px;
 			line-height: 36px;
 			color: #292929;
+
+			@include to(640px) {
+				font-size: 14px;
+				line-height: 23px
+			}
 		}
-		
+
 		button {
 			border: none;
 			background-color: transparent;

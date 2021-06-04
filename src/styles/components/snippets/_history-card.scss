@@ -1,7 +1,21 @@
 .history-card {
 	display: flex;
 	justify-content: space-between;
-
+	@include to(1280px) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 10%;
+	}
+	@include to(1024px) {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+	@include to(768px) {
+		padding-bottom: 15px;
+		height: 50px;
+		overflow: hidden;
+	}
+	
 	header {
 		flex-basis: calc(50% - 60px);
 	}
@@ -9,13 +23,36 @@
 	& > div {
 		flex-basis: calc(50% - 150px);
 	}
-
+	header > h2 {
+		@include to(768px) {
+			padding: 15px 0;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			cursor: pointer;
+			&::after {
+				content: '';
+				flex-shrink: 0;
+				margin-left: 10px;
+				width: 11px;
+				height: 6px;
+				background-image: $icon-chevron;
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				transition: 0.3s ease-in-out;
+			}
+		}
+	}
 	h2 {
 		font-weight: normal;
 		font-size: 35px;
 		line-height: 58px;
 		color: #292929;
 		margin-bottom: 16px;
+		@include to(768px) {
+			font-size: 19px;
+			line-height: 23px;
+		}
 	}
 	h3 {
 		font-weight: normal;
@@ -27,6 +64,13 @@
 			line-height: 68px;
 			margin-bottom: 8px;
 		}
+		@include to(768px) {
+			font-size: 16px;
+			line-height: 19px;
+			&:first-child {
+				line-height: 50px;
+			}
+		}
 	}
 
 	p {
@@ -36,6 +80,10 @@
 		color: #292929;
 		margin-bottom: 14px;
 		margin-top: 0;
+		@include to(768px) {
+			font-size: 16px;
+			line-height: 28px;
+		}
 	}
 
 	i {
@@ -46,5 +94,14 @@
 		color: #292929;
 		margin-bottom: 18px;
 		margin-top: 0;
+	}
+
+	&.is-active {
+		height: auto;
+		header > h2 {
+			&::after {
+				transform: rotate(180deg);
+			}
+		}
 	}
 }

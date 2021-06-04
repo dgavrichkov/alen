@@ -7,12 +7,33 @@
 
 	margin-bottom: 80px;
 
+	@include to(1024px) {
+		grid-template-columns: 1fr;
+		gap: 20px;
+		margin-bottom: 50px;
+	}
+	@include to(640px) {
+		gap: 16px;
+		margin-bottom: 35px;
+	}
+
 	dt {
 		font-weight: 300;
 		font-size: 64px;
 		line-height: 64px;
 		color: #292929;
 		margin-bottom: 8px;
+		@include to(1440px) {
+			font-size: 55px;
+		}
+		@include to(1024px) {
+			font-size: 45px;
+			list-height: 1.5;
+		}
+		@include to(640px) {
+			font-size: 36px;
+			line-height: 43px;
+		}
 	}
 
 	dd {
@@ -20,6 +41,10 @@
 		font-size: 19px;
 		line-height: 32px;
 		color: #292929;
+		@include to(640px) {
+			font-size: 14px;
+			line-height: 23px;
+		}
 	}
 
 
@@ -27,5 +52,8 @@
 		grid-template-columns: 1fr 1fr 1fr;
 		column-gap: 20px;
 		margin-top: 52px;
+		@include to(640px) {
+			margin-top: 0;
+		}
 	}
 }

@@ -9,13 +9,19 @@
 		font-size: 23px;
 		line-height: 36px;
 		color: #292929;
-		margin-top: 64px;
 		margin-bottom: 25px;
 	}
 	&__item {
 		@include smallColumn;
 		&:not(:last-child) {
 			margin-bottom: 31px;
+		}
+		&:last-child {
+			@include to(640px) {
+				article {
+					border-bottom: 1px solid #dedede;
+				}
+			}
 		}
 	}
 }

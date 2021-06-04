@@ -1,14 +1,22 @@
 .sertificates {
 	@include middleColumn;
+	@include to(768px) {
+		grid-template-columns: 1fr 1fr;
+		margin-bottom: 50px;
+		gap: 20px;
+	}
+	@include to(640px) {
+		margin-bottom: 40px;
+	}
+	@include to(450px) {
+		grid-template-columns: 1fr;
+	}
 
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 22px;
+	
 	margin-bottom: 80px;
-
-	&:last-child {
-		margin-bottom: 90px;
-	}
 
 	&__item {}
 }

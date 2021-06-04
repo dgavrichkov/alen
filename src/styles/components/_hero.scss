@@ -21,6 +21,7 @@
 		@include to(1024px) {
 			position: relative;
 			height: 500px;
+			max-height: 100vh;
 		}
 
 		@include to(640px) {

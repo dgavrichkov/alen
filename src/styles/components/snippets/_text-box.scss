@@ -1,12 +1,18 @@
 .text-box {
 	@include smallColumn;
 	margin-bottom: 30px;
+
 	h1 {
 		font-weight: normal;
 		font-size: 35px;
 		line-height: 45px;
 		color: #292929;
 		margin-bottom: 50px;
+
+		@include to(768px) {
+			font-size: 28px;
+		}
+
 		@include to(640px) {
 			font-size: 19px;
 			line-height: 34px;
@@ -21,6 +27,7 @@
 		color: #292929;
 		margin-bottom: 50px;
 		margin-top: 60px;
+
 		@include to(640px) {
 			font-size: 16px;
 			line-height: 23px;
@@ -44,6 +51,12 @@
 		color: #292929;
 		margin-top: 60px;
 		margin-bottom: 10px;
+
+		@include to(640px) {
+			font-size: 16px;
+			line-height: 28px;
+			margin-top: 23px;
+		}
 	}
 
 	p {
@@ -52,6 +65,7 @@
 		line-height: 190%;
 		color: #292929;
 		margin-bottom: 32px;
+
 		@include to(640px) {
 			font-size: 14px;
 			line-height: 23px;
@@ -73,11 +87,18 @@
 		line-height: 32px;
 		color: #292929;
 		position: relative;
-		margin-bottom: 14px;
+
 		@include to(640px) {
 			font-size: 14px;
 			line-height: 23px;
-			margin-bottom: 7px;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 14px;
+
+			@include to(640px) {
+				margin-bottom: 7px;
+			}
 		}
 
 		&::before {
@@ -111,9 +132,13 @@
 		}
 	}
 
-	& > * {
+	&>* {
 		&:last-child {
 			margin-bottom: 0;
+		}
+
+		&:first-child {
+			margin-top: 0;
 		}
 	}
 }

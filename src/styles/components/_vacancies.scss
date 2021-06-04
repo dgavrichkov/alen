@@ -1,11 +1,18 @@
 .vacancies {
+	margin-bottom: 90px;
+	@include to(640px) {
+		margin-bottom: 40px;
+	}
 	&__inner {
 		@include defaultColGrid;
-		margin-bottom: 90px;
 	}
 
 	&__title {
 		@include smallColumn;
+		@include to(640px) {
+			font-size: 16px;
+			line-height: 23px;
+		}
 		font-weight: normal;
 		font-size: 23px;
 		line-height: 36px;

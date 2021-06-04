@@ -1,4 +1,7 @@
 .resume-contact-box {
+	@include to(768px) {
+		grid-template-columns: 1fr;
+	}
 	display: grid;
 	grid-template-columns: auto auto 1fr;
 	margin: 20px 0 30px;
@@ -13,6 +16,9 @@
 		}
 		&:nth-child(3) {
 			max-width: 325px;
+			@include to(768px) {
+				max-width: initial;
+			}
 		}
 	}
 

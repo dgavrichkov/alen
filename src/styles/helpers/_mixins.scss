@@ -47,10 +47,7 @@
 	@include to(1600px) {
 		grid-column: 2 / -2;
 	}
-	@include to(1440px) {
-		margin-left: 40px;
-		margin-right: 40px;
-	}
+	
 	@include to(1024px) {
 		margin-left: 20px;
 		margin-right: 20px;

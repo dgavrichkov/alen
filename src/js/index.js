@@ -20,6 +20,8 @@ import header from "%modules%/header/header";
 
 // other news slider
 
+// history - mobile accordeon
+
 // careerAccordeon
 
 // press one - toggle social
