@@ -2,7 +2,7 @@
 	@include defaultColGrid;
 	&__inner {
 		@include smallColumn;
-		@include to(640px) {
+		@include to(768px) {
 			flex-direction: column;
 			gap: 5px;
 			align-items: center;
@@ -17,13 +17,13 @@
 	&__share-links {
 		display: flex;
 		align-items: center;
-		@include to(640px) {
+		@include to(768px) {
 			margin-top: 14px;
 		}
 	}
 
 	&__share-item {
-		@include to(640px) {
+		@include to(768px) {
 			margin-left: 0;
 			min-width: 44px;
 		}

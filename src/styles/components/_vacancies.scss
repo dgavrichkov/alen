@@ -1,6 +1,6 @@
 .vacancies {
 	margin-bottom: 90px;
-	@include to(640px) {
+	@include to(768px) {
 		margin-bottom: 40px;
 	}
 	&__inner {
@@ -9,7 +9,7 @@
 
 	&__title {
 		@include smallColumn;
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 16px;
 			line-height: 23px;
 		}

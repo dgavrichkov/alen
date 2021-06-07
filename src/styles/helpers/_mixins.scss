@@ -18,7 +18,7 @@
 		line-height: 35px;
 		min-height: 35px;
 	}
-	@include to(640px) {
+	@include to(768px) {
 		font-size: 14px;
 		line-height: 20px;
 		padding: 10px 17px;
@@ -110,7 +110,7 @@
 		background: #dddddd;
 	}
 
-	@include to(640px) {
+	@include to(768px) {
 		padding: 10px 20px;
 		font-size: 14px;
 		line-height: 17px;

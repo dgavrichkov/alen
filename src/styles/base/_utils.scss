@@ -3,6 +3,14 @@
 	display: inline;
 }
 
+.no-topgap {
+	margin-top: 0 !important;
+}
+
+.no-bottomgap {
+	margin-bottom: 0 !important;
+}
+
 .visually-hidden {
 	position: absolute;
 	clip: rect(0 0 0 0);
@@ -24,13 +32,13 @@
 }
 
 .nomobile {
-	@include to(640px) {
+	@include to(768px) {
 		display: none;
 	}
 }
 
 .nodesktop {
-	@include from(641px) {
+	@include from(769px) {
 		display: none;
 	}
 }

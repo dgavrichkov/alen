@@ -8,7 +8,7 @@
 	}
 	&__list {
 		@include middleColumn;
-		@include to(640px) {
+		@include to(768px) {
 			grid-template-columns: 1fr;
 		}
 		display: grid;

@@ -10,7 +10,7 @@
 		grid-template-columns: 1fr;
 	}
 
-	@include to(640px) {
+	@include to(768px) {
 		gap: 20px;
 		margin-top: 0;
 		margin-bottom: 40px;
@@ -26,7 +26,7 @@
 		@include to(768px) {
 			font-size: 28px;
 		}
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 16px;
 			line-height: 23px;
 			margin-bottom: 0;
@@ -43,7 +43,7 @@
 	}
 
 	a {
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 14px;
 			line-height: 17px;
 			white-space: normal;
@@ -117,13 +117,13 @@
 		background-repeat: no-repeat;
 		background-size: contain;
 		margin-right: 13px;
-		@include to(640px) {
+		@include to(768px) {
 			margin-right: 10px;
 		}
 	}
 
 	span:nth-child(2) {
-		@include to(640px) {
+		@include to(768px) {
 			text-align: left;
 		}
 	}

@@ -5,7 +5,7 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 20px;
-		@include to(640px) {
+		@include to(768px) {
 			grid-template-columns: 1fr;
 		}
 	}

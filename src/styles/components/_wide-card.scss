@@ -24,7 +24,7 @@
 	}
 
 	&__link {
-		@include to(640px) {
+		@include to(768px) {
 			padding: 18px;
 		}
 		display: flex;
@@ -45,7 +45,7 @@
 			);
 	}
 	&__city {
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 12px;
 			line-height: 14px;
 		}
@@ -57,7 +57,7 @@
 	}
 
 	&__link-txt {
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 19px;
 			line-height: 23px;
 		}

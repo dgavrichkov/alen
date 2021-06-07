@@ -109,7 +109,7 @@
 			cursor: pointer
 		}
 
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 10px;
 			line-height: 12px;
 		}

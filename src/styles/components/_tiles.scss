@@ -1,7 +1,7 @@
 .tiles {
 
 	&__list {
-		@include to(640px) {
+		@include to(768px) {
 			grid-template-columns: 1fr;
 		}
 		display: grid;
@@ -9,7 +9,7 @@
 	}
 
 	&__tile {
-		@include from(641px) {
+		@include from(769px) {
 			border-bottom: 1px solid #000000;
 			&:nth-child(2n + 1) {
 				border-right: 1px solid #000000;

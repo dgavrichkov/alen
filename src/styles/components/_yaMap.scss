@@ -67,3 +67,43 @@
 	align-items: center;
 	color: #292929;
 }
+
+#map ymaps ymaps ymaps ymaps ymaps ymaps ymaps ymaps ymaps ymaps {
+	overflow: visible !important;
+}
+
+.popup .ym_baloon_content {
+    padding-top: 85px;
+}
+
+.popup .ym_baloon_content .yaMap_head img {
+    width: 100%;
+    height: auto;
+}
+
+.popup .ym_baloon_content .yaMap_content {
+    padding: 0 20px;
+}
+
+.popup .ym_baloon_content .yaMap_content p {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #292929;
+}
+
+.popup .ym_baloon_content .yaMap_content h3 {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 23px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    color: #292929;
+}

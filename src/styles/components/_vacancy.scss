@@ -8,7 +8,7 @@
 		padding: 0 30px 0 20px;
 		border-top: 1px solid #DADADA;
 		cursor: pointer;
-		@include to(640px) {
+		@include to(768px) {
 			height: 54px;
 			padding: 0;
 		}
@@ -18,7 +18,7 @@
 			line-height: 36px;
 			color: #292929;
 
-			@include to(640px) {
+			@include to(768px) {
 				font-size: 14px;
 				line-height: 23px
 			}

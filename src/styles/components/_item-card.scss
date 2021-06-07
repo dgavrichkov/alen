@@ -23,7 +23,7 @@
 		padding: 30px;
 		color: #ffffff;
 		transition: 0.3s ease-in-out;
-		@include to(640px) {
+		@include to(768px) {
 			padding: 0 20px;
 			height: 74px;
 		}
@@ -33,7 +33,7 @@
 		font-weight: normal;
 		font-size: 17px;
 		line-height: 28px;
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 14px;
 			line-height: 23px;
 		}
@@ -102,7 +102,7 @@
 				line-height: 23px;
 				padding: 15px;
 			}
-			@include to(640px) {
+			@include to(768px) {
 				padding: 15px;
 				height: auto;
 			}
@@ -143,7 +143,7 @@
 			transform: none;
 		}
 		.item-card__content {
-			@include to(640px) {
+			@include to(768px) {
 				padding: 20px;
 				height: auto;
 			}

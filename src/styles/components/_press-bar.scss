@@ -1,6 +1,6 @@
 .press-bar {
 	@include defaultColGrid;
-	@include to(640px) {
+	@include to(768px) {
 		margin-bottom: 30px;
 	}
 	margin-bottom: 50px;
@@ -22,7 +22,7 @@
 			font-size: 32px;
 			line-height: 44px;
 		}
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 19px;
 			line-height: 23px;
 		}

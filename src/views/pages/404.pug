@@ -1,1 +1,119 @@
-h3 Page not found
+extends ../layouts/default
+include ../helpers/mixins
+
+block variables
+	- const title = "A-len search"
+
+block content
+	div.page
+		div.page__header
+			include ../../blocks/modules/header/header.pug
+		main.page__main
+			section.search.search--404
+				div.search__inner
+					div.search__nopage
+						b Такой страницы не существует
+						p Пожалуйста, выберите подходящий раздел сайта, воспользуйтесь поиском или начните с #[a(href="/") главной] страницы.
+						nav 
+							a(href="projects.html") Проекты
+							a(href="about.html") Компания
+							a(href="services.html") Услуги
+							a(href="lab.html") Лаборатория
+							a(href="press.html") Пресс-центр
+							a(href="contacts.html") Контакты
+			section.page-bar.no-topgap
+				h1.page-bar__title Категории проектов
+				a.page-bar__link.pill-btn(href="geography.html") География строительства
+			//- projects categories list - wide mosaic
+			section.tiles.projects-section 
+				ul.tiles__list 
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-1.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Избранное
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-2.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Новые проекты
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-3.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Жилые здания и комплексы
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-4.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Градостроительные проекты, мастер-планы
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-5.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Спортивные объекты
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-6.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Музеи и театры
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-7.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Отели и апартаменты
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-8.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Офисные здания
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-9.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Реновация и реконструкция
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-10.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Торговые комплексы
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-11.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Автоцентры
+					li.tiles__tile
+						article.wide-card 
+							figure.wide-card__pic
+								picture
+									img(src="images/projects-12.jpg")
+							a.wide-card__link(href="projects-list.html")
+								span.wide-card__link-txt Объекты транспортной инфраструктуры
+		div.page__popup
+
+		div.page__footer
+			include ../../blocks/modules/footer/footer.pug
+block scripts
+	script(src="js/main.js")

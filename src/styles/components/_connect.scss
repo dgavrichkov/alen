@@ -7,6 +7,9 @@
 
 	&__content {
 		@include middleColumn;
+		@include to(1024px) {
+			grid-template-columns: 1fr;
+		}
 
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -15,11 +18,20 @@
 	}
 	
 	&__header {
+		@include to(1024px) {
+			grid-row: 1;
+			grid-column: 1;
+			max-width: initial;
+		}
 		grid-row: 1;
 		max-width: 553px
 	}
 
 	&__title {
+		@include to(768px) {
+			font-size: 26px;
+			line-height: 35px;
+		}
 		font-weight: normal;
 		font-size: 40px;
 		line-height: 54px;
@@ -28,6 +40,10 @@
 		margin-top: -8px;
 	}
 	&__text {
+		@include to(768px) {
+			font-size: 14px;
+			line-height: 23px;
+		}
 		font-weight: 300;
 		font-size: 17px;
 		line-height: 32px;
@@ -35,6 +51,13 @@
 		margin-bottom: 30px;
 	}
 	&__form {
+		@include to(1024px) {
+			grid-row: 2;
+			grid-column: 1;
+			justify-self: stretch;
+			max-width: initial;
+			margin-bottom: 55px;
+		}
 		grid-row: 1 / 4;
 		grid-column: 2;
 		justify-self: end;
@@ -43,6 +66,10 @@
 	
 
 	&__footer {
+		@include to(1024px) {
+			grid-row: 3;
+			grid-column: 1;
+		}
 		grid-row: 3;
 		max-width: 553px
 	}

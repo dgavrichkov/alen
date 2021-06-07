@@ -17,7 +17,7 @@
 	&--sertificates {
 		.text-box {
 			margin-bottom: 50px;
-			@include to(640px) {
+			@include to(768px) {
 				margin-bottom: 40px;
 			}
 		}

@@ -4,7 +4,7 @@
 		height: initial;
 	}
 
-	@include to(640px) {
+	@include to(768px) {
 		margin-bottom: 30px;
 	}
 
@@ -24,7 +24,7 @@
 			max-height: 100vh;
 		}
 
-		@include to(640px) {
+		@include to(768px) {
 			height: 380px;
 		}
 
@@ -132,7 +132,7 @@
 		color: #ffffff;
 		margin-bottom: 8px;
 
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 12px;
 			line-height: 14px;
 		}
@@ -144,7 +144,7 @@
 		line-height: 133%;
 		color: #ffffff;
 
-		@include to(640px) {
+		@include to(768px) {
 			font-size: 19px;
 			line-height: 23px;
 		}
@@ -162,7 +162,7 @@
 			padding-bottom: 95px;
 		}
 
-		@include to(640px) {
+		@include to(768px) {
 			background: linear-gradient(#000 300px, #fff 0);
 		}
 	}
@@ -175,7 +175,7 @@
 				grid-template-rows: auto;
 				padding-bottom: 35px;
 			}
-			@include to(640px) {
+			@include to(768px) {
 				padding-bottom: 20px;
 			}
 		}

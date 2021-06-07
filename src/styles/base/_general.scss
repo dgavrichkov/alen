@@ -54,7 +54,7 @@ img {
 	@include to(768px) {
 		margin-top: -15px;
 	}
-	@include to(640px) {
+	@include to(768px) {
 		margin-top: -35px;
 	}
 }
@@ -74,7 +74,7 @@ img {
 
 .lab-tiles {
 	margin-top: -30px;
-	@include to(640px) {
+	@include to(768px) {
 		margin-top: -20px;
 	}
 }
