@@ -12,16 +12,30 @@
 	&__item {
 		border-bottom: 1px solid #dadada;
 		padding: 42px 0;
-		display: flex;
-
+		display: grid;
+		grid-template-columns: 150px 1fr;
+		@include to(1024px) {
+			grid-template-columns: 100px 1fr;
+		}
+		@include to(640px) {
+			grid-template-columns: 1fr;
+			grid-template-rows: auto auto;
+			gap: 12px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
 		dt {
-			flex-basis: 150px;
-			font-family: Rubik;
-			font-style: normal;
 			font-weight: 300;
 			font-size: 64px;
 			line-height: 68px;
 			color: #292929;
+			@include to(1024px) {
+				font-size: 50px;
+			}
+			@include to(640px) {
+				font-size: 36px;
+				line-height: 55px;
+			}
 		}
 
 		dd {
@@ -32,6 +46,16 @@
 			font-size: 17px;
 			line-height: 27px;
 			color: #292929;
+			text-align: justify;
+			padding-right: 40px;
+			@include to(1024px) {
+				padding-right: 0;
+			}
+			@include to(640px) {
+				font-size: 14px;
+				line-height: 23px;
+				text-align: left;
+			}
 		}
 
 		&:first-of-type {

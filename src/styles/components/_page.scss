@@ -14,6 +14,11 @@
 		padding: 0 45px;
 		text-transform: capitalize;
 		font-weight: 500;
+		@include to(640px) {
+			padding-left: 20px;
+			padding-right: 20px;
+			font-weight: 400;
+		}
 	}
 }
 

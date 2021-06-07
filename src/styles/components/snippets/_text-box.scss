@@ -1,7 +1,10 @@
 .text-box {
 	@include smallColumn;
 	margin-bottom: 30px;
-
+	text-align: justify;
+	@include to(640px) {
+		text-align: left;
+	}
 	h1 {
 		font-weight: normal;
 		font-size: 35px;
