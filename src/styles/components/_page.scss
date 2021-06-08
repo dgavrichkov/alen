@@ -23,6 +23,9 @@
 }
 
 .page-bar {
+	@include to(1024px) {
+		margin-top: 62px;
+	}
 	@include to(768px) {
 		display: flex;
 		flex-direction: column;

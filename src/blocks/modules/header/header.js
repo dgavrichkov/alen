@@ -8,6 +8,7 @@ class Header {
         this._mobmenu = this._header.querySelector(".header__mobile-menu");
 
         this._oldScroll = 0;
+        this._isBurgerOpen = false;
 
         this._handlerScrolling = this._handlerScrolling.bind(this);
         this._handlerBurger = this._handlerBurger.bind(this);
@@ -15,10 +16,6 @@ class Header {
 
     init() {
         console.log("header is ready", this._header);
-        console.log("search", this._search);
-        console.log("mobmenu", this._mobmenu);
-        console.log("burger", this._burger);
-        console.log("menu", this._menu);
         this._setHandlerScrolling();
         this._setHandlerBurger();
     }
@@ -27,7 +24,7 @@ class Header {
     _setHandlerScrolling() {
         document.addEventListener("scroll", this._handlerScrolling);
     }
-    _handlerScrolling(e) {
+    _handlerScrolling() {
         const headerHeight = this._header.getBoundingClientRect().height;
         let scrolled = document.documentElement.scrollTop;
         if(this._oldScroll < scrolled) {
@@ -48,15 +45,23 @@ class Header {
     }
 
     // - burger handling
-    // open burger
     // - set background on open burger
-    // close burger
+
     _setHandlerBurger() {
         this._burger.addEventListener("click", this._handlerBurger);
     }
     _handlerBurger(e) {
         e.preventDefault();
         console.log(this._burger);
+        if(this._isBurgerOpen) {
+            this._delClassIsBurger();
+            this._isBurgerOpen = false;
+            this._bodyUnfreeze();
+        } else {
+            this._setClassIsBurger();
+            this._isBurgerOpen = true;
+            this._bodyFreeze();
+        }
     }
 
     // - search handling
@@ -108,6 +113,14 @@ class Header {
     }
     _delClassIsScrolled() {
         this._header.classList.remove("is-scrolled");
+    }
+
+    // TODO - safari compatible
+    _bodyFreeze() {
+        document.body.classList.add("is-unscrolled");
+    }
+    _bodyUnfreeze() {
+        document.body.classList.remove("is-unscrolled");
     }
 }
 

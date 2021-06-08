@@ -19,18 +19,19 @@ header.header
                 span
                 p.visually-hidden Открыть меню
         a.header__mobile-search-back icon-chevron-back
-        .header__mobile-menu.mobile-menu
+        //- mobile menu
+        div.header__mobile-menu.mobile-menu
             nav.mobile-menu__list 
-                button(type="button").mobile-menu__search
+                button(type="button").mobile-menu__search.mobile-menu__item
                     span.mobile-menu__search-icon
-                    span Поиск
-                a(href="projects.html") Проекты
-                a(href="about.html") Компания
-                a(href="services.html") Услуги
-                a(href="lab.html") Лаборатория
-                a(href="press.html") Пресс-центр
-                a(href="contacts.html") Контакты
-                a(href="/en") English
+                    span.mobile-menu__search-txt Поиск
+                a(href="projects.html").mobile-menu__item Проекты
+                a(href="about.html").mobile-menu__item Компания
+                a(href="services.html").mobile-menu__item Услуги
+                a(href="lab.html").mobile-menu__item Лаборатория
+                a(href="press.html").mobile-menu__item Пресс-центр
+                a(href="contacts.html").mobile-menu__item Контакты
+                a(href="/en").mobile-menu__item.mobile-menu__lang English
         section.header__submenu.submenu.is-visible
             nav.submenu__nav
                 a(href="about-oreshkin.html").submenu__link Сергей Орешкин

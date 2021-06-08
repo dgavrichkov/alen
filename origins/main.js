@@ -262,6 +262,7 @@ templs = {
             },
             _doing: function (scrollTop, firstInit) {
                 if (!firstInit) firstInit = false;
+                // это наверное обеспечивает некоторое пространство перед скрытием хедера
                 if (
                     this.dMove < Math.abs(scrollTop - this.oldScroll) ||
                     scrollTop == 0 ||
@@ -392,15 +393,16 @@ templs = {
                     .find(".header")
                     .find(".header_bg.bg_burger");
                 bg.css("display", "block");
-                bg.animate({
-                    opacity: 1
-                },
-                this.basicTimeAnimate,
-                "linear",
-                function () {
-                    _this.animate = false;
-                    _this.state = "opened";
-                }
+                bg.animate(
+                    {
+                        opacity: 1
+                    },
+                    this.basicTimeAnimate,
+                    "linear",
+                    function () {
+                        _this.animate = false;
+                        _this.state = "opened";
+                    }
                 );
             },
             _removeBg: function (callback) {
