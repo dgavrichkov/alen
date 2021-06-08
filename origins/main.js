@@ -53,9 +53,9 @@ var setWindowHeight = function () {
 };
 $(window).on("load", function () {
     $("html,body").animate({
-            scrollTop: scrollToHash
-        },
-        1000
+        scrollTop: scrollToHash
+    },
+    1000
     );
     pages.main.slider.init();
 });
@@ -80,6 +80,7 @@ templs = {
         usersNoScroll: 0,
         box: null,
         srcrollFix: {
+            // нужно для заклинивания скролла. На сайте это сделано не через css - попытка прокрутки доступна, но скролл всегда возвращается в исходное положение.
             del: function () {
                 this.parent.usersNoScroll--;
                 if (this.parent.usersNoScroll === 0) {
@@ -109,20 +110,20 @@ templs = {
                     .find(".header_bg.bg_search");
                 bg.css("display", "block");
                 $(".header_mobile_search").animate({
-                        opacity: 1
-                    },
-                    this.basicTimeAnimate,
-                    "linear"
+                    opacity: 1
+                },
+                this.basicTimeAnimate,
+                "linear"
                 );
                 bg.animate({
-                        opacity: 1
-                    },
-                    this.basicTimeAnimate,
-                    "linear",
-                    function () {
-                        _this.animate = false;
-                        _this.state = "opened";
-                    }
+                    opacity: 1
+                },
+                this.basicTimeAnimate,
+                "linear",
+                function () {
+                    _this.animate = false;
+                    _this.state = "opened";
+                }
                 );
             },
             _removeBg: function (callback) {
@@ -131,22 +132,22 @@ templs = {
                     .find(".header")
                     .find(".header_bg.bg_search");
                 $(".header_mobile_search").animate({
-                        opacity: 0
-                    },
-                    this.basicTimeAnimate,
-                    "linear"
+                    opacity: 0
+                },
+                this.basicTimeAnimate,
+                "linear"
                 );
                 bg.animate({
-                        opacity: 0
-                    },
-                    this.basicTimeAnimate,
-                    "linear",
-                    function () {
-                        bg.remove();
-                        _this.animate = false;
-                        _this.state = "closed";
-                        callback();
-                    }
+                    opacity: 0
+                },
+                this.basicTimeAnimate,
+                "linear",
+                function () {
+                    bg.remove();
+                    _this.animate = false;
+                    _this.state = "closed";
+                    callback();
+                }
                 );
             },
             open: function () {
@@ -219,8 +220,8 @@ templs = {
                                 if (_this.state === "opened") {
                                     if (
                                         $(document)
-                                        .find(".header_mobileMenu")
-                                        .hasClass("open")
+                                            .find(".header_mobileMenu")
+                                            .hasClass("open")
                                     )
                                         _this.close();
                                 }
@@ -392,14 +393,14 @@ templs = {
                     .find(".header_bg.bg_burger");
                 bg.css("display", "block");
                 bg.animate({
-                        opacity: 1
-                    },
-                    this.basicTimeAnimate,
-                    "linear",
-                    function () {
-                        _this.animate = false;
-                        _this.state = "opened";
-                    }
+                    opacity: 1
+                },
+                this.basicTimeAnimate,
+                "linear",
+                function () {
+                    _this.animate = false;
+                    _this.state = "opened";
+                }
                 );
             },
             _removeBg: function (callback) {
@@ -408,16 +409,16 @@ templs = {
                     .find(".header")
                     .find(".header_bg.bg_burger");
                 bg.animate({
-                        opacity: 0
-                    },
-                    this.basicTimeAnimate,
-                    "linear",
-                    function () {
-                        bg.remove();
-                        _this.animate = false;
-                        _this.state = "closed";
-                        if (callback) callback();
-                    }
+                    opacity: 0
+                },
+                this.basicTimeAnimate,
+                "linear",
+                function () {
+                    bg.remove();
+                    _this.animate = false;
+                    _this.state = "closed";
+                    if (callback) callback();
+                }
                 );
             },
             events: function () {
@@ -493,9 +494,9 @@ templs = {
                 $(".header_mobileMenu_item");
                 this._elementsFadeIn();
                 _this.menu.animate({
-                        opacity: 1
-                    },
-                    _this.basicTimeAnimate
+                    opacity: 1
+                },
+                _this.basicTimeAnimate
                 );
                 this._appendBg();
             },
@@ -506,15 +507,15 @@ templs = {
                     _this.menu.removeClass("open");
                 });
                 this.menu.animate({
-                        opacity: 0
-                    },
-                    this.basicTimeAnimate,
-                    function () {
-                        _this._removeBg();
-                        $(document)
-                            .find(".header")
-                            .removeClass("burgerOpen");
-                    }
+                    opacity: 0
+                },
+                this.basicTimeAnimate,
+                function () {
+                    _this._removeBg();
+                    $(document)
+                        .find(".header")
+                        .removeClass("burgerOpen");
+                }
                 );
             },
             init: function () {
@@ -541,8 +542,8 @@ templs = {
                         } else {
                             $(this).height(
                                 $(this)
-                                .find(".header_menuSub_box")
-                                .height() + 15
+                                    .find(".header_menuSub_box")
+                                    .height() + 15
                             );
                         }
                     }
@@ -554,6 +555,8 @@ templs = {
             }
         },
         menu: {
+            // должно быть, это как-то связано с этими странными заглушками при переходе между урлами. Этот метод всего лишь убирает активный класс при клике по лого (ссылка на главную), или же назначает активный класс кликнутой ссылке в меню
+            // подход в корне неверный, т.к. в таких случаях состояние должно изменяться только после ответа сервера
             events: function () {
                 this.eventsInited = true;
                 $(".header_logo").click(function () {
@@ -609,8 +612,8 @@ templs = {
                 if (
                     $(window).height() + $(document).scrollTop() >
                     $(document)
-                    .find(".footer")
-                    .offset().top +
+                        .find(".footer")
+                        .offset().top +
                     100
                 ) {
                     _this.anim();
@@ -659,30 +662,30 @@ templs = {
             $(".popup_item").removeClass("active");
             $(".popup_item" + id).addClass("active");
             $(".popup").animate({
-                    opacity: 1
-                },
-                this.basicTimeAnimate
+                opacity: 1
+            },
+            this.basicTimeAnimate
             );
             $(".popup_item" + id).animate({
-                    opacity: 1
-                },
-                this.basicTimeAnimate
+                opacity: 1
+            },
+            this.basicTimeAnimate
             );
             $("body").addClass("scrollDis");
         },
         close: function () {
             var _ = this;
-            this.opened = false
+            this.opened = false;
             $(".popup,.popup_item").animate({
-                    opacity: 0
-                },
-                this.basicTimeAnimate,
-                function () {
-                    if (!_.opened) {
-                        $(".popup,.popup_item").removeClass("active");
-                        $(".popup").removeClass("inWindow");
-                    }
+                opacity: 0
+            },
+            this.basicTimeAnimate,
+            function () {
+                if (!_.opened) {
+                    $(".popup,.popup_item").removeClass("active");
+                    $(".popup").removeClass("inWindow");
                 }
+            }
             );
             $("body").removeClass("scrollDis");
             this.parent.gallery.clear();
@@ -690,13 +693,13 @@ templs = {
         events: function () {
             var _this = this;
             this.eventsInited = true;
-            $(document).on('click', ".js-popup", function (e) {
+            $(document).on("click", ".js-popup", function (e) {
                 e.preventDefault();
                 //if(!$(this).hasClass('mobile-modal') || $(window).width()<768){
                 if (!$("#photorama").hasClass("active"))
                     _this.open($(this).attr("href"));
                 // }
-            })
+            });
             $(".popup_close,.close_but").click(function (e) {
                 e.preventDefault();
                 _this.close();
@@ -781,11 +784,11 @@ templs = {
                                             );
                                         item.box.removeClass("loading");
                                         item.box.append(
-                                            '<input style="display:none" type="file" name="file_' +
+                                            "<input style=\"display:none\" type=\"file\" name=\"file_" +
                                             key +
-                                            '" value="' +
+                                            "\" value=\"" +
                                             file +
-                                            '"/>'
+                                            "\"/>"
                                         );
                                         item.box.addClass("load");
                                     } else {
@@ -817,7 +820,7 @@ templs = {
                     .parent()
                     .find(".form_fileList .list")
                     .append(
-                        '<li class="item loading"><span class="text"></span> <span class="del"></span></li>'
+                        "<li class=\"item loading\"><span class=\"text\"></span> <span class=\"del\"></span></li>"
                     );
                 _this.files.push({
                     id: key,
@@ -849,14 +852,14 @@ templs = {
             this.eventsInited = true;
             var _ = this;
 
-            $(document).on("click", 'a[href="#photorama"]', function () {
+            $(document).on("click", "a[href=\"#photorama\"]", function () {
                 _.length = 0;
                 $(this)
                     .find(".data-imgs input")
                     .each(function () {
                         var itemMain;
                         var itemThumbs;
-                        var lazyPreloader = '<div class="swiper-lazy-preloader"></div>';
+                        var lazyPreloader = "<div class=\"swiper-lazy-preloader\"></div>";
                         if ($(this).attr("poster")) {
                             var poster =
                                 "<img data-src='" +
@@ -900,7 +903,7 @@ templs = {
                 if ($(this).attr("data-src")) {
                     var itemMain;
                     var itemThumbs;
-                    var lazyPreloader = '<div class="swiper-lazy-preloader"></div>';
+                    var lazyPreloader = "<div class=\"swiper-lazy-preloader\"></div>";
                     itemMain =
                         "<div class='swiper-slide'><div class='swiper-zoom-container'><img data-src='" +
                         $(this).attr("data-src") +
@@ -1016,13 +1019,13 @@ templs = {
                     loadPrevNextAmount: 7
                 },
                 //speed: 500,
-				speed: 1,
+                speed: 1,
                 //centeredSlides: true,
-				virtualTranslate: true,
-				//keyboard: {
-				//	enabled: true,
-				//	onlyInViewport: true,
-				//  },
+                virtualTranslate: true,
+                //keyboard: {
+                //	enabled: true,
+                //	onlyInViewport: true,
+                //  },
                 direction: "vertical",
                 slideToClickedSlide: true,
                 mousewheel: {
@@ -1033,12 +1036,12 @@ templs = {
 
             _.galleryBig = new Swiper(".photorama-main", {
 
-				effect: "slide",
-				breakpoints: {
-					768: {
-						effect: "fade",
-					},
-				},
+                effect: "slide",
+                breakpoints: {
+                    768: {
+                        effect: "fade",
+                    },
+                },
                 updateOnWindowResize: true,
                 observer: true,
                 fadeEffect: {
@@ -1059,52 +1062,52 @@ templs = {
                 //loop: !solo,
                 slidesPerView: 1,
                 lazy: true,
-				//keyboard: {
-				//	enabled: true,
-				//	onlyInViewport: true,
-				//  },
+                //keyboard: {
+                //	enabled: true,
+                //	onlyInViewport: true,
+                //  },
             });
 
-			$('.swiper-container.photorama-main.swiper-container-initialized.swiper-container-horizontal').append( "<div class='swiper-big-befor'></div>" );
-			$('.swiper-container.photorama-main.swiper-container-initialized.swiper-container-horizontal').prepend( "<div class='swiper-big-after'></div>" );
-			$('.swiper-big-befor').on("click", function(){
-				//$('.mobile_nav .str.left').trigger('click');
-				var number = _.galleryThumbs.realIndex - 1;
-				if(number >= 0)
-				{
-					_.galleryBig.slideTo(number);
-					_.galleryThumbs.slideTo(number);
-				}
-			});
-			$('.swiper-big-after').on("click", function(){
-				//$('.mobile_nav .str.right').trigger('click');
-				var number = _.galleryThumbs.realIndex + 1;
-				if(number <= $('.photorama-main .swiper-slide').length-1)
-				{
-					_.galleryBig.slideTo(number);
-					_.galleryThumbs.slideTo(number);
-				}
-			});
+            $(".swiper-container.photorama-main.swiper-container-initialized.swiper-container-horizontal").append( "<div class='swiper-big-befor'></div>" );
+            $(".swiper-container.photorama-main.swiper-container-initialized.swiper-container-horizontal").prepend( "<div class='swiper-big-after'></div>" );
+            $(".swiper-big-befor").on("click", function(){
+                //$('.mobile_nav .str.left').trigger('click');
+                var number = _.galleryThumbs.realIndex - 1;
+                if(number >= 0)
+                {
+                    _.galleryBig.slideTo(number);
+                    _.galleryThumbs.slideTo(number);
+                }
+            });
+            $(".swiper-big-after").on("click", function(){
+                //$('.mobile_nav .str.right').trigger('click');
+                var number = _.galleryThumbs.realIndex + 1;
+                if(number <= $(".photorama-main .swiper-slide").length-1)
+                {
+                    _.galleryBig.slideTo(number);
+                    _.galleryThumbs.slideTo(number);
+                }
+            });
 
 
-			_.galleryBig.on('click', function (e) {
-				if($(window).width() <= 768)
-				{
-					if($('.popup_full .photorama-main').hasClass('big'))
-					{
-						$('.popup_full .photorama-main').css({'height':'calc(100% - 72px)', 'background-color': 'neno'});
-						$('.popup_full .photorama-main').removeClass('big');
-					}
-					else
-					{
-						$('.popup_full .photorama-main').css({'height':'100%', 'background-color': '#fff'});
-						$('.popup_full .photorama-main').addClass('big');
-					}
-				}
-			});
+            _.galleryBig.on("click", function (e) {
+                if($(window).width() <= 768)
+                {
+                    if($(".popup_full .photorama-main").hasClass("big"))
+                    {
+                        $(".popup_full .photorama-main").css({"height":"calc(100% - 72px)", "background-color": "neno"});
+                        $(".popup_full .photorama-main").removeClass("big");
+                    }
+                    else
+                    {
+                        $(".popup_full .photorama-main").css({"height":"100%", "background-color": "#fff"});
+                        $(".popup_full .photorama-main").addClass("big");
+                    }
+                }
+            });
 
-           //_.galleryThumbs.controller.control = _.galleryBig;
-           //_.galleryBig.controller.control = _.galleryThumbs;
+            //_.galleryThumbs.controller.control = _.galleryBig;
+            //_.galleryBig.controller.control = _.galleryThumbs;
 
             if (_.length <= 1) {
                 $(".mobile_nav").addClass("hide");
@@ -1127,18 +1130,18 @@ templs = {
 
             _.galleryThumbs.on("slideChange", function () {
 
-				if($('.photorama-box').height() - (_.galleryThumbs.realIndex * _.galleryThumbs.height - (-1*(parseInt($('.swiper-wrapper').css('top'))))) < 0)
-				{
-					var top = (parseInt($('.swiper-wrapper').css('top'))) - _.galleryThumbs.height;
-					$('.photorama-thumbs .swiper-wrapper').css('top', top);
-				}
-				else if(_.galleryThumbs.realIndex * _.galleryThumbs.height - (-1*(parseInt($('.swiper-wrapper').css('top')))) < 0)
-				{
-					var top = (parseInt($('.swiper-wrapper').css('top'))) + _.galleryThumbs.height;
-					if(top > 0)
-						top = 0;
-					$('.photorama-thumbs .swiper-wrapper').css('top', top);
-				}
+                if($(".photorama-box").height() - (_.galleryThumbs.realIndex * _.galleryThumbs.height - (-1*(parseInt($(".swiper-wrapper").css("top"))))) < 0)
+                {
+                    var top = (parseInt($(".swiper-wrapper").css("top"))) - _.galleryThumbs.height;
+                    $(".photorama-thumbs .swiper-wrapper").css("top", top);
+                }
+                else if(_.galleryThumbs.realIndex * _.galleryThumbs.height - (-1*(parseInt($(".swiper-wrapper").css("top")))) < 0)
+                {
+                    var top = (parseInt($(".swiper-wrapper").css("top"))) + _.galleryThumbs.height;
+                    if(top > 0)
+                        top = 0;
+                    $(".photorama-thumbs .swiper-wrapper").css("top", top);
+                }
 
                 if (ThumbsHovered) {
                     _.galleryBig.slideTo(_.galleryThumbs.realIndex);
@@ -1148,12 +1151,12 @@ templs = {
                     _.galleryBig.realIndex + 1 + "/" + _.length
                 );
 
-				_.galleryThumbs.update();
+                _.galleryThumbs.update();
                 _.galleryBig.update();
             });
 
             _.galleryBig.on("slideChange", function () {
-				if (!ThumbsHovered) {
+                if (!ThumbsHovered) {
                     _.galleryThumbs.slideTo(_.galleryBig.realIndex);
                 }
                 $(".mobile_nav .count").html(
@@ -1164,7 +1167,7 @@ templs = {
                     .find("iframe")
                     .remove();
                 _.galleryThumbs.update();
-				_.galleryBig.update();
+                _.galleryBig.update();
             });
 
             $(".mobile_nav .count").html(1 + "/" + _.length);
@@ -1185,130 +1188,130 @@ templs = {
                 },
                 false
             );
-			if($(window).width() <= 768)
-			{
-				if($('.swiper-slide').length/2 == 1)
-				{
-					$('.swiper-container.photorama-main.swiper-container-initialized').css('height','100%');
-				}
+            if($(window).width() <= 768)
+            {
+                if($(".swiper-slide").length/2 == 1)
+                {
+                    $(".swiper-container.photorama-main.swiper-container-initialized").css("height","100%");
+                }
 
-				var scaling = false;
-				var shownavigate = false;
-				_.galleryBig.on(
-					"touchStart",
-					function (evt)
-					{
-						var tt = evt.targetTouches;
-						if (tt.length >= 2)
-						{
-							scaling = true;
-							if($('.popup_full .photorama-main').hasClass('big'))
-							{
-								shownavigate = false;
-								$('.popup_full .photorama-main').removeClass('big');
-							}
-							else
-							{
-								//$('.popup_full .photorama-main').css({'height':'100%', 'background-color': '#fff','margin-top':'-1px','padding-top':'1px'});
-								$('.popup_full .photorama-main').css({'background-color': '#fff'});
-								$('.popup_full .photorama-main').animate({
-									height: "100%"
-								}, 500);
-								shownavigate = true;
-								$('.popup_full .photorama-main').addClass('big');
-							}
-						}
-					}
-				);
-				_.galleryBig.on(
-					'touchEnd',
-					function(evt)
-					{
-						if(scaling)
-						{
-							if($('.popup_full .photorama-main').hasClass('big'))
-							{
-								if(shownavigate)
-								{
-									//$('.popup_full .photorama-main').css({'height':'calc(100% - 72px)', 'background-color': 'neno','margin-top':'0px','padding-top':'0px'});
-									$('.popup_full .photorama-main').css({'background-color': 'neno'});
-									var heig = $('.popup_full .photorama-main').height()-72;
-									$('.popup_full .photorama-main').animate({
-										height: heig+"px"
-									}, 500);
-									$('.popup_full .photorama-main').removeClass('big');
+                var scaling = false;
+                var shownavigate = false;
+                _.galleryBig.on(
+                    "touchStart",
+                    function (evt)
+                    {
+                        var tt = evt.targetTouches;
+                        if (tt.length >= 2)
+                        {
+                            scaling = true;
+                            if($(".popup_full .photorama-main").hasClass("big"))
+                            {
+                                shownavigate = false;
+                                $(".popup_full .photorama-main").removeClass("big");
+                            }
+                            else
+                            {
+                                //$('.popup_full .photorama-main').css({'height':'100%', 'background-color': '#fff','margin-top':'-1px','padding-top':'1px'});
+                                $(".popup_full .photorama-main").css({"background-color": "#fff"});
+                                $(".popup_full .photorama-main").animate({
+                                    height: "100%"
+                                }, 500);
+                                shownavigate = true;
+                                $(".popup_full .photorama-main").addClass("big");
+                            }
+                        }
+                    }
+                );
+                _.galleryBig.on(
+                    "touchEnd",
+                    function(evt)
+                    {
+                        if(scaling)
+                        {
+                            if($(".popup_full .photorama-main").hasClass("big"))
+                            {
+                                if(shownavigate)
+                                {
+                                    //$('.popup_full .photorama-main').css({'height':'calc(100% - 72px)', 'background-color': 'neno','margin-top':'0px','padding-top':'0px'});
+                                    $(".popup_full .photorama-main").css({"background-color": "neno"});
+                                    var heig = $(".popup_full .photorama-main").height()-72;
+                                    $(".popup_full .photorama-main").animate({
+                                        height: heig+"px"
+                                    }, 500);
+                                    $(".popup_full .photorama-main").removeClass("big");
 
-								}
-							}
+                                }
+                            }
 
-						}
-						scaling = false;
-					}
-				);
-
-
-			}
+                        }
+                        scaling = false;
+                    }
+                );
 
 
-			$('#photorama').bind('mousewheel', function(e)
-			{
-				if(ThumbsHovered)
-				{
-					var step = $('.photorama-thumbs .swiper-slide').height() + 1;
-					var countimage = $('.photorama-thumbs .swiper-slide').length;
-					var allheight = -1 * ((countimage * step) - $('#photorama').height()+0);
-					if(e.originalEvent.wheelDelta < 0)
-						step = -1 * step;
-					var oldtop = parseInt($('.photorama-thumbs .swiper-wrapper').css('top'));
-					var top =  oldtop + step;
-					if(top > 0)
-						top = 0;
-					else if (top < allheight)
-						top = allheight;
-					var numberimage = _.galleryBig.realIndex;
-					if(oldtop > top)
-					{
-						var numberel = (parseInt(top / step)) + 7;
-						_.galleryThumbs.lazy.loadInSlide(numberel);
-						numberimage = numberimage + 1;
-						if(numberimage > countimage)
-							numberimage = countimage;
-					}
-					else if(oldtop < top)
-					{
-						numberimage = numberimage - 1;
-						if(numberimage < 0)
-							numberimage = 0;
-					}
+            }
 
-					_.galleryBig.slideTo(numberimage);
-					_.galleryThumbs.slideTo(numberimage);
 
-					$('.photorama-thumbs .swiper-wrapper').css('top', top);
-				}
-			});
+            $("#photorama").bind("mousewheel", function(e)
+            {
+                if(ThumbsHovered)
+                {
+                    var step = $(".photorama-thumbs .swiper-slide").height() + 1;
+                    var countimage = $(".photorama-thumbs .swiper-slide").length;
+                    var allheight = -1 * ((countimage * step) - $("#photorama").height()+0);
+                    if(e.originalEvent.wheelDelta < 0)
+                        step = -1 * step;
+                    var oldtop = parseInt($(".photorama-thumbs .swiper-wrapper").css("top"));
+                    var top =  oldtop + step;
+                    if(top > 0)
+                        top = 0;
+                    else if (top < allheight)
+                        top = allheight;
+                    var numberimage = _.galleryBig.realIndex;
+                    if(oldtop > top)
+                    {
+                        var numberel = (parseInt(top / step)) + 7;
+                        _.galleryThumbs.lazy.loadInSlide(numberel);
+                        numberimage = numberimage + 1;
+                        if(numberimage > countimage)
+                            numberimage = countimage;
+                    }
+                    else if(oldtop < top)
+                    {
+                        numberimage = numberimage - 1;
+                        if(numberimage < 0)
+                            numberimage = 0;
+                    }
 
-			$(document).keyup(function (e) {
-				var countimage = $('.photorama-thumbs .swiper-slide').length;
-				var numberimage = _.galleryBig.realIndex;
+                    _.galleryBig.slideTo(numberimage);
+                    _.galleryThumbs.slideTo(numberimage);
 
-				if(e.which == 38 || e.which == 37)
-				{
-					numberimage--;
-				}
-				else if(e.which == 39 || e.which == 40)
-				{
-					numberimage++;
-				}
+                    $(".photorama-thumbs .swiper-wrapper").css("top", top);
+                }
+            });
 
-				if(countimage >= numberimage && numberimage >= 0 && numberimage!=_.galleryBig.realIndex)
-				{
-					_.galleryThumbs.lazy.loadInSlide(numberimage);
-					_.galleryBig.lazy.loadInSlide(numberimage);
-					_.galleryBig.slideTo(numberimage);
-					_.galleryThumbs.slideTo(numberimage);
-				}
-			});
+            $(document).keyup(function (e) {
+                var countimage = $(".photorama-thumbs .swiper-slide").length;
+                var numberimage = _.galleryBig.realIndex;
+
+                if(e.which == 38 || e.which == 37)
+                {
+                    numberimage--;
+                }
+                else if(e.which == 39 || e.which == 40)
+                {
+                    numberimage++;
+                }
+
+                if(countimage >= numberimage && numberimage >= 0 && numberimage!=_.galleryBig.realIndex)
+                {
+                    _.galleryThumbs.lazy.loadInSlide(numberimage);
+                    _.galleryBig.lazy.loadInSlide(numberimage);
+                    _.galleryBig.slideTo(numberimage);
+                    _.galleryThumbs.slideTo(numberimage);
+                }
+            });
 
         },
         init: function () {
@@ -1324,6 +1327,7 @@ templs = {
         events: function () {
             var cutTop = $(document).scrollTop();
             $(document).on("scroll", function (e) {
+                // вот то самое место, которое предотвращает скроллинг страницы и возвращает его в исходную позицию cutTop. Интересно.
                 if ($("body").hasClass("scrollDis")) {
                     e.preventDefault();
                     $(document).scrollTop(cutTop);
@@ -1343,9 +1347,9 @@ templs = {
             var div = document.createElement("div");
             div.appendChild(
                 window
-                .getSelection()
-                .getRangeAt(0)
-                .cloneContents()
+                    .getSelection()
+                    .getRangeAt(0)
+                    .cloneContents()
             );
             var selectionText = div.innerText.replace(new RegExp("\\r?\\n", "g"), "");
 
@@ -1469,7 +1473,7 @@ pages = {
                                 var isPlaying = this.currentTime > 0 && !this.paused && !this.ended &&
                                     this.readyState > 2;
                                 if (!isPlaying) {
-                                    console.log(this)
+                                    console.log(this);
                                     this.play();
                                 }
                             } else {
@@ -1680,9 +1684,9 @@ pages = {
                 var _ = this;
                 var audio = $("audio").eq(0)[0];
                 if ($(window).width() > 1024)
-                    $("audio").load(audio.getAttribute('data-src'), function () {
-                        _.muteInit()
-                    })
+                    $("audio").load(audio.getAttribute("data-src"), function () {
+                        _.muteInit();
+                    });
             }
         },
         init: function () {
@@ -1703,9 +1707,9 @@ pages = {
                     .attr(
                         "src",
                         $(".fpSlider_wrapper")
-                        .find("audio")
-                        .eq(0)
-                        .attr("data-src")
+                            .find("audio")
+                            .eq(0)
+                            .attr("data-src")
                     );
                 // $(".fpSlider")
                 //   .find("video")
@@ -1825,24 +1829,24 @@ pages = {
                 var tempId = _.beforeloadImg(img);
                 var wait = setTimeout(function () {
                     img.onload = function () {
-                        console.log('повтор');
+                        console.log("повтор");
                         _.afterLoadImg(img);
-                    }
-                    img.src = img.getAttribute('data-src');
+                    };
+                    img.src = img.getAttribute("data-src");
 
-                }, 1000)
+                }, 1000);
                 var bLazy = new Blazy({
                     selector: "#to-loader-" + tempId,
                     success: function (element) {
                         clearTimeout(wait);
                         var loader = this;
                         _.afterLoadImg(element),
-                            setTimeout(function () {
-                                //loader.destroy();
-                            }, 500);
+                        setTimeout(function () {
+                            //loader.destroy();
+                        }, 500);
                     },
                     error: function () {
-                        console.log('error')
+                        console.log("error");
                     }
                 });
             },
@@ -2070,24 +2074,24 @@ pages = {
                             _this.moveBar(
                                 $(this).offset().left -
                                 $(this)
-                                .parent()
-                                .offset().left,
+                                    .parent()
+                                    .offset().left,
                                 $(this).width()
                             );
                         } else if ($(window).width() <= 768) {
-                        if (!$(".infSlider_select").hasClass("active")) {
-                            $(".infSlider_select").addClass("active");
+                            if (!$(".infSlider_select").hasClass("active")) {
+                                $(".infSlider_select").addClass("active");
                             /* var scroll = $(document).scrollTop();
                             $(document).scrollTop(scroll + 1);
                             $(document).scrollTop(scroll); */
-                        } else {
-                            $(".infSlider_select").removeClass("active");
+                            } else {
+                                $(".infSlider_select").removeClass("active");
+                            }
                         }
-                    }
                     if (_this.buts.length <= 1) {
-                        $('.infSlider_select').addClass('soloItem')
+                        $(".infSlider_select").addClass("soloItem");
                     } else {
-                        $('.infSlider_select').removeClass('soloItem')
+                        $(".infSlider_select").removeClass("soloItem");
                     }
                 });
                 $(window).on("resize", function () {
@@ -2104,9 +2108,9 @@ pages = {
                 this.moveBar(
                     _this.buts.eq(0).offset().left -
                     _this.buts
-                    .eq(0)
-                    .parent()
-                    .offset().left,
+                        .eq(0)
+                        .parent()
+                        .offset().left,
                     _this.buts.eq(0).width()
                 );
             },
@@ -2114,7 +2118,7 @@ pages = {
                 this.box = $(".infSlider_list");
                 this.buts = $(".infSlider_menu_item");
                 if (this.buts.length <= 1) {
-                    $('.infSlider_select').addClass('soloItem')
+                    $(".infSlider_select").addClass("soloItem");
                 }
                 this.bar = $(".infSlider_bar");
                 this.create();
@@ -2145,23 +2149,23 @@ pages = {
                 if ($(window).width() <= 600) width = 320;
                 return new ymaps.Placemark(
                     coords, {
-                        balloonContentHeader: '<div class="yaMap_head">' +
-                            '<img src="' +
+                        balloonContentHeader: "<div class=\"yaMap_head\">" +
+                            "<img src=\"" +
                             src +
-                            '" class="" height="174" width="' +
+                            "\" class=\"\" height=\"174\" width=\"" +
                             width +
-                            '"/>' +
+                            "\"/>" +
                             "</div>",
-                        balloonContentBody: '<div class="yaMap_content">' +
+                        balloonContentBody: "<div class=\"yaMap_content\">" +
                             "<p>" +
                             sity +
                             "</p>" +
                             "<h3>" +
                             name +
                             "</h3>" +
-                            '<a href="' +
+                            "<a href=\"" +
                             link +
-                            '" class="default-btn btn-gray">' +
+                            "\" class=\"default-btn btn-gray\">" +
                             wordToProject +
                             "<a>" +
                             "</div>",
@@ -2204,8 +2208,8 @@ pages = {
                         myMap.geoObjects.add(
                             _this.createPlaceMark(
                                 $(this)
-                                .attr("data-cords")
-                                .split(","),
+                                    .attr("data-cords")
+                                    .split(","),
                                 $(this).attr("data-img"),
                                 $(this).attr("data-sity"),
                                 $(this).attr("data-name"),
@@ -2230,7 +2234,7 @@ pages = {
                     });
                 if ($(window).width() < 768) {
 
-					myMap.behaviors.disable("drag");
+                    myMap.behaviors.disable("drag");
                 }
                 myMap.controls.add(zoomControl);
             },
@@ -2274,8 +2278,8 @@ pages = {
                         clusterer.add(
                             _this.createPlaceMark(
                                 $(this)
-                                .attr("data-cords")
-                                .split(","),
+                                    .attr("data-cords")
+                                    .split(","),
                                 $(this).attr("data-img"),
                                 $(this).attr("data-sity"),
                                 $(this).attr("data-name"),
@@ -2328,10 +2332,10 @@ pages = {
                 var _this = this;
                 this.center =
                     $(".map_data .placeMark").length > 0 ?
-                    $(".map_data .placeMark")
-                    .eq(0)
-                    .attr("data-cords")
-                    .split(",") : [57.446132, 55.233856];
+                        $(".map_data .placeMark")
+                            .eq(0)
+                            .attr("data-cords")
+                            .split(",") : [57.446132, 55.233856];
 
                 function initMap() {
                     if ($("#map").hasClass("full")) {
@@ -2354,7 +2358,7 @@ pages = {
             if ($(".infSlider").length > 0) this.infSlider.init();
             if ($("#back_page").length > 0) this.btnBack.init();
             if ($(window).width() <= 650) {
-                $('.fpProject_video video').remove()
+                $(".fpProject_video video").remove();
             }
         }
     },
@@ -2417,9 +2421,9 @@ pages = {
                 item.height(
                     item.find(".vacancy_title").height() +
                     item
-                    .find(".vacancy_title")
-                    .css("padding-top")
-                    .replace("px", "") *
+                        .find(".vacancy_title")
+                        .css("padding-top")
+                        .replace("px", "") *
                     2 +
                     2
                 );
@@ -2433,9 +2437,9 @@ pages = {
             item.height(
                 item.find(".vacancy_title").height() +
                 item
-                .find(".vacancy_title")
-                .css("padding-top")
-                .replace("px", "") *
+                    .find(".vacancy_title")
+                    .css("padding-top")
+                    .replace("px", "") *
                 2 +
                 2
             );
@@ -2499,8 +2503,8 @@ pages = {
                 e.preventDefault();
                 if (
                     $(this)
-                    .parent()
-                    .find(">.form").length == 0
+                        .parent()
+                        .find(">.form").length == 0
                 ) {
                     $(".comment")
                         .find(".parsley-required")
@@ -2513,12 +2517,12 @@ pages = {
                         .attr("data-answer-id");
                     $(".comment")
                         .find(".form")
-                        .find('[name="abswer_id"]')
+                        .find("[name=\"abswer_id\"]")
                         .remove();
                     $(".comment")
                         .find(".form")
                         .append(
-                            '<input name="abswer_id" type="hidden" value="' + answerId + '"/>'
+                            "<input name=\"abswer_id\" type=\"hidden\" value=\"" + answerId + "\"/>"
                         );
                     var html = $(".comment")
                         .find(".form")
@@ -2532,7 +2536,7 @@ pages = {
 
                     if ($(".comment").find(".simpleCommentBut").length == 0) {
                         $(".comment_title:last-child").html(
-                            '<a href="" class="default-btn btn-gray simpleCommentBut">Оставить коментарий</a>'
+                            "<a href=\"\" class=\"default-btn btn-gray simpleCommentBut\">Оставить коментарий</a>"
                         );
                     }
                 }
@@ -2568,17 +2572,17 @@ pages = {
                 dots: true,
                 arrows: false,
                 responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1
-                        }
-                    },
-                    {
-                        breakpoint: 2000,
-                        settings: {
-                            slidesToShow: 2
-                        }
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1
                     }
+                },
+                {
+                    breakpoint: 2000,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                }
                 ]
             });
         },
@@ -2712,8 +2716,8 @@ XHRequests = {
                         ($(this).hasClass("footer_lang") ||
                             $(this).hasClass("fpSlider_botContent_but") ||
                             $(this)
-                            .parent()
-                            .hasClass("language"))
+                                .parent()
+                                .hasClass("language"))
                     ) {} else {
                         e.preventDefault();
                         if (href.indexOf("#") != -1) href = href.split("#")[0];
@@ -2756,19 +2760,19 @@ XHRequests = {
     showPreloader: function () {
         var _this = this;
         var loader =
-            '<div class="bgLoadPage color"><div class="loadMonitor"></div></div>';
+            "<div class=\"bgLoadPage color\"><div class=\"loadMonitor\"></div></div>";
         var color = $(".header").hasClass("scrolled") ? "white" : "black";
         loader = loader.replace("color", color);
         $(".wrapper").append(loader);
         $(".wrapper")
             .find(".bgLoadPage")
             .animate({
-                    opacity: 1
-                },
-                500,
-                function () {
-                    _this.preloader = false;
-                }
+                opacity: 1
+            },
+            500,
+            function () {
+                _this.preloader = false;
+            }
             );
     },
     hidePreloader: function () {
@@ -2781,14 +2785,14 @@ XHRequests = {
                 $(".wrapper")
                     .find(".bgLoadPage")
                     .animate({
-                            opacity: 0
-                        },
-                        500,
-                        function () {
-                            $(".wrapper")
-                                .find(".bgLoadPage")
-                                .remove();
-                        }
+                        opacity: 0
+                    },
+                    500,
+                    function () {
+                        $(".wrapper")
+                            .find(".bgLoadPage")
+                            .remove();
+                    }
                     );
             }, 300);
         };
@@ -2837,13 +2841,13 @@ XHRequests = {
             replaceDOM("page", wrapper);
             replaceDOM("header", wrapper);
             replaceDOM("footer", wrapper);
-            var hh = location.href.split('?')[1] == "test=1" || window.debugger;
+            var hh = location.href.split("?")[1] == "test=1" || window.debugger;
 
             if (!hh) {
                 function getArray(selector, parent) {
                     return Array.prototype.slice.call(parent.querySelectorAll(selector));
                 }
-                getArray('title,meta,[type="image/png"]', document.head).forEach(
+                getArray("title,meta,[type=\"image/png\"]", document.head).forEach(
                     function (elem) {
                         if (elem.remove) elem.remove();
                     }
