@@ -1,41 +1,42 @@
 header.header
-    .header__inner 
-        a(href="index.html").header__logo 
+	.header__inner 
+		a(href="index.html").header__logo 
 
-        .header__search
-            button.header__search-btn(type="button") 
-        nav.header__menu
-            a(href="projects.html").header__menu-item.is-current Проекты
-            a(href="about.html").header__menu-item Компания
-            a(href="services.html").header__menu-item Услуги
-            a(href="lab.html").header__menu-item Лаборатория
-            a(href="press.html").header__menu-item Пресс-центр
-            a(href="contacts.html").header__menu-item Контакты
-        .header__mobile-btns 
-            a(href="tel:+7 (812) 579-55-81").header__mobile-call
-                span.icon 
-                span.visually-hidden +7 (812) 579-55-81
-            button(type="button").header__mobile-burger
-                span
-                p.visually-hidden Открыть меню
-        a.header__mobile-search-back icon-chevron-back
-        //- mobile menu
-        div.header__mobile-menu.mobile-menu
-            nav.mobile-menu__list 
-                button(type="button").mobile-menu__search.mobile-menu__item
-                    span.mobile-menu__search-icon
-                    span.mobile-menu__search-txt Поиск
-                a(href="projects.html").mobile-menu__item Проекты
-                a(href="about.html").mobile-menu__item Компания
-                a(href="services.html").mobile-menu__item Услуги
-                a(href="lab.html").mobile-menu__item Лаборатория
-                a(href="press.html").mobile-menu__item Пресс-центр
-                a(href="contacts.html").mobile-menu__item Контакты
-                a(href="/en").mobile-menu__item.mobile-menu__lang English
-        section.header__submenu.submenu.is-visible
-            nav.submenu__nav
-                a(href="about-oreshkin.html").submenu__link Сергей Орешкин
-                a(href="about-history.html").submenu__link История
-                a(href="about-awards.html").submenu__link Награды
-                a(href="about-sf.html").submenu__link Сертификаты
-                a(href="about-career.html").submenu__link.is-current Карьера
+		.header__search
+			button.header__search-btn.js-search-trigger(type="button") 
+		div.header__search-bg
+		nav.header__menu
+			a(href="projects.html").header__menu-item.is-current Проекты
+			a(href="about.html").header__menu-item Компания
+			a(href="services.html").header__menu-item Услуги
+			a(href="lab.html").header__menu-item Лаборатория
+			a(href="press.html").header__menu-item Пресс-центр
+			a(href="contacts.html").header__menu-item Контакты
+		.header__mobile-btns 
+			a(href="tel:+7 (812) 579-55-81").header__mobile-call
+				span.icon 
+				span.visually-hidden +7 (812) 579-55-81
+			button(type="button").header__mobile-burger
+				span
+				p.visually-hidden Открыть меню
+		a.header__mobile-search-back icon-chevron-back
+		//- mobile menu
+		div.header__mobile-menu.mobile-menu
+			nav.mobile-menu__list 
+				button(type="button").mobile-menu__search.mobile-menu__item.js-search-trigger
+					span.mobile-menu__search-icon
+					span.mobile-menu__search-txt Поиск
+				a(href="projects.html").mobile-menu__item Проекты
+				a(href="about.html").mobile-menu__item Компания
+				a(href="services.html").mobile-menu__item Услуги
+				a(href="lab.html").mobile-menu__item Лаборатория
+				a(href="press.html").mobile-menu__item Пресс-центр
+				a(href="contacts.html").mobile-menu__item Контакты
+				a(href="/en").mobile-menu__item.mobile-menu__lang English
+		section.header__submenu.submenu.is-visible
+			nav.submenu__nav
+				a(href="about-oreshkin.html").submenu__link Сергей Орешкин
+				a(href="about-history.html").submenu__link История
+				a(href="about-awards.html").submenu__link Награды
+				a(href="about-sf.html").submenu__link Сертификаты
+				a(href="about-career.html").submenu__link.is-current Карьера

@@ -9,15 +9,18 @@ class Header {
 
         this._oldScroll = 0;
         this._isBurgerOpen = false;
+        this._isSearchOpen = false;
 
         this._handlerScrolling = this._handlerScrolling.bind(this);
         this._handlerBurger = this._handlerBurger.bind(this);
+        this._handlerSearch = this._handlerSearch.bind(this);
     }
 
     init() {
         console.log("header is ready", this._header);
         this._setHandlerScrolling();
         this._setHandlerBurger();
+        this._setHandlerSearch();
     }
 
     // scrolling
@@ -68,6 +71,23 @@ class Header {
     // open search
     // - set background on open search
     // close search
+    _setHandlerSearch() {
+        const triggers = this._header.querySelectorAll(".js-search-trigger");
+        triggers.forEach(trg => {
+            trg.addEventListener("click", this._handlerSearch);
+        });
+    }
+    _handlerSearch(e) {
+        e.preventDefault();
+        if(this._isSearchOpen) {
+            this._delClassIsSearch();
+            this._isSearchOpen = false;
+        } else {
+            this._setClassIsSearch();
+            this._isSearchOpen = true;
+        }
+
+    }
 
     // submenu
     // resize
