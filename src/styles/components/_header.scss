@@ -257,6 +257,8 @@
 			background: #292929;
 			transition: opacity 0.6s linear;
 		}
+
+		
 	}
 
 	&__submenu {
@@ -333,6 +335,15 @@
 			opacity: 1;
 			&::before {
 				opacity: 1;
+			}
+			&::after {
+				content: "";
+				width: 100%;
+				position: absolute;
+				top: 60px;
+				left: 0;
+				height: 1px;
+				background: #3a3a3a;
 			}
 		}
 	}
