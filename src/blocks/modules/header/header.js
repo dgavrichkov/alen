@@ -3,6 +3,8 @@ class Header {
         this._header = headerEl;
         this._menu = this._header.querySelector(".header__menu");
         this._search = this._header.querySelector(".header__search");
+        this._searchInput = this._search.querySelector(".header__search-field");
+        this._searchForm = this._search.querySelector(".header__search-form");
         this._submenu = this._header.querySelector(".header__submenu");
         this._burger = this._header.querySelector(".header__mobile-burger");
         this._mobmenu = this._header.querySelector(".header__mobile-menu");
@@ -13,11 +15,13 @@ class Header {
 
         this._handlerScrolling = this._handlerScrolling.bind(this);
         this._handlerBurger = this._handlerBurger.bind(this);
-        this._handlerSearch = this._handlerSearch.bind(this);
+        this._handlerSearchBtn = this._handlerSearchBtn.bind(this);
+        this._handlerSearchClose = this._handlerSearchClose.bind(this);
+        this._handlerMobileSearchOpen = this._handlerMobileSearchOpen.bind(this);
+        this._handlerMobileSearchClose = this._handlerMobileSearchClose.bind(this);
     }
 
     init() {
-        console.log("header is ready", this._header);
         this._setHandlerScrolling();
         this._setHandlerBurger();
         this._setHandlerSearch();
@@ -48,14 +52,11 @@ class Header {
     }
 
     // - burger handling
-    // - set background on open burger
-
     _setHandlerBurger() {
         this._burger.addEventListener("click", this._handlerBurger);
     }
     _handlerBurger(e) {
         e.preventDefault();
-        console.log(this._burger);
         if(this._isBurgerOpen) {
             this._delClassIsBurger();
             this._isBurgerOpen = false;
@@ -68,27 +69,57 @@ class Header {
     }
 
     // - search handling
-    // open search
-    // - set background on open search
-    // close search
     _setHandlerSearch() {
-        const triggers = this._header.querySelectorAll(".js-search-trigger");
-        triggers.forEach(trg => {
-            trg.addEventListener("click", this._handlerSearch);
-        });
+        const trigger = this._header.querySelector(".header__search-btn");
+        const clear = this._search.querySelector(".header__search-clear");
+        const mobileTrigger = this._mobmenu.querySelector(".mobile-menu__search");
+        const mobileClose = this._header.querySelector(".header__mobile-search-back");
+
+        trigger.addEventListener("click", this._handlerSearchBtn);
+        clear.addEventListener("click", this._handlerSearchClose);
+        mobileTrigger.addEventListener("click", this._handlerMobileSearchOpen);
+        mobileClose.addEventListener("click", this._handlerMobileSearchClose);
     }
-    _handlerSearch(e) {
+    _handlerSearchBtn(e) {
         e.preventDefault();
-        if(this._isSearchOpen) {
-            this._delClassIsSearch();
-            this._isSearchOpen = false;
-        } else {
+        if(!this._isSearchOpen) {
             this._setClassIsSearch();
             this._isSearchOpen = true;
+            this._bodyFreeze();
+        } else {
+            this._searchForm.submit();
         }
-
     }
-
+    _handlerSearchClose(e) {
+        e.preventDefault();
+        if(this._isSearchOpen) {
+            this._searchInput.value = "";
+            this._delClassIsSearch();
+            this._isSearchOpen = false;
+            this._bodyUnfreeze();
+        } else {
+            return;
+        }
+    }
+    _handlerMobileSearchOpen(e) {
+        e.preventDefault();
+        if(!this._isSearchOpen) {
+            this._setClassIsSearch();
+            this._isSearchOpen = true;
+            this._bodyFreeze();
+        }
+    }
+    _handlerMobileSearchClose(e) {
+        e.preventDefault();
+        if(this._isSearchOpen) {
+            this._searchInput.value = "";
+            this._delClassIsSearch();
+            this._isSearchOpen = false;
+            this._bodyUnfreeze();
+        } else {
+            return;
+        }
+    }
     // submenu
     // resize
     // init to dropdown ??
@@ -100,14 +131,6 @@ class Header {
 
     // what we need to do
     // - fix scrolling when search or burger opened
-    // - add is-scrolled when scroll
-    // - add is-hidden if scroll direct to bottom of page
-    // - add is-burger on opening burger
-    // - del is-burger on closing burger
-    // - del is-hidden if scroll direct to top
-    // - del is-scrolled when header set on max top
-    // - add is-search when search opened
-    // - del is-search when search closed
     // - set submenu as dropdown when width <= 1024
 
     _setClassIsBurger () {

@@ -1,9 +1,12 @@
-header.header
+header.header.header--dark.header--searchpage
 	.header__inner 
 		a(href="index.html").header__logo 
 
-		.header__search
+		div.header__search
 			button.header__search-btn.js-search-trigger(type="button") 
+			form.header__search-form
+				input(type="text" name="search" value="").header__search-field
+				button(type="button").header__search-clear
 		div.header__search-bg
 		nav.header__menu
 			a(href="projects.html").header__menu-item.is-current Проекты
@@ -12,7 +15,7 @@ header.header
 			a(href="lab.html").header__menu-item Лаборатория
 			a(href="press.html").header__menu-item Пресс-центр
 			a(href="contacts.html").header__menu-item Контакты
-		.header__mobile-btns 
+		div.header__mobile-btns 
 			a(href="tel:+7 (812) 579-55-81").header__mobile-call
 				span.icon 
 				span.visually-hidden +7 (812) 579-55-81
@@ -24,7 +27,7 @@ header.header
 		//- mobile menu
 		div.header__mobile-menu.mobile-menu
 			nav.mobile-menu__list 
-				button(type="button").mobile-menu__search.mobile-menu__item.js-search-trigger
+				button(type="button").js-search-trigger.mobile-menu__search.mobile-menu__item
 					span.mobile-menu__search-icon
 					span.mobile-menu__search-txt Поиск
 				a(href="projects.html").mobile-menu__item Проекты
@@ -34,10 +37,3 @@ header.header
 				a(href="press.html").mobile-menu__item Пресс-центр
 				a(href="contacts.html").mobile-menu__item Контакты
 				a(href="/en").mobile-menu__item.mobile-menu__lang English
-		section.header__submenu.submenu.is-visible
-			nav.submenu__nav
-				a(href="lab-apartments.html").submenu__link Идеальные квартиры «А.Лен»
-				a(href="lab-colors.html").submenu__link Цветовая лаборатория «А.Лен»
-				a(href="lab-toolkit.html").submenu__link A.Len Architectural Toolkit
-				a(href="lab-brick.html").submenu__link A.Len Brickwork
-				a(href="lab-info.html").submenu__link.is-current Маркетинговая инфографика «А.Лен»
