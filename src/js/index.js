@@ -21,6 +21,28 @@ import header from "%modules%/header/header";
 // other news slider
 
 // history - mobile accordeon
+const historyAccordeon = function() {
+    const section = document.querySelector(".history-section");
+    if(!section) {
+        return false;
+    }
+
+    const cards = section.querySelectorAll(".history-card");
+
+    cards.forEach(card => {
+        const head = card.querySelector("header > *:first-child");
+        head.addEventListener("click", function() {
+            console.log(head);
+            if(!card.classList.contains("is-active")) {
+                card.classList.add("is-active");
+                card.style.height = card.scrollHeight + "px";
+            } else {
+                card.classList.remove("is-active");
+                card.style.height = "";
+            }
+        });
+    });
+};
 
 // careerAccordeon
 
@@ -33,4 +55,5 @@ import header from "%modules%/header/header";
 // forms - validation, file uploads
 
 header();
+historyAccordeon();
 footerAccordeon();

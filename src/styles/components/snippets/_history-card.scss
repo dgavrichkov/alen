@@ -1,6 +1,7 @@
 .history-card {
 	display: flex;
 	justify-content: space-between;
+	
 	@include to(1280px) {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -14,6 +15,7 @@
 		padding-bottom: 15px;
 		height: 50px;
 		overflow: hidden;
+		transition: 0.3s ease-in-out;
 	}
 	
 	header {
@@ -23,6 +25,8 @@
 	& > div {
 		flex-basis: calc(50% - 150px);
 	}
+
+	header > h1,
 	header > h2 {
 		@include to(768px) {
 			padding: 15px 0;
@@ -43,7 +47,8 @@
 			}
 		}
 	}
-	h2 {
+
+	h1 {
 		font-weight: normal;
 		font-size: 35px;
 		line-height: 58px;
@@ -52,6 +57,17 @@
 		@include to(768px) {
 			font-size: 19px;
 			line-height: 23px;
+		}
+	}
+	h2 {
+		font-weight: normal;
+		font-size: 32px;
+		line-height: 68px;
+		color: #292929;
+		margin-bottom: 10px;
+		@include to(768px) {
+			font-size: 16px;
+			line-height: 19px;
 		}
 	}
 	h3 {
@@ -87,6 +103,7 @@
 	}
 
 	i {
+		display: block;
 		font-style: italic;
 		font-weight: 300;
 		font-size: 17px;
@@ -94,10 +111,14 @@
 		color: #292929;
 		margin-bottom: 18px;
 		margin-top: 0;
+		@include to(768px) {
+			font-size: 16px;
+			line-height: 28px;
+		}
 	}
 
 	&.is-active {
-		height: auto;
+		header > h1,
 		header > h2 {
 			&::after {
 				transform: rotate(180deg);
