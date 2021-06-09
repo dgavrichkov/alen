@@ -2,10 +2,10 @@ header.header.header--dark
 	.header__inner 
 		a(href="index.html").header__logo 
 
-		.header__search
+		div.header__search
 			button.header__search-btn.js-search-trigger(type="button") 
-			form.header__search-form.visually-hidden
-				input(type="text")
+			form.header__search-form
+				input(type="text" name="search" value="").header__search-field
 				button(type="button").header__search-clear
 		div.header__search-bg
 		nav.header__menu

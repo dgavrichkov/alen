@@ -2,8 +2,11 @@ header.header
 	.header__inner 
 		a(href="index.html").header__logo 
 
-		.header__search
+		div.header__search
 			button.header__search-btn.js-search-trigger(type="button") 
+			form.header__search-form
+				input(type="text" name="search" value="").header__search-field
+				button(type="button").header__search-clear
 		div.header__search-bg
 		nav.header__menu
 			a(href="projects.html").header__menu-item.is-current Проекты
@@ -34,7 +37,7 @@ header.header
 				a(href="press.html").mobile-menu__item Пресс-центр
 				a(href="contacts.html").mobile-menu__item Контакты
 				a(href="/en").mobile-menu__item.mobile-menu__lang English
-		section.header__submenu.submenu.is-visible
+		section.header__submenu.submenu
 			nav.submenu__nav
 				a(href="about-oreshkin.html").submenu__link Сергей Орешкин
 				a(href="about-history.html").submenu__link История

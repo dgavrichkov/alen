@@ -12,26 +12,29 @@ class Header {
         this._oldScroll = 0;
         this._isBurgerOpen = false;
         this._isSearchOpen = false;
+        this._isSubmenuOpen = false;
 
-        this._handlerScrolling = this._handlerScrolling.bind(this);
-        this._handlerBurger = this._handlerBurger.bind(this);
-        this._handlerSearchBtn = this._handlerSearchBtn.bind(this);
-        this._handlerSearchClose = this._handlerSearchClose.bind(this);
-        this._handlerMobileSearchOpen = this._handlerMobileSearchOpen.bind(this);
-        this._handlerMobileSearchClose = this._handlerMobileSearchClose.bind(this);
+        this._handleScrolling = this._handleScrolling.bind(this);
+        this._handleBurger = this._handleBurger.bind(this);
+        this._handleSearchBtn = this._handleSearchBtn.bind(this);
+        this._handleSearchClose = this._handleSearchClose.bind(this);
+        this._handleMobileSearchOpen = this._handleMobileSearchOpen.bind(this);
+        this._handleMobileSearchClose = this._handleMobileSearchClose.bind(this);
+        this._handleSubmenu = this._handleSubmenu.bind(this);
     }
 
     init() {
         this._setHandlerScrolling();
         this._setHandlerBurger();
         this._setHandlerSearch();
+        this._setHandlerSubmenu();
     }
 
     // scrolling
     _setHandlerScrolling() {
-        document.addEventListener("scroll", this._handlerScrolling);
+        document.addEventListener("scroll", this._handleScrolling);
     }
-    _handlerScrolling() {
+    _handleScrolling() {
         const headerHeight = this._header.getBoundingClientRect().height;
         let scrolled = document.documentElement.scrollTop;
         if(this._oldScroll < scrolled) {
@@ -53,9 +56,9 @@ class Header {
 
     // - burger handling
     _setHandlerBurger() {
-        this._burger.addEventListener("click", this._handlerBurger);
+        this._burger.addEventListener("click", this._handleBurger);
     }
-    _handlerBurger(e) {
+    _handleBurger(e) {
         e.preventDefault();
         if(this._isBurgerOpen) {
             this._delClassIsBurger();
@@ -75,12 +78,12 @@ class Header {
         const mobileTrigger = this._mobmenu.querySelector(".mobile-menu__search");
         const mobileClose = this._header.querySelector(".header__mobile-search-back");
 
-        trigger.addEventListener("click", this._handlerSearchBtn);
-        clear.addEventListener("click", this._handlerSearchClose);
-        mobileTrigger.addEventListener("click", this._handlerMobileSearchOpen);
-        mobileClose.addEventListener("click", this._handlerMobileSearchClose);
+        trigger.addEventListener("click", this._handleSearchBtn);
+        clear.addEventListener("click", this._handleSearchClose);
+        mobileTrigger.addEventListener("click", this._handleMobileSearchOpen);
+        mobileClose.addEventListener("click", this._handleMobileSearchClose);
     }
-    _handlerSearchBtn(e) {
+    _handleSearchBtn(e) {
         e.preventDefault();
         if(!this._isSearchOpen) {
             this._setClassIsSearch();
@@ -90,7 +93,7 @@ class Header {
             this._searchForm.submit();
         }
     }
-    _handlerSearchClose(e) {
+    _handleSearchClose(e) {
         e.preventDefault();
         if(this._isSearchOpen) {
             this._searchInput.value = "";
@@ -101,7 +104,7 @@ class Header {
             return;
         }
     }
-    _handlerMobileSearchOpen(e) {
+    _handleMobileSearchOpen(e) {
         e.preventDefault();
         if(!this._isSearchOpen) {
             this._setClassIsSearch();
@@ -109,7 +112,7 @@ class Header {
             this._bodyFreeze();
         }
     }
-    _handlerMobileSearchClose(e) {
+    _handleMobileSearchClose(e) {
         e.preventDefault();
         if(this._isSearchOpen) {
             this._searchInput.value = "";
@@ -120,14 +123,33 @@ class Header {
             return;
         }
     }
+    
     // submenu
     // resize
-    // init to dropdown ??
     // destroy dropdown ??
-    // - dropdown handling
-    // open dropdown
-    // close dropdown
-
+    _setHandlerSubmenu() {
+        if(!this._submenu) {
+            return;
+        }
+        this._submenu.addEventListener("click", this._handleSubmenu);
+    }
+    _handleSubmenu(e) {
+        if(window.innerWidth <= 1024) {
+            if(e.target.classList.contains("submenu__link")) {
+                return;
+            }
+            e.preventDefault();
+            if(!this._isSubmenuOpen) {
+                this._submenu.classList.add("is-active");
+                this._isSubmenuOpen = true;
+                this._submenu.style.height = this._submenu.scrollHeight + 15 + "px";
+            } else {
+                this._submenu.classList.remove("is-active");
+                this._submenu.style.height = "";
+                this._isSubmenuOpen = false;
+            }
+        }
+    }
 
     // what we need to do
     // - fix scrolling when search or burger opened
