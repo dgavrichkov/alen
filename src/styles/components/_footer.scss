@@ -74,7 +74,7 @@
 			overflow: hidden;
 			cursor: pointer;
 			position: relative;
-
+			transition: height 0.3s;
 			&::after {
 				position: absolute;
 				content: "";
@@ -92,8 +92,6 @@
 			}
 
 			&.is-active {
-				height: auto;
-
 				&::after {
 					transform: rotate(180deg);
 				}
