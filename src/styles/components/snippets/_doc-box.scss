@@ -17,7 +17,6 @@
 	}
 
 	&__pic {
-		border: 1px solid #000000;
 		width: 40%;
 		@include to(768px) {
 			width: 50%;
@@ -29,6 +28,8 @@
 			width: auto;
 			height: auto;
 			max-width: 100%;
+			border: 1px solid #000000;
+			display: block;
 		}
 	}
 
