@@ -56,9 +56,32 @@ const historyAccordeon = function() {
 };
 
 // careerAccordeon
+const careerAccordeon = function() {
+    const items = document.querySelectorAll(".vacancy");
+    if(items.length === 0) {
+        return;
+    }
+    items.forEach(item => {
+        const head = item.querySelector(".vacancy__head");
+        const body = item.querySelector(".vacancy__body");
 
-// press one - toggle social
+        // init
+        if(item.classList.contains("is-active")) {
+            body.style.height = body.scrollHeight + "px";
+        }
 
+        head.addEventListener("click", function(e) {
+            e.preventDefault();
+            if(!item.classList.contains("is-active")) {
+                item.classList.add("is-active");
+                body.style.height = body.scrollHeight + "px";
+            } else {
+                item.classList.remove("is-active");
+                body.style.height = "";
+            }
+        });
+    });
+};
 // popup
 
 // animation on load blocks - intersection observer
@@ -68,4 +91,6 @@ const historyAccordeon = function() {
 header();
 historyAccordeon();
 footerAccordeon();
+careerAccordeon();
 shareToggle();
+

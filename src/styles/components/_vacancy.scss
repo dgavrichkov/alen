@@ -1,5 +1,8 @@
 .vacancy {
-
+	@include to(768px) {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
 	&__head {
 		display: flex;
 		align-items: center;
@@ -8,9 +11,9 @@
 		padding: 0 30px 0 20px;
 		border-top: 1px solid #DADADA;
 		cursor: pointer;
+		transition: background 0.6s;
 		@include to(768px) {
 			height: 54px;
-			padding: 0;
 		}
 		h3 {
 			font-weight: normal;
@@ -41,5 +44,75 @@
 		background: #F4F4F4;
 		overflow: hidden;
 		height: 0;
+		transition: height 0.6s;
+		padding: 0 20px;
+	}
+
+	&__item {
+		margin-bottom: 30px;
+		@include to(768px) {
+			margin-bottom: 15px;
+		}
+		p {
+			font-weight: 300;
+			font-size: 17px;
+			line-height: 36px;
+			color: #292929;
+			b {
+				font-weight: 500;
+				line-height: 32px;
+			}
+
+			a {
+				display: block;
+				color: #292929;
+			}
+			@include to(768px) {
+				font-size: 14px;
+				line-height: 23px;
+			}
+		}
+		ul {
+			list-style-type: disc;
+			padding-left: 20px;
+		}
+		li {
+			font-weight: 300;
+			font-size: 17px;
+			line-height: 32px;
+			color: #292929;
+			@include to(768px) {
+				font-size: 14px;
+				line-height: 23px;
+			}
+		}
+
+		&--row {
+			display: flex;
+			gap: 26px;
+			@include to(768px) {
+				display: block;
+			}
+		}
+	}
+
+	&__subitem {
+		@include to(768px) {
+			margin-bottom: 15px;
+		}
+	}
+
+	&__body > .pill-btn {
+		margin-bottom: 40px;
+		background: #fff;
+		@include to(768px) {
+			margin-bottom: 30px;
+		}
+	}
+
+	&.is-active {
+		.vacancy__head {
+			background: #F4F4F4;
+		}
 	}
 }
