@@ -1,6 +1,4 @@
 // import "./import/swiper-bundle.min.js";
-// import "./import/modules";
-// import "./import/components";
 import footerAccordeon from "%modules%/footer/footer";
 import header from "%modules%/header/header";
 
@@ -9,6 +7,9 @@ import header from "%modules%/header/header";
 // gallery call
 
 // compose - mobile slider
+const composeSlider = function() {
+
+};
 
 // gallery
 
@@ -93,4 +94,5 @@ historyAccordeon();
 footerAccordeon();
 careerAccordeon();
 shareToggle();
+composeSlider();
 

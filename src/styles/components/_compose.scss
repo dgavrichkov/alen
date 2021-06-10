@@ -9,9 +9,9 @@
 		@include defaultColGrid;
 	}
 
+
 	&__title {
 		@include smallColumn;
-
 		@include to(768px) {
 			font-size: 19px;
 			line-height: 28px;
@@ -25,8 +25,11 @@
 		margin-bottom: 68px;
 	}
 
-	&__list {
+	&__box {
 		@include middleColumn;
+	}
+	
+	&__list {
 
 		@include to(1024px) {
 			grid-template-columns: 1fr 1fr;
