@@ -17,6 +17,17 @@ import header from "%modules%/header/header";
 // items slider
 
 // press - share toggling
+const shareToggle = function() {
+    const section = document.querySelector(".actions-bar");
+    if(!section) {
+        return false;
+    }
+    const btn = section.querySelector(".actions-bar__share");
+    const block = section.querySelector(".actions-bar__share-links");
+    btn.addEventListener("click", function() {
+        block.classList.toggle("is-active");
+    });
+};
 
 // other news slider
 
@@ -57,3 +68,4 @@ const historyAccordeon = function() {
 header();
 historyAccordeon();
 footerAccordeon();
+shareToggle();

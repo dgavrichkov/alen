@@ -1,5 +1,6 @@
 .actions-bar {
 	@include defaultColGrid;
+	position: relative;
 	&__inner {
 		@include smallColumn;
 		@include to(768px) {
@@ -17,8 +18,15 @@
 	&__share-links {
 		display: flex;
 		align-items: center;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.3s;
 		@include to(768px) {
 			margin-top: 14px;
+		}
+		&.is-active {
+			opacity: 1;
+			pointer-events: all;
 		}
 	}
 
@@ -46,5 +54,11 @@
 			height: 15px;
 			background-image: $icon-vkontakte;
 		}
+	}
+}
+
+.actions-bar + .comments {
+	@include to(768px) {
+		margin-top: -15px;
 	}
 }
