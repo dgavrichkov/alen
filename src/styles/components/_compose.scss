@@ -25,20 +25,38 @@
 		margin-bottom: 68px;
 	}
 
-	&__box {
+	&__content {
 		@include middleColumn;
+		width: 100%;
 	}
 	
-	&__list {
+	&__list-wrapper {
 
-		@include to(1024px) {
-			grid-template-columns: 1fr 1fr;
+		@include to(1280px) {
+			justify-content: space-between;
+		}
+		@include to(640px) {
+			gap: initial;
+			justify-content: initial;
+			flex-wrap: initial;
 		}
 
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 20px;
+
+		& > article {
+			width: calc(100% / 3 - 20px);
+			@include to(1280px) {
+				width: calc(100% / 2 - 10px);
+			}
+		}
 	}
 
-	&__item {}
+	&__navigation {
+		@include from(641px) {
+			display: none;
+		}
+	}
 }

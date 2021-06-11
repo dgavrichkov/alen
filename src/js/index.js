@@ -8,7 +8,56 @@ import header from "%modules%/header/header";
 
 // compose - mobile slider
 const composeSlider = function() {
+    class Compose {
+        constructor(el, nav) {
+            this._el = el;
+            this._swiper = null;
+            this._nav = nav;
+            this._options = {
+                init: false,
+                slidesPerView: 1,
+                pagination: {
+                    el: nav,
+                },
+            };
+            this._handleResize = this._handleResize.bind(this);
+        }
 
+        init() {
+            this._swiper = new Swiper(this._el, this._options); // eslint-disable-line
+            this._setDocResize();
+            if(window.innerWidth <= 640) {
+                this._swiper.init();
+            }
+        }
+
+        _setDocResize() {
+            window.addEventListener("resize", this._handleResize);
+        }
+
+        _handleResize() {
+            if(this._swiper.initialized) {
+                if(window.innerWidth > 640) {
+                    this._swiper.destroy();
+                }
+            } else {
+                if(window.innerWidth <= 640) {
+                    this._swiper = new Swiper(this._el, this._options); // eslint-disable-line
+                    this._swiper.init();
+                }
+            }
+        }
+    }
+
+    const composeSliders = document.querySelectorAll(".compose-slider");
+    if(composeSliders.length === 0) {
+        return;
+    }
+    composeSliders.forEach(sliderEl => {
+        const nav = sliderEl.querySelector(".compose__navigation");
+        const slider = new Compose(sliderEl, nav);
+        slider.init();
+    });
 };
 
 // gallery
@@ -18,12 +67,12 @@ const composeSlider = function() {
 // items slider
 const itemsSlider = function() {
     class ItemsSlider {
-        constructor(el) {
+        constructor(el, nav) {
             this._el = el;
             this._options = {
                 slidesPerView: 1,
                 pagination: {
-                    el: ".items-slider__navigation",
+                    el: nav,
                 },
                 breakpoints: {
                     769: {
@@ -50,7 +99,6 @@ const itemsSlider = function() {
         }
         init() {
             this._swiper = new Swiper(this._el, this._options); // eslint-disable-line
-            
             this._setDocResize();
         }
         _setDocResize() {
@@ -75,7 +123,8 @@ const itemsSlider = function() {
     }
     const sliders = document.querySelectorAll(".items-slider");
     sliders.forEach(sliderEl => {
-        const slider = new ItemsSlider(sliderEl);
+        const nav = sliderEl.querySelector(".items-slider__navigation");
+        const slider = new ItemsSlider(sliderEl, nav);
         slider.init();
     });
 };
@@ -107,7 +156,6 @@ const historyAccordeon = function() {
     cards.forEach(card => {
         const head = card.querySelector("header > *:first-child");
         head.addEventListener("click", function() {
-            console.log(head);
             if(!card.classList.contains("is-active")) {
                 card.classList.add("is-active");
                 card.style.height = card.scrollHeight + "px";
