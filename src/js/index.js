@@ -6,6 +6,18 @@ import header from "%modules%/header/header";
 
 // gallery call
 
+// gallery
+
+// infoslider, mobile - accordeon. Dynamic width indicator
+
+// other news slider
+
+// popup
+
+// animation on load blocks - intersection observer
+
+// forms - validation, file uploads
+
 // compose - mobile slider
 const composeSlider = function() {
     class Compose {
@@ -59,10 +71,6 @@ const composeSlider = function() {
         slider.init();
     });
 };
-
-// gallery
-
-// infoslider, mobile - accordeon. Dynamic width indicator
 
 // items slider
 const itemsSlider = function() {
@@ -142,8 +150,6 @@ const shareToggle = function() {
     });
 };
 
-// other news slider
-
 // history - mobile accordeon
 const historyAccordeon = function() {
     const section = document.querySelector(".history-section");
@@ -194,11 +200,6 @@ const careerAccordeon = function() {
         });
     });
 };
-// popup
-
-// animation on load blocks - intersection observer
-
-// forms - validation, file uploads
 
 header();
 historyAccordeon();
