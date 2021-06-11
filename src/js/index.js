@@ -16,6 +16,69 @@ const composeSlider = function() {
 // infoslider, mobile - accordeon. Dynamic width indicator
 
 // items slider
+const itemsSlider = function() {
+    class ItemsSlider {
+        constructor(el) {
+            this._el = el;
+            this._options = {
+                slidesPerView: 1,
+                pagination: {
+                    el: ".items-slider__navigation",
+                },
+                breakpoints: {
+                    769: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    }
+                },
+                on: {
+                    init: function() {
+                        if(window.innerWidth > 768) {
+                            if(this.slides.length <= 2) {
+                                this.enabled = false;
+                            }
+                        } else {
+                            if(this.slides.length === 1) {
+                                this.enabled = false;
+                            }
+                        }
+                    }
+                }
+            };
+            this._swiper = null;
+            this._handleResize = this._handleResize.bind(this);
+        }
+        init() {
+            this._swiper = new Swiper(this._el, this._options); // eslint-disable-line
+            
+            this._setDocResize();
+        }
+        _setDocResize() {
+            window.addEventListener("resize", this._handleResize);
+        }
+        _handleResize() {
+            if(window.innerWidth > 768) {
+                if(this._swiper.slides.length <= 2) {
+                    this._swiper.disable();
+                } else {
+                    this._swiper.enable();
+                }
+            } else {
+                if(this._swiper.slides.length === 1) {
+                    this._swiper.disable();
+                } else {
+                    this._swiper.enable();
+                }
+            }
+            
+        }
+    }
+    const sliders = document.querySelectorAll(".items-slider");
+    sliders.forEach(sliderEl => {
+        const slider = new ItemsSlider(sliderEl);
+        slider.init();
+    });
+};
 
 // press - share toggling
 const shareToggle = function() {
@@ -95,4 +158,5 @@ footerAccordeon();
 careerAccordeon();
 shareToggle();
 composeSlider();
+itemsSlider();
 

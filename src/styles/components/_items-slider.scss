@@ -1,9 +1,7 @@
 .items-slider {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	column-gap: 20px;
-	@include to(768px) {
-		grid-template-columns: 1fr;
-		gap: 20px;
+	&__wrapper {
+	}
+	&__slide {
 	}
 }
+

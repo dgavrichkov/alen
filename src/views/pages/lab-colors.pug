@@ -46,24 +46,41 @@ block content
 				div.items-section__inner
 					h2.items-section__title Программа применена в объектах
 					div.items-section__content
-						div.items-slider
-							div.items-slider__slide
-								article.item-card 
-									a(href="project.html").item-card__overlink
-									figure.item-card__figure
-										picture 
-											img(src="images/item-1.jpg" alt="")
-									div.item-card__content
-										h3.item-card__cap Мышь (кродется)
-							div.items-slider__slide
-								article.item-card 
-									a(href="project.html").item-card__overlink
-									figure.item-card__figure
-										picture 
-											img(src="images/item-2.jpg" alt="")
-									div.item-card__content
-										h3.item-card__cap Мышь (кродется)
-						div.items-slider__navigation
+						div.items-slider.swiper-container
+							div.items-slider__wrapper.swiper-wrapper
+								div.items-slider__slide.swiper-slide
+									article.item-card
+										figure.item-card__figure
+											picture
+												img(src="images/service-1.jpg")
+										div.item-card__content
+											h3.item-card__cap Избранный проект 1
+										a(href="project.html").item-card__overlink
+								div.items-slider__slide.swiper-slide
+									article.item-card 
+										figure.item-card__figure
+											picture 
+												img(src="images/service-2.jpg")
+										div.item-card__content
+											h3.item-card__cap Избранный проект 2
+										a(href="project.html").item-card__overlink
+								div.items-slider__slide.swiper-slide
+									article.item-card
+										figure.item-card__figure
+											picture
+												img(src="images/service-3.jpg")
+										div.item-card__content
+											h3.item-card__cap Избранный проект 3
+										a(href="project.html").item-card__overlink
+								div.items-slider__slide.swiper-slide
+									article.item-card 
+										figure.item-card__figure
+											picture 
+												img(src="images/service-4.jpg")
+										div.item-card__content
+											h3.item-card__cap Избранный проект 4
+										a(href="project.html").item-card__overlink
+						div.items-slider__navigation.slider-pagination.swiper-pagination
 			//- goback
 			div.page__goback
 				a(href="projects-list.html").pill-btn.page__goback-btn Назад

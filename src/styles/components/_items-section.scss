@@ -5,11 +5,14 @@
 	margin-bottom: 90px;
 	&__inner {
 		@include defaultColGrid;
+		// @include nogridContainer;
 	}
 	&__title {
 		@include middleColumn;
+		// @include nogridMiddleColumn;
 		@include to(768px) {
-			margin-left: 20px;
+
+			// margin-left: 20px;
 			font-size: 16px;
 		}
 		font-weight: normal;
@@ -21,7 +24,15 @@
 	}
 	&__content {
 		@include middleColumn;
+		// @include nogridMiddleColumn;
+		width: 100%;
+
+		@include to(768px) {
+			padding-left: 0;
+			padding-right: 0;
+		}
 	}
+
 	&__items {
 		@include to(768px) {
 			grid-template-columns: 1fr;

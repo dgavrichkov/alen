@@ -1,0 +1,35 @@
+.slider-pagination {
+	opacity: 1 !important;
+	transform: none !important;
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 0;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	@include to(768px) {
+		margin-top: 23px;
+	}
+	.swiper-pagination-bullet {
+		overflow: hidden;
+		width: 30px;
+		height: 3px;
+		margin-right: 8px;
+		background: #292929;
+		transition: 0.3s ease-in-out;
+		display: block;
+		color: transparent;
+		border-radius: 0;
+		cursor: pointer;
+		&:last-child {
+			margin-right: 0;
+		}
+		&.swiper-pagination-bullet-active {
+			background: #292929;
+		}
+	}
+	&.swiper-pagination-lock {
+		display: none;
+	}
+}
