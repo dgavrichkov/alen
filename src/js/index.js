@@ -10,13 +10,21 @@ import header from "%modules%/header/header";
 
 // infoslider, mobile - accordeon. Dynamic width indicator
 
-// other news slider
 
 // popup
 
 // animation on load blocks - intersection observer
 
 // forms - validation, file uploads
+
+// other news http slider
+const otherNews = function() {
+    // обработчики кликов по кнопкам навигации
+
+    // запрос на сервер
+
+    // отрисовка результата 
+};
 
 // compose - mobile slider
 const composeSlider = function() {
@@ -208,4 +216,5 @@ careerAccordeon();
 shareToggle();
 composeSlider();
 itemsSlider();
+otherNews();
 
