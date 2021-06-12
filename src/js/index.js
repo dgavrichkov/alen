@@ -21,15 +21,15 @@ import header from "%modules%/header/header";
 // compose - mobile slider
 const composeSlider = function() {
     class Compose {
-        constructor(el, nav) {
+        constructor(el) {
             this._el = el;
             this._swiper = null;
-            this._nav = nav;
+            this._nav = this._el.querySelector(".compose__navigation");
             this._options = {
                 init: false,
                 slidesPerView: 1,
                 pagination: {
-                    el: nav,
+                    el: this._nav,
                 },
             };
             this._handleResize = this._handleResize.bind(this);
@@ -66,8 +66,8 @@ const composeSlider = function() {
         return;
     }
     composeSliders.forEach(sliderEl => {
-        const nav = sliderEl.querySelector(".compose__navigation");
-        const slider = new Compose(sliderEl, nav);
+        // const nav = sliderEl
+        const slider = new Compose(sliderEl);
         slider.init();
     });
 };
@@ -75,12 +75,13 @@ const composeSlider = function() {
 // items slider
 const itemsSlider = function() {
     class ItemsSlider {
-        constructor(el, nav) {
+        constructor(el) {
             this._el = el;
+            this._nav = this._el.querySelector(".items-slider__navigation");
             this._options = {
                 slidesPerView: 1,
                 pagination: {
-                    el: nav,
+                    el: this._nav,
                 },
                 breakpoints: {
                     769: {
@@ -131,8 +132,7 @@ const itemsSlider = function() {
     }
     const sliders = document.querySelectorAll(".items-slider");
     sliders.forEach(sliderEl => {
-        const nav = sliderEl.querySelector(".items-slider__navigation");
-        const slider = new ItemsSlider(sliderEl, nav);
+        const slider = new ItemsSlider(sliderEl);
         slider.init();
     });
 };
