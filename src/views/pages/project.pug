@@ -115,38 +115,39 @@ block content
 					div.infoslider
 						header.infoslider__head
 							div.infoslider__tabs
-								div.infoslider__tab.is-active Цифры и факты
-								div.infoslider__tab Награды
-								div.infoslider__tab Пресса
+								div(data-infoslider-tab="1").infoslider__tab.is-active Цифры и факты
+								div(data-infoslider-tab="2").infoslider__tab Награды
+								div(data-infoslider-tab="3").infoslider__tab Пресса
 								div.infoslider__indicator
 									div.infoslider__indicator-caret
-						div.infoslider__body
-							div.infoslider__item
-								ul.infoslider__content 
-									li.infoslider__option
-										div.infoslider__option-key Площадь участка
-										div.infoslider__option-value 29,39 Га
-									li.infoslider__option
-										div.infoslider__option-key Площадь участка
-										div.infoslider__option-value 29,39 Га
-									li.infoslider__option
-										div.infoslider__option-key Площадь участка
-										div.infoslider__option-value 29,39 Га
-							div.infoslider__item
-								ul.infoslider__content 
-									li.infoslider__option
-										div.infoslider__option-big С.И. Орешкин - руководитель проекта 
-									li.infoslider__option
-										div.infoslider__option-big Р.В. Андреева - главный архитектор проекта 
-									li.infoslider__option
-										div.infoslider__option-big С.В. Кузьмин - главный инженер проекта 
-									li.infoslider__option
-										div.infoslider__option-big Е.С. Орешкина, Е.А. Белят, В.Ю. Шляга, М.А. Шалина, Н.В. Тимонин, Е.С. Каретина, Н.К. Пальникова, А.В. Храмова - архитекторы  
-							div.infoslider__item
-								ul.infoslider__content 
-									li.infoslider__option
-										div.infoslider__option-key Общая площадь зданий
-										div.infoslider__option-value 31 521 м2
+						div.infoslider__body.swiper-container
+							div.infoslider__body-wrapper.swiper-wrapper
+								div(data-infoslider-tab="1").infoslider__item.swiper-slide.is-active
+									ul.infoslider__content
+										li.infoslider__option
+											div.infoslider__option-key Площадь участка
+											div.infoslider__option-value 29,39 Га
+										li.infoslider__option
+											div.infoslider__option-key Площадь участка
+											div.infoslider__option-value 29,39 Га
+										li.infoslider__option
+											div.infoslider__option-key Площадь участка
+											div.infoslider__option-value 29,39 Га
+								div(data-infoslider-tab="2").infoslider__item.swiper-slide
+									ul.infoslider__content
+										li.infoslider__option
+											div.infoslider__option-big С.И. Орешкин - руководитель проекта 
+										li.infoslider__option
+											div.infoslider__option-big Р.В. Андреева - главный архитектор проекта 
+										li.infoslider__option
+											div.infoslider__option-big С.В. Кузьмин - главный инженер проекта 
+										li.infoslider__option
+											div.infoslider__option-big Е.С. Орешкина, Е.А. Белят, В.Ю. Шляга, М.А. Шалина, Н.В. Тимонин, Е.С. Каретина, Н.К. Пальникова, А.В. Храмова - архитекторы  
+								div(data-infoslider-tab="3").infoslider__item.swiper-slide
+									ul.infoslider__content
+										li.infoslider__option
+											div.infoslider__option-key Общая площадь зданий
+											div.infoslider__option-value 31 521 м2
 
 			//- section tiles items
 			section.items-section 

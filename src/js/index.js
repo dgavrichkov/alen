@@ -8,14 +8,93 @@ import header from "%modules%/header/header";
 
 // gallery
 
-// infoslider, mobile - accordeon. Dynamic width indicator
-
-
 // popup
 
 // animation on load blocks - intersection observer
 
 // forms - validation, file uploads
+
+// infoslider, mobile - accordeon. Dynamic width indicator
+const infoSlider = function() {
+    class Infoslider {
+        constructor(el) {
+            this._el = el;
+            this._head = this._el.querySelector(".infoslider__head");
+            this._tabcontainer = this._el.querySelector(".infoslider__tabs");
+            this._tabs = this._el.querySelectorAll(".infoslider__tab");
+            this._caret = this._tabcontainer.querySelector(".infoslider__indicator-caret");
+
+            this._tabActive = this._tabcontainer.querySelector(".is-active");
+
+
+            this._handleResize = this._handleResize.bind(this);
+            this._handleTabClick = this._handleTabClick.bind(this);
+            this._handleHeadClick = this._handleHeadClick.bind(this);
+        }
+
+        init() {
+            this._calcCaretState();
+            this._setTabClickHandler();
+            this._setHeadClickHandler();
+            this._setResizeHandler();
+        }
+
+        _setResizeHandler() {
+
+        }
+
+        _setHeadClickHandler() {
+            this._head.addEventListener("click", this._handleHeadClick);
+        }
+
+        _setTabClickHandler() {
+            this._tabs.forEach(tab => {
+                tab.addEventListener("click", this._handleTabClick);
+            });
+        }
+
+        _calcCaretState() {
+            const current = this._tabcontainer.querySelector(".is-active");
+            const width = current.offsetWidth;
+            const left = current.offsetLeft;
+            this._caret.style.width = width + "px";
+            this._caret.style.left = left + "px";
+        }
+
+        _handleResize() {
+            // дропдаун вместо табов на мобилке
+        }
+
+        _handleTabClick(e) {
+            // переключение активного таба и активного слайда
+            // переключение позиции и размер каретки при переключении табов
+            // клик на мобильной версии - раскрытие дропдауна
+            if(window.innerWidth > 768) {
+                e.preventDefault();
+                this._tabActive.classList.remove("is-active");
+                this._tabActive = e.target;
+                this._tabActive.classList.add("is-active");
+                this._calcCaretState();
+            }
+        }
+
+        _handleHeadClick(e) {
+            if(window.innerWidth <= 768) {
+                e.preventDefault();
+                this._head.classList.toggle("is-active");
+            }
+        }
+    }
+
+    const blocks = document.querySelectorAll(".infoslider");
+    if(blocks.length === 0) {
+        return;
+    }
+    blocks.forEach(block => {
+        const infoslider = new Infoslider(block);
+        infoslider.init();
+    });
+};
 
 // other news http slider
 const otherNews = function() {
@@ -217,4 +296,5 @@ shareToggle();
 composeSlider();
 itemsSlider();
 otherNews();
+infoSlider();
 
