@@ -14,6 +14,22 @@ import header from "%modules%/header/header";
 
 // forms - validation, file uploads
 
+// debounce
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
 // infoslider, mobile - accordeon. Dynamic width indicator
 const infoSlider = function() {
     class Infoslider {
@@ -48,10 +64,6 @@ const infoSlider = function() {
             this._swiper.slideTo(this._defineSlideOnSwiper());
         }
 
-        _setResizeHandler() {
-
-        }
-
         _setHeadClickHandler() {
             this._head.addEventListener("click", this._handleHeadClick);
         }
@@ -60,6 +72,10 @@ const infoSlider = function() {
             this._tabs.forEach(tab => {
                 tab.addEventListener("click", this._handleTabClick);
             });
+        }
+        _setResizeHandler() {
+            const optimizedHandler = debounce(this._handleResize);
+            window.addEventListener("resize", optimizedHandler);
         }
 
         _calcCaretState() {
@@ -73,34 +89,18 @@ const infoSlider = function() {
             this._caret.style.left = left + "px";
         }
 
-        _handleResize() {
-            // дропдаун вместо табов на мобилке
-        }
-
         _handleTabClick(e) {
-            // переключение активного таба и активного слайда
-            // if(window.innerWidth > 768) {
             e.preventDefault();
             this._tabActive.classList.remove("is-active");
             this._tabActive = e.target;
             this._tabActive.classList.add("is-active");
             this._calcCaretState();
             this._swiper.slideTo(this._defineSlideOnSwiper());
-            // }
-        }
-
-        // определение индекса нужного слайда в массиве слайдов свайпера
-        _defineSlideOnSwiper() {
-            const activeName = this._tabActive.dataset.infosliderTab;
-            const newSlide = this._body.querySelector(`[data-infoslider-tab="${activeName}"]`);
-            return this._swiper.slides.indexOf(newSlide);
         }
 
         _handleHeadClick(e) {
-            // клик на мобильной версии - раскрытие дропдауна
             if(window.innerWidth <= 768) {
                 e.preventDefault();
-                console.log("ass");
                 if(this._isDropped === false) {
                     this._head.classList.add("is-active");
                     this._isDropped = true;
@@ -109,6 +109,24 @@ const infoSlider = function() {
                     this._isDropped = false;
                 }
             }
+        }
+
+        _handleResize() {
+            if(window.matchMedia("(min-width: 769px)").matches) {
+                this._calcCaretState();
+            }
+        }
+        
+        _defineSlideOnSwiper() {
+            const activeName = this._tabActive.dataset.infosliderTab;
+            const newSlide = this._body.querySelector(`[data-infoslider-tab="${activeName}"]`);
+            return this._swiper.slides.indexOf(newSlide);
+        }
+
+        // Опционально - сжатие высоты слайдера до высоты текущего слайда.
+        // для избежания слишком больших пробелов до следующего блока.
+        _setCurrentHeight() {
+            // console.log(this._);
         }
     }
 
@@ -314,13 +332,16 @@ const careerAccordeon = function() {
     });
 };
 
-header();
-historyAccordeon();
-footerAccordeon();
-careerAccordeon();
-shareToggle();
-composeSlider();
-itemsSlider();
-otherNews();
-infoSlider();
+window.onload = function() {
+    header();
+    historyAccordeon();
+    footerAccordeon();
+    careerAccordeon();
+    shareToggle();
+    composeSlider();
+    itemsSlider();
+    otherNews();
+    infoSlider();
+};
+
 
