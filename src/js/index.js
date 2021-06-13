@@ -45,9 +45,19 @@ const infoSlider = function() {
             
             this._swiper = null,
             this._options = {
+                init: false,
                 slidesPerView: 1,
                 pagination: false,
                 allowTouchMove: false,
+                on: {
+                    init: function() {
+                        this.el.style.height = this.slides[this.activeIndex].offsetHeight + "px";
+                    },
+                    slideChange: function() {
+                        this.el.style = "";
+                        this.el.style.height = this.slides[this.activeIndex].offsetHeight + "px";
+                    }
+                }
             };
 
             this._handleResize = this._handleResize.bind(this);
@@ -61,7 +71,8 @@ const infoSlider = function() {
             this._setHeadClickHandler();
             this._setResizeHandler();
             this._swiper = new Swiper(this._body, this._options); // eslint-disable-line
-            this._swiper.slideTo(this._defineSlideOnSwiper());
+            this._options.activeIndex = this._defineSlideOnSwiper();
+            this._swiper.init();
         }
 
         _setHeadClickHandler() {
@@ -121,12 +132,6 @@ const infoSlider = function() {
             const activeName = this._tabActive.dataset.infosliderTab;
             const newSlide = this._body.querySelector(`[data-infoslider-tab="${activeName}"]`);
             return this._swiper.slides.indexOf(newSlide);
-        }
-
-        // Опционально - сжатие высоты слайдера до высоты текущего слайда.
-        // для избежания слишком больших пробелов до следующего блока.
-        _setCurrentHeight() {
-            // console.log(this._);
         }
     }
 
