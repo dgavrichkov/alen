@@ -25,7 +25,7 @@ const infoSlider = function() {
             this._body = this._el.querySelector(".infoslider__body");
             this._caret = this._tabcontainer.querySelector(".infoslider__indicator-caret");
             this._tabActive = this._tabcontainer.querySelector(".is-active");
-            
+            this._isDropped = false;
             
             this._swiper = null,
             this._options = {
@@ -79,14 +79,14 @@ const infoSlider = function() {
 
         _handleTabClick(e) {
             // переключение активного таба и активного слайда
-            if(window.innerWidth > 768) {
-                e.preventDefault();
-                this._tabActive.classList.remove("is-active");
-                this._tabActive = e.target;
-                this._tabActive.classList.add("is-active");
-                this._calcCaretState();
-                this._swiper.slideTo(this._defineSlideOnSwiper());
-            }
+            // if(window.innerWidth > 768) {
+            e.preventDefault();
+            this._tabActive.classList.remove("is-active");
+            this._tabActive = e.target;
+            this._tabActive.classList.add("is-active");
+            this._calcCaretState();
+            this._swiper.slideTo(this._defineSlideOnSwiper());
+            // }
         }
 
         // определение индекса нужного слайда в массиве слайдов свайпера
@@ -100,7 +100,14 @@ const infoSlider = function() {
             // клик на мобильной версии - раскрытие дропдауна
             if(window.innerWidth <= 768) {
                 e.preventDefault();
-                this._head.classList.toggle("is-active");
+                console.log("ass");
+                if(this._isDropped === false) {
+                    this._head.classList.add("is-active");
+                    this._isDropped = true;
+                } else {
+                    this._head.classList.remove("is-active");
+                    this._isDropped = false;
+                }
             }
         }
     }
