@@ -22,10 +22,17 @@ const infoSlider = function() {
             this._head = this._el.querySelector(".infoslider__head");
             this._tabcontainer = this._el.querySelector(".infoslider__tabs");
             this._tabs = this._el.querySelectorAll(".infoslider__tab");
+            this._body = this._el.querySelector(".infoslider__body");
             this._caret = this._tabcontainer.querySelector(".infoslider__indicator-caret");
-
             this._tabActive = this._tabcontainer.querySelector(".is-active");
-
+            
+            
+            this._swiper = null,
+            this._options = {
+                slidesPerView: 1,
+                pagination: false,
+                allowTouchMove: false,
+            };
 
             this._handleResize = this._handleResize.bind(this);
             this._handleTabClick = this._handleTabClick.bind(this);
@@ -37,6 +44,8 @@ const infoSlider = function() {
             this._setTabClickHandler();
             this._setHeadClickHandler();
             this._setResizeHandler();
+            this._swiper = new Swiper(this._body, this._options); // eslint-disable-line
+            this._swiper.slideTo(this._defineSlideOnSwiper());
         }
 
         _setResizeHandler() {
@@ -54,6 +63,9 @@ const infoSlider = function() {
         }
 
         _calcCaretState() {
+            if(window.innerWidth <= 768) {
+                return false;
+            }
             const current = this._tabcontainer.querySelector(".is-active");
             const width = current.offsetWidth;
             const left = current.offsetLeft;
@@ -67,18 +79,25 @@ const infoSlider = function() {
 
         _handleTabClick(e) {
             // переключение активного таба и активного слайда
-            // переключение позиции и размер каретки при переключении табов
-            // клик на мобильной версии - раскрытие дропдауна
             if(window.innerWidth > 768) {
                 e.preventDefault();
                 this._tabActive.classList.remove("is-active");
                 this._tabActive = e.target;
                 this._tabActive.classList.add("is-active");
                 this._calcCaretState();
+                this._swiper.slideTo(this._defineSlideOnSwiper());
             }
         }
 
+        // определение индекса нужного слайда в массиве слайдов свайпера
+        _defineSlideOnSwiper() {
+            const activeName = this._tabActive.dataset.infosliderTab;
+            const newSlide = this._body.querySelector(`[data-infoslider-tab="${activeName}"]`);
+            return this._swiper.slides.indexOf(newSlide);
+        }
+
         _handleHeadClick(e) {
+            // клик на мобильной версии - раскрытие дропдауна
             if(window.innerWidth <= 768) {
                 e.preventDefault();
                 this._head.classList.toggle("is-active");
