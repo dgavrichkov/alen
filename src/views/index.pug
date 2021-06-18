@@ -13,7 +13,33 @@ block content
 				div.hero-slider__inner
 					picture.hero-slider__picture
 						img(src="images/index-thumb.png")
-			
+					div.hero-slider__controls
+						//- audio
+						audio(loop data-src="some.mp3" src="")
+						div.hero-slider__sound(data-word-on="Выкл. звук" data-word-off="Вкл. звук") Вкл. звук
+						//- english
+					div.hero-slider__objects.swiper-container
+						div.swiper-wrapper
+							div.swiper-slide.hero-slider__object
+					div.hero-slider__labels.swiper-container
+						div.swiper-wrapper
+							div.swiper-slide.hero-slider__label.hero-label
+								div.hero-label__inner
+									div.hero-label__cap Санкт-Петербург
+									div.hero-label__name Пассажирский порт #[br] Санкт-Петербург «Морской фасад»
+							div.swiper-slide.hero-slider__label.hero-label
+								div.hero-label__inner
+									div.hero-label__cap Санкт-Петербург
+									div.hero-label__name Мультиформатный жилой комплекс #[br] «Golden City»
+							div.swiper-slide.hero-slider__label.hero-label
+								div.hero-label__inner
+									div.hero-label__cap Санкт-Петербург
+									div.hero-label__name Пассажирский порт #[br] Санкт-Петербург «Морской фасад»
+							div.swiper-slide.hero-slider__label.hero-label
+								div.hero-label__inner
+									div.hero-label__cap Санкт-Петербург
+									div.hero-label__name Мультиформатный жилой комплекс #[br] «Golden City»
+					div.swiper-pagination
 			section.shortabout
 				div.shortabout__inner
 					div.shortabout__col
