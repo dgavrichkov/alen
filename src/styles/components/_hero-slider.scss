@@ -69,9 +69,8 @@
 		bottom: 34px;
 		left: 40px;
 		width: 60vw;
-		// для правильности анимации. видимость слайдов решается с опасити - 1 у текущего, у других невидимость
-		// overflow: visible;
-		// opacity: 0;
+		overflow: visible;
+		opacity: 0;
 		pointer-events: none;
 		.swiper-wrapper {
 			transition-timing-function: ease-out;
@@ -79,7 +78,15 @@
 			align-items: flex-end;
 		}
 		.swiper-slide {
+			opacity: 0;
 			transition: opacity 0.5s cubic-bezier(0.64, 0.01, 0.43, 0.99);
+		}
+		.swiper-slide-active {
+			opacity: 1;
+		}
+
+		&.swiper-container-initialized {
+			opacity: 1;
 		}
 	}
 

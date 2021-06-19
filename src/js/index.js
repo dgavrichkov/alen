@@ -39,7 +39,20 @@ const heroSlider = function() {
                 }
             };
             this._labelsOptions = {
-
+                touchRatio: 0.2,
+                slideToClickedSlide: true,
+                loop: true,
+                speed: 500,
+                // effect: "coverflow",
+                // coverflowEffect: {
+                //     rotate: 0,
+                //     slideShadows: true
+                // },
+                breakpoints: {
+                    651: {
+                        speed: 1300
+                    }
+                }
             };
             this._objectsSwiper = null;
             this._labelsSwiper = null;
@@ -47,6 +60,9 @@ const heroSlider = function() {
         init() {
             console.log(this._el);
             this._objectsSwiper = new Swiper(this._objects, this._objectsOptions); // eslint-disable-line
+            this._labelsSwiper = new Swiper(this._labels, this._labelsOptions); // eslint-disable-line
+            this._objectsSwiper.controller.control = this._labelsSwiper;
+            this._labelsSwiper.controller.control = this._objectsSwiper;
         }
     }
 
