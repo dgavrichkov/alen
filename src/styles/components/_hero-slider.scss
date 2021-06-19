@@ -8,16 +8,288 @@
 	background: #000;
 	cursor: pointer;
 
-	&__picture {
+	&__inner {}
+
+	&__thumb {
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
+
+		opacity: 0;
+		pointer-events: none;
+
 		img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
 		}
+	}
+
+	&__objects {
+		
+		.swiper-wrapper {
+			transition-timing-function: cubic-bezier(0.64, 0.01, 0.43, 0.99);
+		}
+	}
+	&__object {
+		img, video {
+			min-width: 100%;
+			min-height: 100%;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			transition: background 0.3s;
+		}
+		video {
+			// display: none;
+		}
+		// контейнер для объкта
+		figure {
+			position: relative;
+			height: 100vh;
+			overflow: hidden;
+			&::before {
+				content: "";
+				background: rgba(0, 0, 0, 0.24);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 2;
+			}
+		}
+		
+	}
+	&__labels {
+		position: absolute;
+		bottom: 34px;
+		left: 40px;
+		width: 60vw;
+		// для правильности анимации. видимость слайдов решается с опасити - 1 у текущего, у других невидимость
+		// overflow: visible;
+		// opacity: 0;
+		pointer-events: none;
+		.swiper-wrapper {
+			transition-timing-function: ease-out;
+			display: flex;
+			align-items: flex-end;
+		}
+		.swiper-slide {
+			transition: opacity 0.5s cubic-bezier(0.64, 0.01, 0.43, 0.99);
+		}
+	}
+
+	&__controls {
+		position: absolute;
+		right: 40px;
+		bottom: 25px;
+		z-index: 3;
+
+		display: flex;
+		align-items: center;
+	}
+
+	&__sound {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 17px;
+		color: #ffffff;
+		align-items: center;
+		z-index: 3;
+		margin-right: 30px;
+		cursor: pointer;
+		display: flex;
+		order: 0;
+
+		&::before {
+			content: "";
+			flex-shrink: 0;
+			display: block;
+			margin-right: 8px;
+			width: 20px;
+			height: 20px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			background-image: $icon-volume-light;
+		}
+	}
+
+	&__language {
+		background: rgba(255, 255, 255, 0.2);
+		border-radius: 23.5px;
+		height: 35px;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 17px;
+		color: #ffffff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0 15px;
+		transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+		&::before {
+			content: "";
+			flex-shrink: 0;
+			display: block;
+			margin-right: 8px;
+			width: 17px;
+			height: 17px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: center;
+			background-image: $icon-globus-light;
+		}
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.25);
+		}
+	}
+
+	&__arrow {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		width: 20%;
+		opacity: 0;
+		z-index: 1;
+		transition: all 0.3s ease-in-out;
+		&.hero-slider__right {
+			right: 0;
+		}
+		&.hero-slider__left {
+			left: 0;
+		}
+		&:hover {
+			opacity: 1;
+		}
+	}
+	
+	.swiper-pagination {
+		position: absolute;
+		bottom: 25px;
+		z-index: 10;
+		width: 100%;
+		height: 35px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.swiper-pagination-bullet {
+		border-radius: 0;
+		height: 3px;
+		width: 30px;
+		margin: 0 6px;
+		padding: 6px 0;
+		opacity: 1;
+		overflow: hidden;
+		position: relative;
+		background-color: transparent;
+		animation-duration: 20s;
+		&::before {
+			content: "";
+			display: block;
+			opacity: 0;
+			position: absolute;
+			left: 0;
+			top: 50%;
+			height: 3px;
+			background: white;
+			width: 100%;
+			transform: translate(0, -50%);
+		}
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 50%;
+			height: 3px;
+			left: 0;
+			width: 100%;
+			background: rgba(255, 255, 255, 0.39);
+			transform: translate(0, -50%);
+		}
+	}
+	.swiper-pagination-bullet-active {
+		&::before {
+			opacity: 1;
+			animation-name: widthbullet;
+			animation-duration: inherit;
+			animation-timing-function: linear;
+		}
+	}
+	.swiper-button-prev, .swiper-button-next {
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+		border: 0;
+		width: 17px;
+		height: 31px;
+		top: 50%;
+		transform: translate(0, -50%);
+		left: 40px;
+		position: absolute;
+		padding: 0;
+		color: transparent;
+		overflow: hidden;
+		z-index: 2;
+		background: none;
+		cursor: pointer;
+		opacity: 0.7;
+		transition: 0.3s ease-in-out;
+		&::before {
+			content: "";
+			width: 100%;
+			height: 100%;
+			display: block;
+			background-image: url(../images/shevron.png);
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	.swiper-button-next {
+		left: auto;
+		right: 40px;
+		transform: translate(0, -50%) rotate(180deg);
+	}
+	& > * {
+		user-select: none;
+	}
+}
+
+@keyframes widthbullet {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+.hero-label {
+	&__cap {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 17px;
+		line-height: 100%;
+		color: #ffffff;
+		margin-bottom: 8px;
+	}
+
+	&__name {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 25px;
+		line-height: 140%;
+		color: #ffffff;
 	}
 }

@@ -11,16 +11,76 @@ block content
 		main.page__main
 			section.hero-slider
 				div.hero-slider__inner
-					picture.hero-slider__picture
+					picture.hero-slider__thumb
 						img(src="images/index-thumb.png")
 					div.hero-slider__controls
 						//- audio
 						audio(loop data-src="some.mp3" src="")
 						div.hero-slider__sound(data-word-on="Выкл. звук" data-word-off="Вкл. звук") Вкл. звук
 						//- english
+						a(href="/en/").hero-slider__language English
 					div.hero-slider__objects.swiper-container
 						div.swiper-wrapper
 							div.swiper-slide.hero-slider__object
+								figure
+									picture.hero-slider__picture
+										source(srcset="/images/slide-pic-1.jpg" media="(min-width: 769px")
+										source(srcset="images/slide-pic-mob-1.jpg" media="(max-width: 768px)")
+										img(src="")
+									video(data-video-src="images/slide-video-1.mp4" muted playsinline autoplay loop).hero-slider__video
+										source(src="")
+							div.swiper-slide.hero-slider__object
+								figure
+									picture.hero-slider__picture
+										source(srcset="/images/slide-pic-2.jpg" media="(min-width: 769px")
+										source(srcset="images/slide-pic-mob-2.jpg" media="(max-width: 768px)")
+										img(src="")
+									video(data-video-src="images/slide-video-2.mp4" muted playsinline autoplay loop).hero-slider__video
+										source(src="")
+							div.swiper-slide.hero-slider__object
+								figure
+									picture.hero-slider__picture
+										source(srcset="/images/slide-pic-3.jpg" media="(min-width: 769px")
+										source(srcset="images/slide-pic-mob-3.jpg" media="(max-width: 768px)")
+										img(src="")
+									video(data-video-src="images/slide-video-3.mp4" muted playsinline autoplay loop).hero-slider__video
+										source(src="")
+							div.swiper-slide.hero-slider__object
+								figure
+									picture.hero-slider__picture
+										source(srcset="/images/slide-pic-4.jpg" media="(min-width: 769px")
+										source(srcset="images/slide-pic-mob-4.jpg" media="(max-width: 768px)")
+										img(src="")
+									video(data-video-src="images/slide-video-4.mp4" muted playsinline autoplay loop).hero-slider__video
+										source(src="")
+							div.swiper-slide.hero-slider__object
+								figure
+									picture.hero-slider__picture
+										source(srcset="/images/slide-pic-5.jpg" media="(min-width: 769px")
+										source(srcset="images/slide-pic-mob-5.jpg" media="(max-width: 768px)")
+										img(src="")
+									video(data-video-src="images/slide-video-5.mp4" muted playsinline autoplay loop).hero-slider__video
+										source(src="")
+							div.swiper-slide.hero-slider__object
+								figure
+									picture.hero-slider__picture
+										source(srcset="/images/slide-pic-6.jpg" media="(min-width: 769px")
+										source(srcset="images/slide-pic-mob-6.jpg" media="(max-width: 768px)")
+										img(src="")
+									video(data-video-src="images/slide-video-6.mp4" muted playsinline autoplay loop).hero-slider__video
+										source(src="")
+							div.swiper-slide.hero-slider__object
+								figure
+									picture.hero-slider__picture
+										source(srcset="/images/slide-pic-7.jpg" media="(min-width: 769px")
+										source(srcset="images/slide-pic-mob-7.jpg" media="(max-width: 768px)")
+										img(src="")
+									video(data-video-src="images/slide-video-7.mp4" muted playsinline autoplay loop).hero-slider__video
+										source(src="")
+						div.hero-slider__left.hero-slider__arrow
+							div.swiper-button-prev
+						div.hero-slider__right.hero-slider__arrow
+							div.swiper-button-next
 					div.hero-slider__labels.swiper-container
 						div.swiper-wrapper
 							div.swiper-slide.hero-slider__label.hero-label
@@ -35,6 +95,18 @@ block content
 								div.hero-label__inner
 									div.hero-label__cap Санкт-Петербург
 									div.hero-label__name Пассажирский порт #[br] Санкт-Петербург «Морской фасад»
+							div.swiper-slide.hero-slider__label.hero-label
+								div.hero-label__inner
+									div.hero-label__cap Санкт-Петербург
+									div.hero-label__name Мультиформатный жилой комплекс #[br] «Golden City»
+							div.swiper-slide.hero-slider__label.hero-label
+								div.hero-label__inner
+									div.hero-label__cap Санкт-Петербург
+									div.hero-label__name Мультиформатный жилой комплекс #[br] «Golden City»
+							div.swiper-slide.hero-slider__label.hero-label
+								div.hero-label__inner
+									div.hero-label__cap Санкт-Петербург
+									div.hero-label__name Мультиформатный жилой комплекс #[br] «Golden City»
 							div.swiper-slide.hero-slider__label.hero-label
 								div.hero-label__inner
 									div.hero-label__cap Санкт-Петербург

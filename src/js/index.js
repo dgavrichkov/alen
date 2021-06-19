@@ -3,6 +3,61 @@ import footerAccordeon from "%modules%/footer/footer";
 import header from "%modules%/header/header";
 
 // index slider
+// много заморочек с загрузкой медиа
+// -- на десктопе мы загружаем видео по мере листания слайдера
+// -- присутствует фоллбэк-картинка. грузится все сразу - просто при смене слайда мы сразу видим фоллбэк-картинку, а потом подгружается видео и оно проигрывается поверх картинки
+// -- ленивая загрузка видео с условием на ширину экрана
+// -- прогресс-бар в буллит пагинации
+const heroSlider = function() {
+    class HeroSlider {
+        constructor(el) {
+            this._el = el;
+            this._objects = this._el.querySelector(".hero-slider__objects");
+            this._labels = this._el.querySelector(".hero-slider__labels");
+            this._objectsOptions = {
+                loop: true,
+                speed: 500,
+                // init: false,
+                lazy: {
+                    loadPrevNext: true,
+                    loadOnTransitionStart: true,
+                    loadPrevNextAmount: 5
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    type: "bullets",
+                    clickable: true
+                },
+                breakpoints: {
+                    651: {
+                        speed: 1300
+                    }
+                }
+            };
+            this._labelsOptions = {
+
+            };
+            this._objectsSwiper = null;
+            this._labelsSwiper = null;
+        }
+        init() {
+            console.log(this._el);
+            this._objectsSwiper = new Swiper(this._objects, this._objectsOptions); // eslint-disable-line
+        }
+    }
+
+    const heroSliderEl = document.querySelector(".hero-slider");
+    if(!heroSliderEl) {
+        return false;
+    }
+    const heroSliderComp = new HeroSlider(heroSliderEl);
+    heroSliderComp.init();
+};
+
 
 // gallery call
 
@@ -338,6 +393,7 @@ const careerAccordeon = function() {
 };
 
 window.onload = function() {
+    heroSlider();
     header();
     historyAccordeon();
     footerAccordeon();
