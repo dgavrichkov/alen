@@ -14,6 +14,10 @@ const heroSlider = function() {
             this._el = el;
             this._objects = this._el.querySelector(".hero-slider__objects");
             this._labels = this._el.querySelector(".hero-slider__labels");
+            this._audio = this._el.querySelector("audio");
+            this._videos = this._el.querySelectorAll("video");
+            this._audioTrigger = this._el.querySelector(".hero-slider__sound");
+
             this._objectsOptions = {
                 loop: true,
                 speed: 500,
@@ -43,11 +47,6 @@ const heroSlider = function() {
                 slideToClickedSlide: true,
                 loop: true,
                 speed: 500,
-                // effect: "coverflow",
-                // coverflowEffect: {
-                //     rotate: 0,
-                //     slideShadows: true
-                // },
                 breakpoints: {
                     651: {
                         speed: 1300
@@ -56,13 +55,57 @@ const heroSlider = function() {
             };
             this._objectsSwiper = null;
             this._labelsSwiper = null;
+
+            this._slides = null; // исходное число слайдов
+        
+            this._isAudioMuted = true;
+            this._isAudioInProcess = false,
+            this._isAudioLoaded = false;
+
+            this._handleSoundClick = this._handleSoundClick.bind(this);
         }
         init() {
-            console.log(this._el);
+            this._deleteMediaOnSmallSizes();
             this._objectsSwiper = new Swiper(this._objects, this._objectsOptions); // eslint-disable-line
             this._labelsSwiper = new Swiper(this._labels, this._labelsOptions); // eslint-disable-line
             this._objectsSwiper.controller.control = this._labelsSwiper;
             this._labelsSwiper.controller.control = this._objectsSwiper;
+            this._setAudioFile();
+            this._handleSoundClick();
+        }
+
+
+        // videos lazy load
+        _loadVideo() {
+            
+        }
+
+        // starting video after load
+        // установка длительности анимации для буллета
+
+        // set sound
+        _setAudioFile() {
+            if(this._audio === "rejected") {
+                return;
+            }
+            this._audio.setAttribute("src", this._audio.dataset.src);
+            console.log(this._audio);
+        }
+
+        // удаление аудио и видео из дом еще на этапе инициализации на маленьких экранах
+        _deleteMediaOnSmallSizes() {
+            if(window.innerWidth <= 768 || (window.innerWidth <= 950 && window.innerHeight <= 450)) {
+                this._audio.remove();
+                this._audio = "rejected";
+                this._videos.forEach(video => {
+                    video.remove();
+                });
+            }
+        }
+
+        // обработчик включения-выключения звука
+        _handleSoundClick() {
+
         }
     }
 

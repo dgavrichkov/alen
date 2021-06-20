@@ -1449,6 +1449,7 @@ pages = {
             },
             startCurrentVideo: function (type) {
                 var _this = this;
+                // число слайдов, за исключением свайпер-дубликатов
                 var count = $(document).find(
                     ".fpSlider .swiper-slide:not(.swiper-slide-duplicate)"
                 ).length;
@@ -1457,12 +1458,14 @@ pages = {
                 if (this.videos.length > 0) {
                     var i = 0;
                     this.videos.each(function () {
+                        // инициализация - нужно выполнить загрузку только первого видео
                         if (type == "init") {
                             if (i == 0) {
                                 this.src = $(this).attr("data-src");
                                 this.autoplay = true;
                             }
                         }
+                        // здесь видимо имеется в виду загрузка только видео из текущего слайда. должно применяться при смене слайда?
                         if (type == "start") {
                             if (i == slide_id) {
                                 this.src = $(this).attr("data-src");
@@ -1530,21 +1533,25 @@ pages = {
                             }
                         }
                     });
+                    // связь слайдеров
                     this.bgs.controller.control = this.texts;
 
                     this.texts.controller.control = this.bgs;
                     var _this = this;
 
+                    // 
                     this.bgs.on("init", function () {
                         _this.startCurrentVideo("init");
                         _this.bgs.lazy.loadInSlide(0);
                     });
+                    // 
                     slideVideoDo = function () {
                         _this.startCurrentVideo();
                     };
                     this.bgs.init();
 
                     this.bgs.on("slideChangeTransitionStart", function () {
+                        // выполнит ленивую загрузку видео в активном слайде
                         _this.startCurrentVideo("start");
                     });
                     this.bgs.on("slideChangeTransitionEnd", function () {
@@ -1574,7 +1581,7 @@ pages = {
                                     clearTimeout(_this.timeOutAutoPlay);
 
                                     var timeDuration = this.duration * 1000 - timeLoad;
-
+                                    // установка длительности анимации для буллета
                                     $(".fpSlider_wrapper .swiper-pagination-bullet")
                                         .eq(index)
                                         .css("animation-duration", timeDuration + "ms");
@@ -1589,15 +1596,19 @@ pages = {
                     defaultTime = 9000;
                 }
                 clearTimeout(_this.timeOutAutoPlay);
+
                 $(".fpSlider_wrapper .swiper-pagination-bullet")
                     .eq(index)
                     .css("animation-duration", defaultTime + "ms");
+
                 _this.timeOutAutoPlay = setTimeout(function () {
                     _this.bgs.slideNext();
                     if (slide.find("video").length > 0)
                         slide.find("video").eq(0)[0].oncanplay = null;
                 }, defaultTime);
+
             },
+            // любопытно - он устанавливает мобилньные картинки по соотношению ширины и высоты экрана
             mobileImgSetSize: function () {
                 $(".fpSlider_item_bg .img-mobile").each(function () {
                     var nwidth = this.naturalWidth;
@@ -1696,6 +1707,7 @@ pages = {
                 $(window).width() <= 650 ||
                 ($(window).width() <= 950 && $(window).height() <= 450)
             ) {
+                // видео и аудио удаляется из дом на маленьком экране
                 $(".fpSlider")
                     .find("video")
                     .remove();
@@ -1703,6 +1715,7 @@ pages = {
                     .find("audio")
                     .remove();
             } else {
+                // путь к видео вставляется в атрибут
                 $(".fpSlider_wrapper")
                     .find("audio")
                     .eq(0)

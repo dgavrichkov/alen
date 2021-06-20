@@ -125,6 +125,13 @@
 			background-position: center;
 			background-image: $icon-volume-light;
 		}
+
+		@include to(768px) {
+			display: none;
+		}
+		@media (max-width: 950px) and (max-height: 450px) {
+			display: none;
+		}
 	}
 
 	&__language {
