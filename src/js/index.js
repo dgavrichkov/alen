@@ -125,6 +125,9 @@ const heroSlider = function() {
 // popup
 
 // animation on load blocks - intersection observer
+// -- загрузка фоток на странице проекта
+// -- 
+// -- 
 
 // forms - validation, file uploads
 
