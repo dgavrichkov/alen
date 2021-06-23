@@ -65,7 +65,14 @@
 		
 	}
 	&__labels {
+		@include to(1366px) {
+			bottom: 53px;
+		}
+		@include to(1024px) {
+			left: 20px;
+		}
 		position: absolute;
+		z-index: 2;
 		bottom: 34px;
 		left: 40px;
 		width: 60vw;
@@ -91,6 +98,9 @@
 	}
 
 	&__controls {
+		@include to(1366px) {
+			bottom: 53px;
+		}
 		position: absolute;
 		right: 40px;
 		bottom: 25px;
@@ -108,7 +118,6 @@
 		color: #ffffff;
 		align-items: center;
 		z-index: 3;
-		margin-right: 30px;
 		cursor: pointer;
 		display: flex;
 		order: 0;
@@ -135,9 +144,13 @@
 	}
 
 	&__language {
+		@include to(1024px) {
+			display: none;
+		}
 		background: rgba(255, 255, 255, 0.2);
 		border-radius: 23.5px;
 		height: 35px;
+		margin-left: 30px;
 		font-style: normal;
 		font-weight: normal;
 		font-size: 14px;
@@ -187,6 +200,9 @@
 	}
 	
 	.swiper-pagination {
+		@include to(1366px) {
+			bottom: 20px;
+		}
 		position: absolute;
 		bottom: 25px;
 		z-index: 10;
@@ -290,7 +306,17 @@
 }
 
 .hero-label {
+	&__inner {
+		max-width: 613px;
+	}
 	&__cap {
+		@include to(768px) {
+			font-size: 16px;
+		}
+		@include to(375px) {
+			font-size: 12px;
+			line-height: 14px;
+		}
 		font-style: normal;
 		font-weight: normal;
 		font-size: 17px;
@@ -300,6 +326,13 @@
 	}
 
 	&__name {
+		@include to(768px) {
+			font-size: 20px;
+		}
+		@include to(375px) {
+			font-size: 16px;
+			line-height: 24px;
+		}
 		font-style: normal;
 		font-weight: normal;
 		font-size: 25px;
