@@ -714,6 +714,7 @@ templs = {
         forms: {
             submits: function () {
                 var _this = this;
+                // обработка отправки формы карьеры, видимо эта форма единственная для всех попапов
                 $(".popup_item#careers form").submit(function (e) {
                     e.preventDefault();
                     $(this)
@@ -722,7 +723,7 @@ templs = {
                     $(this)
                         .find(".form_fileList .list .item")
                         .remove();
-                    _this.popups.open("#careers-succes");
+                    _this.popups.open("#careers-succes"); // открывает попап с сообщением об успехе, надо думать
                 });
             },
             init: function () {
@@ -834,10 +835,12 @@ templs = {
         },
         events: function () {
             var _this = this;
+            // для всех файловых инпутов вешается обработчик на событие изменения
             $("input[type=file]").change(function (event) {
                 _this.prepareUpload(event, $(this));
                 $(".form_fileList .list").html();
             });
+            // ну это клик удаления файла, должно быть
             $(document).on("click", ".form_fileList .list .item .del", function () {
                 var num = $(this)
                     .parent()
@@ -1394,7 +1397,8 @@ templs = {
         },
         messing: function () {
             var _this = this;
-            //отправка и последующее открытие окна с информацией
+            // отправка и последующее открытие окна с информацией
+            // какая-то форма, не понимаю какая
             $(document).on("submit", "#messError form", function (e) {
                 e.preventDefault();
                 _this.parent.popup.open("#messError_succes", "inWindow");
@@ -1447,21 +1451,25 @@ pages = {
             setVideos: function () {
                 this.videos = $("." + this.boxClass).find("video");
             },
+            // используется в событиях свайпера - смена слайдов, инициализация
             startCurrentVideo: function (type) {
                 var _this = this;
                 // число слайдов, за исключением свайпер-дубликатов
-                var count = $(document).find(
-                    ".fpSlider .swiper-slide:not(.swiper-slide-duplicate)"
-                ).length;
-                var slide_id =
-                    _this.bgs.activeIndex <= count ? _this.bgs.activeIndex : 1;
-                if (this.videos.length > 0) {
+                var count = $(document).find(".fpSlider .swiper-slide:not(.swiper-slide-duplicate)").length;
+
+                // если номер активного слайда менее или равен натуральному числу слайдов, то берет номер активного, иначе просто единица.
+                var slide_id = _this.bgs.activeIndex <= count ? _this.bgs.activeIndex : 1;
+                
+                    if (this.videos.length > 0) {
                     var i = 0;
+                    // проходимся по всем видео циклом.
                     this.videos.each(function () {
                         // инициализация - нужно выполнить загрузку только первого видео
                         if (type == "init") {
+                            // тут просто - нулевой индекс в массиве слайдов.
                             if (i == 0) {
                                 this.src = $(this).attr("data-src");
+                                // вот эти приколы с автоплеем нужны, чтобы видос начал проигрываться только когда анимация перехода завершится.
                                 this.autoplay = true;
                             }
                         }
@@ -1474,9 +1482,10 @@ pages = {
                         }
                         if (type == "end") {
                             if (i == slide_id) {
+                                // должно быть, по умолчанию автоплей - ложь, и устанавливается в истину только здесь
                                 this.autoplay = true;
-                                var isPlaying = this.currentTime > 0 && !this.paused && !this.ended &&
-                                    this.readyState > 2;
+                                // определяется, играет ли уже видео. если нет, то запускается методом объекта видео
+                                var isPlaying = this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2;
                                 if (!isPlaying) {
                                     console.log(this);
                                     this.play();
@@ -1555,6 +1564,7 @@ pages = {
                         _this.startCurrentVideo("start");
                     });
                     this.bgs.on("slideChangeTransitionEnd", function () {
+                        // выполняется каждый раз, когда заканчивается анимация смены слайда
                         _this.startCurrentVideo("end");
                     });
                 }
@@ -1563,44 +1573,62 @@ pages = {
                 var _this = this;
                 var defaultTime = false;
                 var index = id - 1;
+
                 this.timeStart = new Date();
+
+                // находит в документе среди оригинальных слайдов слайд с подходящим индексом
                 var slide = $(document)
                     .find(".fpSlider .swiper-slide:not(.swiper-slide-duplicate)")
-                    .eq(index);
-                // var video =
+                    .eq(index); 
+                
                 if (slide.find("video").length > 0) {
+                    // форматированная длительность видео
                     defaultTime = slide.find("video").eq(0)[0].duration * 1000;
 
                     if (!defaultTime) {
                         defaultTime = 9000;
-                        if (slide.find("video").length > 0)
+                        // если в слайде присутствует видео (???)
+                        if (slide.find("video").length > 0) {
+                            
+                            // событие  canplay происходит, когда браузер готов проигрывать видео
                             slide.find("video").eq(0)[0].oncanplay = function () {
+                                // разница между текущим моментом и сохраненным при запуске функции
                                 var timeLoad = new Date() - _this.timeStart;
-
+                                // если таймлоад достаточно мал
                                 if (timeLoad < 9000) {
-                                    clearTimeout(_this.timeOutAutoPlay);
 
+                                    clearTimeout(_this.timeOutAutoPlay);
+                                    
+                                    // вычисляем значение для длительности видео
                                     var timeDuration = this.duration * 1000 - timeLoad;
+
                                     // установка длительности анимации для буллета
                                     $(".fpSlider_wrapper .swiper-pagination-bullet")
                                         .eq(index)
                                         .css("animation-duration", timeDuration + "ms");
+
+                                    // место, где перелистывается слайд. по окончанию видео слайдер листается дальше.
                                     _this.timeOutAutoPlay = setTimeout(function () {
                                         _this.bgs.slideNext();
                                     }, timeDuration);
+
                                     this.oncanplay = null;
                                 }
                             };
+                        }
                     }
                 } else {
+                    // если у нас не обнаружилось ни одного видео в слайдере, мы берем дефолтное значение.
                     defaultTime = 9000;
                 }
                 clearTimeout(_this.timeOutAutoPlay);
 
+                // установка длительности анимации для буллета
                 $(".fpSlider_wrapper .swiper-pagination-bullet")
                     .eq(index)
                     .css("animation-duration", defaultTime + "ms");
 
+                // место, где перелистывается слайд. теперь уже только дефолтные значения без допольнительных вычислений
                 _this.timeOutAutoPlay = setTimeout(function () {
                     _this.bgs.slideNext();
                     if (slide.find("video").length > 0)
@@ -1611,10 +1639,12 @@ pages = {
             // любопытно - он устанавливает мобилньные картинки по соотношению ширины и высоты экрана
             mobileImgSetSize: function () {
                 $(".fpSlider_item_bg .img-mobile").each(function () {
+                    // real size of image
                     var nwidth = this.naturalWidth;
                     var nheight = this.naturalHeight;
 
                     var k = nwidth / nheight;
+                    // класс width устанавливает для изображений самые банальные стили - ширина 100, высота авто.
                     if ($(this).height() * k < $(window).width()) {
                         $(this).addClass("width");
                     }
@@ -1624,10 +1654,10 @@ pages = {
                 });
             },
             init: function () {
-                this.videos = $("." + this.boxClass).find("video");
+                this.videos = $("." + this.boxClass).find("video"); // обнаруживает все видео
                 this.mobileImgSetSize();
                 this.sliderCreate();
-                this.setVideos();
+                this.setVideos(); // просто запись переменной this.videos
                 var _this = this;
                 $(window).on("resize", function () {
                     _this.mobileImgSetSize();
@@ -1638,13 +1668,16 @@ pages = {
             audioMuted: true,
             inProcess: false,
             loaded: false,
+            // просто назначает обработчик клика по элементу
             muteInit: function () {
                 var _this = this;
+                // click handler
                 $(".fpSlider_mute").click(function () {
                     if (!_this.inProcess) {
                         $(this).toggleClass("active");
                         _this.audioMuted = $(this).hasClass("active");
                         if (_this.audioMuted) {
+                            // сменить текст, запустить звук
                             $(this).text($(this).attr("data-word-on"));
                             _this.lazySart();
                         } else {
@@ -1657,7 +1690,7 @@ pages = {
             lazySart: function () {
                 var _this = this;
                 this.inProcess = true;
-                var audio = $("audio").eq(0)[0];
+                var audio = $("audio").eq(0)[0]; // элемент аудио
                 audio.volume = 0;
                 var play = function () {
                     audio.play();
@@ -1704,8 +1737,7 @@ pages = {
         },
         init: function () {
             if (
-                $(window).width() <= 650 ||
-                ($(window).width() <= 950 && $(window).height() <= 450)
+                $(window).width() <= 650 || ($(window).width() <= 950 && $(window).height() <= 450)
             ) {
                 // видео и аудио удаляется из дом на маленьком экране
                 $(".fpSlider")
@@ -1790,9 +1822,11 @@ pages = {
         imageLoad: function ($this) {
             var $img = $this.find(".projects_item_img").eq(0);
             var img = $this.find(".projects_item_img").eq(0)[0];
+            
             $this.removeClass("is-hidden");
             $this.addClass("is-proccess");
             $this.append("<span class='loadMonitor show'></span>");
+            
             if (img.hasAttribute("data-src")) {
                 img.onload = function (e) {
                     $this.addClass("is-loaded");
@@ -2380,6 +2414,7 @@ pages = {
     servicesDetail: {
         slider: null,
         create: function () {
+            // проверить деталку услуги - по каким-то причинам тут такое странное условие - то свайпер, то слик
             if (this.slider.hasClass("swiper-container")) {
                 var BItemsSwiper = new Swiper(".bItems_list.slider", {
                     speed: 700,
@@ -2629,7 +2664,9 @@ XHRequests = {
     currentPage_id: 0,
     offsetPage: 0,
     preloader: false,
+    // метод для запросов
     newRequest: function (href, succes, failed) {
+        // при каждом использовании этого метода показывается прелоадер
         this.showPreloader();
         this.preloader = true;
 
@@ -2711,19 +2748,22 @@ XHRequests = {
         failed = function () {}.bind(this);
         this.newRequest(href, succes, failed);
     },
+    // набор событий, связанных с асинхронностью
     events: function () {
         var _this = this;
+        // клик по ссылкам, расположенным внутри враппера
         $(document).on("click", ".wrapper a", function (e) {
             var href = $(this).attr("href");
+            // куча проверок
             if (
-                href[0] != "#" &&
-                href.indexOf("tel:") != 0 &&
-                href.indexOf("mailto:") != 0 &&
-                href.indexOf("callto:") != 0 &&
-                href.indexOf("skype:") != 0 &&
-                href != "" &&
-                !$(this).is("[download]") &&
-                (!$(this).attr("target") || $(this).attr("target") != "_blank")
+                href[0] != "#" && // не заглушка
+                href.indexOf("tel:") != 0 && // исключаем телефон
+                href.indexOf("mailto:") != 0 && // исключаем письмо
+                href.indexOf("callto:") != 0 && // исключаем звонок
+                href.indexOf("skype:") != 0 && // исключаем скайп
+                href != "" && // исключаем пустую ссылку
+                !$(this).is("[download]") && // исключаем ссылку на скачивание файла
+                (!$(this).attr("target") || $(this).attr("target") != "_blank") // исключаем ссылки с открытием другого окна
             ) {
                 if ($(this).attr("data-fail-xhr") == undefined) {
                     if (
@@ -2744,7 +2784,9 @@ XHRequests = {
                 }
             }
         });
+        // это событие изменения активной записи истории 
         window.addEventListener("popstate", function (e) {
+            // по некому идентификатору в свойстве определяется, совершается ли переход на следующую либо предыдущую страницу
             if (e.state) {
                 if (e.state.id < _this.currentPage_id) {
                     _this.backPage(e.state.href);
@@ -2773,21 +2815,24 @@ XHRequests = {
         }
     },
     showPreloader: function () {
-        var _this = this;
-        var loader =
-            "<div class=\"bgLoadPage color\"><div class=\"loadMonitor\"></div></div>";
+        var _this = this; // сохраняем контекст для функции animate
+        var loader = "<div class=\"bgLoadPage color\"><div class=\"loadMonitor\"></div></div>";
         var color = $(".header").hasClass("scrolled") ? "white" : "black";
+        
         loader = loader.replace("color", color);
+        
         $(".wrapper").append(loader);
+
         $(".wrapper")
             .find(".bgLoadPage")
-            .animate({
-                opacity: 1
-            },
-            500,
-            function () {
-                _this.preloader = false;
-            }
+            .animate(
+                {
+                    opacity: 1
+                },
+                500,
+                function () {
+                    _this.preloader = false;
+                }
             );
     },
     hidePreloader: function () {
@@ -2796,6 +2841,7 @@ XHRequests = {
             $(".wrapper")
                 .find(".bgLoadPage")
                 .addClass("loaded");
+
             setTimeout(function () {
                 $(".wrapper")
                     .find(".bgLoadPage")
@@ -2841,6 +2887,7 @@ XHRequests = {
         var _this = this;
         var iframe = this.subDocument(temp_html);
         var __html = iframe.contentDocument;
+
         var loadedIframe = function (_html, iframe_) {
             var replaceDOM = function (_class, _parent) {
                 var _old = document.getElementsByClassName(_class)[0];
@@ -2895,8 +2942,6 @@ XHRequests = {
                 scrollToHash = 0;
             }
 
-
-
             function doo() {
                 templs.init();
                 pages.init();
@@ -2933,7 +2978,7 @@ XHRequests = {
     }
 };
 
-
+// обработка отправки формы комментов, наверное
 $(document).on("submit", "#comment_form ", function (e) {
     e.preventDefault();
     var _ = this;
@@ -2951,9 +2996,13 @@ $(document).on("submit", "#comment_form ", function (e) {
         }
     });
 });
+
+// по событию загрузки документа мы прячем прелоадер
 $(window).on("load", function () {
     XHRequests.hidePreloader();
 });
+
+// тоже для скрытия прелоадера в разных ситуациях
 if (document.readyState === "complete") {
     XHRequests.hidePreloader();
 } else {

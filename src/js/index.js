@@ -2,6 +2,14 @@
 import footerAccordeon from "%modules%/footer/footer";
 import header from "%modules%/header/header";
 
+// preloader
+// -- show preloader (start of async operations)
+// -- -- render preloader node
+// -- -- animate preloader node
+// -- hide preloader (end of async operations)
+// -- -- animate preloader node
+// -- -- destroy preloader node
+
 // index slider
 // много заморочек с загрузкой медиа
 // -- на десктопе мы загружаем видео по мере листания слайдера
@@ -21,7 +29,7 @@ const heroSlider = function() {
             this._objectsOptions = {
                 loop: true,
                 speed: 500,
-                // init: false,
+                init: false,
                 lazy: {
                     loadPrevNext: true,
                     loadOnTransitionStart: true,
@@ -40,7 +48,7 @@ const heroSlider = function() {
                     651: {
                         speed: 1300
                     }
-                }
+                },
             };
             this._labelsOptions = {
                 touchRatio: 0.2,
@@ -56,7 +64,7 @@ const heroSlider = function() {
             this._objectsSwiper = null;
             this._labelsSwiper = null;
 
-            this._slides = null; // исходное число слайдов
+            this._slides = this._el.querySelectorAll(".hero-slider__object:not(.swiper-slide-duplicate)").length;; // исходное число слайдов
         
             this._isAudioMuted = true;
             this._isAudioInProcess = false,
@@ -66,21 +74,78 @@ const heroSlider = function() {
         }
         init() {
             this._deleteMediaOnSmallSizes();
-            this._objectsSwiper = new Swiper(this._objects, this._objectsOptions); // eslint-disable-line
-            this._labelsSwiper = new Swiper(this._labels, this._labelsOptions); // eslint-disable-line
-            this._objectsSwiper.controller.control = this._labelsSwiper;
-            this._labelsSwiper.controller.control = this._objectsSwiper;
             this._setAudioFile();
             this._handleSoundClick();
+            
+            this._objectsSwiper = new Swiper(this._objects, this._objectsOptions); // eslint-disable-line
+            this._labelsSwiper = new Swiper(this._labels, this._labelsOptions); // eslint-disable-line
+            
+            this._objectsSwiper.controller.control = this._labelsSwiper;
+            this._labelsSwiper.controller.control = this._objectsSwiper;
+
+            this._objectsSwiper.on('init', () => {
+                this._videos = this._el.querySelectorAll("video");
+                this._loadVideo('init');
+            });
+
+            this._objectsSwiper.init();
+
+            this._objectsSwiper.on("slideChangeTransitionStart", () => {
+                this._loadVideo("start");
+            });
+            this._objectsSwiper.on("slideChangeTransitionEnd", () => {
+                this._loadVideo("end");
+            });
         }
 
 
         // videos lazy load
-        _loadVideo() {
+        _loadVideo(type) {
+            const activeSlides = this._el.querySelectorAll(`.hero-slider__object[data-swiper-slide-index="${this._objectsSwiper.realIndex}"]`);
+        
             
+            if(this._videos.length === 0) {
+                return false;
+            }
+            if(type === 'init') {
+                activeSlides.forEach(slide => {
+                    const video = slide.querySelector("video");
+                    video.src = video.dataset.videoSrc;
+                    video.autoplay = true;
+                });
+            } else if(type === 'start'){
+                activeSlides.forEach(slide => {
+                    const video = slide.querySelector("video");
+                    video.src = video.dataset.videoSrc;
+                    video.autoplay = false;
+                });
+            } else if(type === 'end') {
+                activeSlides.forEach(slide => {
+                    const video = slide.querySelector("video");
+                    video.autoplay = true;
+                    const isPlaying = video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2;
+                    if(!isPlaying) {
+                        video.play();
+                    }
+                });
+                // а еще наверное надо потушить видео с предыдущего слайда, чтоб не крутилось там попусту.
+            }
+            activeSlides.forEach(slide => {
+                this._setVideoAutoPlay(slide);
+            })
+        }
+        _setVideoAutoPlay(slide) {
+            const video = slide.querySelector("video");
+            if(!video) {
+                return false;
+            }
+            console.log(slide);
         }
 
-        // starting video after load
+        _setBulletDuration() {
+
+        }
+
         // установка длительности анимации для буллета
 
         // set sound
@@ -97,9 +162,11 @@ const heroSlider = function() {
             if(window.innerWidth <= 768 || (window.innerWidth <= 950 && window.innerHeight <= 450)) {
                 this._audio.remove();
                 this._audio = "rejected";
-                this._videos.forEach(video => {
-                    video.remove();
-                });
+                if(this._videos) {
+                    this._videos.forEach(video => {
+                        video.remove();
+                    });
+                }
             }
         }
 
@@ -107,6 +174,9 @@ const heroSlider = function() {
         _handleSoundClick() {
 
         }
+        // sound init
+        // sound start
+        // sound stop
     }
 
     const heroSliderEl = document.querySelector(".hero-slider");
@@ -145,6 +215,10 @@ const forms = function() {
     // form valudation
 
     // upload files
+
+    // форма комментариев
+
+    // форма вакансий 
 };
 
 // debounce
