@@ -117,19 +117,35 @@ const heroSlider = function() {
     heroSliderComp.init();
 };
 
-
-// gallery call
-
 // gallery
+const gallery = function() {
+    
+    
+    //-- gallery call
+
+};
 
 // popup
+const popups = function() {
+    // popup caller
 
-// animation on load blocks - intersection observer
-// -- загрузка фоток на странице проекта
-// -- 
-// -- 
+    // popup window
 
-// forms - validation, file uploads
+    // popup publick methods
+};
+
+const loadAnimate = function() {
+    // animation on load blocks - intersection observer
+    // -- загрузка фоток на странице проекта
+    // -- 
+    // -- 
+};
+
+const forms = function() {
+    // form valudation
+
+    // upload files
+};
 
 // debounce
 function debounce(func, wait, immediate) {
@@ -465,6 +481,10 @@ window.onload = function() {
     itemsSlider();
     otherNews();
     infoSlider();
+    gallery();
+    popups();
+    loadAnimate();
+    forms();
 };
 
 
