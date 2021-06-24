@@ -1460,7 +1460,7 @@ pages = {
                 // если номер активного слайда менее или равен натуральному числу слайдов, то берет номер активного, иначе просто единица.
                 var slide_id = _this.bgs.activeIndex <= count ? _this.bgs.activeIndex : 1;
                 
-                    if (this.videos.length > 0) {
+                if (this.videos.length > 0) {
                     var i = 0;
                     // проходимся по всем видео циклом.
                     this.videos.each(function () {

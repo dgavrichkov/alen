@@ -64,7 +64,7 @@ const heroSlider = function() {
             this._objectsSwiper = null;
             this._labelsSwiper = null;
 
-            this._slides = this._el.querySelectorAll(".hero-slider__object:not(.swiper-slide-duplicate)").length;; // исходное число слайдов
+            this._slides = this._el.querySelectorAll(".hero-slider__object:not(.swiper-slide-duplicate)").length; // исходное число слайдов
         
             this._isAudioMuted = true;
             this._isAudioInProcess = false,
@@ -83,9 +83,9 @@ const heroSlider = function() {
             this._objectsSwiper.controller.control = this._labelsSwiper;
             this._labelsSwiper.controller.control = this._objectsSwiper;
 
-            this._objectsSwiper.on('init', () => {
+            this._objectsSwiper.on("init", () => {
                 this._videos = this._el.querySelectorAll("video");
-                this._loadVideo('init');
+                this._loadVideo("init");
             });
 
             this._objectsSwiper.init();
@@ -107,19 +107,19 @@ const heroSlider = function() {
             if(this._videos.length === 0) {
                 return false;
             }
-            if(type === 'init') {
+            if(type === "init") {
                 activeSlides.forEach(slide => {
                     const video = slide.querySelector("video");
                     video.src = video.dataset.videoSrc;
                     video.autoplay = true;
                 });
-            } else if(type === 'start'){
+            } else if(type === "start"){
                 activeSlides.forEach(slide => {
                     const video = slide.querySelector("video");
                     video.src = video.dataset.videoSrc;
                     video.autoplay = false;
                 });
-            } else if(type === 'end') {
+            } else if(type === "end") {
                 activeSlides.forEach(slide => {
                     const video = slide.querySelector("video");
                     video.autoplay = true;
@@ -132,21 +132,48 @@ const heroSlider = function() {
             }
             activeSlides.forEach(slide => {
                 this._setVideoAutoPlay(slide);
-            })
+            });
         }
         _setVideoAutoPlay(slide) {
             const video = slide.querySelector("video");
-            if(!video) {
-                return false;
+            const timeStart = new Date();
+            const _this = this;
+            const bullet = this._el.querySelector(".swiper-pagination-bullet-active");
+            let timeLoad = null;
+            let defaultTime = 9000;
+            let timeDuration = null;
+            let timeOutAutoPlay = null;
+            if(video) {
+                video.oncanplay = () => {
+                    defaultTime = video.duration * 1000;
+                    timeLoad = new Date() - timeStart;
+
+                    if(timeLoad < 9000) {
+                        clearTimeout(timeOutAutoPlay);
+                        timeDuration = defaultTime - timeLoad;
+                        bullet.style.animationDuration = `${timeDuration}ms`;
+                        timeOutAutoPlay = setTimeout(function() {
+                            _this._objectsSwiper.slideNext();
+                        }, timeDuration);
+                        video.oncanplay = null;
+                    }
+                };
+            } else {
+                // тут обработаем вариант для мобильных утройств, когда видео нет в дом
             }
-            console.log(slide);
+
+            // установка длительности анимации для буллета
+            // console.log(bullet);
+            // bullet.style.animationDuration = `${timeDuration}ms`;
+            // timeOutAutoPlay = setTimeout(function() {
+            //     clearTimeout(timeOutAutoPlay);
+            //     _this._objectsSwiper.slideNext();
+            //     if(video) {
+            //         video.oncanplay = null;
+            //     }
+            // }, defaultTime);
         }
 
-        _setBulletDuration() {
-
-        }
-
-        // установка длительности анимации для буллета
 
         // set sound
         _setAudioFile() {
