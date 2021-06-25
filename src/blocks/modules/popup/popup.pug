@@ -1,55 +1,89 @@
-div.popup
-    div.popup__inner
-        // вот сюда рендерить контент отдельно взятого попапа
+div.popup.is-active
+    // вот сюда рендерить контент отдельно взятого попапа
+    button.popup__close
     
-    div.popup__item(id="careers")
+    
+//- шаблончики
+template
+    //- career
+    div.popup__inner(id="career")
         div.popup__box
             div.popup__title Отправить резюме
             div.popup__form
                 form.form.send-resume-form(action="")
-                    .form__inputbox.form__box
+                    div.form__inputbox.form__box
                         label(for="").form__label
                         input(type="text") 
-                    .form__inputbox.form__box
+                    div.form__inputbox.form__box
                         label(for="").form__label
                         input(type="text")
-                    .form__inputbox.form__box
+                    div.form__inputbox.form__box
                         label(for="").form__label
                         input(type="text") 
-                    .form__inputbox.form__box
+                    div.form__inputbox.form__box
                         label(for="").form__label
                         input(type="text")
-                    .form__textarea.form__box
+                    div.form__textarea.form__box
                         label(for="").form__label
                         textarea(name="")
-                    .form__file.form__box
+                    div.form__file.form__box
                         label(for="")
                         input(type="file")
                         div.form__filelist
                             label(for="")
-                            ul 
-    div.popup__item
+                            ul     
+template
+    //- career success
+    div.popup__inner(id="career-success")
         div.popup__box
             div.popup__title Спасибо. Мы свяжемся с вами в скором времени.
             a.pill-btn(href="#careers") Отправить еще одно резюме
-    div.popup__item
-        //- запросить брошюру
+template
+    //- error messaging
+    div.popup__inner(id="error-messaging")
+        div.popup__box
+            div.popup__title Сообщение об ошибке
+            div.popup__subtitle Орфографическая ошибка в тексте:
+            div.popup__text.popup__errortext Lorem ipsum dolor sit, amet consectetur adipisicing elit. #[span Fugit] veritatis ipsa sit autem magni deserunt, minima earum veniam officia suscipit non nihil quod! Numquam laboriosam voluptate, quos dignissimos at quo.
+            form(id="error-form").popup__form
+                button(type="submit" href="#error-messaging-success") Отправить
+template
+    //- error messaging success
+    div.popup__inner(id="error-messaging-success")
+        div.popup__box
+            div.popup__title.popup__title--small Спасибо за вашу внимательность. #[br] Мы исправим эти ошибки в ближайшее время.
+            a.popup__innerclose.pill-btn(href="") Закрыть
+template
+    //- запросить брошюру
+    div.popup__inner(id="brochure")
         div.popup__box
             div.popup__title Запросить брошюру о программе «Идеальные квартиры «А.Лен»
             div.popup__form
                 form.form
-                    .form__input.form__box
+                    div.form__input.form__box
                         label(for="") Имя*
                         input(type="text") 
-                    .form__input.form__box
+                    div.form__input.form__box
                         label(for="") E-mail*
                         input(type="text") 
-                    .form__textarea.form__box
+                    div.form__textarea.form__box
                         label(for="") Вопрос или комментарий
                         textarea(name="", cols="30", rows="10")
-                    .form__checkbox.form__box
+                    div.form__checkbox.form__box
                         input(type="checkbox") 
                         label(for="")
                             span Даю согласие на обработку персональных данных в соответствии с политикой конфиденциальности
-                    .form__submit.form__box
+                    div.form__submit.form__box
                         button(type="submit").pill-btn Отправить
+template
+    //- comment success
+    div.popup__inner(id="comment-success")
+        div.popup__box
+            div.popup__title.popup__title--small Ваш комментарий принят и отправлен на модерацию.
+            a.popup__innerclose.pill-btn(href="") Закрыть
+template
+    //- form success
+    div.popup__inner(id="form-success")
+        div.popup__box 
+            div.popup__title.popup__title--small Запрос отправлен
+            a.popup__innerclose.pill-btn(href="") Закрыть

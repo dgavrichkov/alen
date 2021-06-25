@@ -303,7 +303,14 @@ const loadAnimate = function() {
     // -- 
     // -- 
 };
+class Form {
+    constructor() {
 
+    }
+    init() {
+
+    };
+}
 const forms = function() {
     // form valudation
 
