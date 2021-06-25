@@ -65,7 +65,8 @@ const heroSlider = function() {
             this._labelsSwiper = null;
 
             this._slides = this._el.querySelectorAll(".hero-slider__object:not(.swiper-slide-duplicate)").length; // исходное число слайдов
-        
+            
+            this._slideTimeout = null;
             this._isAudioMuted = true;
             this._isAudioInProcess = false,
             this._isAudioLoaded = false;
@@ -98,28 +99,22 @@ const heroSlider = function() {
             });
         }
 
-
-        // videos lazy load
         _loadVideo(type) {
             const activeSlides = this._el.querySelectorAll(`.hero-slider__object[data-swiper-slide-index="${this._objectsSwiper.realIndex}"]`);
-        
-            
-            if(this._videos.length === 0) {
-                return false;
-            }
-            if(type === "init") {
+
+            if(type === "init" && this._videos.length > 0) {
                 activeSlides.forEach(slide => {
                     const video = slide.querySelector("video");
                     video.src = video.dataset.videoSrc;
                     video.autoplay = true;
                 });
-            } else if(type === "start"){
+            } else if(type === "start" && this._videos.length > 0) {
                 activeSlides.forEach(slide => {
                     const video = slide.querySelector("video");
                     video.src = video.dataset.videoSrc;
                     video.autoplay = false;
                 });
-            } else if(type === "end") {
+            } else if(type === "end" && this._videos.length > 0) {
                 activeSlides.forEach(slide => {
                     const video = slide.querySelector("video");
                     video.autoplay = true;
@@ -128,7 +123,6 @@ const heroSlider = function() {
                         video.play();
                     }
                 });
-                // а еще наверное надо потушить видео с предыдущего слайда, чтоб не крутилось там попусту.
             }
             activeSlides.forEach(slide => {
                 this._setVideoAutoPlay(slide);
@@ -142,17 +136,17 @@ const heroSlider = function() {
             let timeLoad = null;
             let defaultTime = 9000;
             let timeDuration = null;
-            let timeOutAutoPlay = null;
+    
             if(video) {
                 video.oncanplay = () => {
                     defaultTime = video.duration * 1000;
                     timeLoad = new Date() - timeStart;
 
                     if(timeLoad < 9000) {
-                        clearTimeout(timeOutAutoPlay);
+                        clearTimeout(_this._slideTimeout);
                         timeDuration = defaultTime - timeLoad;
                         bullet.style.animationDuration = `${timeDuration}ms`;
-                        timeOutAutoPlay = setTimeout(function() {
+                        _this._slideTimeout = setTimeout(function() {
                             _this._objectsSwiper.slideNext();
                         }, timeDuration);
                         video.oncanplay = null;
@@ -160,18 +154,17 @@ const heroSlider = function() {
                 };
             } else {
                 // тут обработаем вариант для мобильных утройств, когда видео нет в дом
+                clearTimeout(_this._slideTimeout);
+                
+                bullet.style.animationDuration = defaultTime + 'ms';
+                
+                _this._slideTimeout = setTimeout(function() {
+                    _this._objectsSwiper.slideNext();
+                    if(video) {
+                        video.oncanplay = null;
+                    }
+                }, defaultTime);
             }
-
-            // установка длительности анимации для буллета
-            // console.log(bullet);
-            // bullet.style.animationDuration = `${timeDuration}ms`;
-            // timeOutAutoPlay = setTimeout(function() {
-            //     clearTimeout(timeOutAutoPlay);
-            //     _this._objectsSwiper.slideNext();
-            //     if(video) {
-            //         video.oncanplay = null;
-            //     }
-            // }, defaultTime);
         }
 
 
@@ -181,7 +174,6 @@ const heroSlider = function() {
                 return;
             }
             this._audio.setAttribute("src", this._audio.dataset.src);
-            console.log(this._audio);
         }
 
         // удаление аудио и видео из дом еще на этапе инициализации на маленьких экранах
