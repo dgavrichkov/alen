@@ -22,10 +22,7 @@ const heroSlider = function() {
             this._el = el;
             this._objects = this._el.querySelector(".hero-slider__objects");
             this._labels = this._el.querySelector(".hero-slider__labels");
-            this._audio = this._el.querySelector("audio");
             this._videos = this._el.querySelectorAll("video");
-            this._audioTrigger = this._el.querySelector(".hero-slider__sound");
-
             this._objectsOptions = {
                 loop: true,
                 speed: 500,
@@ -36,8 +33,11 @@ const heroSlider = function() {
                     loadPrevNextAmount: 5
                 },
                 navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev"
+                    // nextEl: ".swiper-button-next",
+                    // prevEl: ".swiper-button-prev"
+                    nextEl: ".hero-slider__right",
+                    prevEl: ".hero-slider__left"
+
                 },
                 pagination: {
                     el: ".swiper-pagination",
@@ -70,14 +70,10 @@ const heroSlider = function() {
             this._isAudioMuted = true;
             this._isAudioInProcess = false,
             this._isAudioLoaded = false;
-
-            this._handleSoundClick = this._handleSoundClick.bind(this);
         }
         init() {
             this._deleteMediaOnSmallSizes();
-            this._setAudioFile();
-            this._handleSoundClick();
-            
+
             this._objectsSwiper = new Swiper(this._objects, this._objectsOptions); // eslint-disable-line
             this._labelsSwiper = new Swiper(this._labels, this._labelsOptions); // eslint-disable-line
             
@@ -166,21 +162,9 @@ const heroSlider = function() {
                 }, defaultTime);
             }
         }
-
-
-        // set sound
-        _setAudioFile() {
-            if(this._audio === "rejected") {
-                return;
-            }
-            this._audio.setAttribute("src", this._audio.dataset.src);
-        }
-
-        // удаление аудио и видео из дом еще на этапе инициализации на маленьких экранах
+        // удаление видео из дом еще на этапе инициализации на маленьких экранах
         _deleteMediaOnSmallSizes() {
             if(window.innerWidth <= 768 || (window.innerWidth <= 950 && window.innerHeight <= 450)) {
-                this._audio.remove();
-                this._audio = "rejected";
                 if(this._videos) {
                     this._videos.forEach(video => {
                         video.remove();
@@ -188,14 +172,94 @@ const heroSlider = function() {
                 }
             }
         }
+    }
 
+    class Sound {
+        constructor(el) {
+            this._el = el;
+            this._audio = this._el.querySelector("audio");
+            this._audioTrigger = this._el.querySelector(".hero-slider__sound");
+
+            this._isUnmute = false;
+            this._isLoaded = false;
+            this._isPlaying = false;
+
+            this._handleSoundClick = this._handleSoundClick.bind(this);
+        }
+        init() {
+            this._deleteMediaOnSmallSizes();
+            this._setAudioFile();
+            this._setSoundClickHandler();
+            
+        }
+
+        _deleteMediaOnSmallSizes() {
+            if(window.innerWidth <= 768 || (window.innerWidth <= 950 && window.innerHeight <= 450)) {
+                this._audio.remove();
+                this._audio = "rejected";
+            }
+        }
+
+        _setAudioFile() {
+            if(this._audio === "rejected") {
+                return;
+            }
+            this._audio.setAttribute("src", this._audio.dataset.src);
+        }
+        _setSoundClickHandler() {
+            this._audioTrigger.addEventListener("click", this._handleSoundClick);
+        }
         // обработчик включения-выключения звука
         _handleSoundClick() {
-
+            if(!this._isUnmute) {
+                this._audioTrigger.innerText = this._audioTrigger.dataset.wordOn;
+                this._audioTrigger.classList.add("is-active");
+                this._soundStart();
+            } else {
+                this._audioTrigger.innerText = this._audioTrigger.dataset.wordOff;
+                this._audioTrigger.classList.remove("is-active");
+                this._soundStop();
+            }
         }
-        // sound init
-        // sound start
-        // sound stop
+        _soundStart() {
+            this._isUnmute = true;
+            this._isPlaying = true;
+            this._audio.volume = 0;
+            const _this = this;
+            const play = () => {
+                this._audio.play();
+                this._isLoaded = true;
+                const interval = setInterval(function() {
+                    _this._audio.volume += 0.01;
+                    if(_this._audio.volume >= 0.9) {
+                        clearInterval(interval);
+                        _this._audio.volume = 1;
+                        _this._isPlaying = false;
+                    }
+                }, 10);
+            }
+
+            if(!this._isLoaded) {
+                this._audio.load();
+                this._audio.oncanplay = play;
+            } else {
+                play();
+            }
+        }
+        _soundStop() {
+            this._isUnmute = false;
+            this._isPlaying = true;
+            const _this = this;
+            const interval = setInterval(function() {
+                _this._audio.volume -= 0.01;
+                if(_this._audio.volume <= 0.1) {
+                    clearInterval(interval);
+                    _this._audio.pause();
+                    _this._audio.volume = 0;
+                    _this._isPlaying = false;
+                }
+            }, 10);
+        }
     }
 
     const heroSliderEl = document.querySelector(".hero-slider");
@@ -203,7 +267,9 @@ const heroSlider = function() {
         return false;
     }
     const heroSliderComp = new HeroSlider(heroSliderEl);
+    const heroSoundComp = new Sound(heroSliderEl);
     heroSliderComp.init();
+    heroSoundComp.init();
 };
 
 // gallery
