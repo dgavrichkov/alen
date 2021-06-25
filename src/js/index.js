@@ -10,12 +10,6 @@ import header from "%modules%/header/header";
 // -- -- animate preloader node
 // -- -- destroy preloader node
 
-// index slider
-// много заморочек с загрузкой медиа
-// -- на десктопе мы загружаем видео по мере листания слайдера
-// -- присутствует фоллбэк-картинка. грузится все сразу - просто при смене слайда мы сразу видим фоллбэк-картинку, а потом подгружается видео и оно проигрывается поверх картинки
-// -- ленивая загрузка видео с условием на ширину экрана
-// -- прогресс-бар в буллит пагинации
 const heroSlider = function() {
     class HeroSlider {
         constructor(el) {
@@ -281,7 +275,21 @@ const gallery = function() {
 };
 
 // popup
+class Popup {
+    constructor(el) {
+
+    }
+    init() {
+
+    }
+
+    // open
+    // close
+    // load content
+    // render content
+}
 const popups = function() {
+
     // popup caller
 
     // popup window

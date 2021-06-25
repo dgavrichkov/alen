@@ -114,27 +114,9 @@ block content
 				a(href="projects-list.html").pill-btn.page__goback-btn Назад
 
 		div.page__popup
-			div.popup__item
-				//- запросить брошюру
-				div.popup__box
-					div.popup__title Запросить брошюру о программе «Идеальные квартиры «А.Лен»
-					div.popup__form
-						form.form
-							.form__input.form__box
-								label(for="") Имя*
-								input(type="text") 
-							.form__input.form__box
-								label(for="") E-mail*
-								input(type="text") 
-							.form__textarea.form__box
-								label(for="") Вопрос или комментарий
-								textarea(name="", cols="30", rows="10")
-							.form__checkbox.form__box
-								input(type="checkbox") 
-								label(for="")
-									span Даю согласие на обработку персональных данных в соответствии с политикой конфиденциальности
-							.form__submit.form__box
-								button(type="submit").pill-btn Отправить
+			include ../../blocks/modules/popup/popup.pug
+			
+			
 		div.page__footer
 			include ../../blocks/modules/footer/footer.pug
 block scripts

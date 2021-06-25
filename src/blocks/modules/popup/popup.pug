@@ -1,0 +1,55 @@
+div.popup
+    div.popup__inner
+        // вот сюда рендерить контент отдельно взятого попапа
+    
+    div.popup__item(id="careers")
+        div.popup__box
+            div.popup__title Отправить резюме
+            div.popup__form
+                form.form.send-resume-form(action="")
+                    .form__inputbox.form__box
+                        label(for="").form__label
+                        input(type="text") 
+                    .form__inputbox.form__box
+                        label(for="").form__label
+                        input(type="text")
+                    .form__inputbox.form__box
+                        label(for="").form__label
+                        input(type="text") 
+                    .form__inputbox.form__box
+                        label(for="").form__label
+                        input(type="text")
+                    .form__textarea.form__box
+                        label(for="").form__label
+                        textarea(name="")
+                    .form__file.form__box
+                        label(for="")
+                        input(type="file")
+                        div.form__filelist
+                            label(for="")
+                            ul 
+    div.popup__item
+        div.popup__box
+            div.popup__title Спасибо. Мы свяжемся с вами в скором времени.
+            a.pill-btn(href="#careers") Отправить еще одно резюме
+    div.popup__item
+        //- запросить брошюру
+        div.popup__box
+            div.popup__title Запросить брошюру о программе «Идеальные квартиры «А.Лен»
+            div.popup__form
+                form.form
+                    .form__input.form__box
+                        label(for="") Имя*
+                        input(type="text") 
+                    .form__input.form__box
+                        label(for="") E-mail*
+                        input(type="text") 
+                    .form__textarea.form__box
+                        label(for="") Вопрос или комментарий
+                        textarea(name="", cols="30", rows="10")
+                    .form__checkbox.form__box
+                        input(type="checkbox") 
+                        label(for="")
+                            span Даю согласие на обработку персональных данных в соответствии с политикой конфиденциальности
+                    .form__submit.form__box
+                        button(type="submit").pill-btn Отправить
