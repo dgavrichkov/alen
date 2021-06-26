@@ -7,7 +7,9 @@
 	z-index: 10;
 	background-color: #fff;
 	opacity: 0;
-
+	pointer-events: none;
+	visibility: hidden;
+	transition: opacity 2s, visibility 2s;
 	&__inner {
 
 	}
@@ -59,5 +61,7 @@
 
 	&.is-active {
 		opacity: 1;
+		visibility: visible;
+		pointer-events: all;
 	}
 }

@@ -146,7 +146,7 @@ const heroSlider = function() {
                 // тут обработаем вариант для мобильных утройств, когда видео нет в дом
                 clearTimeout(_this._slideTimeout);
                 
-                bullet.style.animationDuration = defaultTime + 'ms';
+                bullet.style.animationDuration = defaultTime + "ms";
                 
                 _this._slideTimeout = setTimeout(function() {
                     _this._objectsSwiper.slideNext();
@@ -231,7 +231,7 @@ const heroSlider = function() {
                         _this._isPlaying = false;
                     }
                 }, 10);
-            }
+            };
 
             if(!this._isLoaded) {
                 this._audio.load();
@@ -276,25 +276,65 @@ const gallery = function() {
 
 // popup
 class Popup {
-    constructor(el) {
+    constructor() {
+        this._popup = document.querySelector(".popup");
+        this._triggers = document.querySelectorAll(".js-popup");
+        this._close = this._popup.querySelector(".popup__close");
 
+        this.isOpen = false;
+    
+        this._handleTriggerClick = this._handleTriggerClick.bind(this);
+        this._handleCloseClick = this._handleCloseClick.bind(this);
     }
     init() {
-
+        this._setTriggersClickHandler();
+        this._setCloseClickHandler();
     }
 
     // open
+    open() {
+        this._popup.classList.add("is-active");
+        hideScroll();
+        this.isOpen = true;
+    }
     // close
+    close() {
+        this._popup.classList.remove("is-active");
+        showScroll();
+        this.isOpen = false;
+    }
     // load content
     // render content
+    _handleTriggerClick(e) {
+        e.preventDefault();
+        if(!this.isOpen) {
+            this.open();
+        }
+    }
+    _handleCloseClick(e) {
+        e.preventDefault();
+        if(this.isOpen) {
+            this.close();
+        }
+    }
+
+    _setTriggersClickHandler() {
+        if(this._triggers.length === 0) {
+            return false;
+        }
+
+        this._triggers.forEach(trigger => {
+            trigger.addEventListener("click", this._handleTriggerClick);
+        });
+    }
+    _setCloseClickHandler() {
+        this._close.addEventListener("click", this._handleCloseClick);
+    }
 }
 const popups = function() {
 
-    // popup caller
-
-    // popup window
-
-    // popup publick methods
+    const popup = new Popup();
+    popup.init();
 };
 
 const loadAnimate = function() {
@@ -303,14 +343,16 @@ const loadAnimate = function() {
     // -- 
     // -- 
 };
+
 class Form {
     constructor() {
 
     }
     init() {
 
-    };
+    }
 }
+
 const forms = function() {
     // form valudation
 
@@ -336,6 +378,27 @@ function debounce(func, wait, immediate) {
         if (callNow) func.apply(context, args);
     };
 }
+
+// запрет скролла, фиксирует документ
+const hideScroll = function () {
+    if(document.body.classList.contains("modal-open")) {
+        return false;
+    }
+    document.body.classList.add("modal-open");
+    window._scrollTop = window.pageYOffset;
+    document.body.style.position = "fixed";
+    document.body.style.top = -window._scrollTop + "px"; // eslint-disable-line
+};
+// снимает запрет прокрутки
+const showScroll = function () {
+    if(!document.body.classList.contains("modal-open")) {
+        return false;
+    }
+    document.body.classList.remove("modal-open");
+    document.body.style.top = "";
+    document.body.style.position = "";
+    window.scroll(0, window._scrollTop);
+};
 
 // infoslider, mobile - accordeon. Dynamic width indicator
 const infoSlider = function() {

@@ -59,9 +59,11 @@ $(window).on("load", function () {
     );
     pages.main.slider.init();
 });
+
 $(window).on("resize", function () {
     setWindowHeight();
 });
+
 window.addEventListener(
     "orientationchange",
     function () {
@@ -75,6 +77,7 @@ init_js = function () {
     pages.init();
     XHRequests.init();
 };
+
 templs = {
     header: {
         usersNoScroll: 0,
@@ -660,7 +663,9 @@ templs = {
         open: function (id, addClass) {
             this.opened = true;
             $(".popup").addClass("active");
-            if (addClass) $(".popup").addClass(addClass);
+            if (addClass) {
+                $(".popup").addClass(addClass);
+            }
             $(".popup_item").removeClass("active");
             $(".popup_item" + id).addClass("active");
             $(".popup").animate({
