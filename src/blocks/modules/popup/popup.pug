@@ -3,8 +3,8 @@ div.popup
     button.popup__close
     
     
-//- шаблончики
-template
+//- шаблончики контента для попапов
+template(data-tpl-id="career")
     //- career
     div.popup__inner(id="career")
         div.popup__box
@@ -32,13 +32,13 @@ template
                         div.form__filelist
                             label(for="")
                             ul     
-template
+template(data-tpl-id="career-success")
     //- career success
     div.popup__inner(id="career-success")
         div.popup__box
             div.popup__title Спасибо. Мы свяжемся с вами в скором времени.
             a.pill-btn(href="#careers") Отправить еще одно резюме
-template
+template(data-tpl-id="error-messaging")
     //- error messaging
     div.popup__inner(id="error-messaging")
         div.popup__box
@@ -47,13 +47,13 @@ template
             div.popup__text.popup__errortext Lorem ipsum dolor sit, amet consectetur adipisicing elit. #[span Fugit] veritatis ipsa sit autem magni deserunt, minima earum veniam officia suscipit non nihil quod! Numquam laboriosam voluptate, quos dignissimos at quo.
             form(id="error-form").popup__form
                 button(type="submit" href="#error-messaging-success") Отправить
-template
+template(data-tpl-id="error-messaging-success")
     //- error messaging success
     div.popup__inner(id="error-messaging-success")
         div.popup__box
             div.popup__title.popup__title--small Спасибо за вашу внимательность. #[br] Мы исправим эти ошибки в ближайшее время.
             a.popup__innerclose.pill-btn(href="") Закрыть
-template
+template(data-tpl-id="brochure")
     //- запросить брошюру
     div.popup__inner(id="brochure")
         div.popup__box
@@ -75,13 +75,13 @@ template
                             span Даю согласие на обработку персональных данных в соответствии с политикой конфиденциальности
                     div.form__submit.form__box
                         button(type="submit").pill-btn Отправить
-template
+template(data-tpl-id="comment-success")
     //- comment success
     div.popup__inner(id="comment-success")
         div.popup__box
             div.popup__title.popup__title--small Ваш комментарий принят и отправлен на модерацию.
             a.popup__innerclose.pill-btn(href="") Закрыть
-template
+template(data-tpl-id="form-success")
     //- form success
     div.popup__inner(id="form-success")
         div.popup__box 

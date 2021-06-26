@@ -310,6 +310,9 @@ class Popup {
         if(!this.isOpen) {
             this.open();
         }
+        const id = e.target.dataset.modalId;
+        const template = document.querySelector(`[data-tpl-id="${id}"]`);
+        this._popup.append(template.content.cloneNode(true));
     }
     _handleCloseClick(e) {
         e.preventDefault();
@@ -334,6 +337,7 @@ class Popup {
 const popups = function() {
 
     const popup = new Popup();
+
     popup.init();
 };
 
@@ -381,6 +385,7 @@ function debounce(func, wait, immediate) {
 
 // запрет скролла, фиксирует документ
 const hideScroll = function () {
+    // хорошо бы определить ширину полосы прокрутки и компенсировать общую ширину экрана, чтобы не было видно сдвига
     if(document.body.classList.contains("modal-open")) {
         return false;
     }
