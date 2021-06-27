@@ -294,7 +294,6 @@ class Popup {
     // open. публичный метод - передав сюда название нужного шаблона, откроем попап с соостветствующим содержимым
     open(id) {
         this._popup.classList.add("is-active");
-        // this._popup.style.width = `calc(100% - ${getScrollbarSize()}px)`;
         hideScroll();
         this.isOpen = true;
 
@@ -305,15 +304,9 @@ class Popup {
     // close
     close() {
         this._popup.classList.remove("is-active");
-        // this._popup.style.width = "";
         this._content.remove();
+        showScroll();
         this.isOpen = false;
-        this._popup.addEventListener("transitionend", function() {
-            if(!isOpen) {
-                showScroll();
-            }
-        });
-        // showScroll();
     }
     // load content
     // render content
