@@ -62,9 +62,20 @@
 		&:hover {
 			background: #dddddd;
 		}
+		@include to(768px) {
+			right: 20px;
+			top: 20px;
+		}
 	}
 
 	&__title {
+		@include to(768px) {
+			&:not(.popup__title--small) {
+				font-size: 25px;
+				line-height: 30px;
+				margin-bottom: 40px;
+			}
+		}
 		font-family: Rubik;
 		font-style: normal;
 		font-weight: normal;
@@ -76,16 +87,12 @@
 
 		margin-bottom: 84px;
 		margin-bottom: 50px;
-		&--small {
+		&.popup__title--small {
 			font-size: 23px;
 			line-height: 46px;
 			margin-bottom: 30px;
 		}
-		@include to(768px) {
-			font-size: 25px;
-			line-height: 30px;
-			margin-bottom: 40px;
-		}
+		
 	}
 	&__subtitle {
 		font-family: Rubik;
