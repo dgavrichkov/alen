@@ -279,8 +279,9 @@ class Popup {
     constructor() {
         this._popup = document.querySelector(".popup");
         this._triggers = document.querySelectorAll(".js-popup");
-        this._close = this._popup.querySelector(".popup__close");
+        this._closes = this._popup.querySelectorAll(".js-popup__close");
         this._content = null;
+        this._extClass = null;
         this.isOpen = false;
     
         this._handleTriggerClick = this._handleTriggerClick.bind(this);
@@ -292,13 +293,16 @@ class Popup {
     }
 
     // open. публичный метод - передав сюда название нужного шаблона, откроем попап с соостветствующим содержимым
-    open(id) {
-        if(this.isOpen && this._content) {
-            console.log("Ass");
+    open(id, extClass) {
+        if(this.isOpen || this._content) {
             this._content.remove();
             this._content = null;
         }
         this._popup.classList.add("is-active");
+        if(extClass) {
+            this._extClass = extClass;
+            this._popup.classList.add(this._extClass);
+        }
         hideScroll();
         this.isOpen = true;
 
@@ -307,22 +311,34 @@ class Popup {
         this._content = this._popup.querySelector(".popup__inner");
         // для демо-варианта попапа с успехом. 
         this._triggers = document.querySelectorAll(".js-popup");
-        this._setTriggersClickHandler();
+        this._closes = this._popup.querySelectorAll(".js-popup__close");
+        this.init();
     }
     // close
     close() {
         this._popup.classList.remove("is-active");
-        this._content.remove();
-        this._content = null;
         showScroll();
         this.isOpen = false;
+
+        const clearClass = () => {
+            this._popup.classList.remove(this._extClass);
+            this._extClass = null;
+            this._popup.removeEventListener("transitionend", clearClass);
+        };
+        
+        this._popup.addEventListener("transitionend", clearClass);
+
     }
-    // load content
-    // render content
+
     _handleTriggerClick(e) {
         e.preventDefault();
         const id = e.target.dataset.modalId;
-        this.open(id);
+        const extClass = e.target.dataset.modalExtClass;
+        if(extClass){
+            this.open(id, extClass);
+        } else {
+            this.open(id);
+        }
     }
     _handleCloseClick(e) {
         e.preventDefault();
@@ -341,7 +357,9 @@ class Popup {
         });
     }
     _setCloseClickHandler() {
-        this._close.addEventListener("click", this._handleCloseClick);
+        this._closes.forEach(close => {
+            close.addEventListener("click", this._handleCloseClick);
+        });
     }
 
     // продумать формы в попапах
@@ -349,12 +367,6 @@ class Popup {
     // класс форм нужно создать таким образом, чтобы было лекго выполнить все что нужно, просто передав в конструктор селектор и айдишник.
 
 }
-const popups = function() {
-
-    const popup = new Popup();
-
-    popup.init();
-};
 
 const loadAnimate = function() {
     // animation on load blocks - intersection observer
@@ -381,6 +393,8 @@ class Form {
     // вызов сообщения об успешной отправке? тут тоже нужно использовать компонент попапа для отрисовки нужного сообщения
     
     // поэтому мне надо создавать инстансы этих классов в одной области видимости - в тож онлоаде документа.
+
+    // после успешной отправки формы и комментария использовать popup.open("form-success", ".popup--small")
 }
 
 const forms = function() {
@@ -773,9 +787,11 @@ window.onload = function() {
     otherNews();
     infoSlider();
     gallery();
-    popups();
     loadAnimate();
     forms();
+
+    const popup = new Popup();
+    popup.init();
 };
 
 

@@ -1,8 +1,12 @@
 div.popup
     // вот сюда рендерить контент отдельно взятого попапа
-    button.popup__close
+    button(type="button").popup__close.js-popup__close
     
-    
+div.test
+    button.pill-btn(type="button" data-modal-id="form-success" data-modal-ext-class="popup--small").js-popup Test form success
+    button.pill-btn(type="button" data-modal-id="comment-success" data-modal-ext-class="popup--small").js-popup Test comment success
+    button.pill-btn(type="button" data-modal-id="error-messaging-success" data-modal-ext-class="popup--small").js-popup Test errorMess success
+
 //- шаблончики контента для попапов
 template(data-tpl-id="career")
     //- career
@@ -55,18 +59,21 @@ template(data-tpl-id="career-success")
 template(data-tpl-id="error-messaging")
     //- error messaging
     div.popup__inner(id="error-messaging")
-        div.popup__box
+        div.popup__box.popup__box--small
             div.popup__title Сообщение об ошибке
             div.popup__subtitle Орфографическая ошибка в тексте:
             div.popup__text.popup__errortext Lorem ipsum dolor sit, amet consectetur adipisicing elit. #[span Fugit] veritatis ipsa sit autem magni deserunt, minima earum veniam officia suscipit non nihil quod! Numquam laboriosam voluptate, quos dignissimos at quo.
             form(id="error-form").popup__form
                 button(type="submit" href="#error-messaging-success") Отправить
+            button(type="button").popup__close.js-popup__close
+            
 template(data-tpl-id="error-messaging-success")
     //- error messaging success
     div.popup__inner(id="error-messaging-success")
-        div.popup__box
+        div.popup__box.popup__box--small
             div.popup__title.popup__title--small Спасибо за вашу внимательность. #[br] Мы исправим эти ошибки в ближайшее время.
-            a.popup__innerclose.pill-btn(href="") Закрыть
+            a.popup__innerclose.pill-btn(href="").js-popup__close Закрыть
+            button(type="button").popup__close.js-popup__close
 template(data-tpl-id="brochure")
     //- запросить брошюру
     div.popup__inner.popup__inner--center(id="brochure")
@@ -92,12 +99,14 @@ template(data-tpl-id="brochure")
 template(data-tpl-id="comment-success")
     //- comment success
     div.popup__inner(id="comment-success")
-        div.popup__box
+        div.popup__box.popup__box--small
             div.popup__title.popup__title--small Ваш комментарий принят и отправлен на модерацию.
-            a.popup__innerclose.pill-btn(href="") Закрыть
+            a.popup__innerclose.pill-btn(href="").js-popup__close Закрыть
+            button(type="button").popup__close.js-popup__close
 template(data-tpl-id="form-success")
     //- form success
     div.popup__inner(id="form-success")
-        div.popup__box 
+        div.popup__box.popup__box--small
             div.popup__title.popup__title--small Запрос отправлен
-            a.popup__innerclose.pill-btn(href="") Закрыть
+            a.popup__innerclose.pill-btn(href="").js-popup__close Закрыть
+            button(type="button").popup__close.js-popup__close
