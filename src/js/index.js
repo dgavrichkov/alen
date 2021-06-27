@@ -293,6 +293,11 @@ class Popup {
 
     // open. публичный метод - передав сюда название нужного шаблона, откроем попап с соостветствующим содержимым
     open(id) {
+        if(this.isOpen && this._content) {
+            console.log("Ass");
+            this._content.remove();
+            this._content = null;
+        }
         this._popup.classList.add("is-active");
         hideScroll();
         this.isOpen = true;
@@ -300,11 +305,15 @@ class Popup {
         const template = document.querySelector(`[data-tpl-id="${id}"]`);
         this._popup.append(template.content.cloneNode(true));
         this._content = this._popup.querySelector(".popup__inner");
+        // для демо-варианта попапа с успехом. 
+        this._triggers = document.querySelectorAll(".js-popup");
+        this._setTriggersClickHandler();
     }
     // close
     close() {
         this._popup.classList.remove("is-active");
         this._content.remove();
+        this._content = null;
         showScroll();
         this.isOpen = false;
     }
@@ -313,10 +322,7 @@ class Popup {
     _handleTriggerClick(e) {
         e.preventDefault();
         const id = e.target.dataset.modalId;
-        if(!this.isOpen) {
-            this.open(id);
-        }
-        
+        this.open(id);
     }
     _handleCloseClick(e) {
         e.preventDefault();

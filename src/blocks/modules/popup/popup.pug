@@ -43,12 +43,13 @@ template(data-tpl-id="career")
                             ul
                                 li File #[span.form__filelist-del]
                     div.form__submit.form__box
-                        button(type="submit").pill-btn Отправить
+                        //- просто демо, потом убрать дата-атрибут и класс попап, вызывать открытие после ответа сервера
+                        button(type="submit" data-modal-id="career-success").js-popup.pill-btn Отправить
                 
 template(data-tpl-id="career-success")
     //- career success
-    div.popup__inner(id="career-success")
-        div.popup__box
+    div.popup__inner.popup__inner--center(id="career-success")
+        div.popup__box.popup__box--small
             div.popup__title Спасибо. Мы свяжемся с вами в скором времени.
             a.pill-btn(href="#careers") Отправить еще одно резюме
 template(data-tpl-id="error-messaging")
