@@ -291,32 +291,39 @@ class Popup {
         this._setCloseClickHandler();
     }
 
-    // open
-    open() {
+    // open. публичный метод - передав сюда название нужного шаблона, откроем попап с соостветствующим содержимым
+    open(id) {
         this._popup.classList.add("is-active");
-        this._popup.style.width = `calc(100% - ${getScrollbarSize()}px)`;
+        // this._popup.style.width = `calc(100% - ${getScrollbarSize()}px)`;
         hideScroll();
         this.isOpen = true;
+
+        const template = document.querySelector(`[data-tpl-id="${id}"]`);
+        this._popup.append(template.content.cloneNode(true));
+        this._content = this._popup.querySelector(".popup__inner");
     }
     // close
     close() {
         this._popup.classList.remove("is-active");
-        this._popup.style.width = "";
-        showScroll();
+        // this._popup.style.width = "";
         this._content.remove();
         this.isOpen = false;
+        this._popup.addEventListener("transitionend", function() {
+            if(!isOpen) {
+                showScroll();
+            }
+        });
+        // showScroll();
     }
     // load content
     // render content
     _handleTriggerClick(e) {
         e.preventDefault();
-        if(!this.isOpen) {
-            this.open();
-        }
         const id = e.target.dataset.modalId;
-        const template = document.querySelector(`[data-tpl-id="${id}"]`);
-        this._popup.append(template.content.cloneNode(true));
-        this._content = this._popup.querySelector(".popup__inner");
+        if(!this.isOpen) {
+            this.open(id);
+        }
+        
     }
     _handleCloseClick(e) {
         e.preventDefault();
@@ -369,6 +376,8 @@ class Form {
     // валидация полей формы
 
     // отправка формы
+
+    // обслуживание загрузки и удаления файла
     
     // вызов сообщения об успешной отправке? тут тоже нужно использовать компонент попапа для отрисовки нужного сообщения
     
@@ -424,7 +433,6 @@ const hideScroll = function () {
     document.body.style.position = "fixed";
     document.body.style.top = -window._scrollTop + "px"; // eslint-disable-line
     document.body.style.width = `calc(100% - ${getScrollbarSize()}px)`;
-    
     const fixHeader = document.querySelector(".header");
     if(header) {
         fixHeader.style.width = `calc(100% - ${getScrollbarSize()}px)`;

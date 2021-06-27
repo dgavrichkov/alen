@@ -6,32 +6,45 @@ div.popup
 //- шаблончики контента для попапов
 template(data-tpl-id="career")
     //- career
-    div.popup__inner(id="career")
+    div.popup__inner.popup__inner--center(id="career")
         div.popup__box
             div.popup__title Отправить резюме
             div.popup__form
                 form.form.send-resume-form(action="")
                     div.form__inputbox.form__box
-                        label(for="").form__label
-                        input(type="text") 
+                        label(for="career-name").form__label Имя*
+                        input(type="text" id="career-name") 
                     div.form__inputbox.form__box
-                        label(for="").form__label
-                        input(type="text")
+                        label(for="career-lastname").form__label Фамилия*
+                        input(type="text" id="career-lastname")
                     div.form__inputbox.form__box
-                        label(for="").form__label
-                        input(type="text") 
+                        label(for="career-email").form__label E-mail*
+                        input(type="text" id="career-email") 
                     div.form__inputbox.form__box
-                        label(for="").form__label
-                        input(type="text")
+                        label(for="career-tel").form__label Телефон*
+                        input(type="text" id="career-tel")
                     div.form__textarea.form__box
-                        label(for="").form__label
-                        textarea(name="")
+                        label(for="career-text").form__label Сопроводительное письмо
+                        textarea(name="" id="career-text")
                     div.form__file.form__box
-                        label(for="")
-                        input(type="file")
+                        label(for="career-file").form__label Прикрепить резюме
+                        input(
+                            type="file"
+                            id="career-file"
+                            name="file"
+                            multiple 
+                            data-fileloader-success="Файл загружен"
+                            data-fileloader-error="Ошибка загрузки"
+                            data-fileloader-process="Подождите идет загрузка…"
+                            hidden
+                        )
                         div.form__filelist
-                            label(for="")
-                            ul     
+                            label(for="career-file") Выберите файл
+                            ul
+                                li File #[span.form__filelist-del]
+                    div.form__submit.form__box
+                        button(type="submit").pill-btn Отправить
+                
 template(data-tpl-id="career-success")
     //- career success
     div.popup__inner(id="career-success")

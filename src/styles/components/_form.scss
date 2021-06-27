@@ -44,7 +44,64 @@
 
 	&__file {}
 
-	&__filelist {}
+	&__filelist {
+		label {
+			display: block;
+			width: 100%;
+			background: #f4f4f4;
+			border-radius: 23.5px;
+			border: 0;
+			resize: none;
+			transition: all 0.3s ease-in-out;
+			padding: 13px 30px;
+			font-family: Rubik;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 17px;
+			line-height: 20px;
+			color: #292929;
+			position: relative;
+			&::before {
+				content: "";
+				display: block;
+				width: 11px;
+				height: 14px;
+				background-image: $icon-file-load;
+				position: absolute;
+				top: 50%;
+				right: 30px;
+				transform: translate(0, -50%)
+			}
+		}
+		ul {
+			list-style: none;
+			margin-top: 25px;
+			margin-bottom: 5px;
+		}
+		li {
+			font-family: Rubik;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 17px;
+			line-height: 20px;
+			color: #292929;
+			margin-bottom: 20px;
+			display: flex;
+		}
+		&-del {
+			margin-left: 36px;
+			cursor: pointer;
+			&::before {
+				content: "";
+				display: block;
+				background-image: url(/images/cross_close.png);
+				width: 15px;
+				height: 15px;
+				background-size: contain;
+				transition: all 0.3s ease-in-out;
+			}
+		}
+	}
 
 	&__checkbox {
 		padding-left: 45px;
