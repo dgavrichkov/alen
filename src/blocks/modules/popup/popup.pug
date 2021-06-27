@@ -55,23 +55,23 @@ template(data-tpl-id="error-messaging-success")
             a.popup__innerclose.pill-btn(href="") Закрыть
 template(data-tpl-id="brochure")
     //- запросить брошюру
-    div.popup__inner(id="brochure")
+    div.popup__inner.popup__inner--center(id="brochure")
         div.popup__box
             div.popup__title Запросить брошюру о программе «Идеальные квартиры «А.Лен»
             div.popup__form
                 form.form
-                    div.form__input.form__box
-                        label(for="") Имя*
-                        input(type="text") 
-                    div.form__input.form__box
-                        label(for="") E-mail*
-                        input(type="text") 
+                    div.form__inputbox.form__box
+                        label(for="brochure-name").form__label Имя*
+                        input(type="text" id="brochure-name")
+                    div.form__inputbox.form__box
+                        label(for="brochure-email").form__label E-mail*
+                        input(type="text" id="brochure-email") 
                     div.form__textarea.form__box
-                        label(for="") Вопрос или комментарий
-                        textarea(name="", cols="30", rows="10")
+                        label(for="brochure-text").form__label Вопрос или комментарий
+                        textarea(name="", cols="30", rows="10" id="brochure-text")
                     div.form__checkbox.form__box
-                        input(type="checkbox") 
-                        label(for="")
+                        input(type="checkbox" id="brochure-agree") 
+                        label(for="brochure-agree")
                             span Даю согласие на обработку персональных данных в соответствии с политикой конфиденциальности
                     div.form__submit.form__box
                         button(type="submit").pill-btn Отправить

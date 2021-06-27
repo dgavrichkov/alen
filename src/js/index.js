@@ -280,7 +280,7 @@ class Popup {
         this._popup = document.querySelector(".popup");
         this._triggers = document.querySelectorAll(".js-popup");
         this._close = this._popup.querySelector(".popup__close");
-
+        this._content = null;
         this.isOpen = false;
     
         this._handleTriggerClick = this._handleTriggerClick.bind(this);
@@ -294,13 +294,16 @@ class Popup {
     // open
     open() {
         this._popup.classList.add("is-active");
+        this._popup.style.width = `calc(100% - ${getScrollbarSize()}px)`;
         hideScroll();
         this.isOpen = true;
     }
     // close
     close() {
         this._popup.classList.remove("is-active");
+        this._popup.style.width = "";
         showScroll();
+        this._content.remove();
         this.isOpen = false;
     }
     // load content
@@ -313,6 +316,7 @@ class Popup {
         const id = e.target.dataset.modalId;
         const template = document.querySelector(`[data-tpl-id="${id}"]`);
         this._popup.append(template.content.cloneNode(true));
+        this._content = this._popup.querySelector(".popup__inner");
     }
     _handleCloseClick(e) {
         e.preventDefault();
@@ -333,6 +337,11 @@ class Popup {
     _setCloseClickHandler() {
         this._close.addEventListener("click", this._handleCloseClick);
     }
+
+    // продумать формы в попапах
+    // если в попапе есть форма - ее не получится инициалзировать при загрузке страницы. ее нужно инициализировать после вставки формы в контент.
+    // класс форм нужно создать таким образом, чтобы было лекго выполнить все что нужно, просто передав в конструктор селектор и айдишник.
+
 }
 const popups = function() {
 
@@ -352,9 +361,18 @@ class Form {
     constructor() {
 
     }
+
     init() {
 
     }
+
+    // валидация полей формы
+
+    // отправка формы
+    
+    // вызов сообщения об успешной отправке? тут тоже нужно использовать компонент попапа для отрисовки нужного сообщения
+    
+    // поэтому мне надо создавать инстансы этих классов в одной области видимости - в тож онлоаде документа.
 }
 
 const forms = function() {
@@ -382,10 +400,22 @@ function debounce(func, wait, immediate) {
         if (callNow) func.apply(context, args);
     };
 }
-
+function getScrollbarSize() { 
+    let outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    document.body.appendChild(outer);
+    let widthNoScroll = outer.offsetWidth;
+    outer.style.overflow = "scroll";
+    let inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+    let widthWithScroll = inner.offsetWidth;
+    outer.parentNode.removeChild(outer);
+    return widthNoScroll - widthWithScroll;
+}
 // запрет скролла, фиксирует документ
 const hideScroll = function () {
-    // хорошо бы определить ширину полосы прокрутки и компенсировать общую ширину экрана, чтобы не было видно сдвига
     if(document.body.classList.contains("modal-open")) {
         return false;
     }
@@ -393,6 +423,12 @@ const hideScroll = function () {
     window._scrollTop = window.pageYOffset;
     document.body.style.position = "fixed";
     document.body.style.top = -window._scrollTop + "px"; // eslint-disable-line
+    document.body.style.width = `calc(100% - ${getScrollbarSize()}px)`;
+    
+    const fixHeader = document.querySelector(".header");
+    if(header) {
+        fixHeader.style.width = `calc(100% - ${getScrollbarSize()}px)`;
+    }
 };
 // снимает запрет прокрутки
 const showScroll = function () {
@@ -402,7 +438,13 @@ const showScroll = function () {
     document.body.classList.remove("modal-open");
     document.body.style.top = "";
     document.body.style.position = "";
+    document.body.style.width = "";
     window.scroll(0, window._scrollTop);
+
+    const fixHeader = document.querySelector(".header");
+    if(header) {
+        fixHeader.style.width = "";
+    }
 };
 
 // infoslider, mobile - accordeon. Dynamic width indicator

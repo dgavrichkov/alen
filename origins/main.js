@@ -47,10 +47,12 @@ if (!window.inited) {
         }
     );
 }
+// надо бы разобраться с этой штучкой. кой-где скорее всего устанавливаются пропорции изображения от этих кастомных свойств
 var setWindowHeight = function () {
     var vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", vh + "px");
 };
+
 $(window).on("load", function () {
     $("html,body").animate({
         scrollTop: scrollToHash
@@ -1780,6 +1782,8 @@ pages = {
         index: 0,
         loaded: false,
         intrvl: [],
+        // я так понимаю, что эта штука служит для определения цвета какого-то фона. видимо это лоадер.
+        // прикол в том, что вызов этой дряни для проектов не совершается
         bgSet: function () {
             this.items.each(function () {
                 var container = this.querySelector(".projects_item_loadBg");
@@ -1796,6 +1800,7 @@ pages = {
                 });
             });
         },
+        // а вызов этой штуки тоже закоментировано
         showImg: function () {
             this.index = 0;
             _this = this;
@@ -1824,6 +1829,7 @@ pages = {
                 y++;
             });
         },
+        // служит как минимум для анимированного показа картинок в широких карточках
         imageLoad: function ($this) {
             var $img = $this.find(".projects_item_img").eq(0);
             var img = $this.find(".projects_item_img").eq(0)[0];
@@ -1833,12 +1839,10 @@ pages = {
             $this.append("<span class='loadMonitor show'></span>");
             
             if (img.hasAttribute("data-src")) {
+                // используется событие загрузки элемента картинки
                 img.onload = function (e) {
                     $this.addClass("is-loaded");
                     $this.find(".loadMonitor").removeClass("show");
-                    /* if(location.href.split('?')[1] == 'test=true'){
-                      $(this).parent().find('.projects_item_content_title').text(this.complete)
-                    } */
                     setTimeout(function () {
                         $this.removeClass("is-proccess");
                         $this.find(".loadMonitor").remove();
@@ -1851,13 +1855,16 @@ pages = {
         loadImg: {
             checkPos: function () {
                 var _ = this;
+                // находит картинки по классу
                 var imgs = document.getElementsByClassName("projects_item_img");
+                // варварское отношение к переменным...
                 var imgs = Array.prototype.slice.call(imgs, 0);
                 var scroll = window.pageYOffset;
                 var height = window.innerHeight;
 
                 imgs.forEach(function (item, key) {
                     var parent = item.parentNode;
+                    // определили отступ контейнера картинки до верха
                     var top = parent.offsetTop;
                     if (scroll + height > top) {
                         if (parent.classList.contains("is-hidden")) {
@@ -1878,6 +1885,7 @@ pages = {
                 img.id = "to-loader-" + tempid;
                 return tempid;
             },
+            // этот метод по сути должен просто проставлять атрибут src
             loadingImg: function (img) {
                 var _ = this;
                 var tempId = _.beforeloadImg(img);
@@ -1889,6 +1897,7 @@ pages = {
                     img.src = img.getAttribute("data-src");
 
                 }, 1000);
+                // эта штучка скорее всего не работает совсем
                 var bLazy = new Blazy({
                     selector: "#to-loader-" + tempId,
                     success: function (element) {
@@ -1909,9 +1918,6 @@ pages = {
                 parent.classList.add("is-loaded");
                 var loadmonitor = parent.querySelectorAll(".loadMonitor")[0];
                 loadmonitor.classList.remove("show");
-                /* if(location.href.split('?')[1] == 'test=true'){
-                    $(this).parent().find('.projects_item_content_title').text(this.complete)
-                  } */
                 setTimeout(function () {
                     parent.classList.remove("is-proccess");
                     loadmonitor.remove();
@@ -1928,17 +1934,13 @@ pages = {
         events: function () {
             _this = this;
             this.eventsInited = true;
-            $(document).on("scroll", function () {
-                // _this.showImg();
-            });
         },
         init: function () {
             this.items = $(document).find(".projects_item");
             this.intrvl = [];
             this.index = 0;
-            //this.bgSet();
             if (!this.eventsInited) this.events();
-            // this.showImg();
+            // используется в этом блоке вместо showImg 
             this.loadImg.init();
         }
     },
@@ -1966,8 +1968,6 @@ pages = {
             },
             imageLoad: function () {
                 this.fpImg.parent().removeClass("is-hidden");
-                // this.fpImg.parent().addClass("is-proccess");
-                // this.fpImg.parent().append("<span class='loadMonitor show'></span>");
                 this.fpImg.load(
                     this.fpImg.attr("data-src"),
                     //callback
@@ -1976,18 +1976,7 @@ pages = {
                         $(this)
                             .parent()
                             .addClass("is-loaded");
-                        // $(this)
-                        //     .parent()
-                        //     .find(".loadMonitor")
-                        //     .removeClass("show");
                         var $this = $(this);
-                        // setTimeout(function () {
-                        //     $this.parent().removeClass("is-proccess");
-                        //     $this
-                        //         .parent()
-                        //         .find(".loadMonitor")
-                        //         .remove();
-                        // }, 500);
                     }
                 );
             },
@@ -2031,6 +2020,7 @@ pages = {
                     this.events();
             }
         },
+        // я так понимаю, что эта функция при скролле проверяет позицию и назначает элементам класс, который обеспечит эффект fadeUp
         scrollAnim: {
             items: null,
             fadeUp: function (item) {
@@ -2135,9 +2125,6 @@ pages = {
                         } else if ($(window).width() <= 768) {
                             if (!$(".infSlider_select").hasClass("active")) {
                                 $(".infSlider_select").addClass("active");
-                            /* var scroll = $(document).scrollTop();
-                            $(document).scrollTop(scroll + 1);
-                            $(document).scrollTop(scroll); */
                             } else {
                                 $(".infSlider_select").removeClass("active");
                             }
