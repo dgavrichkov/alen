@@ -17,16 +17,16 @@ template(data-tpl-id="career")
             div.popup__form
                 form.form.send-resume-form(action="")
                     div.form__inputbox.form__box
-                        label(for="career-name").form__label Имя*
+                        label(for="career-name").form__label Имя#[span *]
                         input(type="text" id="career-name") 
                     div.form__inputbox.form__box
-                        label(for="career-lastname").form__label Фамилия*
+                        label(for="career-lastname").form__label Фамилия#[span *]
                         input(type="text" id="career-lastname")
                     div.form__inputbox.form__box
-                        label(for="career-email").form__label E-mail*
+                        label(for="career-email").form__label E-mail#[span *]
                         input(type="text" id="career-email") 
                     div.form__inputbox.form__box
-                        label(for="career-tel").form__label Телефон*
+                        label(for="career-tel").form__label Телефон#[span *]
                         input(type="text" id="career-tel")
                     div.form__textarea.form__box
                         label(for="career-text").form__label Сопроводительное письмо
@@ -83,10 +83,10 @@ template(data-tpl-id="brochure")
             div.popup__form
                 form.form
                     div.form__inputbox.form__box
-                        label(for="brochure-name").form__label Имя*
+                        label(for="brochure-name").form__label Имя#[span *]
                         input(type="text" id="brochure-name")
                     div.form__inputbox.form__box
-                        label(for="brochure-email").form__label E-mail*
+                        label(for="brochure-email").form__label E-mail#[span *]
                         input(type="text" id="brochure-email") 
                     div.form__textarea.form__box
                         label(for="brochure-text").form__label Вопрос или комментарий
@@ -94,7 +94,7 @@ template(data-tpl-id="brochure")
                     div.form__checkbox.form__box
                         input(type="checkbox" id="brochure-agree") 
                         label(for="brochure-agree")
-                            span Даю согласие на обработку персональных данных в соответствии с политикой конфиденциальности
+                            span Даю согласие на обработку персональных данных в соответствии с #[a(href="") политикой конфиденциальности]
                     div.form__submit.form__box
                         button(type="submit").pill-btn Отправить
 template(data-tpl-id="comment-success")
