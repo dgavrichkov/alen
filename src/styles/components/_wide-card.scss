@@ -3,6 +3,9 @@
 	overflow: hidden;
 	max-height: 384px;
 	background-color: #000;
+	@media(orientation: landscape) {
+		max-height: 100vh;
+	}
 	&__pic {
 		width: 100%;
 		max-height: 384px;

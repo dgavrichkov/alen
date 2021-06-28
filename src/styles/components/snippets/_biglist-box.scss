@@ -7,6 +7,13 @@
 		line-height: 36px;
 		color: #292929;
 		margin-bottom: 60px;
+		@include to(1024px) {
+			margin-bottom: 14px;
+		}
+		@include to(768px) {
+			font-size: 16px;
+    		line-height: 36px;
+		}
 	}
 
 	&__item {

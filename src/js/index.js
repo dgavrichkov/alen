@@ -325,35 +325,49 @@ class Popup {
         hideScroll();
         this.isOpen = true;
 
-        const template = document.querySelector(`[data-tpl-id="${id}"]`);
-        this._popup.append(template.content.cloneNode(true));
-        this._content = this._popup.querySelector(".popup__inner");
-        this._content.style.opacity = 1;
+        this._renderContent(id);
 
         // при открытии назначаем обработчики вызовов попапа 
         this._triggers = document.querySelectorAll(".js-popup");
         this._closes = this._popup.querySelectorAll(".js-popup__close");
         this.init();
+
+        
     }
 
     close() {
         this._popup.style.opacity = "0";
         this._content.style.opacity = "0";
         
-        const clearClass = () => {
-            this._popup.classList.remove("is-active");
-            this._popup.classList.remove(this._extClass);
-            this._extClass = null;
-
-            this.isOpen = false;
-
-            showScroll();
-
-            this._popup.removeEventListener("transitionend", clearClass);
+        const clearClass = (e) => {
+            if(e.propertyName === "opacity" && e.elapsedTime >= 2) {
+                this._popup.classList.remove("is-active");
+                this._popup.classList.remove(this._extClass);
+                this._extClass = null;
+    
+                this.isOpen = false;
+    
+                showScroll();
+    
+                this._popup.removeEventListener("transitionend", clearClass);
+            }
         };
         
         this._popup.addEventListener("transitionend", clearClass);
 
+    }
+
+    _renderContent(id) {
+        const template = document.querySelector(`[data-tpl-id="${id}"]`);
+        this._popup.append(template.content.cloneNode(true));
+        this._content = this._popup.querySelector(".popup__inner");
+        this._content.style.opacity = 1;
+
+        const contentForm = this._content.querySelector(".form");
+        if(contentForm) {
+            const formComp = new Form(contentForm);
+            formComp.init();
+        }
     }
 
     _handleTriggerClick(e) {
@@ -366,6 +380,7 @@ class Popup {
             this.open(id);
         }
     }
+
     _handleCloseClick(e) {
         e.preventDefault();
         if(this.isOpen) {
@@ -387,11 +402,6 @@ class Popup {
             close.addEventListener("click", this._handleCloseClick);
         });
     }
-
-    // продумать формы в попапах
-    // если в попапе есть форма - ее не получится инициалзировать при загрузке страницы. ее нужно инициализировать после вставки формы в контент.
-    // класс форм нужно создать таким образом, чтобы было лекго выполнить все что нужно, просто передав в конструктор селектор и айдишник.
-
 }
 
 // скролл-анимация
@@ -531,28 +541,43 @@ const scrollAnimateFadeUp = function() {
 };
 
 class Form {
-    constructor() {
+    constructor(el) {
+        this._el = el;
 
+        this._handleSubmit = this._handleSubmit.bind(this);
     }
 
     init() {
-
+        console.log(this._el);
     }
 
     // валидация полей формы
 
     // отправка формы
+    _setSubmitHandler() {
+        this._el.addEventListener("submit", this._handleSubmit);
+    }
+    _handleSubmit() {
 
+    }
     // обслуживание загрузки и удаления файла
     
-    // вызов сообщения об успешной отправке? тут тоже нужно использовать компонент попапа для отрисовки нужного сообщения
-    
-    // поэтому мне надо создавать инстансы этих классов в одной области видимости - в тож онлоаде документа.
+    // вызов сообщения об успешной отправке - вызов попапа
 
-    // после успешной отправки формы и комментария использовать popup.open("form-success", ".popup--small")
+    // после успешной отправки формы использовать popup.open("form-success", ".popup--small")
+    // после успешной отправки комментария использовать popup.open("comment-success", ".popup--small")
 }
 
 const forms = function() {
+    // all existed in onload forms
+    const forms = document.querySelectorAll(".form");
+    if(forms.length === 0) {
+        return false;
+    }
+    forms.forEach(form => {
+        const formComp = new Form(form);
+        formComp.init();
+    })
     // form valudation
 
     // upload files
@@ -577,6 +602,7 @@ function debounce(func, wait, immediate) {
         if (callNow) func.apply(context, args);
     };
 }
+
 function getScrollbarSize() { 
     let outer = document.createElement("div");
     outer.style.visibility = "hidden";

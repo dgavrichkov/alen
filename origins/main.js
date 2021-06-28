@@ -720,9 +720,10 @@ templs = {
             });
         },
         forms: {
+            // обработка отправки формы карьеры, видимо эта форма единственная для всех попапов в этом файле
             submits: function () {
                 var _this = this;
-                // обработка отправки формы карьеры, видимо эта форма единственная для всех попапов
+                
                 $(".popup_item#careers form").submit(function (e) {
                     e.preventDefault();
                     $(this)

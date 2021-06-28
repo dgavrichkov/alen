@@ -112,7 +112,9 @@
 	&:hover {
 		background: #dddddd;
 	}
-
+	&:active, &:focus {
+		background: #f4f4f4;
+	}
 	@include to(768px) {
 		padding: 10px 20px;
 		font-size: 14px;
