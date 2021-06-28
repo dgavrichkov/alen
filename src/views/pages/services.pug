@@ -18,7 +18,7 @@ block content
 			//- section text 
 			section.text-section
 				div.text-section__inner
-					div.text-box
+					div.text-box.scroll-anim.fade-up
 						h1 Архитектура
 						p За этим словом – множество стадий, этапов и подэтапов, эскизов, проектных материалов и согласований к ним. За ним – творческий поиск и системный подход, совещания и совмещение разнообразных мнений, неординарные решения и разрешения на их воплощение в жизнь, на строительство.
 						p В составе услуг архитектурного бюро «А.Лен» в Санкт-Петербурге:
@@ -34,38 +34,35 @@ block content
 
 			//- services wide mosaic
 			section.tiles.services-section 
-				ul.tiles__list 
+				ul.tiles__list
 					li.tiles__tile
 						article.wide-card 
 							figure.wide-card__pic
 								picture
-									img(src="images/service-1.jpg")
+									img(src="" data-lazy-src="images/service-1.jpg")
 							a.wide-card__link(href="service.html")
 								span.wide-card__link-txt Генеральное проектирование
 					li.tiles__tile
 						article.wide-card 
 							figure.wide-card__pic
 								picture
-									img(src="images/service-2.jpg")
+									img(src="" data-lazy-src="images/service-2.jpg")
 							a.wide-card__link(href="service.html")
 								span.wide-card__link-txt Градостроительная оценка
 					li.tiles__tile
 						article.wide-card 
 							figure.wide-card__pic
 								picture
-									img(src="images/service-3.jpg")
+									img(src="" data-lazy-src="images/service-3.jpg")
 							a.wide-card__link(href="service.html")
 								span.wide-card__link-txt Разработка архитектурной концепции
 					li.tiles__tile
 						article.wide-card 
 							figure.wide-card__pic
 								picture
-									img(src="images/service-4.jpg")
+									img(src="" data-lazy-src="images/service-4.jpg")
 							a.wide-card__link(href="service.html")
 								span.wide-card__link-txt Брендинг проекта
-
-
-
 		div.page__popup
 			include ../../blocks/modules/popup/popup.pug
 

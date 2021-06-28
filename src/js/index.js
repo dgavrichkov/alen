@@ -439,6 +439,8 @@ const loadAnimate = function() {
     // -- объекты (слайдер) - на потомков общего блока (аним титул и слайдер-контейнер)
     // -- проекты (широкие карточки) - основано на ленивой загрузке. Изоброжение грузится - срабатывает плавный переход (трансформация компенсирующая изначальный сдвиг)
 
+    // надо написать такие фунцкции, чтобы можно было вызвать их коллбэком после какого-нибудь запроса на сервер
+
     const lazyImages = document.querySelectorAll("[data-lazy-src]");
     const animFooter = document.querySelector(".footer");
     const animFooterElems = animFooter.querySelectorAll("[data-scroll-anim]");
@@ -448,7 +450,7 @@ const loadAnimate = function() {
         threshold: 0,
     };
     const footerOptions = {
-        threshold: 0.5,
+        threshold: 0.25,
     }
 
     lazyImages.forEach(item => {
@@ -478,36 +480,54 @@ const loadAnimate = function() {
                         clearInterval(interval);
                     }
                 }, 100);
-            }
-        })
-    }
+            };
+        });
+    };
 
     const animObserver = new IntersectionObserver(footerCallback, footerOptions);
     animObserver.observe(animFooter);
 
+    
+};
+
+// такую функцию вызывать коллбэком при каком-то асинхронном действии, например при загрузке страницы новостей.
+const scrollAnimateFadeUp = function() {
     const fadeups = document.querySelectorAll(".scroll-anim.fade-up");
-    if(fadeups.length > 0) {
-        const fadeupOptions = {
-            threshold: 0.5,
-        }
-        
+    const singles = document.querySelectorAll(".scroll-anim-single.fade-up");
+    const fadeupOptions = {
+        threshold: 0.25,
+    }
+    if(fadeups.length > 0) {    
         fadeups.forEach(item => {
-            const fadeupCallback = function(entries) {
+            const childs = Array.from(item.children);
+            childs.forEach(child => {
+                const fadeupCallback = function(entries) {
+                    entries.forEach(entry => {
+                        const {isIntersecting} = entry;
+                        if(isIntersecting) {
+                            child.classList.add("is-animed");
+                        }
+                    })     
+                }
+                const fadeUpObserver = new IntersectionObserver(fadeupCallback, fadeupOptions);
+                fadeUpObserver.observe(child);
+            });
+        });
+    };
+    if(singles.length > 0) {
+        singles.forEach(item => {
+            const fadeSingleUpCallback = function(entries) {
                 entries.forEach(entry => {
                     const {isIntersecting} = entry;
                     if(isIntersecting) {
-                        const childs = item.children;
-                        Array.from(childs).forEach(child => {
-                            child.classList.add("is-animed");
-                        })
+                        item.classList.add("is-animed");
                     }
                 })
             }
-            const fadeUpObserver = new IntersectionObserver(fadeupCallback, fadeupOptions);
-            fadeUpObserver.observe(item);
+            const singleFadeObserver = new IntersectionObserver(fadeSingleUpCallback, fadeupOptions);
+            singleFadeObserver.observe(item);
         });
-    }
-
+    };
 };
 
 class Form {
@@ -923,6 +943,7 @@ window.onload = function() {
     infoSlider();
     gallery();
     loadAnimate();
+    scrollAnimateFadeUp();
     forms();
 
     const popup = new Popup();

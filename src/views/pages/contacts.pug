@@ -19,7 +19,7 @@ block content
 					//- сюда вставлять карту
 					div.map
 						img(src="images/map-thumb.jpg")
-					div.section-map__content
+					div.section-map__content.scroll-anim-single.fade-up
 						div.section-map__item
 							span.section-map__label Телефон
 							div.section-map__value
@@ -50,14 +50,14 @@ block content
 			section.connect 
 				div.connect__inner
 					div.connect__content
-						header.connect__header
+						header.connect__header.scroll-anim.fade-up
 							div.connect__header-top
 								h2.connect__title Задайте вопрос «А.Лен». Найдем ответы!
 								div.connect__text
 									| Напишите нам Ваш запрос – мы дадим обратную связь.&nbsp;
 									<span class="noWrap">Или позвоните&nbsp;</span>
 									| к нам в офис.
-						form(id="contacts_form").form.connect__form
+						form(id="contacts_form").form.connect__form.scroll-anim.fade-up
 							div.form__box.form__inputbox
 								label(for="name1").form__label Имя#[span *]
 								<input type="text" name="name" id="name1" required="">
@@ -80,7 +80,7 @@ block content
 								</label>
 							button(type="submit").pill-btn.connect__submit Отправить
 
-						footer.connect__footer
+						footer.connect__footer.scroll-anim.fade-up
 							h3.connect__footer-cap Ищете работу или стажировку?
 							div.connect__text Посмотрите наши вакансии.
 							a(href="/about/career/#career").pill-btn Вакансии «А.Лен»
