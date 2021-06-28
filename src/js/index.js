@@ -1,7 +1,3 @@
-// import "./import/swiper-bundle.min.js";
-import footerAccordeon from "%modules%/footer/footer";
-import header from "%modules%/header/header";
-
 // preloader
 // -- show preloader (start of async operations)
 // -- -- render preloader node
@@ -9,6 +5,238 @@ import header from "%modules%/header/header";
 // -- hide preloader (end of async operations)
 // -- -- animate preloader node
 // -- -- destroy preloader node
+
+class Header {
+    constructor(headerEl) {
+        this._header = headerEl;
+        this._menu = this._header.querySelector(".header__menu");
+        this._search = this._header.querySelector(".header__search");
+        this._searchInput = this._search.querySelector(".header__search-field");
+        this._searchForm = this._search.querySelector(".header__search-form");
+        this._submenu = this._header.querySelector(".header__submenu");
+        this._burger = this._header.querySelector(".header__mobile-burger");
+        this._mobmenu = this._header.querySelector(".header__mobile-menu");
+        this._mobItems = this._mobmenu.querySelectorAll(".mobile-menu__item");
+
+        this._animateDelay = 50;
+
+        this._oldScroll = 0;
+        this._isBurgerOpen = false;
+        this._isSearchOpen = false;
+        this._isSubmenuOpen = false;
+
+        this._handleScrolling = this._handleScrolling.bind(this);
+        this._handleBurger = this._handleBurger.bind(this);
+        this._handleSearchBtn = this._handleSearchBtn.bind(this);
+        this._handleSearchClose = this._handleSearchClose.bind(this);
+        this._handleMobileSearchOpen = this._handleMobileSearchOpen.bind(this);
+        this._handleMobileSearchClose = this._handleMobileSearchClose.bind(this);
+        this._handleSubmenu = this._handleSubmenu.bind(this);
+    }
+
+    init() {
+        this._setHandlerScrolling();
+        this._setHandlerBurger();
+        this._setHandlerSearch();
+        this._setHandlerSubmenu();
+    }
+    // scrolling
+    _setHandlerScrolling() {
+        document.addEventListener("scroll", this._handleScrolling);
+    }
+
+    _handleScrolling() {
+        const headerHeight = this._header.getBoundingClientRect().height;
+        let scrolled = document.documentElement.scrollTop;
+        if(this._oldScroll < scrolled) {
+            if(scrolled > headerHeight) {
+                this._setClassIsHidden();
+                this._setClassIsScrolled();
+            }
+        } else {
+            if(scrolled > headerHeight) {
+                this._delClassIsHidden();
+                this._setClassIsScrolled();
+            }
+        }
+        if(scrolled === 0) {
+            this._delClassIsScrolled();
+        }
+        this._oldScroll = scrolled;
+    }
+    // - burger handling
+    _setHandlerBurger() {
+        this._burger.addEventListener("click", this._handleBurger);
+    }
+
+    _handleBurger(e) {
+        e.preventDefault();
+        if(this._isBurgerOpen) {
+            this.closeBurger();
+        } else {
+            this.openBurger();
+        }
+    }
+
+    openBurger() {
+        this._setClassIsBurger();
+        this._isBurgerOpen = true;
+        this._bodyFreeze();
+        this._mobItemsFadeIn();
+    }
+
+    closeBurger() {
+        this._mobItemsFadeOut(() => {
+            this._delClassIsBurger();
+        });
+        // this._delClassIsBurger();
+        this._isBurgerOpen = false;
+        this._bodyUnfreeze();
+    }
+    _mobItemsFadeIn() {
+        const _this = this;
+        let i = 0;
+        const interval = setInterval(function() {
+            if(i < _this._mobItems.length) {
+                _this._mobItems[i].classList.add("is-animed");
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 50);
+    }
+
+    _mobItemsFadeOut(callback) {
+        const _this = this;
+        let i = _this._mobItems.length - 1;
+        const interval = setInterval(function() {
+            if(i >= 0) {
+                _this._mobItems[i].classList.remove("is-animed");
+                i--;
+            } else {
+                if(callback) {
+                    callback();
+                }
+                clearInterval(interval);
+            }
+        }, 50);
+    }
+    // - search handling
+    _setHandlerSearch() {
+        const trigger = this._header.querySelector(".header__search-btn");
+        const clear = this._search.querySelector(".header__search-clear");
+        const mobileTrigger = this._mobmenu.querySelector(".mobile-menu__search");
+        const mobileClose = this._header.querySelector(".header__mobile-search-back");
+
+        trigger.addEventListener("click", this._handleSearchBtn);
+        clear.addEventListener("click", this._handleSearchClose);
+        mobileTrigger.addEventListener("click", this._handleMobileSearchOpen);
+        mobileClose.addEventListener("click", this._handleMobileSearchClose);
+    }
+    _handleSearchBtn(e) {
+        e.preventDefault();
+        if(!this._isSearchOpen) {
+            this._setClassIsSearch();
+            this._isSearchOpen = true;
+            this._bodyFreeze();
+        } else {
+            this._searchForm.submit();
+        }
+    }
+    _handleSearchClose(e) {
+        e.preventDefault();
+        if(this._isSearchOpen) {
+            this._searchInput.value = "";
+            this._delClassIsSearch();
+            this._isSearchOpen = false;
+            this._bodyUnfreeze();
+        } else {
+            return;
+        }
+    }
+    _handleMobileSearchOpen(e) {
+        e.preventDefault();
+        if(!this._isSearchOpen) {
+            this._setClassIsSearch();
+            this._isSearchOpen = true;
+            this._bodyFreeze();
+        }
+    }
+    _handleMobileSearchClose(e) {
+        e.preventDefault();
+        if(this._isSearchOpen) {
+            this._searchInput.value = "";
+            this._delClassIsSearch();
+            this._isSearchOpen = false;
+            this._bodyUnfreeze();
+        } else {
+            return;
+        }
+    }
+
+    _setHandlerSubmenu() {
+        if(!this._submenu) {
+            return;
+        }
+        this._submenu.addEventListener("click", this._handleSubmenu);
+    }
+    _handleSubmenu(e) {
+        if(window.innerWidth <= 1024) {
+            if(e.target.classList.contains("submenu__link")) {
+                return;
+            }
+            e.preventDefault();
+            if(!this._isSubmenuOpen) {
+                this._submenu.classList.add("is-active");
+                this._isSubmenuOpen = true;
+                this._submenu.style.height = this._submenu.scrollHeight + 15 + "px";
+            } else {
+                this._submenu.classList.remove("is-active");
+                this._submenu.style.height = "";
+                this._isSubmenuOpen = false;
+            }
+        }
+    }
+
+    _setClassIsBurger () {
+        this._header.classList.add("is-burger");
+    }
+    _delClassIsBurger () {
+        this._header.classList.remove("is-burger");
+    }
+    _setClassIsSearch() {
+        this._header.classList.add("is-search");
+    }
+    _delClassIsSearch() {
+        this._header.classList.remove("is-search");
+    }
+    _setClassIsHidden() {
+        this._header.classList.add("is-hidden");
+    }
+    _delClassIsHidden() {
+        this._header.classList.remove("is-hidden");
+    }
+    _setClassIsScrolled() {
+        this._header.classList.add("is-scrolled");
+    }
+    _delClassIsScrolled() {
+        this._header.classList.remove("is-scrolled");
+    }
+
+    // TODO - safari compatible
+    _bodyFreeze() {
+        document.body.classList.add("is-unscrolled");
+    }
+    _bodyUnfreeze() {
+        document.body.classList.remove("is-unscrolled");
+    }
+}
+
+const header = function () {
+    const headerEl = document.querySelector(".header");
+    const header = new Header(headerEl);
+    header.init();
+};
 
 const heroSlider = function() {
     class HeroSlider {
@@ -404,53 +632,7 @@ class Popup {
     }
 }
 
-// скролл-анимация
-class ScrollAnimate {
-    constructor() {
-        this._blocksToAnimate = null;
-        this._parentsToAnimate = null;
-    }
-
-    init() {
-
-    }
-
-    checkPosition() {
-
-    }
-
-    animateBlock() {
-
-    }
-
-    _setObserver() {
-
-    }
-
-    _handleObserve() {
-
-    }
-
-    _setDocumentScrollHandler() {
-        // мб и не понадобится, но вдруг я буду просто копировать
-    }
-    _handleDocumentScroll() {
-
-    }
-
-    // lazy load img on block
-}
-
 const loadAnimate = function() {
-    // animation on load blocks - intersection observer
-    // -- загрузка фоток на странице проекта
-    // -- лаба - контентные блоки - на потомков
-    // -- биг лист - на потомков самого списка (анимируются элементы списка)
-    // -- объекты (слайдер) - на потомков общего блока (аним титул и слайдер-контейнер)
-    // -- проекты (широкие карточки) - основано на ленивой загрузке. Изоброжение грузится - срабатывает плавный переход (трансформация компенсирующая изначальный сдвиг)
-
-    // надо написать такие фунцкции, чтобы можно было вызвать их коллбэком после какого-нибудь запроса на сервер
-
     const lazyImages = document.querySelectorAll("[data-lazy-src]");
     const animFooter = document.querySelector(".footer");
     const animFooterElems = animFooter.querySelectorAll("[data-scroll-anim]");
@@ -578,13 +760,6 @@ const forms = function() {
         const formComp = new Form(form);
         formComp.init();
     })
-    // form valudation
-
-    // upload files
-
-    // форма комментариев
-
-    // форма вакансий 
 };
 
 // debounce
@@ -954,6 +1129,23 @@ const careerAccordeon = function() {
             }
         });
     });
+};
+
+const footerAccordeon = () => {
+    const triggers = document.querySelectorAll(".footer__title");
+    triggers.forEach(trg => {
+        trg.addEventListener("click", function() {
+            if(!trg.parentElement.classList.contains("is-active")) {
+                trg.parentElement.classList.add("is-active");
+                trg.parentElement.style.height = trg.parentElement.scrollHeight + "px";
+            } else {
+                trg.parentElement.classList.remove("is-active");
+                trg.parentElement.style.height = "";
+            
+            }
+        });
+    });
+
 };
 
 window.onload = function() {
