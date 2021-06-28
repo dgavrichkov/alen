@@ -722,9 +722,18 @@
 		line-height: 100%;
 		text-align: right;
 		color: rgba(255, 255, 255, 0.7);
-		transition: all 0.3s ease-in-out;
+		transition: opacity 0.3s ease-in-out, margin 0.3s ease-in-out;
+
+		opacity: 0;
+    	margin-right: -25px;
+
 		@media (hover: hover) {
 			color: #ffffff;
+		}
+
+		&.is-animed {
+			opacity: 1;
+			margin-right: 0;
 		}
 	}
 

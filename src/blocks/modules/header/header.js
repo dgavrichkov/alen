@@ -8,6 +8,9 @@ class Header {
         this._submenu = this._header.querySelector(".header__submenu");
         this._burger = this._header.querySelector(".header__mobile-burger");
         this._mobmenu = this._header.querySelector(".header__mobile-menu");
+        this._mobItems = this._mobmenu.querySelectorAll(".mobile-menu__item");
+
+        this._animateDelay = 50;
 
         this._oldScroll = 0;
         this._isBurgerOpen = false;
@@ -61,14 +64,55 @@ class Header {
     _handleBurger(e) {
         e.preventDefault();
         if(this._isBurgerOpen) {
-            this._delClassIsBurger();
-            this._isBurgerOpen = false;
-            this._bodyUnfreeze();
+            this.closeBurger();
         } else {
-            this._setClassIsBurger();
-            this._isBurgerOpen = true;
-            this._bodyFreeze();
+            this.openBurger();
         }
+    }
+
+    openBurger() {
+        this._setClassIsBurger();
+        this._isBurgerOpen = true;
+        this._bodyFreeze();
+        this._mobItemsFadeIn();
+    }
+
+    closeBurger() {
+        this._mobItemsFadeOut(() => {
+            this._delClassIsBurger();
+        });
+        // this._delClassIsBurger();
+        this._isBurgerOpen = false;
+        this._bodyUnfreeze();
+    }
+
+    _mobItemsFadeIn() {
+        const _this = this;
+        let i = 0;
+        const interval = setInterval(function() {
+            if(i < _this._mobItems.length) {
+                _this._mobItems[i].classList.add("is-animed");
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 50);
+    }
+
+    _mobItemsFadeOut(callback) {
+        const _this = this;
+        let i = _this._mobItems.length - 1;
+        const interval = setInterval(function() {
+            if(i >= 0) {
+                _this._mobItems[i].classList.remove("is-animed");
+                i--;
+            } else {
+                if(callback) {
+                    callback();
+                }
+                clearInterval(interval);
+            }
+        }, 50);
     }
 
     // - search handling
@@ -123,10 +167,7 @@ class Header {
             return;
         }
     }
-    
-    // submenu
-    // resize
-    // destroy dropdown ??
+
     _setHandlerSubmenu() {
         if(!this._submenu) {
             return;
@@ -150,10 +191,6 @@ class Header {
             }
         }
     }
-
-    // what we need to do
-    // - fix scrolling when search or burger opened
-    // - set submenu as dropdown when width <= 1024
 
     _setClassIsBurger () {
         this._header.classList.add("is-burger");
