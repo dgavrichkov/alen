@@ -32,7 +32,7 @@ block content
 
 			//- section-compose project
 			section.compose
-				div.compose__inner
+				div.compose__inner.scroll-anim.fade-up
 					h2.compose__title Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore voluptas id non doloremque, asperiores dolor
 					div.compose__content
 						div.compose__list.compose-slider.swiper-container
@@ -98,12 +98,12 @@ block content
 			//- section text
 			section.text-section
 				div.text-section__inner
-					div.text-box
+					div.text-box.scroll-anim.fade-up
 						p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo neque ex omnis at, dicta voluptatibus porro ipsam eos autem doloremque corrupti odio rerum voluptates libero earum commodi et ad cumque.
 						p В проект нас пригласил воронежский девелопер Евгений Хамин и его компания ВДК, которая искала мастерскую, способную «перерисовать» архитектуру уже строящегося жилого комплекса. Девелопер в поиске свежих идей обращался к нескольким московским и петербургским бюро, нам посчастливилось познакомиться с этим энергичным человеком как раз в тот момент, когда у него сложилось представление о том, какую архитектуру он хотел бы видеть в своих проектах. И это представление удивительным образом легко легло на нашу концепцию «Идеальный дом / Идеальная квартира / Идеальный ландшафт».
 						p Морской пассажирский терминал включает здания паромного и круизных вокзалов; надземные галереи, связывающие выходы из круизных судов со вторым этажом паромного терминала; центр управления портом (ЦУП); служебные здания пунктов пропуска
 			//- section map
-			section.project-map 
+			section.project-map.scroll-anim.fade-up
 				div.project-map__inner
 					div.project-map__main
 					article.project-map__info
@@ -111,7 +111,7 @@ block content
 						a.project-map__link.pill-btn(href="tomap") На карте
 			//- section info
 			section.info-section
-				div.info-section__inner
+				div.info-section__inner.scroll-anim.fade-up
 					div.infoslider
 						header.infoslider__head
 							div.infoslider__tabs
@@ -136,13 +136,17 @@ block content
 								div(data-infoslider-tab="2").infoslider__item.swiper-slide
 									ul.infoslider__content
 										li.infoslider__option
-											div.infoslider__option-big С.И. Орешкин - руководитель проекта 
+											div.infoslider__option-reward
+												a(href="" data-gallery-call) Золотой диплом IX Российской национальной премии по ландшафтной архитектуре 2018
 										li.infoslider__option
-											div.infoslider__option-big Р.В. Андреева - главный архитектор проекта 
+											div.infoslider__option-reward
+												a(href="" data-gallery-call) Победитель премии «Развитие регионов. Лучшее в России»
 										li.infoslider__option
-											div.infoslider__option-big С.В. Кузьмин - главный инженер проекта 
+											div.infoslider__option-key
+												a(href="" data-gallery-call) Победитель премии Move Realty Awards в номинации «Проект года бизнес-класса Санкт-Петербург» 2018
 										li.infoslider__option
-											div.infoslider__option-big Е.С. Орешкина, Е.А. Белят, В.Ю. Шляга, М.А. Шалина, Н.В. Тимонин, Е.С. Каретина, Н.К. Пальникова, А.В. Храмова - архитекторы  
+											div.infoslider__option-key
+												a(href="" data-gallery-call) Номинант Urban Awards 2016, 2017 в категории «Лучшая архитектурная концепция Санкт-Петербурга
 								div(data-infoslider-tab="3").infoslider__item.swiper-slide
 									ul.infoslider__content
 										li.infoslider__option
@@ -151,7 +155,7 @@ block content
 
 			//- section tiles items
 			section.items-section 
-				div.items-section__inner
+				div.items-section__inner.scroll-anim.fade-up
 					//- just items
 					ul.items-section__items.items-section__content
 						li.items-section__item 

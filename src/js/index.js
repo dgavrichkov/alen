@@ -268,7 +268,24 @@ const heroSlider = function() {
 
 // gallery
 const gallery = function() {
-    
+    // preview load anim
+    const preview = document.querySelector(".gallery-preview");
+    if(preview) {
+        const options = {
+            threshold: 0.75,
+        }
+        const callback = function(entries) {
+            entries.forEach(entry => {
+                const {isIntersecting} = entry;
+                if(isIntersecting) {
+                    preview.classList.add("is-animed");
+                } 
+            })
+        }
+        const previewObserver = new IntersectionObserver(callback, options);
+        
+        previewObserver.observe(preview);
+    }
     
     //-- gallery call
 
@@ -417,15 +434,11 @@ class ScrollAnimate {
 const loadAnimate = function() {
     // animation on load blocks - intersection observer
     // -- загрузка фоток на странице проекта
-    // -- блоки подвала - на блок
     // -- лаба - контентные блоки - на потомков
     // -- биг лист - на потомков самого списка (анимируются элементы списка)
     // -- объекты (слайдер) - на потомков общего блока (аним титул и слайдер-контейнер)
     // -- проекты (широкие карточки) - основано на ленивой загрузке. Изоброжение грузится - срабатывает плавный переход (трансформация компенсирующая изначальный сдвиг)
-    // -- 
-    // -- 
-    // -- 
-    // -- 
+
     const lazyImages = document.querySelectorAll("[data-lazy-src]");
     const animFooter = document.querySelector(".footer");
     const animFooterElems = animFooter.querySelectorAll("[data-scroll-anim]");
@@ -435,7 +448,6 @@ const loadAnimate = function() {
         threshold: 0,
     };
     const footerOptions = {
-        // rootMargin: "0",
         threshold: 0.5,
     }
 
@@ -472,6 +484,29 @@ const loadAnimate = function() {
 
     const animObserver = new IntersectionObserver(footerCallback, footerOptions);
     animObserver.observe(animFooter);
+
+    const fadeups = document.querySelectorAll(".scroll-anim.fade-up");
+    if(fadeups.length > 0) {
+        const fadeupOptions = {
+            threshold: 0.5,
+        }
+        
+        fadeups.forEach(item => {
+            const fadeupCallback = function(entries) {
+                entries.forEach(entry => {
+                    const {isIntersecting} = entry;
+                    if(isIntersecting) {
+                        const childs = item.children;
+                        Array.from(childs).forEach(child => {
+                            child.classList.add("is-animed");
+                        })
+                    }
+                })
+            }
+            const fadeUpObserver = new IntersectionObserver(fadeupCallback, fadeupOptions);
+            fadeUpObserver.observe(item);
+        });
+    }
 
 };
 
@@ -609,8 +644,8 @@ const infoSlider = function() {
             this._setHeadClickHandler();
             this._setResizeHandler();
             this._swiper = new Swiper(this._body, this._options); // eslint-disable-line
-            this._options.activeIndex = this._defineSlideOnSwiper();
             this._swiper.init();
+            this._swiper.slideTo(this._defineSlideOnSwiper());
         }
 
         _setHeadClickHandler() {

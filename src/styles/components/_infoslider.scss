@@ -134,8 +134,12 @@
 			grid-template-columns: 1fr;
 			
 		}
+		a {
+			color: #0058dd;
+		}
 	}
-	&__option-key {
+	&__option-key,
+	&__option-reward {
 		font-style: normal;
 		font-weight: 300;
 		font-size: 14px;
@@ -145,6 +149,9 @@
 			justify-self: center;
 			text-align: center;
 		}
+	}
+	&__option-reward {
+		grid-column: 1 / -1;
 	}
 	&__option-value {
 		font-style: normal;
