@@ -377,11 +377,102 @@ class Popup {
 
 }
 
+// скролл-анимация
+class ScrollAnimate {
+    constructor() {
+        this._blocksToAnimate = null;
+        this._parentsToAnimate = null;
+    }
+
+    init() {
+
+    }
+
+    checkPosition() {
+
+    }
+
+    animateBlock() {
+
+    }
+
+    _setObserver() {
+
+    }
+
+    _handleObserve() {
+
+    }
+
+    _setDocumentScrollHandler() {
+        // мб и не понадобится, но вдруг я буду просто копировать
+    }
+    _handleDocumentScroll() {
+
+    }
+
+    // lazy load img on block
+}
+
 const loadAnimate = function() {
     // animation on load blocks - intersection observer
     // -- загрузка фоток на странице проекта
+    // -- блоки подвала - на блок
+    // -- лаба - контентные блоки - на потомков
+    // -- биг лист - на потомков самого списка (анимируются элементы списка)
+    // -- объекты (слайдер) - на потомков общего блока (аним титул и слайдер-контейнер)
+    // -- проекты (широкие карточки) - основано на ленивой загрузке. Изоброжение грузится - срабатывает плавный переход (трансформация компенсирующая изначальный сдвиг)
     // -- 
     // -- 
+    // -- 
+    // -- 
+    const lazyImages = document.querySelectorAll("[data-lazy-src]");
+    const animFooter = document.querySelector(".footer");
+    const animFooterElems = animFooter.querySelectorAll("[data-scroll-anim]");
+    
+    const options = {
+        rootMargin: "50px",
+        threshold: 0,
+    };
+    const footerOptions = {
+        // rootMargin: "0",
+        threshold: 0.5,
+    }
+
+    lazyImages.forEach(item => {
+        const callback = function(entries) {
+            entries.forEach(entry => {
+                const {isIntersecting} = entry;
+                if(isIntersecting) {
+                    item.src = item.dataset.lazySrc;
+                    item.closest(".tiles__tile").classList.add("is-loaded");
+                }
+            })
+        }
+        const lazyObserver = new IntersectionObserver(callback, options);
+        lazyObserver.observe(item);
+    });
+
+    const footerCallback = function(entries) {
+        entries.forEach(entry => {
+            const {isIntersecting} = entry;
+            if(isIntersecting) {
+                let i = 0;
+                let interval = setInterval(function() {
+                    if(i < animFooterElems.length) {
+                        animFooterElems[i].classList.add("is-animed");
+                        i++
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 100);
+            }
+        })
+    }
+
+    const animObserver = new IntersectionObserver(footerCallback, footerOptions);
+    animObserver.observe(animFooter);
+
 };
 
 class Form {

@@ -600,6 +600,7 @@ templs = {
             if (!this.animed) {
                 this.animed = true;
                 var i = 0;
+                // находит ряд элементов
                 var items = $(document).find(
                     ".footer_menu_wrapper,.footer_col:last-child, .footer_col:last-child .footer_title"
                 );

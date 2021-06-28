@@ -1,4 +1,7 @@
 .shortabout {
+	@include to(1024px) {
+		display: none;
+	}
 	padding-bottom: 70px;
 	padding-top: 70px;
 

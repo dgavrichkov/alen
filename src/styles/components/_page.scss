@@ -20,6 +20,16 @@
 			font-weight: 400;
 		}
 	}
+	&--main {
+		@include to(1024px) {
+			.shortabout {
+				display: none;
+			}
+			.page__footer {
+				display: none;
+			}
+		}
+	}
 }
 
 .page-bar {

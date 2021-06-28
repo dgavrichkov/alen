@@ -9,12 +9,32 @@
 	}
 
 	&__tile {
+		background: #000000;
 		@include from(769px) {
 			border-bottom: 1px solid #000000;
 			&:nth-child(2n + 1) {
 				border-right: 1px solid #000000;
 			}
 		}
-		
+		.wide-card {
+			position: relative;
+    		transition: transform 0.9s ease-in-out, opacity 0.9s;
+		}
+		&:nth-child(2n-1) {
+			.wide-card {
+				transform: translate(-5%, 25%);
+
+			}
+		}
+		&:nth-child(2n) {
+			.wide-card {
+				transform: translate(5%, 25%);
+			}
+		}
+		&.is-loaded {
+			.wide-card {
+				transform: translate(0, 0);
+			}
+		}
 	}
 }
