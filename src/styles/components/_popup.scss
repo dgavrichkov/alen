@@ -9,7 +9,8 @@
 	opacity: 0;
 	pointer-events: none;
 	visibility: hidden;
-	transition: opacity 2s, visibility 2s;
+	// transition: opacity 2s, visibility 2s;
+	transition: opacity 2s;
 
 	&__inner {
 		display: flex;
@@ -160,11 +161,11 @@
 	}
 
 	&.is-active {
-		opacity: 1;
+		// opacity: 1;
 		visibility: visible;
 		pointer-events: all;
 		.popup__inner {
-			opacity: 1;
+			// opacity: 1;
 		}
 	}
 	&--small {

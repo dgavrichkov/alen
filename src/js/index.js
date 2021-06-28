@@ -298,7 +298,9 @@ class Popup {
             this._content.remove();
             this._content = null;
         }
+        
         this._popup.classList.add("is-active");
+        this._popup.style.opacity = "1";
         if(extClass) {
             this._extClass = extClass;
             this._popup.classList.add(this._extClass);
@@ -309,20 +311,27 @@ class Popup {
         const template = document.querySelector(`[data-tpl-id="${id}"]`);
         this._popup.append(template.content.cloneNode(true));
         this._content = this._popup.querySelector(".popup__inner");
-        // для демо-варианта попапа с успехом. 
+        this._content.style.opacity = 1;
+
+        // при открытии назначаем обработчики вызовов попапа 
         this._triggers = document.querySelectorAll(".js-popup");
         this._closes = this._popup.querySelectorAll(".js-popup__close");
         this.init();
     }
-    // close
-    close() {
-        this._popup.classList.remove("is-active");
-        showScroll();
-        this.isOpen = false;
 
+    close() {
+        this._popup.style.opacity = "0";
+        this._content.style.opacity = "0";
+        
         const clearClass = () => {
+            this._popup.classList.remove("is-active");
             this._popup.classList.remove(this._extClass);
             this._extClass = null;
+
+            this.isOpen = false;
+
+            showScroll();
+
             this._popup.removeEventListener("transitionend", clearClass);
         };
         
