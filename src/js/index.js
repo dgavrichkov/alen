@@ -724,27 +724,52 @@ const scrollAnimateFadeUp = function() {
 
 class Form {
     constructor(el) {
-        this._el = el;
+        this._el = el; // form 
+        this._fileinputs = this._el.querySelectorAll("input[type='file']");
+
+        this._files = [];
 
         this._handleSubmit = this._handleSubmit.bind(this);
+        this._handleFileinputChange = this._handleFileinputChange.bind(this);
+        this._handleFileDelClick = this._handleFileDelClick.bind(this);
     }
 
     init() {
         console.log(this._el);
     }
 
-    // валидация полей формы
 
-    // отправка формы
     _setSubmitHandler() {
         this._el.addEventListener("submit", this._handleSubmit);
     }
+
+    _setFileinputChangeHandler() {
+
+    }
+
+    _setFileDelClick() {
+
+    }
+
     _handleSubmit() {
 
     }
+
+    _handleFilenputChange() {
+
+    }
+
+    _handleFileDelClick() {
+
+    }
+
     // обслуживание загрузки и удаления файла
-    
+    _uploadFiles()
     // вызов сообщения об успешной отправке - вызов попапа
+
+    // валидация полей формы
+    // -- error
+    
 
     // после успешной отправки формы использовать popup.open("form-success", ".popup--small")
     // после успешной отправки комментария использовать popup.open("comment-success", ".popup--small")

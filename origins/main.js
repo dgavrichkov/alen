@@ -755,6 +755,7 @@ templs = {
             var succesTextLoad = inputFile.attr("succesTextLoad");
             var errorTextLoad = inputFile.attr("errorTextLoad");
             var proccesTextLoad = inputFile.attr("proccesTextLoad");
+            
             this.files.forEach(function (item, key) {
                 var data_ = new FormData();
                 data_.append(key, item.file);
