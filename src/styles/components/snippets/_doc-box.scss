@@ -17,7 +17,9 @@
 	}
 
 	&__pic {
-		width: 40%;
+		@include from(769px) {
+			min-width: 358px;
+		}
 		@include to(768px) {
 			width: 50%;
 		}

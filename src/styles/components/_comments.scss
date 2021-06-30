@@ -53,6 +53,16 @@
 	&__text {
 		grid-column: 1 / -1;
 	}
+	&__remember, &__agree {
+		@include from(1024px) {
+			margin-top: 12px;
+		}
+	}
+	&__submit {
+		@include from(1024px) {
+			margin-top: 18px;
+		}
+	}
 }
 
 .comment-item {

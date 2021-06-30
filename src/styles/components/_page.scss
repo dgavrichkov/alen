@@ -48,11 +48,13 @@
 	}
 	@include bigColumn;
 	margin-top: 100px;
+	padding-top: 29px;
+	padding-bottom: 29px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	background: #fff;
-	height: 125px;
+	min-height: 107px;
 	&__title {
 		@include to(768px) {
 			font-size: 19px;

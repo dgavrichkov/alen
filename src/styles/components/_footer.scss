@@ -117,6 +117,12 @@
 		}
 	}
 
+	&__item + &__item {
+		@include from(1025px) {
+			margin-top: 56px;
+		}
+	}
+
 	&__title {
 		@include to(1024px) {
 			border-top: 1px solid #e5e5e5;

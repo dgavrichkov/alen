@@ -118,7 +118,7 @@
 		line-height: 37px;
 		transition: background-color 0.3s ease-in-out,
 		color 0.3s ease-in-out;
-
+		min-height: 37px;;
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.25);
 			color: #fff;
@@ -178,6 +178,15 @@
 			@include to(768px) {
 				padding-bottom: 20px;
 			}
+		}
+	}
+
+	&--lab {
+		background: #2D6BA4;
+	}
+	&--contain {
+		.hero__figure img {
+			object-fit: contain;
 		}
 	}
 }

@@ -22,4 +22,26 @@
 			}
 		}
 	}
+	&--awards {
+		.text-box h1 {
+			margin-bottom: 15px;
+		}
+		.text-box p {
+			max-width: 860px;
+		}
+	}
+	&--lab {
+		.text-box {
+			h4 {
+				margin-top: 55px;
+			}
+			ul li:not(:last-child) {
+				margin-bottom: 12px;
+			}
+			ul + h4 {
+				margin-top: 44px;
+			}
+		}
+		
+	}
 }

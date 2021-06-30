@@ -22,7 +22,7 @@
 		&:not(:last-child) {
 			margin-right: 12px;
 		}
-		&:hover {
+		&:not(.paginator__item--current):hover {
 			border: 1px solid #E5E5E5;
 		}
 		&--current {

@@ -51,7 +51,20 @@
 	&--awards {
 		grid-template-columns: 1fr 1fr 1fr;
 		column-gap: 20px;
-		margin-top: 52px;
+		margin-top: 15px;
+		max-width: 952px;
+		dl {
+			padding-right: 20px;
+		}
+		@include to(1600px) {
+			grid-column: 2 / span 8;
+		}
+		@include to(1280px) {
+			grid-column: 2 / -2;
+			dl {
+				padding-right: 0;
+			}
+		}
 		@include to(768px) {
 			margin-top: 0;
 		}

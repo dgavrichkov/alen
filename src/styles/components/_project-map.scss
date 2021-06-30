@@ -5,7 +5,6 @@
 
 	margin-bottom: 90px;
 	&__inner {
-		
 		@include bigColumn;
 		position: relative;
 	}
@@ -37,9 +36,10 @@
 		}
 		position: absolute;
 		top: 0;
-		left: 40px;
+		left: 0;
 		color: #fff;
 		width: 35%;
+		// max-width: 530px;
 		height: 100%;
 		background: rgba(0, 0, 0, 0.7);
 		padding-left: 80px;

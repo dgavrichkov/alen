@@ -76,6 +76,10 @@
 			transition: opacity 0.3s;
 			background-image: url(../images/logo_b.png);
 		}
+
+		&:hover {
+			opacity: 1;
+		}
 	}
 
 	&__search {
@@ -489,6 +493,7 @@
 		
 		.header__search-btn {
 			background-image: $icon-glass-dark;
+			filter: invert(1);
 		}
 
 		.header__mobile-btns {

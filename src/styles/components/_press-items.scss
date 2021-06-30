@@ -15,6 +15,11 @@
 		grid-template-columns: 1fr 1fr;
 		gap: 20px;
 	}
+	&__item {
+		.item-card__figure {
+			padding-bottom: 60.7%;
+		}
+	}
 	.paginator {
 		@include middleColumn;
 
