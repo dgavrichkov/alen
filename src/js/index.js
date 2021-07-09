@@ -493,7 +493,48 @@ const heroSlider = function() {
     heroSliderComp.init();
     heroSoundComp.init();
 };
+// конструктор галереи
+class Gallery {
+    constructor(el) {
+        this._el = el;
+        this._mainSwiper = null;
+        this._thumbSwiper = null;
 
+        this._mainOption = {};
+        this._thumbsOption = {};
+    }
+    init() {
+        console.log(this._el);
+    }
+    _setTriggersClickHandler() {
+
+    }
+    _setClosesClickHandler() {
+
+    }
+    _setResizeHandler() {
+
+    }
+    _handleTriggerClick() {
+
+    }
+    _handleCloseClick() {
+
+    }
+    // zoom - click on image, drag - position image
+    // wheel - change slide
+    // lazy thumbs, loader
+    // lazy swiper slide img
+    // loader on swiper slide img
+    // keyboadr events
+    // -- arrow slide changing
+    // -- 
+
+    // single case
+    // -- single class for modal content
+    // -- hiding thumbs and dont init swipers
+    // -- but still need zooming photo
+}
 // gallery
 const gallery = function() {
     // preview load anim
@@ -515,10 +556,10 @@ const gallery = function() {
         previewObserver.observe(preview);
     }
     
-    //-- gallery call
+    //-- gallery root initialize
+
 
 };
-
 // popup
 class Popup {
     constructor() {
@@ -535,42 +576,32 @@ class Popup {
     init() {
         this._setTriggersClickHandler();
         this._setCloseClickHandler();
+        this._setEscKeyHandler();
     }
-
     // open. публичный метод - передав сюда название нужного шаблона, откроем попап с соостветствующим содержимым
-    open(id, extClass) {
-        if(this.isOpen || this._content) {
-            this._content.remove();
-            this._content = null;
-        }
-        
+    open(html) {  
         this._popup.classList.add("is-active");
         this._popup.style.opacity = "1";
-        if(extClass) {
-            this._extClass = extClass;
-            this._popup.classList.add(this._extClass);
-        }
+        this.setPopupClass(this._extClass);
         hideScroll();
         this.isOpen = true;
-
-        this._renderContent(id);
-
+        if(html) {
+            this.render(html);
+        }
         // при открытии назначаем обработчики вызовов попапа 
         this._triggers = document.querySelectorAll(".js-popup");
         this._closes = this._popup.querySelectorAll(".js-popup__close");
         this.init();
-
-        
+        this._createOpenEvent();
     }
 
     close() {
         this._popup.style.opacity = "0";
         this._content.style.opacity = "0";
-        
         const clearClass = (e) => {
             if(e.propertyName === "opacity" && e.elapsedTime >= 2) {
                 this._popup.classList.remove("is-active");
-                this._popup.classList.remove(this._extClass);
+                this.removePopupClass(this._extClass);
                 this._extClass = null;
     
                 this.isOpen = false;
@@ -582,7 +613,31 @@ class Popup {
         };
         
         this._popup.addEventListener("transitionend", clearClass);
+        
+        this._removeEscKeyHandler();
+        this._createCloseEvent();
+    }
 
+    render(html) {
+        this.clear();
+        if(typeof html === "string") {
+            this._popup.insertAdjacentHTML("afterbegin", html);
+        } else {
+            this._popup.append(html);
+        }
+        this._content = this._popup.querySelector(".popup__inner");
+        this._content.style.opacity = 1;
+
+        this._createRenderEvent();
+    }
+
+    clear() {
+        if(this._content !== null) {
+            console.log("AAA")
+            this._content.remove();
+            this._content = null;
+        }
+        this._createClearEvent();
     }
 
     _renderContent(id) {
@@ -601,12 +656,13 @@ class Popup {
     _handleTriggerClick(e) {
         e.preventDefault();
         const id = e.target.dataset.modalId;
+        const tpl = document.querySelector(`[data-tpl-id="${id}"]`);
         const extClass = e.target.dataset.modalExtClass;
         if(extClass){
-            this.open(id, extClass);
-        } else {
-            this.open(id);
+            this._extClass = extClass;
         }
+        this.open();
+        this.render(tpl.content.cloneNode(true))
     }
 
     _handleCloseClick(e) {
@@ -625,10 +681,80 @@ class Popup {
             trigger.addEventListener("click", this._handleTriggerClick);
         });
     }
+
     _setCloseClickHandler() {
         this._closes.forEach(close => {
             close.addEventListener("click", this._handleCloseClick);
         });
+    }
+
+    _setEscKeyHandler() {
+        
+    }
+
+    _removeEscKeyHandler() {
+
+    }
+
+    setPopupClass(extclass) {
+        if(extclass) {
+            this._popup.classList.add(extclass);
+        }
+    }
+    removePopupClass(extclass) {
+        if(extclass) {
+            this._popup.classList.remove(extclass);
+        }
+    }
+
+    // события
+    _createOpenEvent() {
+        const openEvent = new CustomEvent("modalOpen", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._popup.dispatchEvent(openEvent);
+    }
+    _createCloseEvent() {
+        const closeEvent = new CustomEvent("modalClose", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._popup.dispatchEvent(closeEvent);
+    }
+    _createRenderEvent() {
+        const renderEvent = new CustomEvent("modalRender", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._popup.dispatchEvent(renderEvent);
+    }
+    _createClearEvent() {
+        const clearEvent = new CustomEvent("modalClear", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._popup.dispatchEvent(clearEvent);
+    }
+    onOpen(callback) {
+        this._popup.addEventListener("modalOpen", callback);
+    }
+    onClose(callback) {
+        this._popup.addEventListener("modalClose", callback);
+    }
+    onRender(callback) {
+        this._popup.addEventListener("modalRender", callback);
+    }
+    onClear(callback) {
+        this._popup.addEventListener("modalClear", callback);
     }
 }
 
@@ -678,8 +804,6 @@ const loadAnimate = function() {
 
     const animObserver = new IntersectionObserver(footerCallback, footerOptions);
     animObserver.observe(animFooter);
-
-    
 };
 
 // такую функцию вызывать коллбэком при каком-то асинхронном действии, например при загрузке страницы новостей.

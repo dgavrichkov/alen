@@ -865,47 +865,32 @@ templs = {
         length: 0,
         events: function () {
             this.eventsInited = true;
+            // _ - это сохраненный контекст объект events
             var _ = this;
-
+            // вызов галереи по клику по соотв ссылке
             $(document).on("click", "a[href=\"#photorama\"]", function () {
                 _.length = 0;
+                // внутри кнопки расположены поля типа hidden. они содержат в себе адреса изображений и видео.
+                // проходим циклом по этим инпутам
                 $(this)
                     .find(".data-imgs input")
                     .each(function () {
                         var itemMain;
                         var itemThumbs;
                         var lazyPreloader = "<div class=\"swiper-lazy-preloader\"></div>";
+                        // формируем шаблон слайдов для вставки в оба свайпера
+                        // если путь к видео
                         if ($(this).attr("poster")) {
-                            var poster =
-                                "<img data-src='" +
-                                $(this).attr("poster") +
-                                "' class='swiper-lazy'/>";
-                            itemMain =
-                                "<div class='swiper-slide video' data-iframe='" +
-                                this.value +
-                                "'>" +
-                                poster +
-                                lazyPreloader +
-                                "</div>";
-                            itemThumbs =
-                                "<div class='swiper-slide video'>" +
-                                poster +
-                                lazyPreloader +
-                                "</div>";
-                        } else {
-                            itemMain =
-                                "<div class='swiper-slide'><div class='swiper-zoom-container'><img data-src='" +
-                                this.value +
-                                "' class='swiper-lazy'/></div>" +
-                                lazyPreloader +
-                                "</div>";
-                            itemThumbs =
-                                "<div class='swiper-slide'><img data-src='" +
-                                this.value +
-                                "' class='swiper-lazy' />" +
-                                lazyPreloader +
-                                "</div>";
+                            var poster = "<img data-src='" + $(this).attr("poster") + "' class='swiper-lazy'/>";
+                            var itemMain = "<div class='swiper-slide video' data-iframe='" + this.value +"'>" + poster + lazyPreloader + "</div>";
+                            var itemThumbs = "<div class='swiper-slide video'>" + poster + lazyPreloader + "</div>";
+                        } 
+                        // если путь к картинке
+                        else {
+                            itemMain = "<div class='swiper-slide'><div class='swiper-zoom-container'><img data-src='" + this.value + "' class='swiper-lazy'/></div>" + lazyPreloader + "</div>";
+                            itemThumbs = "<div class='swiper-slide'><img data-src='" + this.value + "' class='swiper-lazy' />" + lazyPreloader + "</div>";
                         }
+                        // на каждом шаге цикла во враперы вставляется сформированный слайд
                         $(".popup_item#photorama .photorama-thumbs .swiper-wrapper").append(
                             itemThumbs
                         );
@@ -914,23 +899,17 @@ templs = {
                         );
                         _.length++;
                     });
-
+                // если есть путь, отложенный в дата-атрибут прямо на кнопке - то бишь в галерее открывается одно фото
                 if ($(this).attr("data-src")) {
                     var itemMain;
                     var itemThumbs;
+                    // шаблон прелоадера
                     var lazyPreloader = "<div class=\"swiper-lazy-preloader\"></div>";
-                    itemMain =
-                        "<div class='swiper-slide'><div class='swiper-zoom-container'><img data-src='" +
-                        $(this).attr("data-src") +
-                        "' class='swiper-lazy'/></div>" +
-                        lazyPreloader +
-                        "</div>";
-                    itemThumbs =
-                        "<div class='swiper-slide'><img data-src='" +
-                        $(this).attr("data-src") +
-                        "' class='swiper-lazy' />" +
-                        lazyPreloader +
-                        "</div>";
+                    // шаблон слайда основного бокса
+                    itemMain = "<div class='swiper-slide'><div class='swiper-zoom-container'><img data-src='" + $(this).attr("data-src") + "' class='swiper-lazy'/></div>" + lazyPreloader + "</div>";
+                    // шаблон слайда в превью-слайдере
+                    itemThumbs = "<div class='swiper-slide'><img data-src='" + $(this).attr("data-src") + "' class='swiper-lazy' />" + lazyPreloader + "</div>";
+                    
                     $(".popup_item#photorama .photorama-thumbs .swiper-wrapper").append(
                         itemThumbs
                     );
@@ -942,6 +921,7 @@ templs = {
                 }
                 _.createGallery();
             });
+            // клик по видео без класса loaded
             $(document).on(
                 "click",
                 ".photorama-main .swiper-slide.video:not(.loaded)",
@@ -954,23 +934,10 @@ templs = {
                     iframe.src = $(this).attr("data-iframe").replace("https://youtu.be/", "https://www.youtube.com/embed/") + "?autoplay=1";
                     $(this).addClass("loaded");
                     $(this).append(iframe);
-
-                    /*var iframe = document.createElement("iframe");
-                    iframe.name = "iframe";
-                    iframe.style.width = $(this).width();
-                    iframe.style.height = $(this).height();
-                    iframe.setAttribute("frameborder", 0);
-                    iframe.setAttribute("allowfullscreen", "");
-
-                    $(this).addClass("loaded");
-                    $(this).append(iframe);
-                    iframe.src = $(this)
-                        .attr("data-iframe")
-                        .replace("watch?v=", "embed/");*/
                 }
             );
+            // мобильная навигация
             $(document).on("click", ".mobile_nav .left", function () {
-
                 _.galleryBig.slidePrev();
                 $(".mobile_nav .count").html(
                     _.galleryBig.realIndex + 1 + "/" + _.length
@@ -982,6 +949,8 @@ templs = {
                     _.galleryBig.realIndex + 1 + "/" + _.length
                 );
             });
+
+            // по всей видимости, это зумирование и таскание в зуме. переработать и доработать удобство.
             var move_x = 0;
             var move_y = 0;
             $(document).on("mousedown", ".swiper-zoom-container", function (e) {
@@ -989,10 +958,7 @@ templs = {
                 move_y = e.clientY;
             });
             $(document).on("mouseup", function (e) {
-                if (
-                    Math.abs(move_x - e.clientX) <= 5 &&
-                    Math.abs(move_y - e.clientY) <= 5
-                ) {
+                if ( Math.abs(move_x - e.clientX) <= 5 && Math.abs(move_y - e.clientY) <= 5) {
                     if ($(window).width() > 768) {
                         var gesture = _.galleryBig.zoom.gesture;
                         gesture.$slideEl = _.galleryBig.slides.eq(_.galleryBig.activeIndex);
@@ -1007,6 +973,7 @@ templs = {
                 }
             });
         },
+        // разрушение свайперов и удаление из ДОМ всего, что есть в их врапперах. 
         clear: function () {
             var _ = this;
             $(".popup_item#photorama .photorama-box").removeClass("solo");
@@ -1019,28 +986,19 @@ templs = {
                 $(".photorama-main .swiper-wrapper *").remove();
             }
         },
+        // создание галереи
         createGallery: function () {
             var _ = this;
-            // var countThumbs = 5;
             var countThumbs = 1;
             var solo = $(".popup_item#photorama .photorama-box").hasClass("solo");
-            if ($(window).width() > 768) {
-                //countThumbs = Math.round($(window).height() / 145);
-            }
             _.galleryThumbs = new Swiper(".photorama-thumbs", {
                 slidesPerView: countThumbs,
                 lazy: {
                     loadPrevNext: true,
                     loadPrevNextAmount: 7
                 },
-                //speed: 500,
                 speed: 1,
-                //centeredSlides: true,
                 virtualTranslate: true,
-                //keyboard: {
-                //	enabled: true,
-                //	onlyInViewport: true,
-                //  },
                 direction: "vertical",
                 slideToClickedSlide: true,
                 mousewheel: {
@@ -1050,7 +1008,6 @@ templs = {
             });
 
             _.galleryBig = new Swiper(".photorama-main", {
-
                 effect: "slide",
                 breakpoints: {
                     768: {
@@ -1067,26 +1024,17 @@ templs = {
                     zoomedSlideClass: "zoomed",
                     toggle: $(window).width() <= 768
                 },
-                // thumbs: {
-                //   swiper: _.galleryThumbs
-                // },
                 mousewheel: {
                     forceToAxis: false,
                     sensitivity: 0.1
                 },
-                //loop: !solo,
                 slidesPerView: 1,
                 lazy: true,
-                //keyboard: {
-                //	enabled: true,
-                //	onlyInViewport: true,
-                //  },
             });
 
             $(".swiper-container.photorama-main.swiper-container-initialized.swiper-container-horizontal").append( "<div class='swiper-big-befor'></div>" );
             $(".swiper-container.photorama-main.swiper-container-initialized.swiper-container-horizontal").prepend( "<div class='swiper-big-after'></div>" );
             $(".swiper-big-befor").on("click", function(){
-                //$('.mobile_nav .str.left').trigger('click');
                 var number = _.galleryThumbs.realIndex - 1;
                 if(number >= 0)
                 {
@@ -1095,7 +1043,6 @@ templs = {
                 }
             });
             $(".swiper-big-after").on("click", function(){
-                //$('.mobile_nav .str.right').trigger('click');
                 var number = _.galleryThumbs.realIndex + 1;
                 if(number <= $(".photorama-main .swiper-slide").length-1)
                 {
@@ -1120,9 +1067,6 @@ templs = {
                     }
                 }
             });
-
-            //_.galleryThumbs.controller.control = _.galleryBig;
-            //_.galleryBig.controller.control = _.galleryThumbs;
 
             if (_.length <= 1) {
                 $(".mobile_nav").addClass("hide");
@@ -1263,13 +1207,12 @@ templs = {
                         scaling = false;
                     }
                 );
-
-
             }
-
-
+            //отслеживаем прокрутку колеса над элементом фоторамы
             $("#photorama").bind("mousewheel", function(e)
             {
+                // если мы над превьюхами, то полоса их будет прокручиваться, и основной слайдер тоже будет прокручиваться
+                // тут присутствует хитромудрая логика определения текущего слайда
                 if(ThumbsHovered)
                 {
                     var step = $(".photorama-thumbs .swiper-slide").height() + 1;
