@@ -497,44 +497,221 @@ const heroSlider = function() {
 class Gallery {
     constructor(el) {
         this._el = el;
+        this._thumbs = this._el.querySelector(".gallery__thumbs");
+        this._thumbsWrapper = this._thumbs.querySelector(".swiper-wrapper");
+        this._main = this._el.querySelector(".gallery__main");
+        this._mainWrapper = this._main.querySelector(".swiper-wrapper");
         this._mainSwiper = null;
         this._thumbSwiper = null;
+        
+        this._mousemoved = false;
+        this._mousemoveX = null;
+        this._mousemoveY = null;
 
-        this._mainOption = {};
-        this._thumbsOption = {};
+        this._mainOption = {
+            slidesPerView: 1,
+            lazy: true,
+            effect: "slide",
+            breakpoints: {
+                768: {
+                    effect: "fade",
+                },
+            },
+            touchStartPreventDefault: false,
+            updateOnWindowResize: true,
+            observer: true,
+            fadeEffect: {
+                crossFade: true,
+            },
+            navigation: {
+                nextEl: '.gallery__main-next',
+                prevEl: '.gallery__main-prev',
+            },
+            zoom: {
+                containerClass: "swiper-zoom-container",
+                zoomedSlideClass: "zoomed",
+                // toggle: window.innerWidth <= 768,
+                maxRatio: 4,
+            },
+            mousewheel: {
+                forceToAxis: false,
+                sensitivity: 0.1
+            }
+        };
+        this._thumbsOption = {
+            slidesPerView: 1,
+            lazy: {
+                loadPrevNext: true,
+                loadPrevNextAmount: 7
+            },
+            speed: 1,
+            virtualTranslate: true,
+            direction: "vertical",
+            slideToClickedSlide: true,
+            mousewheel: {
+                forceToAxis: false,
+                sensitivity: 0.1
+            },
+        };
+
+        this._isThumbsHovered = false;
+
+        this._handleDesktopZoom = this._handleDesktopZoom.bind(this);
+        this._handleDesktopMove = this._handleDesktopMove.bind(this);
+        this._handleDesktopMoveUp = this._handleDesktopMoveUp.bind(this);
+        this._handleResize = this._handleResize.bind(this);
+        this._handleThumbsWheel = this._handleThumbsWheel.bind(this);
+        this._handleKeyboard = this._handleKeyboard.bind(this);
+        this._handleThumbOver = this._handleThumbOver.bind(this);
+        this._handleThumbLeave = this._handleThumbLeave.bind(this);
+        this._handleMainSlideChange = this._handleMainSlideChange.bind(this);
+        this._handleThumbSlideChange = this._handleThumbSlideChange.bind(this);
     }
     init() {
-        console.log(this._el);
-    }
-    _setTriggersClickHandler() {
+        this._thumbSwiper = new Swiper(this._thumbs, this._thumbsOption);
+        this._mainSwiper = new Swiper(this._main, this._mainOption);
+        this._setDesktopZoom();
+        this._setResizeHandlers();
+        this._setWheelHandler();
+        this._setKeyboardHandlers();
+        this._setThumbHoverHandlers();
+        this._thumbSwiper.on("slideChange", this._handleThumbSlideChange);
+        this._mainSwiper.on("slideChange", this._handleMainSlideChange);
 
+        // this._thumbSwiper.controller.control = this._mainSwiper;
+        // this._mainSwiper.controller.control = this._thumbSwiper;
     }
-    _setClosesClickHandler() {
 
+    destroy() {
+        this._mainSwiper.destroy();
+        this._thumbSwiper.destroy();
+        document.removeEventListener("keyup", this._handleKeyboard);
+        window.removeEventListener("resize", this._handleResize);
+        window.removeEventListener("orientationchange", this._handleResize);
     }
-    _setResizeHandler() {
 
+    _setDesktopZoom() {
+        this._mainWrapper.addEventListener("click", this._handleDesktopZoom);
+        this._mainWrapper.addEventListener("mousedown", this._handleDesktopMove);
+        this._mainWrapper.addEventListener("mouseup", this._handleDesktopMoveUp);
     }
-    _handleTriggerClick() {
-
+    _setKeyboardHandlers() {
+        document.addEventListener("keyup", this._handleKeyboard);
     }
-    _handleCloseClick() {
-
+    _setResizeHandlers() {
+        window.addEventListener("resize", this._handleResize);
+        window.addEventListener("orientationchange", this._handleResize);
+        this._mainSwiper.on("resize", this._handleResize);
     }
-    // zoom - click on image, drag - position image
+    _setThumbHoverHandlers() {
+        this._thumbs.addEventListener("mouseover", this._handleThumbOver);
+        this._thumbs.addEventListener("mouseleave", this._handleThumbLeave);
+    }
+    _setWheelHandler() {
+        this._el.addEventListener("mousewheel", this._handleThumbsWheel);
+    }
+    _handleDesktopZoom() {
+        const active = this._mainSwiper.slides[this._mainSwiper.activeIndex];
+        if(!active.classList.contains("zoomed")) {
+            this._mainSwiper.zoom.in();
+        } else if(this._mousemoved) {
+            this._mainSwiper.zoom.out();
+            this._mousemoved = false;
+        }
+    }
+    _handleDesktopMove(e) {
+        this._mousemoveX = e.clientX;
+        this._mousemoveY = e.clientY;
+    }
+    _handleDesktopMoveUp(e) {
+        const active = this._mainSwiper.slides[this._mainSwiper.activeIndex];
+        if(active.classList.contains("zoomed") && Math.abs(this._mousemoveX - e.clientX) <= 5 && Math.abs(this._mousemoveY - e.clientY) <= 5) {
+            this._mousemoved = true;
+        }
+    }
+    _handleResize() {
+        this._mainSwiper.update();
+        this._thumbSwiper.update();
+    }
+    _handleThumbOver(e) {
+        this._isThumbsHovered = true;
+    }
+    _handleThumbLeave(e) {
+        this._isThumbsHovered = false;
+    }
+    _handleThumbSlideChange() {
+        this._mainSwiper.slideTo(this._thumbSwiper.realIndex);
+        this._thumbSwiper.update();
+        this._mainSwiper.update();
+        this._thumbSwiper.lazy.loadInSlide(this._thumbSwiper.realIndex);
+    }
+    _handleMainSlideChange() {
+        if(!this._isThumbsHovered) {
+            this._thumbSwiper.slideTo(this._mainSwiper.realIndex);
+        }
+        this._thumbSwiper.update();
+        this._mainSwiper.update();
+    }
+    
     // wheel - change slide
-    // lazy thumbs, loader
-    // lazy swiper slide img
-    // loader on swiper slide img
-    // keyboadr events
-    // -- arrow slide changing
-    // -- 
+    _handleThumbsWheel(e) {
+        if(this._isThumbsHovered) {
+            let delta = -e.deltaY;
+            let step = this._thumbs.querySelector(".swiper-slide").scrollHeight + 1;
+            let slides = this._thumbSwiper.slides.length;
+            let allheight = -1 * ((slides * step) - this._el.scrollHeight);
+
+            if(e.wheelDelta < 0) {
+                step = -1 * step;
+            }
+            
+            let oldTop = parseInt(window.getComputedStyle(this._thumbsWrapper).getPropertyValue("top"));
+            let top = oldTop + step;
+            if(top > 0) {
+                top = 0;
+            } else if(top < allheight) {
+                top = allheight;
+            }
+            
+            if(oldTop > top) {
+                let rel = (parseInt(top / step) + 7);
+                this._thumbSwiper.lazy.loadInSlide(rel);
+            }
+            if(delta < 0) {
+                this._mainSwiper.slideNext();
+                this._thumbSwiper.slideNext();
+            } else {
+                this._mainSwiper.slidePrev();
+                this._thumbSwiper.slidePrev();
+            }
+            this._thumbsWrapper.style.top = top + "px";
+        }
+    }
+    _handleKeyboard(e) {
+        let number = this._mainSwiper.realIndex;
+        const slides = this._thumbSwiper.slides.length;
+
+        if(e.which == 38 || e.which == 37) {
+            number--;
+        } else if(e.which == 39 || e.which == 40) {
+            number++;
+        }
+        if(slides >= number && number >= 0 && number != this._mainSwiper.realIndex) {
+            this._thumbSwiper.lazy.loadInSlide(number);
+            this._mainSwiper.lazy.loadInSlide(number);
+            this._thumbSwiper.slideTo(number);
+            this._mainSwiper.slideTo(number);
+        }
+    }
+
+    // mobile count
 
     // single case
     // -- single class for modal content
     // -- hiding thumbs and dont init swipers
     // -- but still need zooming photo
 }
+
 // gallery
 const gallery = function() {
     // preview load anim
@@ -557,7 +734,22 @@ const gallery = function() {
     }
     
     //-- gallery root initialize
-
+    const galleryCalls = document.querySelectorAll(".js-gallery");
+    let galleryComp = null;
+    if(galleryCalls.length > 0) {
+        galleryCalls.forEach(item => {
+            item.addEventListener("click", function() {
+                window.popup.onRender(function() {
+                    const galleryEl = this.querySelector(".gallery");
+                    galleryComp = new Gallery(galleryEl);
+                    galleryComp.init();
+                });
+                window.popup.onClose(function() {
+                    galleryComp.destroy();
+                });
+            })
+        })
+    }
 
 };
 // popup
@@ -633,7 +825,6 @@ class Popup {
 
     clear() {
         if(this._content !== null) {
-            console.log("AAA")
             this._content.remove();
             this._content = null;
         }
@@ -1315,8 +1506,8 @@ window.onload = function() {
     scrollAnimateFadeUp();
     forms();
 
-    const popup = new Popup();
-    popup.init();
+    window.popup = new Popup();
+    window.popup.init();
 };
 
 

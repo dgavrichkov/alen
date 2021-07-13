@@ -1031,9 +1031,11 @@ templs = {
                 slidesPerView: 1,
                 lazy: true,
             });
-
+            // вставка элементов управления. почему бы их сразу в дом не размещать? а? а а а ???
             $(".swiper-container.photorama-main.swiper-container-initialized.swiper-container-horizontal").append( "<div class='swiper-big-befor'></div>" );
             $(".swiper-container.photorama-main.swiper-container-initialized.swiper-container-horizontal").prepend( "<div class='swiper-big-after'></div>" );
+            
+            // добавляет обработчики для кликов по элементам управления
             $(".swiper-big-befor").on("click", function(){
                 var number = _.galleryThumbs.realIndex - 1;
                 if(number >= 0)
@@ -1051,23 +1053,31 @@ templs = {
                 }
             });
 
-
+            // клик по главному слайдеру
             _.galleryBig.on("click", function (e) {
+                // для мобильной версии
                 if($(window).width() <= 768)
                 {
+                    // если главный слайдер имеет класс
                     if($(".popup_full .photorama-main").hasClass("big"))
                     {
+                        // задать контейнеру размер и фон
                         $(".popup_full .photorama-main").css({"height":"calc(100% - 72px)", "background-color": "neno"});
+                        // убрать класс
                         $(".popup_full .photorama-main").removeClass("big");
                     }
+                    // если класса нет
                     else
                     {
+                        // задать контейнеру размер и фон
                         $(".popup_full .photorama-main").css({"height":"100%", "background-color": "#fff"});
+                        // добавить класс
                         $(".popup_full .photorama-main").addClass("big");
                     }
                 }
             });
 
+            // прячет навигацию на мобилке, если слайд один
             if (_.length <= 1) {
                 $(".mobile_nav").addClass("hide");
             } else {
@@ -1086,16 +1096,15 @@ templs = {
             $(".photorama-main").hover(function () {
                 ThumbsHovered = false;
             });
-
+            // коллбэк на изменение слайда в превью
             _.galleryThumbs.on("slideChange", function () {
-
-                if($(".photorama-box").height() - (_.galleryThumbs.realIndex * _.galleryThumbs.height - (-1*(parseInt($(".swiper-wrapper").css("top"))))) < 0)
-                {
+                
+                // это как будто бы изменение позиции слайдера превью. тут какие-то манипуляции со свойством top
+                
+                if($(".photorama-box").height() - (_.galleryThumbs.realIndex * _.galleryThumbs.height - (-1*(parseInt($(".swiper-wrapper").css("top"))))) < 0) {
                     var top = (parseInt($(".swiper-wrapper").css("top"))) - _.galleryThumbs.height;
                     $(".photorama-thumbs .swiper-wrapper").css("top", top);
-                }
-                else if(_.galleryThumbs.realIndex * _.galleryThumbs.height - (-1*(parseInt($(".swiper-wrapper").css("top")))) < 0)
-                {
+                } else if(_.galleryThumbs.realIndex * _.galleryThumbs.height - (-1*(parseInt($(".swiper-wrapper").css("top")))) < 0) {
                     var top = (parseInt($(".swiper-wrapper").css("top"))) + _.galleryThumbs.height;
                     if(top > 0)
                         top = 0;
@@ -1106,39 +1115,47 @@ templs = {
                     _.galleryBig.slideTo(_.galleryThumbs.realIndex);
                 }
 
+                // изменение счетчика на мобиле
                 $(".mobile_nav .count").html(
                     _.galleryBig.realIndex + 1 + "/" + _.length
                 );
-
+                // на месте обновляются оба свайпера
                 _.galleryThumbs.update();
                 _.galleryBig.update();
             });
-
+            // коллбэк на изменение слайда в основном
             _.galleryBig.on("slideChange", function () {
+                // если нет наведения на превью, то переключает активный превью слайд по текущему основного
                 if (!ThumbsHovered) {
                     _.galleryThumbs.slideTo(_.galleryBig.realIndex);
                 }
+                // изменение счетчика на мобиле
                 $(".mobile_nav .count").html(
                     _.galleryBig.realIndex + 1 + "/" + _.length
                 );
+                // видео в главном слайдере - как бы обнуляются - удаляется класс загруженности, удаляется айфрейм
                 $(".photorama-main .swiper-slide.video").removeClass("loaded");
                 $(".photorama-main .swiper-slide.video")
                     .find("iframe")
                     .remove();
+                // на месте обновляются оба свайпера
                 _.galleryThumbs.update();
                 _.galleryBig.update();
             });
 
+            // изменение текста счетчика на мобильном
             $(".mobile_nav .count").html(1 + "/" + _.length);
-
+            // ресайз на главном слайдере - обновление свайперов
             _.galleryBig.on("resize", function () {
                 _.galleryBig.update();
                 _.galleryThumbs.update();
             });
+            // ресайз на документе - то же самое
             $(window).on("resize", function () {
                 _.galleryBig.update();
                 _.galleryThumbs.update();
             });
+            // событие поворота экрана
             window.addEventListener(
                 "orientationchange",
                 function () {
@@ -1156,10 +1173,7 @@ templs = {
 
                 var scaling = false;
                 var shownavigate = false;
-                _.galleryBig.on(
-                    "touchStart",
-                    function (evt)
-                    {
+                _.galleryBig.on("touchStart", function (evt) {
                         var tt = evt.targetTouches;
                         if (tt.length >= 2)
                         {
@@ -1182,17 +1196,13 @@ templs = {
                         }
                     }
                 );
-                _.galleryBig.on(
-                    "touchEnd",
-                    function(evt)
-                    {
+                _.galleryBig.on("touchEnd", function(evt) {
                         if(scaling)
                         {
                             if($(".popup_full .photorama-main").hasClass("big"))
                             {
                                 if(shownavigate)
                                 {
-                                    //$('.popup_full .photorama-main').css({'height':'calc(100% - 72px)', 'background-color': 'neno','margin-top':'0px','padding-top':'0px'});
                                     $(".popup_full .photorama-main").css({"background-color": "neno"});
                                     var heig = $(".popup_full .photorama-main").height()-72;
                                     $(".popup_full .photorama-main").animate({
@@ -1215,28 +1225,35 @@ templs = {
                 // тут присутствует хитромудрая логика определения текущего слайда
                 if(ThumbsHovered)
                 {
-                    var step = $(".photorama-thumbs .swiper-slide").height() + 1;
-                    var countimage = $(".photorama-thumbs .swiper-slide").length;
-                    var allheight = -1 * ((countimage * step) - $("#photorama").height()+0);
-                    if(e.originalEvent.wheelDelta < 0)
+                    var step = $(".photorama-thumbs .swiper-slide").height() + 1; // высота слайда превью
+                    var countimage = $(".photorama-thumbs .swiper-slide").length; // количество слайдов превью
+                    var allheight = -1 * ((countimage * step) - $("#photorama").height()+0); // похоже на общую высоту превью слайдера минус высота фоторамы.. хм.
+
+                    // думаю, это связано с направлением - ради чего еще может понадобиться отрицательный шаг
+                    if(e.originalEvent.wheelDelta < 0) {
                         step = -1 * step;
+                    }
+                    // получаем положение top у враппера
                     var oldtop = parseInt($(".photorama-thumbs .swiper-wrapper").css("top"));
+                    // складываем с шагом
                     var top =  oldtop + step;
-                    if(top > 0)
+                    // если получилось положительно, то делаем нуль. Если он больше нуля, значит мы в начальном положении пытались крутнуть вверх.
+                    if(top > 0) {
                         top = 0;
-                    else if (top < allheight)
+                    } // а если получилось не больше нуля, и меньше полной высоты превьюх, берем полную высоту 
+                    else if (top < allheight) {
                         top = allheight;
+                    }
+
                     var numberimage = _.galleryBig.realIndex;
-                    if(oldtop > top)
-                    {
+                    
+                    if(oldtop > top) {
                         var numberel = (parseInt(top / step)) + 7;
                         _.galleryThumbs.lazy.loadInSlide(numberel);
                         numberimage = numberimage + 1;
                         if(numberimage > countimage)
                             numberimage = countimage;
-                    }
-                    else if(oldtop < top)
-                    {
+                    } else if(oldtop < top) {
                         numberimage = numberimage - 1;
                         if(numberimage < 0)
                             numberimage = 0;
@@ -1250,6 +1267,7 @@ templs = {
             });
 
             $(document).keyup(function (e) {
+                // подсчет количества слайдов в превью? а почему именно так, почему нельзя свойство взять... мож оно по итогу не совпадает?
                 var countimage = $(".photorama-thumbs .swiper-slide").length;
                 var numberimage = _.galleryBig.realIndex;
 
