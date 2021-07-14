@@ -590,7 +590,9 @@ class Gallery {
         this._thumbSwiper.on("slideChange", this._handleThumbSlideChange);
         this._mainSwiper.on("slideChange", this._handleMainSlideChange);
 
-        this._setVideo();
+        if(this._main.querySelectorAll(".players").length > 0) {
+            this._setVideo();
+        }
     }
 
     renderSingleImage(src) {
@@ -607,7 +609,6 @@ class Gallery {
         `;
         this._main.querySelector(".gallery__main-slideinner").insertAdjacentHTML("afterbegin", template);
         this._singleObj = this._main.querySelector(".gallery__single-image");
-
     }
     clearSingle() {
         if(this._singleObj) {
