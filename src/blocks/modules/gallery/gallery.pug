@@ -2,8 +2,8 @@
     .gallery__inner
         .gallery__thumbs.swiper-container
             .swiper-wrapper
-                .swiper-slide.gallery__thumb-slide
-                    img(data-src="/images/thumb-1.webp").swiper-lazy
+                .swiper-slide.gallery__thumb-slide.gallery__thumb-video
+                    img(data-src="//img.youtube.com/vi/-C82nFfqTcY/sddefault.jpg").swiper-lazy
                     div.swiper-lazy-preloader
                 .swiper-slide.gallery__thumb-slide
                     img(data-src="/images/thumb-2.webp").swiper-lazy
@@ -43,9 +43,8 @@
             div.gallery__main-arrow.gallery__main-next
             .swiper-wrapper 
                 .swiper-slide.gallery__main-slide
-                    div.swiper-zoom-container.gallery__main-slideinner
-                        img(src="" data-src="/images/thumb-1.webp").swiper-lazy
-                        div.swiper-lazy-preloader
+                    div.gallery__main-slideinner
+                        div.players(data-plyr-provider="youtube" data-plyr-embed="-C82nFfqTcY") 
                 .swiper-slide.gallery__main-slide
                     div.swiper-zoom-container.gallery__main-slideinner
                         img(src="" data-src="/images/thumb-2.webp").swiper-lazy

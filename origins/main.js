@@ -899,6 +899,44 @@ templs = {
                         );
                         _.length++;
                     });
+                    players = Plyr.setup(".players", {
+                        autoplay: false,
+                        settings: ["captions", "quality", "loop"],
+                        playsinline: true,
+                        debug: false,
+                        hideControls: !detectMob(),
+                        youtube: {
+                          noCookie: false,
+                          rel: 0,
+                          showinfo: 0,
+                          iv_load_policy: 3,
+                          modestbranding: 1,
+                          playsinline: 1,
+                        },
+                      });
+                      if (players && players.length > 0) {
+                        players.forEach((player) => {
+                          player.on("ready", function (e) {
+                            if (isVideoSlide(_.galleryBig.realIndex)) {
+                              _.galleryBig.zoom.disable();
+                              setTimeout(function () {
+                                $(".plyr__video-embed > iframe").css("display", "block");
+                              }, 100);
+                              showMobileControls();
+                            }
+              
+                            player.on("ended", function (e) {
+                              player.stop();
+                            });
+                            player.on("enterfullscreen", function (e) {
+                              hideMobileControls();
+                            });
+                            player.on("exitfullscreen", function (e) {
+                              showMobileControls();
+                            });
+                          });
+                        });
+                    }
                 // если есть путь, отложенный в дата-атрибут прямо на кнопке - то бишь в галерее открывается одно фото
                 if ($(this).attr("data-src")) {
                     var itemMain;

@@ -507,6 +507,7 @@ class Gallery {
 
         this._mainSwiper = null;
         this._thumbSwiper = null;
+        this._singleObj = null;
         
         this._mousemoved = false;
         this._mousemoveX = null;
@@ -558,7 +559,10 @@ class Gallery {
             },
         };
 
+        this._isSingle = this._el.classList.contains("gallery--single");
         this._isThumbsHovered = false;
+
+        this.players = null;
 
         this._handleDesktopZoom = this._handleDesktopZoom.bind(this);
         this._handleDesktopMove = this._handleDesktopMove.bind(this);
@@ -585,18 +589,31 @@ class Gallery {
 
         this._thumbSwiper.on("slideChange", this._handleThumbSlideChange);
         this._mainSwiper.on("slideChange", this._handleMainSlideChange);
+
+        this._setVideo();
     }
 
-    destroy() {
-        this._mainSwiper.destroy();
-        this._thumbSwiper.destroy();
-        document.removeEventListener("keyup", this._handleKeyboard);
-        window.removeEventListener("resize", this._handleResize);
-        window.removeEventListener("orientationchange", this._handleResize);
+    renderSingleImage(src) {
+        const template = `<img data-src="${src}" class="gallery__single-image swiper-lazy">`;
+        this._main.querySelector(".gallery__main-slideinner").insertAdjacentHTML("afterbegin", template);
+        this._singleObj = this._main.querySelector(".gallery__single-image");
+        this._mainSwiper.lazy.loadInSlide(0);
     }
-    // mobile counter
-    _updateSlidesCounter() {
+    renderSingleVideo(src) {
+        const template = `
+            <video">
+                <source src="${src}">
+            </video>
+        `;
+        this._main.querySelector(".gallery__main-slideinner").insertAdjacentHTML("afterbegin", template);
+        this._singleObj = this._main.querySelector(".gallery__single-image");
 
+    }
+    clearSingle() {
+        if(this._singleObj) {
+            this._singleObj.remove();
+            this._singleObj = null;
+        }
     }
     _setDesktopZoom() {
         this._mainWrapper.addEventListener("click", this._handleDesktopZoom);
@@ -716,15 +733,29 @@ class Gallery {
             this._mainSwiper.slideTo(number);
         }
     }
-
-    // single case
-    // -- single class for modal content
-    // -- hiding thumbs and dont init swipers
-    // -- but still need zooming photo
+    _setVideo() {
+        // нужно найти целевые элементы и по ним инициализировать плюр
+        this.players = Plyr.setup(".players", {
+            autoplay: false,
+            settings: ["captions", "quality", "loop"],
+            playsinline: true,
+            debug: false,
+            // hideControls: !detectMob(),
+            youtube: {
+                noCookie: false,
+                rel: 0,
+                showinfo: 0,
+                iv_load_policy: 3,
+                modestbranding: 1,
+                playsinline: 1,
+            },
+        });
+        console.log(this.players);
+    }
 }
 
 // gallery
-const gallery = function() {
+const gallery = () => {
     // preview load anim
     const preview = document.querySelector(".gallery-preview");
     if(preview) {
@@ -746,22 +777,31 @@ const gallery = function() {
     
     //-- gallery root initialize
     const galleryCalls = document.querySelectorAll(".js-gallery");
-    let galleryComp = null;
+
     if(galleryCalls.length > 0) {
         galleryCalls.forEach(item => {
-            item.addEventListener("click", function() {
-                window.popup.onRender(function() {
-                    const galleryEl = this.querySelector(".gallery");
-                    galleryComp = new Gallery(galleryEl);
-                    galleryComp.init();
-                });
-                window.popup.onClose(function() {
-                    galleryComp.destroy();
-                });
+            item.addEventListener("click", () => {
+                if(item.hasAttribute("data-gallery-img")) {
+                    const src = item.dataset.galleryImg;
+                    window.galleryComp.renderSingleImage(src); 
+    
+                } else if(item.hasAttribute("data-gallery-video")){
+                    const src = item.dataset.galleryVideo;
+                    window.galleryComp.renderSingleVideo(src);
+                }
             })
         })
     }
 
+    window.popup.onRender(function() {  
+        const galleryEl = this.querySelector(".gallery");  
+        window.galleryComp = new Gallery(galleryEl);
+        window.galleryComp.init();
+    });
+
+    window.popup.onClose(function() {
+        window.galleryComp.clearSingle();
+    });
 };
 // popup
 class Popup {
@@ -819,6 +859,7 @@ class Popup {
         
         this._removeEscKeyHandler();
         this._createCloseEvent();
+        this.clear();
     }
 
     render(html) {
@@ -1502,6 +1543,8 @@ const footerAccordeon = () => {
 };
 
 window.onload = function() {
+    window.popup = new Popup(); // должен идти перед функциями
+    window.popup.init(); // 
     heroSlider();
     header();
     historyAccordeon();
@@ -1516,9 +1559,6 @@ window.onload = function() {
     loadAnimate();
     scrollAnimateFadeUp();
     forms();
-
-    window.popup = new Popup();
-    window.popup.init();
 };
 
 

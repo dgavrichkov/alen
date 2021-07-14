@@ -1,0 +1,37 @@
+.plyr--full-ui{
+    width: 100%;
+    height: 100%;
+}
+.plyr button {
+    font: inherit;
+    line-height: inherit;
+    width: auto;
+    border-radius: 4px!important;
+    background-color: #3032334f!important;
+}
+:root {
+    --plyr-color-main: rgba(27,127,204,.8);
+}
+.video-small-arrows{
+    height: 50%;
+    top: 25%;
+}
+.plyr iframe {
+    transition: 0.2s filter linear;
+}
+
+.plyr.plyr--paused iframe {
+    filter: blur(1.5rem);
+} 
+.plyr--paused {
+    z-index: -1;
+}
+.plyr__video-embed>iframe{
+    display: none;
+}
+.plyr__video-embed>iframe{
+    display: none;
+}
+.swiper-slide-prev > .plyr{
+    display: none!important;
+}

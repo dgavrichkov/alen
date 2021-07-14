@@ -223,5 +223,11 @@
             width: calc(100% - 70px);
             margin-left: 35px;
         }
+        .gallery__main-arrow {
+            display: none;
+        }
+        .gallery__mobnav {
+            display: none;
+        }
     }
 }

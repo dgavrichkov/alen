@@ -28,7 +28,7 @@ block content
 										img(src="images/sf-1.jpg" alt="")
 								div.item-card__content
 									h3.item-card__cap Свидетельство СРО ООО «Проектно-производственной фирмы «А.Лен»
-								a(href="project.html").item-card__overlink
+								a(href="sertificate" data-modal-id="gallery-sertificate" data-gallery-img="images/sf-1.jpg").js-popup.js-gallery.js-gallery-single.item-card__overlink
 						li.sertificates__item
 							article.item-card.item-card--sertificate 
 								figure.item-card__figure
@@ -36,7 +36,7 @@ block content
 										img(src="images/sf-2.jpg" alt="")
 								div.item-card__content
 									h3.item-card__cap Приложение к свидетельству СРО ООО «Проектно-производственной фирмы «А.Лен»
-								a(href="project.html").item-card__overlink
+								a(href="sertificate" data-modal-id="gallery-sertificate" data-gallery-img="images/sf-2.jpg").js-popup.js-gallery.js-gallery-single.item-card__overlink
 						li.sertificates__item
 							article.item-card.item-card--sertificate 
 								figure.item-card__figure
@@ -44,7 +44,7 @@ block content
 										img(src="images/sf-3.jpg" alt="")
 								div.item-card__content
 									h3.item-card__cap Выписка СРО ООО «Проектно-производственной фирмы «А.Лен»
-								a(href="project.html").item-card__overlink
+								a(href="sertificate" data-modal-id="gallery-sertificate" data-gallery-img="images/sf-3.jpg").js-popup.js-gallery.js-gallery-single.item-card__overlink
 					div.text-box.text-box--short.text-section__item
 						p Имеется допуск на подготовку проектной документации в отношении особо опасных, технически сложных и уникальных объектов капитального строительства.
 					ul.sertificates.text-section__item.scroll-anim.fade-up
@@ -55,7 +55,7 @@ block content
 										img(src="images/sf-4.jpg" alt="")
 								div.item-card__content
 									h3.item-card__cap Свидетельство СРО ООО «Архитектурное бюро «А.Лен»
-								a(href="project.html").item-card__overlink
+								a(href="sertificate" data-modal-id="gallery-sertificate" data-gallery-img="images/sf-4.jpg").js-popup.js-gallery.js-gallery-single.item-card__overlink
 						li.sertificates__item
 							article.item-card.item-card--sertificate 
 								figure.item-card__figure
@@ -63,7 +63,7 @@ block content
 										img(src="images/sf-5.jpg" alt="")
 								div.item-card__content
 									h3.item-card__cap Приложение к свидетельству СРО ООО «Архитектурное бюро «А.Лен»
-								a(href="project.html").item-card__overlink
+								a(href="sertificate" data-modal-id="gallery-sertificate" data-gallery-img="images/sf-5.jpg").js-popup.js-gallery.js-gallery-single.item-card__overlink
 						li.sertificates__item
 							article.item-card.item-card--sertificate 
 								figure.item-card__figure
@@ -71,11 +71,12 @@ block content
 										img(src="images/sf-6.jpg" alt="")
 								div.item-card__content
 									h3.item-card__cap Выписка СРО ООО «Архитектурное бюро «А.Лен»
-								a(href="project.html").item-card__overlink
+								a(href="sertificate" data-modal-id="gallery-sertificate" data-gallery-img="images/sf-6.jpg").js-popup.js-gallery.js-gallery-single.item-card__overlink
 		div.page__popup
 			include ../../blocks/modules/popup/popup.pug
 
 		div.page__footer
 			include ../../blocks/modules/footer/footer.pug
 block scripts
+	script(src="js/swiper-bundle.min.js")
 	script(src="js/index.js")
