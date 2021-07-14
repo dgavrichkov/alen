@@ -501,6 +501,10 @@ class Gallery {
         this._thumbsWrapper = this._thumbs.querySelector(".swiper-wrapper");
         this._main = this._el.querySelector(".gallery__main");
         this._mainWrapper = this._main.querySelector(".swiper-wrapper");
+        this._mobnav = this._el.querySelector(".gallery__mobnav")
+        this._mobnavCurr = this._mobnav.querySelector(".gallery__mobnav-count-curr");
+        this._mobnavAll = this._mobnav.querySelector(".gallery__mobnav-count-all");
+
         this._mainSwiper = null;
         this._thumbSwiper = null;
         
@@ -570,16 +574,17 @@ class Gallery {
     init() {
         this._thumbSwiper = new Swiper(this._thumbs, this._thumbsOption);
         this._mainSwiper = new Swiper(this._main, this._mainOption);
+
         this._setDesktopZoom();
         this._setResizeHandlers();
         this._setWheelHandler();
         this._setKeyboardHandlers();
         this._setThumbHoverHandlers();
+        this._setMobCountAll();
+        this._setMobCurrent();
+
         this._thumbSwiper.on("slideChange", this._handleThumbSlideChange);
         this._mainSwiper.on("slideChange", this._handleMainSlideChange);
-
-        // this._thumbSwiper.controller.control = this._mainSwiper;
-        // this._mainSwiper.controller.control = this._thumbSwiper;
     }
 
     destroy() {
@@ -589,7 +594,10 @@ class Gallery {
         window.removeEventListener("resize", this._handleResize);
         window.removeEventListener("orientationchange", this._handleResize);
     }
+    // mobile counter
+    _updateSlidesCounter() {
 
+    }
     _setDesktopZoom() {
         this._mainWrapper.addEventListener("click", this._handleDesktopZoom);
         this._mainWrapper.addEventListener("mousedown", this._handleDesktopMove);
@@ -609,6 +617,12 @@ class Gallery {
     }
     _setWheelHandler() {
         this._el.addEventListener("mousewheel", this._handleThumbsWheel);
+    }
+    _setMobCountAll() {
+        this._mobnavAll.innerText = this._mainSwiper.slides.length;
+    }
+    _setMobCurrent() {
+        this._mobnavCurr.innerText = this._mainSwiper.realIndex + 1;
     }
     _handleDesktopZoom() {
         const active = this._mainSwiper.slides[this._mainSwiper.activeIndex];
@@ -649,11 +663,10 @@ class Gallery {
         if(!this._isThumbsHovered) {
             this._thumbSwiper.slideTo(this._mainSwiper.realIndex);
         }
+        this._setMobCurrent();
         this._thumbSwiper.update();
         this._mainSwiper.update();
     }
-    
-    // wheel - change slide
     _handleThumbsWheel(e) {
         if(this._isThumbsHovered) {
             let delta = -e.deltaY;
@@ -703,8 +716,6 @@ class Gallery {
             this._mainSwiper.slideTo(number);
         }
     }
-
-    // mobile count
 
     // single case
     // -- single class for modal content
