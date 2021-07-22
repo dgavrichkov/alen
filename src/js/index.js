@@ -796,12 +796,16 @@ const gallery = () => {
 
     window.popup.onRender(function() {  
         const galleryEl = this.querySelector(".gallery");  
-        window.galleryComp = new Gallery(galleryEl);
-        window.galleryComp.init();
+        if(galleryEl) {
+            window.galleryComp = new Gallery(galleryEl);
+            window.galleryComp.init();
+        }
     });
 
     window.popup.onClose(function() {
-        window.galleryComp.clearSingle();
+        if(window.galleryComp) {
+            window.galleryComp.clearSingle();
+        }
     });
 };
 // popup
@@ -816,6 +820,7 @@ class Popup {
     
         this._handleTriggerClick = this._handleTriggerClick.bind(this);
         this._handleCloseClick = this._handleCloseClick.bind(this);
+        this._handleEscKey = this._handleEscKey.bind(this);
     }
     init() {
         this._setTriggersClickHandler();
@@ -832,11 +837,15 @@ class Popup {
         if(html) {
             this.render(html);
         }
-        // при открытии назначаем обработчики вызовов попапа 
-        this._triggers = document.querySelectorAll(".js-popup");
-        this._closes = this._popup.querySelectorAll(".js-popup__close");
-        this.init();
         this._createOpenEvent();
+    }
+    openId(id, extClass) {
+        const tpl = document.querySelector(`[data-tpl-id="${id}"]`);
+        if(extClass){
+            this._extClass = extClass;
+        }
+        this.open();
+        this.render(tpl.content.cloneNode(true));
     }
 
     close() {
@@ -872,7 +881,10 @@ class Popup {
         }
         this._content = this._popup.querySelector(".popup__inner");
         this._content.style.opacity = 1;
-
+        // при открытии назначаем обработчики вызовов попапа 
+        this._triggers = document.querySelectorAll(".js-popup");
+        this._closes = this._popup.querySelectorAll(".js-popup__close");
+        this._setCloseClickHandler();
         this._createRenderEvent();
     }
 
@@ -915,6 +927,11 @@ class Popup {
             this.close();
         }
     }
+    _handleEscKey(e) {
+        if(e.keyCode === 27) {
+            this.close();
+        }
+    }
 
     _setTriggersClickHandler() {
         if(this._triggers.length === 0) {
@@ -933,11 +950,11 @@ class Popup {
     }
 
     _setEscKeyHandler() {
-        
+        document.addEventListener("keydown", this._handleEscKey);
     }
 
     _removeEscKeyHandler() {
-
+        document.removeEventListener("keydown", this._handleEscKey);
     }
 
     setPopupClass(extclass) {
@@ -1141,8 +1158,8 @@ class Form {
     // валидация полей формы
     // -- error
 
-    // после успешной отправки формы использовать popup.open("form-success", ".popup--small")
-    // после успешной отправки комментария использовать popup.open("comment-success", ".popup--small")
+    // после успешной отправки формы использовать popup.open()
+    // после успешной отправки комментария использовать popup.open()
 }
 
 const forms = function() {
@@ -1560,6 +1577,11 @@ window.onload = function() {
     loadAnimate();
     scrollAnimateFadeUp();
     forms();
+
+    const jsCallSuccess = document.querySelector("#js-call-success");
+    jsCallSuccess.addEventListener("click", () => {
+        window.popup.openId("form-success", "popup--small");
+    })
 };
 
 
