@@ -42,37 +42,38 @@ block content
 						a(href="vk" data-social-item="vkontakte").actions-bar__share-item
 							span Vkontakte
 			//- section comments list
-			sections.comments.scroll-anim.fade-up
-				div.comments__inner.scroll-anim.fade-up
+			sections.comments
+				div.comments__inner
 					h2.comments__title Комментарии
-					ul.comments__list 
-						li.comments__item
-							article.comment-item
+					ul.comments__list
+						li.comments__item.scroll-anim.fade-up
+							article.comment-item(data-answer-id="100")
 								b.comment-item__name Евгений Голяка:
 								div.comment-item__date 15 сентября 2019
 								div.comment-item__text Интересный обзор. Хорошо написано! 
 								button.comment-item__reply.pill-btn(type="button") Ответить
-								div.comment-item__replies
-									div.comment-item__replies-cap Ответы
-									div.comment-item__replies-item 
-										article.comment-item
-											b.comment-item__name Евгений Голяка:
-											div.comment-item__date 15 сентября 2019
-											div.comment-item__text ок
-									div.comment-item__replies-item 
-										article.comment-item
-											b.comment-item__name Евгений Голяка:
-											div.comment-item__date 16 сентября 2019
-											div.comment-item__text я передумал
-						li.comments__item
-							article.comment-item
+							div.comment-item__replies
+								div.comment-item__replies-cap Ответы
+								div.comment-item__replies-item 
+									article.comment-item
+										b.comment-item__name Евгений Голяка:
+										div.comment-item__date 15 сентябsря 2019
+										div.comment-item__text ок
+								div.comment-item__replies-item 
+									article.comment-item
+										b.comment-item__name Евгений Голяка:
+										div.comment-item__date 16 сентября 2019
+										div.comment-item__text я передумал
+						li.comments__item.scroll-anim.fade-up
+							article.comment-item(data-answer-id="101")
 								b.comment-item__name Евгений Голяка:
 								div.comment-item__date 15 сентября 2019
 								div.comment-item__text Интересный обзор. Хорошо написано! 
 								button.comment-item__reply.pill-btn(type="button") Ответить
+						
 				//- add comments
 				div.comments__inner
-					h2.comments__title Оставить комментарий
+					h2.comments__title.comments__title-second Оставить комментарий
 					form.comments__form.comments-form.form
 						div.comments-form__text
 							div.form__textarea.form__box
@@ -96,6 +97,9 @@ block content
 								label(for="form-save") Сохранить имя, адрес электронной почты, чтобы в следующий раз оставить комментарий
 						div.comments-form__submit
 							button.pill-btn(type="submit") Отправить
+
+					button(type="button").comments__create-comment.pill-btn.is-hidden Оставить комментарий
+						
 
 			//- section slider tiles - other news
 			section.items-section 
@@ -134,6 +138,32 @@ block content
 
 		div.page__footer
 			include ../../blocks/modules/footer/footer.pug
+			template(data-comment-template)
+				form(data-form-answer).comments__form.comments-form.form
+					input(type="hidden" value="").comments-form__answer-id
+					div.comments-form__text
+						div.form__textarea.form__box
+							label(for="").form__label Комментарий#[span *]
+							textarea
+					div.comments-form__name
+						div.form__inputbox.form__box
+							label(for="").form__label Имя#[span *]
+							input(type="text")
+					div.comments-form__email
+						div.form__inputbox.form__box
+							label(for="").form__label E-mail#[span *]
+							input(type="text")
+					div.comments-form__agree
+						div.form__checkbox.form__box
+							input(type="checkbox" required id="form-agree" name="form-agree")
+							label(for="form-agree") Даю согласие на обработку персональных данных в соответствии с политикой конфиденциальности
+					div.comments-form__remember
+						div.form__checkbox.form__box
+							input(type="checkbox" id="form-save" name="form-save") 
+							label(for="form-save") Сохранить имя, адрес электронной почты, чтобы в следующий раз оставить комментарий
+					div.comments-form__submit
+						button.pill-btn(type="submit") Отправить
+				
 block scripts
 	script(src="js/swiper-bundle.min.js")
 	script(src="js/index.js")

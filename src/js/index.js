@@ -1120,7 +1120,7 @@ class Form {
     }
 
     init() {
-        console.log(this._el);
+    
     }
 
 
@@ -1140,7 +1140,7 @@ class Form {
 
     }
 
-    _handleFilenputChange() {
+    _handleFileinputChange() {
 
     }
 
@@ -1560,6 +1560,132 @@ const footerAccordeon = () => {
 
 };
 
+class Commentator {
+    constructor(el) {
+        this._el = el;
+
+        this._answerBtns = this._el.querySelectorAll(".comment-item__reply");
+        this._commentBtn = this._el.querySelector(".comments__create-comment");
+        this._commentsTitle = this._el.querySelector(".comments__title-second");
+        this._commentForm = this._el.querySelector(".comments__form");
+        this._currentAnswer = null;
+        this._answerId = null;
+        this._isAnswering = false;
+
+        this._handleAnswerClick = this._handleAnswerClick.bind(this);
+        this._handleCommentClick = this._handleCommentClick.bind(this);
+    }  
+    init() {
+        this._setAnswerClickHandler();
+        this._setCommentClickHandler();
+    }
+
+    _setAnswerClickHandler() {
+        this._answerBtns.forEach(btn => {
+            btn.addEventListener("click", this._handleAnswerClick);
+        })
+    }
+
+    _setCommentClickHandler() {
+        this._commentBtn.addEventListener("click", this._handleCommentClick);
+    }
+
+    _handleAnswerClick(e) {
+        if(this._isAnswering && this._answerId === e.target.closest(".comment-item").dataset.answerId) {
+            this._handleCommentClick();
+            return false;
+        } else if(this._isAnswering){
+            this._removeAnswerForm();
+        }
+        this._showCommentBtn();
+        e.target.closest(".comment-item__reply").innerText = "Отменить"
+        this._commentsTitle.classList.add("is-hidden");
+        this._commentForm.remove();
+        this._isAnswering = true;
+        this._currentAnswer = e.target.closest(".comment-item");
+        this._answerId = this._currentAnswer.dataset.answerId;
+        this._putAnswerForm();
+
+        this._createAnswerEvent();
+    }
+
+    _handleCommentClick() {
+        this._removeAnswerForm();
+        this._isAnswering = false;
+        this._createCommentEvent();
+    }
+
+    _showCommentBtn() {
+        this._commentBtn.classList.remove("is-hidden");
+        setTimeout(() => {
+            this._commentBtn.classList.add("is-animed");
+        }, 0);
+    }
+
+    _hideCommentBtn() {
+        this._commentBtn.classList.remove("is-animed");
+        this._commentBtn.classList.add("is-active");
+    }
+
+    _putAnswerForm() {
+        this._answerForm = document.querySelector("[data-comment-template]").content.cloneNode(true);
+        this._answerForm.querySelector(".comments-form__answer-id").value = this._answerId;
+        this._currentAnswer.parentElement.append(this._answerForm);
+        this._answerForm = this._currentAnswer.parentElement.querySelector("[data-form-answer]");
+        setTimeout(() => {
+            // это связано с работой функции scroll-anim и классов .scroll-anim.fade-up у родителя
+            this._answerForm.classList.add("is-animed");
+        }, 0);
+    }
+
+    _removeAnswerForm() {
+        this._currentAnswer.querySelector(".comment-item__reply").innerText = "Ответить";
+        this._commentsTitle.classList.remove("is-hidden");
+        this._commentsTitle.after(this._commentForm);
+        this._hideCommentBtn();
+        this._answerForm.classList.remove("is-animed");
+        this._answerForm.remove();
+    }
+
+    // events
+    _createAnswerEvent() {
+        const answerEvent = new CustomEvent("answer", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._el.dispatchEvent(answerEvent);
+    }
+    _createCommentEvent() {
+        const commentEvent = new CustomEvent("comment", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._el.dispatchEvent(commentEvent);
+    }
+    onAnswer(callback) {
+        this._el.addEventListener("answer", callback);
+    }
+    onComment(callback) {
+        this._el.addEventListener("comment", callback);
+    }
+}
+
+const commentsInit = function () {
+    const commentBlock = document.querySelector(".comments");
+    window.commentator = new Commentator(commentBlock);
+    window.commentator.init();
+    window.commentator.onAnswer(() => {
+        console.log("answer form rendered");
+    });
+    window.commentator.onComment(() => {
+        console.log("comment form rendered");
+    })
+}
+
 window.onload = function() {
     window.popup = new Popup(); // должен идти перед функциями
     window.popup.init(); // 
@@ -1577,6 +1703,7 @@ window.onload = function() {
     loadAnimate();
     scrollAnimateFadeUp();
     forms();
+    commentsInit();
 
     const jsCallSuccess = document.querySelector("#js-call-success");
     jsCallSuccess.addEventListener("click", () => {
