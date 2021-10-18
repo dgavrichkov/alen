@@ -38,6 +38,9 @@
 			}
 		}
 	}
+	&__body-wrapper {
+		transition-timing-function: ease;
+	}
 	&__tabs {
 		display: flex;
 		padding-bottom: 30px;

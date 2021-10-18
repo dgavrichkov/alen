@@ -4,9 +4,13 @@
 	&__inner {
 		@include smallColumn;
 		@include to(768px) {
-			flex-direction: column;
 			gap: 5px;
 			align-items: center;
+			display: grid;
+			grid-template-columns: 1fr;
+			& > * {
+				justify-self: center;
+			}
 		}
 		display: flex;
 	}

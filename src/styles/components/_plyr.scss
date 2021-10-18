@@ -23,15 +23,10 @@
 .plyr.plyr--paused iframe {
     filter: blur(1.5rem);
 } 
-.plyr--paused {
-    z-index: -1;
-}
-.plyr__video-embed>iframe{
-    display: none;
-}
-.plyr__video-embed>iframe{
-    display: none;
-}
-.swiper-slide-prev > .plyr{
-    display: none!important;
+
+.plyr__video-embed, 
+.plyr__video-wrapper--fixed-ratio {
+    padding-bottom: 0;
+    height: 100%;
+    max-height: 100%;
 }

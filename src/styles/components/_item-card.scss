@@ -114,9 +114,20 @@
 			}
 		}
 		.item-card__content {
-			padding-left: 38px;
-			padding-right: 28px;
 			justify-content: start;
+			height: 74px;
+			overflow: hidden;
+			align-items: center;
+			padding: 0 28px;
+			
+			.item-card__cap {
+				font-size: 17px;
+				line-height: 141%;
+
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 3;
+			}
 		}
 		.item-card__overlink:hover ~ .item-card__figure img {
 			transform: scale(1.1);
@@ -143,12 +154,6 @@
 				padding: 20px;
 				height: auto;
 			}
-		}
-		.item-card__description {
-			display: -webkit-box;
-			-webkit-line-clamp: 4;
-			-webkit-box-orient: vertical;
-			overflow: hidden;
 		}
 	}
 }

@@ -29,6 +29,28 @@
 	&__inputbox {
 		input {
 			@include input;
+
+			&.parsley-error,
+			&.is-error {
+				background: #fae8e8;
+			}
+		}
+		
+		.parsley-errors-list,
+		.form__box-error {
+			list-style: none;
+			margin-top: 10px;
+		}
+		.parsley-errors-list li,
+		.form__box-error span {
+			display: block;
+			font-family: Rubik;
+			text-align: right;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 13px;
+			line-height: 15px;
+			color: #e2b1b1;
 		}
 	}
 
@@ -42,10 +64,12 @@
 			}
 			height: 130px;
 			margin-bottom: 20px;
+			&.parsley-error,
+			&.is-error {
+				background: #fae8e8;
+			}
 		}
 	}
-
-	&__file {}
 
 	&__filelist {
 		label {
@@ -64,6 +88,7 @@
 			line-height: 20px;
 			color: #292929;
 			position: relative;
+			height: 47px;
 			&::before {
 				content: "";
 				display: block;
@@ -103,6 +128,15 @@
 				background-size: contain;
 				transition: all 0.3s ease-in-out;
 			}
+		}
+		input[type="file"] {
+			// display: none;
+		}
+		&-name {
+			font-weight: normal;
+			font-size: 17px;
+			line-height: 20px;
+			color: #9A9A9A;
 		}
 	}
 
@@ -160,6 +194,20 @@
 			&:after {
 				opacity: 1;
 			}
+		}
+
+		&.parsley-error input + label:before {
+			background-color: #fae8e8;
+		}
+		input.parsley-error + label:before {
+			background-color: #fae8e8;
+		}
+		input.is-error + label:before {
+			background-color: #fae8e8;
+		}
+		.parsley-errors-list,
+		.errors-list {
+			display: none;
 		}
 	}
 }

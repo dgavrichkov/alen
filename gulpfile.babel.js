@@ -24,7 +24,7 @@ const requireDir = require("require-dir"),
             ]
         },
         scripts: {
-            src: "./src/js/index.js",
+            src: "./src/js/*.js",
             dist: "./dist/js/",
             watch: [
                 "./src/blocks/**/*.js",

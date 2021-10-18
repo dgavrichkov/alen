@@ -30,6 +30,9 @@
 		}
 	}
 	&__object {
+		@include to(460px) {
+			overflow: hidden;
+		}
 		img, video {
 			min-width: 100%;
 			min-height: 100%;
@@ -41,6 +44,11 @@
 		}
 		// контейнер для объкта
 		figure {
+			@include to(460px) {
+				will-change: transform;
+				transition: transform 10s linear;
+			}
+			
 			position: relative;
 			height: 100vh;
 			overflow: hidden;
@@ -56,6 +64,18 @@
 			}
 		}
 		
+		&.swiper-slide-active {
+			@include to(460px) {
+				figure {
+					// animation-name: zooming;
+					// animation-duration: 40s;
+					// animation-fill-mode: both;
+					// animation-iteration-count: infinite;
+					transform: scale(1.1);
+				}
+				
+			}
+		}
 	}
 	&__labels {
 		@include to(1366px) {
@@ -63,6 +83,9 @@
 		}
 		@include to(1024px) {
 			left: 20px;
+		}
+		@include to(768px) {
+			width: calc(100% - 40px);
 		}
 		position: absolute;
 		z-index: 2;
@@ -300,6 +323,17 @@
     100% {
         left: 0;
     }
+}
+@keyframes zooming {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+	100% {
+		transform: scale(1);
+	}
 }
 
 .hero-label {

@@ -6,7 +6,9 @@
 	row-gap: 52px;
 
 	margin-bottom: 80px;
-
+	@include to(1600px) {
+		grid-column: 2 / -2;
+	}
 	@include to(1024px) {
 		grid-template-columns: 1fr;
 		gap: 20px;
@@ -15,6 +17,9 @@
 	@include to(768px) {
 		gap: 16px;
 		margin-bottom: 35px;
+	}
+	@include to(768px) {
+		grid-column: 1 / -1;
 	}
 
 	dt {

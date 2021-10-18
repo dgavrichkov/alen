@@ -16,10 +16,18 @@
 		background: #f3f3f3;
 		position: relative;
 		&::after {
+			@include to(600px) {
+				padding-top: 100%;
+			}
 			content: '';
 			display: block;
 			padding-top: 43.53%;
 			width: 100%;
+		}
+		#map {
+			width: 100%;
+			height: 100%;
+			position: absolute;
 		}
 	}
 

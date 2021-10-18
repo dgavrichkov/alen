@@ -14,6 +14,9 @@
 	&__item {
 		@include smallColumn;
 		&:not(:last-child) {
+			@include to(768px) {
+				margin-bottom: 0;
+			}
 			margin-bottom: 31px;
 		}
 		&:last-child {

@@ -3,30 +3,32 @@
 	outline: none;
 }
 
-:where(.page) {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	ul,
-	p,
-	figure,
-	dl,
-	dd,
-	dt {
-		margin: 0;
-		padding: 0;
-	}
+button, [type="button"], [type="reset"], [type="submit"] {
+	-webkit-appearance: none;
+}
 
-	a {
-		text-decoration: none;
-	}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+p,
+figure,
+dl,
+dd,
+dt {
+	margin: 0;
+	padding: 0;
+}
 
-	ul {
-		list-style: none;
-	}
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
 }
 
 body {

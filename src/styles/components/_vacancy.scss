@@ -37,6 +37,7 @@
 			background-image: $icon-chevron;
 			background-repeat: no-repeat;
 			cursor: pointer;
+			transition: transform 0.3s ease-in;
 		}
 	}
 
@@ -113,6 +114,9 @@
 	&.is-active {
 		.vacancy__head {
 			background: #F4F4F4;
+			button {
+				transform: rotate(180deg);
+			}
 		}
 	}
 }

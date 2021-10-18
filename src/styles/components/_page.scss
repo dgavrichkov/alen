@@ -14,11 +14,6 @@
 		padding: 0 45px;
 		text-transform: capitalize;
 		font-weight: 500;
-		@include to(768px) {
-			padding-left: 20px;
-			padding-right: 20px;
-			font-weight: 400;
-		}
 	}
 	&--main {
 		@include to(1024px) {
@@ -29,10 +24,16 @@
 				display: none;
 			}
 		}
+		@include to(768px) {
+			height: calc(var(--vh, 1vh) * 100);
+			min-height: calc(var(--vh, 1vh) * 100);
+			max-height: calc(var(--vh, 1vh) * 100);
+		}
 	}
 }
 
 .page-bar {
+	@include bigColumn;
 	@include to(1024px) {
 		margin-top: 62px;
 	}
@@ -46,7 +47,6 @@
 		padding-top: 30px;
 		padding-bottom: 30px;
 	}
-	@include bigColumn;
 	margin-top: 100px;
 	padding-top: 29px;
 	padding-bottom: 29px;
@@ -83,3 +83,36 @@
 	}
 }
 
+.page #map {
+	ymaps ymaps ymaps ymaps ymaps ymaps ymaps ymaps ymaps ymaps {
+		overflow: visible !important;
+	}
+	.hintContent-title {
+		color: #292929;
+		font-weight: 700;
+		display: block;
+	}
+	.hintContent-text {
+		color: #292929;
+	}
+	& > ymaps {
+		max-height: 100%;
+		max-width: 100%;
+	}
+	
+	[class*="-hint"] {
+		border-radius: 4px;
+	}
+	.ymaps-b-zoom_hints-pos_right {
+		left: auto !important;
+		right: 8px;
+	}
+
+	.yaMap_head img {
+		position: absolute;
+		width: calc(100% + 42px);
+		height: 184px;
+		left: -12px;
+		top: -10px;
+	}
+}

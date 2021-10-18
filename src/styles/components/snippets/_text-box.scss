@@ -2,8 +2,14 @@
 	@include smallColumn;
 	margin-bottom: 30px;
 	text-align: justify;
+	font-weight: 300;
+	font-size: 17px;
+	line-height: 190%;
+	color: #292929;
 	@include to(768px) {
 		text-align: left;
+		font-size: 14px;
+		line-height: 23px;
 	}
 	h1 {
 		font-weight: normal;
@@ -151,5 +157,16 @@
 
 	&--top-shift {
 		margin-top: -15px;
+	}
+
+	iframe {
+		width: 100%;
+		max-width: 950px;
+		@supports (aspect-ratio: 16 / 9) {
+			max-width: 950px;
+			width: 100%;
+			height: auto;
+			aspect-ratio: 16 / 9;
+		}
 	}
 }
