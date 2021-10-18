@@ -82,6 +82,14 @@
 		}
 	}
 
+	&__ah-logo {
+		width: 120px;
+		height: 40px;
+		margin-left: 40px;
+		transition: opacity 0.3s;
+		position: relative;
+	}
+
 	&__search {
 		position: absolute;
 		z-index: 2;

@@ -1,0 +1,23 @@
+extends ../layouts/default
+include ../helpers/mixins
+
+block variables
+	- const title = "AH catalog"
+
+block content
+	div.page
+		div.page__header
+			include ../../blocks/modules/allhomes/header/header-solid.pug
+		main.page__main
+			section.page-bar
+				h1.page-bar__title Проекты
+			include ../../blocks/modules/allhomes/filters.pug
+			include ../../blocks/modules/allhomes/catalog-tiles.pug
+			include ../../blocks/modules/allhomes/paginator.pug
+		div.page__popup
+		div.page__footer
+			include ../../blocks/modules/allhomes/footer.pug
+			
+block scripts
+	script(src="js/swiper-bundle.min.js")
+	script(src="js/allhomes.js")
