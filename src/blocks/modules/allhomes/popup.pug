@@ -1,0 +1,24 @@
+div.popup
+	// вот сюда рендерить контент отдельно взятого попапа
+	button(type="button").popup__close.js-popup__close
+
+template(data-tpl-id="add-comment")
+	div.popup__inner.popup__inner--center(id="add-comment")
+		div.popup__box
+			div.popup__title Отправить резюме
+			div.popup__form
+				div.form__inputbox.form__box
+					label(for="add-comment-name").form__label Имя#[span *]
+					input(type="text" id="add-comment-name") 
+				div.form__inputbox.form__box
+					label(for="add-comment-tel").form__label Телефон#[span *]
+					input(type="text" id="add-comment-tel")
+				div.form__textarea.form__box
+					label(for="add-comment-text").form__label Комментарий
+					textarea(name="" id="add-comment-text")
+				div.form__checkbox.form__box
+					input(type="checkbox" id="add-comment-agree") 
+					label(for="add-comment-agree")
+						span Согласен на обработку песональных данных в соответствии с #[a(href="") Политикой конфиденциальности]
+				div.form__submit.form__box
+					button(type="submit").pill-btn Отправить
