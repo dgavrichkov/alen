@@ -1,0 +1,38 @@
+header.header
+	.header__inner
+		a(href="ah-index.html").header__logo 
+
+		div.header__search
+			button.header__search-btn.js-search-trigger(type="button") 
+			form.header__search-form
+				input(type="text" name="search" value="").header__search-field
+				button(type="button").header__search-clear
+		div.header__search-bg
+		nav.header__menu
+			a(href="ah-projects.html").header__menu-item.is-current Проекты
+			a(href="ah-customer.html").header__menu-item Покупателю
+			a(href="ah-gallery.html").header__menu-item  Галерея готовых домов
+			a(href="ah-company.html").header__menu-item Компания
+			a(href="ah-contacts.html").header__menu-item Контакты
+		div.header__mobile-btns 
+			a(href="tel:+7 (812) 579-55-81").header__mobile-call
+				span.icon 
+				span.visually-hidden +7 (812) 579-55-81
+			button(type="button").header__mobile-burger
+				span
+				p.visually-hidden Открыть меню
+		button(type="button").header__mobile-search-back
+			span.visually-hidden Закрыть поиск
+		//- mobile menu
+		div.header__mobile-menu.mobile-menu
+			nav.mobile-menu__list 
+				button(type="button").js-search-trigger.mobile-menu__search.mobile-menu__item
+					span.mobile-menu__search-icon
+					span.mobile-menu__search-txt Поиск
+				a(href="projects.html").mobile-menu__item Проекты
+				a(href="about.html").mobile-menu__item Компания
+				a(href="services.html").mobile-menu__item Услуги
+				a(href="lab.html").mobile-menu__item Лаборатория
+				a(href="press.html").mobile-menu__item Пресс-центр
+				a(href="contacts.html").mobile-menu__item Контакты
+				a(href="/en").mobile-menu__item.mobile-menu__lang English

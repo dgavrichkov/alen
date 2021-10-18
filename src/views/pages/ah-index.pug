@@ -1,0 +1,22 @@
+extends ../layouts/default
+include ../helpers/mixins
+
+block variables
+	- const title = "Allhomes"
+
+block content
+	div.page
+		div.page__header
+			include ../../blocks/modules/allhomes/header/header.pug
+		main.page__main
+			include ../../blocks/modules/allhomes/hero-slider.pug
+			include ../../blocks/modules/allhomes/index-about.pug
+			include ../../blocks/modules/allhomes/index-recommend.pug
+			include ../../blocks/modules/allhomes/index-gallery-p.pug
+			include ../../blocks/modules/allhomes/index-ready.pug
+		div.page__popup
+		div.page__footer
+			include ../../blocks/modules/allhomes/footer.pug
+block scripts
+	script(src="js/swiper-bundle.min.js")
+	script(src="js/allhomes.js")
