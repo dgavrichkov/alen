@@ -57,4 +57,10 @@
 			}
 		}
 	}
+
+	&--ah-ctg {
+		.tiles__list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
 }
