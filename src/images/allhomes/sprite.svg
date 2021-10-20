@@ -1,0 +1,18 @@
+<svg width="0" height="0" class="hidden">
+	<symbol id="star" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 22 20">
+		<g>
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M11 15.9252L5.12868 19L6.25 12.4875L1.5 7.87539L8.06434 6.92523L11 1L13.9357 6.92523L20.5 7.87539L15.75 12.4875L16.8713 19L11 15.9252Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+		</g>
+		
+	</symbol>
+	<symbol id="compare" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 20 24">
+		<g>
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M2 1C2 0.447715 1.55228 0 1 0C0.447715 0 0 0.447715 0 1V4V6V11V13V18V20V23C0 23.5523 0.447715 24 1 24C1.55228 24 2 23.5523 2 23L2 22H15C16.1046 22 17 21.1046 17 20V18C17 16.8954 16.1046 16 15 16H2L2 15H18C19.1046 15 20 14.1046 20 13V11C20 9.89543 19.1046 9 18 9H2L2 8H10C11.1046 8 12 7.10457 12 6V4C12 2.89543 11.1046 2 10 2H2V1ZM2 4L2 6H10V4H2ZM2 11V13H18V11H2ZM2 18L2 20H15V18H2Z" fill="white"/>
+		</g>
+	</symbol>
+	<symbol id="compare-fill" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 20 24">
+		<g>
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M2 1C2 0.447715 1.55228 0 1 0C0.447715 0 0 0.447715 0 1V4V6V11V13V18V20V23C0 23.5523 0.447715 24 1 24C1.55228 24 2 23.5523 2 23L2 22H15C16.1046 22 17 21.1046 17 20V18C17 16.8954 16.1046 16 15 16H2L2 15H18C19.1046 15 20 14.1046 20 13V11C20 9.89543 19.1046 9 18 9H2L2 8H10C11.1046 8 12 7.10457 12 6V4C12 2.89543 11.1046 2 10 2H2V1Z" fill="white"/>
+		</g>
+	</symbol>
+</svg>

@@ -1,5 +1,5 @@
 section.tiles.tiles--ah-ctg
-	div.tiles__list
+	ul.tiles__list
 		li.tiles__tile
 			article.home-card.swiper-slide
 				a(href="ah-project.pug").overlink
@@ -7,10 +7,16 @@ section.tiles.tiles--ah-ctg
 					img(src="/images/allhomes/cardpic-1.jpg" alt="")
 				div.home-card__actions
 					button(type="button").home-card__favor
+						svg
+							use(xlink:href="/images/allhomes/sprite.svg#star")
 					button(type="button").home-card__compare
+						svg.unactive
+							use(xlink:href="/images/allhomes/sprite.svg#compare")
+						svg.active
+							use(xlink:href="/images/allhomes/sprite.svg#compare-fill")
 				div.home-card__info
 					div.home-card__cap Проект деревянного дома J-178-1D
-					dl
+					dl.home-card__data
 						div
 							dt Общая площадь:
 							dd 178,3
@@ -29,11 +35,17 @@ section.tiles.tiles--ah-ctg
 				picture.home-card__picture
 					img(src="/images/allhomes/cardpic-2.jpg" alt="")
 				div.home-card__actions
-					button(type="button").home-card__favor
-					button(type="button").home-card__compare
+					button(type="button").home-card__favor.is-active
+						svg
+							use(xlink:href="/images/allhomes/sprite.svg#star")
+					button(type="button").home-card__compare.is-active
+						svg.unactive
+							use(xlink:href="/images/allhomes/sprite.svg#compare")
+						svg.active
+							use(xlink:href="/images/allhomes/sprite.svg#compare-fill")
 				div.home-card__info
 					div.home-card__cap Проект деревянного дома J-178-1D
-					dl
+					dl.home-card__data
 						div
 							dt Общая площадь:
 							dd 178,3
@@ -53,10 +65,14 @@ section.tiles.tiles--ah-ctg
 					img(src="/images/allhomes/cardpic-3.jpg" alt="")
 				div.home-card__actions
 					button(type="button").home-card__favor
+						svg
+							use(xlink:href="/images/allhomes/sprite.svg#star")
 					button(type="button").home-card__compare
+						svg
+							use(xlink:href="/images/allhomes/sprite.svg#compare")
 				div.home-card__info
 					div.home-card__cap Проект деревянного дома J-178-1D
-					dl
+					dl.home-card__data
 						div
 							dt Общая площадь:
 							dd 178,3
@@ -76,10 +92,14 @@ section.tiles.tiles--ah-ctg
 					img(src="/images/allhomes/cardpic-4.jpg" alt="")
 				div.home-card__actions
 					button(type="button").home-card__favor
+						svg
+							use(xlink:href="/images/allhomes/sprite.svg#star")
 					button(type="button").home-card__compare
+						svg
+							use(xlink:href="/images/allhomes/sprite.svg#compare")
 				div.home-card__info
 					div.home-card__cap Проект деревянного дома J-178-1D
-					dl
+					dl.home-card__data
 						div
 							dt Общая площадь:
 							dd 178,3
@@ -99,10 +119,14 @@ section.tiles.tiles--ah-ctg
 					img(src="/images/allhomes/cardpic-5.jpg" alt="")
 				div.home-card__actions
 					button(type="button").home-card__favor
+						svg
+							use(xlink:href="/images/allhomes/sprite.svg#star")
 					button(type="button").home-card__compare
+						svg
+							use(xlink:href="/images/allhomes/sprite.svg#compare")
 				div.home-card__info
 					div.home-card__cap Проект деревянного дома J-178-1D
-					dl
+					dl.home-card__data
 						div
 							dt Общая площадь:
 							dd 178,3
