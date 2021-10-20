@@ -83,11 +83,17 @@
 	}
 
 	&__ah-logo {
-		width: 120px;
-		height: 40px;
+		width: 205px;
+		height: 46px;
 		margin-left: 40px;
 		transition: opacity 0.3s;
 		position: relative;
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
 	}
 
 	&__search {
