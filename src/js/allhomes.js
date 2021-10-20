@@ -1,4 +1,6 @@
 window.addEventListener("load", function() {
+    window.popup = new Popup(); // должен идти перед функциями
+    window.popup.init(); //
     header();
     heroSlider();
     loadAnimate();
@@ -518,4 +520,272 @@ const footerAccordeon = () => {
             }
         });
     });
+};
+
+class Popup {
+    constructor() {
+        this._popup = document.querySelector(".popup");
+        this._triggers = document.querySelectorAll(".js-popup");
+        this._closes = this._popup.querySelectorAll(".js-popup__close");
+        this._content = null;
+        this._extClass = null;
+        this.isOpen = false;
+
+        this._handleTriggerClick = this._handleTriggerClick.bind(this);
+        this._handleCloseClick = this._handleCloseClick.bind(this);
+        this._handleEscKey = this._handleEscKey.bind(this);
+    }
+    init() {
+        this._setTriggersClickHandler();
+        this._setCloseClickHandler();
+        this._setEscKeyHandler();
+        this._popup.width = `calc(100% - ${getScrollbarSize()}px)`;
+    }
+    // open. публичный метод - передав сюда название нужного шаблона, откроем попап с соостветствующим содержимым
+    open(html) {
+        this._popup.classList.add("is-active");
+        this._popup.style.opacity = "1";
+        this.setPopupClass(this._extClass);
+        hideScroll();
+        this.isOpen = true;
+        if(html) {
+            this.render(html);
+        }
+        this._createOpenEvent();
+    }
+    openId(id, extClass) {
+        const tpl = document.querySelector(`[data-tpl-id="${id}"]`);
+        if(extClass){
+            this._extClass = extClass;
+        }
+        this.open();
+        this.render(tpl.content.cloneNode(true));
+    }
+
+    close() {
+        this._popup.style.opacity = "0";
+        this._content.style.opacity = "0";
+        showScroll();
+        
+        const clearClass = (e) => {
+            if(e.propertyName === "opacity") {
+                this._popup.classList.remove("is-active");
+                this.removePopupClass(this._extClass);
+                this._extClass = null;
+                this.isOpen = false;
+                this._popup.removeEventListener("transitionend", clearClass);
+            }
+        };
+        
+        this._popup.addEventListener("transitionend", clearClass);
+        this._removeEscKeyHandler();
+        this._createCloseEvent();
+        this.clear();
+    }
+
+    render(html) {
+        this.clear();
+        if(typeof html === "string") {
+            this._popup.insertAdjacentHTML("afterbegin", html);
+        } else {
+            this._popup.append(html);
+        }
+        this._content = this._popup.querySelector(".popup__inner");
+        this._content.style.opacity = 1;
+        this._triggers = document.querySelectorAll(".js-popup");
+        this._closes = this._popup.querySelectorAll(".js-popup__close");
+        this._setCloseClickHandler();
+        this._createRenderEvent();
+    }
+
+    clear() {
+        if(this._content !== null) {
+            this._content.remove();
+            this._content = null;
+        }
+        this._createClearEvent();
+    }
+
+    _renderContent(id) {
+        const template = document.querySelector(`[data-tpl-id="${id}"]`);
+        this._popup.append(template.content.cloneNode(true));
+        this._content = this._popup.querySelector(".popup__inner");
+        this._content.style.opacity = 1;
+        const contentForm = this._content.querySelector(".form");
+        if(contentForm) {
+            const formComp = new Form(contentForm);
+            formComp.init();
+        }
+    }
+
+    _handleTriggerClick(e) {
+        e.preventDefault();
+        const id = e.target.closest(".js-popup").dataset.modalId;
+        const tpl = document.querySelector(`[data-tpl-id="${id}"]`);
+        const extClass = e.target.dataset.modalExtClass;
+        if(extClass){
+            this._extClass = extClass;
+        }
+        this.open();
+        this.render(tpl.content.cloneNode(true))
+    }
+
+    _handleCloseClick(e) {
+        e.preventDefault();
+        if(this.isOpen) {
+            this.close();
+        }
+    }
+    _handleEscKey(e) {
+        if(e.keyCode === 27) {
+            this.close();
+        }
+    }
+
+    _setTriggersClickHandler() {
+        if(this._triggers.length === 0) {
+            return false;
+        }
+
+        this._triggers.forEach(trigger => {
+            trigger.addEventListener("click", this._handleTriggerClick);
+        });
+    }
+
+    _setCloseClickHandler() {
+        this._closes.forEach(close => {
+            close.addEventListener("click", this._handleCloseClick);
+        });
+    }
+
+    _setEscKeyHandler() {
+        document.addEventListener("keydown", this._handleEscKey);
+    }
+
+    _removeEscKeyHandler() {
+        document.removeEventListener("keydown", this._handleEscKey);
+    }
+
+    setPopupClass(extclass) {
+        if(extclass) {
+            this._popup.classList.add(extclass);
+        }
+    }
+    removePopupClass(extclass) {
+        if(extclass) {
+            this._popup.classList.remove(extclass);
+        }
+    }
+
+    // события
+    _createOpenEvent() {
+        const openEvent = new CustomEvent("modalOpen", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._popup.dispatchEvent(openEvent);
+    }
+    _createCloseEvent() {
+        const closeEvent = new CustomEvent("modalClose", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._popup.dispatchEvent(closeEvent);
+    }
+    _createRenderEvent() {
+        const renderEvent = new CustomEvent("modalRender", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._popup.dispatchEvent(renderEvent);
+    }
+    _createClearEvent() {
+        const clearEvent = new CustomEvent("modalClear", {
+            detail: {},
+            bubbles: true,
+            cancelable: true,
+            composed: false,
+        })
+        this._popup.dispatchEvent(clearEvent);
+    }
+    onOpen(callback) {
+        this._popup.addEventListener("modalOpen", callback);
+    }
+    onClose(callback) {
+        this._popup.addEventListener("modalClose", callback);
+    }
+    onRender(callback) {
+        this._popup.addEventListener("modalRender", callback);
+    }
+    onClear(callback) {
+        this._popup.addEventListener("modalClear", callback);
+    }
+}
+
+// debounce
+function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+function getScrollbarSize() { 
+    let outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    document.body.appendChild(outer);
+    let widthNoScroll = outer.offsetWidth;
+    outer.style.overflow = "scroll";
+    let inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+    let widthWithScroll = inner.offsetWidth;
+    outer.parentNode.removeChild(outer);
+    return widthNoScroll - widthWithScroll;
+}
+// запрет скролла, фиксирует документ
+const hideScroll = function () {
+    if(document.body.classList.contains("modal-open")) {
+        return false;
+    }
+    document.body.classList.add("modal-open");
+    window._scrollTop = window.pageYOffset;
+    document.body.style.position = "fixed";
+    document.body.style.top = -window._scrollTop + "px"; // eslint-disable-line
+    document.body.style.width = `calc(100% - ${getScrollbarSize()}px)`;
+    const fixHeader = document.querySelector(".header");
+    if(header) {
+        fixHeader.style.width = `calc(100% - ${getScrollbarSize()}px)`;
+    }
+};
+// снимает запрет прокрутки
+const showScroll = function () {
+    if(!document.body.classList.contains("modal-open")) {
+        return false;
+    }
+    document.body.classList.remove("modal-open");
+    document.body.style.top = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
+    window.scroll(0, window._scrollTop);
+
+    const fixHeader = document.querySelector(".header");
+    if(header) {
+        fixHeader.style.width = "";
+    }
 };
