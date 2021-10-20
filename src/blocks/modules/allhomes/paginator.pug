@@ -1,8 +1,10 @@
-section.grid-section
+section.grid-section.paginator-section
 	div.grid-container
-		nav.grid-regular-box.paginator.paginator--rounded
-			<a class="paginator__item paginator__item--current">1</a>
-			<a class="paginator__item" href="/press-center/?PAGEN_1=2">2</a>
-			<a class="paginator__item" href="/press-center/?PAGEN_1=3">3</a>
-			<a class="paginator__item" href="/press-center/?PAGEN_1=4">4</a>
-			<a class="paginator__item" href="/press-center/?PAGEN_1=5">5</a>
+		div.grid-regular-box
+			nav.paginator.paginator--rounded
+				<a class="paginator__item paginator__item--current">1</a>
+				<a class="paginator__item" href="1=2">2</a>
+				<a class="paginator__item" href="1=3">3</a>
+				<div class="paginator__gap">...</div>
+				<a class="paginator__item" href="1=5">5</a>
+				<a class="paginator__all" href="all">Показать все</a>
