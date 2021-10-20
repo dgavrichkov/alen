@@ -63,6 +63,7 @@
         "yargs": "~15.4.1"
     },
     "dependencies": {
+        "nouislider": "^15.5.0",
         "smart-grid": "^2.1.2"
     },
     "lint-staged": {

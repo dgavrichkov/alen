@@ -3,6 +3,7 @@ window.addEventListener("load", function() {
     header();
     heroSlider();
     loadAnimate();
+    filterRangeBlocks();
 });
 
 const greetings = function() {
@@ -460,4 +461,20 @@ const loadAnimate = function () {
 
     const animObserver = new IntersectionObserver(footerCallback, footerOptions);
     animObserver.observe(animFooter);
+};
+
+const filterRangeBlocks = function() {
+    const block = document.querySelectorAll(".filters-range");
+    if(!block || block.length === 0) {
+        return false
+    };
+    const slider = document.querySelector("#filter-area");
+    noUiSlider.create(slider, {
+        start: [20, 80],
+        connect: true,
+        range: {
+            'min': 0,
+            'max': 100,
+        }
+    });
 };
