@@ -11,6 +11,9 @@
 		font-size: 14px;
 		line-height: 23px;
 	}
+	&:last-child {
+		margin-bottom: 0;
+	}
 	h1 {
 		font-weight: normal;
 		font-size: 35px;

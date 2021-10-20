@@ -4,6 +4,7 @@ window.addEventListener("load", function() {
     heroSlider();
     loadAnimate();
     filterRangeBlocks();
+    tripleSliderBlock();
 });
 
 const greetings = function() {
@@ -409,6 +410,14 @@ const heroSlider = function () {
 };
 
 // tripleslider
+const tripleSliderBlock = function() {
+    const blocks = document.querySelectorAll(".tripleslider-block");
+    if(blocks.length == 0 || !blocks) {
+        return false;
+    }
+    console.log("AAAAA");
+    
+};
 
 // подгрузка и анимирование
 const loadAnimate = function () {

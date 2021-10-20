@@ -1,0 +1,23 @@
+.tripleslider-block {
+	&:last-child {
+		margin-bottom: 100px;
+	}
+	&__head {
+		display: flex;
+		align-items: center;
+		margin-bottom: 40px;
+	}
+	&__title {
+		font-weight: 300;
+		font-size: 38px;
+		line-height: 110%;
+		margin-right: auto;
+	}
+
+	&__all {
+		margin: 0 auto;
+		margin-top: 60px;
+		grid-column: 1 / -1;
+		width: max-content;
+	}
+}

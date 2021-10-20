@@ -1,5 +1,7 @@
 .grid-section {
-
+	// очень хитрые отступы
+	margin-top: var(--mt);
+	margin-bottom: var(--mb);
 }
 .grid-container {
 	@include defaultColGrid;
@@ -12,5 +14,6 @@
 	margin: 0 auto;
 }
 .grid-wide-box {
-	
+	grid-column: 1 / -1;
+	width: 100%;
 }

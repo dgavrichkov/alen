@@ -9,14 +9,21 @@ section.tripleslider-block
 			div.tripleslider.swiper-container
 				div.swiper-wrapper
 					article.home-card.swiper-slide
-						picture
-							img(src="/images/allhomes/cardpic-4.jpg" alt="")
+						a(href="ah-project.pug").overlink
+						picture.home-card__picture
+							img(src="/images/allhomes/cardpic-1.jpg" alt="")
 						div.home-card__actions
 							button(type="button").home-card__favor
+								svg
+									use(xlink:href="/images/allhomes/sprite.svg#star")
 							button(type="button").home-card__compare
+								svg.unactive
+									use(xlink:href="/images/allhomes/sprite.svg#compare")
+								svg.active
+									use(xlink:href="/images/allhomes/sprite.svg#compare-fill")
 						div.home-card__info
 							div.home-card__cap Проект деревянного дома J-178-1D
-							dl
+							dl.home-card__data
 								div
 									dt Общая площадь:
 									dd 178,3
@@ -30,14 +37,21 @@ section.tripleslider-block
 									dt Конструктив:
 									dd с гаражом
 					article.home-card.swiper-slide
-						picture
-							img(src="/images/allhomes/cardpic-5.jpg" alt="")
+						a(href="ah-project.pug").overlink
+						picture.home-card__picture
+							img(src="/images/allhomes/cardpic-1.jpg" alt="")
 						div.home-card__actions
 							button(type="button").home-card__favor
+								svg
+									use(xlink:href="/images/allhomes/sprite.svg#star")
 							button(type="button").home-card__compare
+								svg.unactive
+									use(xlink:href="/images/allhomes/sprite.svg#compare")
+								svg.active
+									use(xlink:href="/images/allhomes/sprite.svg#compare-fill")
 						div.home-card__info
 							div.home-card__cap Проект деревянного дома J-178-1D
-							dl
+							dl.home-card__data
 								div
 									dt Общая площадь:
 									dd 178,3
@@ -51,14 +65,21 @@ section.tripleslider-block
 									dt Конструктив:
 									dd с гаражом
 					article.home-card.swiper-slide
-						picture
-							img(src="/images/allhomes/cardpic-6.jpg" alt="")
+						a(href="ah-project.pug").overlink
+						picture.home-card__picture
+							img(src="/images/allhomes/cardpic-1.jpg" alt="")
 						div.home-card__actions
 							button(type="button").home-card__favor
+								svg
+									use(xlink:href="/images/allhomes/sprite.svg#star")
 							button(type="button").home-card__compare
+								svg.unactive
+									use(xlink:href="/images/allhomes/sprite.svg#compare")
+								svg.active
+									use(xlink:href="/images/allhomes/sprite.svg#compare-fill")
 						div.home-card__info
 							div.home-card__cap Проект деревянного дома J-178-1D
-							dl
+							dl.home-card__data
 								div
 									dt Общая площадь:
 									dd 178,3
@@ -71,4 +92,4 @@ section.tripleslider-block
 								div
 									dt Конструктив:
 									dd с гаражом
-			a(href="ah-projects.html").pill-btn Галерея готовых домов
+		a(href="ah-projects.html").tripleslider-block__all.pill-btn Галерея готовых домов
