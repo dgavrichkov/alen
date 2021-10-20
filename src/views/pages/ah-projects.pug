@@ -9,12 +9,13 @@ block content
 		div.page__header
 			include ../../blocks/modules/allhomes/header/header-solid.pug
 		main.page__main
-			section.page-bar
+			section.page-bar.page-bar--ah.grid-regular-box
 				h1.page-bar__title Проекты
 			include ../../blocks/modules/allhomes/filters.pug
 			include ../../blocks/modules/allhomes/catalog-tiles.pug
 			include ../../blocks/modules/allhomes/paginator.pug
 		div.page__popup
+			include ../../blocks/modules/allhomes/popup.pug
 		div.page__footer
 			include ../../blocks/modules/allhomes/footer.pug
 			

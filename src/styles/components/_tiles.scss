@@ -66,4 +66,12 @@
 			border: none;
 		}
 	}
+	&--ah-ready {
+		.tiles__list {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.tiles__tile:nth-child(n) {
+			border: none;
+		}
+	}
 }

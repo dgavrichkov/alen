@@ -7,13 +7,16 @@ block variables
 block content
 	div.page
 		div.page__header
-			include ../../blocks/modules/allhomes/header/header.pug
-	main.page__main
-
-	div.page__popup
-		include ../../blocks/modules/allhomes/popup.pug
-	div.page__footer
-		include ../../blocks/modules/allhomes/footer.pug
+			include ../../blocks/modules/allhomes/header/header-solid.pug
+		main.page__main
+			section.page-bar.page-bar--ah.grid-regular-box
+				h1.page-bar__title Избранное
+			include ../../blocks/modules/allhomes/catalog-tiles.pug
+			
+		div.page__popup
+			include ../../blocks/modules/allhomes/popup.pug
+		div.page__footer
+			include ../../blocks/modules/allhomes/footer.pug
 block scripts
 	script(src="js/swiper-bundle.min.js")
 	script(src="js/allhomes.js")
