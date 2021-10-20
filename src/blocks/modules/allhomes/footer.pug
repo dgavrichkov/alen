@@ -1,6 +1,6 @@
-footer.footer
-	div.footer__inner.footer__homes-grid
-		div.footer__box
+footer.footer.footer--ah
+	div.footer__inner
+		div.footer__col
 			div(data-scroll-anim).footer__item
 				h3.footer__title Проекты
 				nav.footer__menu 
@@ -11,7 +11,7 @@ footer.footer
 					a(href="").footer__menu-link Гаражи
 					a(href="").footer__menu-link Бани
 					a(href="").footer__menu-link Таунхаусы
-		div.footer__box
+		div.footer__col
 			div(data-scroll-anim).footer__item 
 				h3.footer__title Покупателю
 				nav.footer__menu 
@@ -22,19 +22,19 @@ footer.footer
 					a(href="").footer__menu-link Партнеры-строители
 					a(href="").footer__menu-link Частые вопросы
 					a(href="").footer__menu-link Выбор проекта дома
+		div.footer__col
 			div(data-scroll-anim).footer__item 
 				h3.footer__title Компания
 				nav.footer__menu 
 					a(href="").footer__menu-link О компании
 					a(href="").footer__menu-link Отзывы
 					a(href="").footer__menu-link Контакты
-		div.footer__box
 			div(data-scroll-anim).footer__item 
 				h3.footer__title Галерея готовых домов
 				nav.footer__menu 
 					a(href="").footer__menu-link Фото
 					a(href="").footer__menu-link Видео
-		div.footer__box
+		div.footer__col
 			a.footer__title Контакты
 			a.footer__title москва
 			div.footer__address ул. Вавилова 69, оф. 1022
@@ -45,7 +45,8 @@ footer.footer
 
 			a(href="tel:+78125795581").footer__phone +7 (812) 579-55-81
 			a(href="tel:+79219214242").footer__phone +7 (921) 921-42-42
-		div.footer__box
+		div.footer__col
+			a(href="").footer__question задать вопрос
 			ul.footer__social 
 				li.footer__social-item 
 					a(href="").footer__social-link
@@ -71,4 +72,6 @@ footer.footer
 					a(href="").footer__social-link 
 						span youtube
 						include ../../components/socicons/youtube.pug
-		div.footer__copy © Архитектурное бюро «А.Лен». #[br] Все права защищены.
+			div.footer__policy
+				a(href="policy") Политика #[br] конфиденциальности
+		div.footer__copy © Архитектурное бюро «А.Лен». Все права защищены.

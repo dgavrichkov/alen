@@ -1,4 +1,5 @@
 .footer {
+	$this: &;
 	@include to(1024px) {
 		padding: 0 20px;
 		border-top: none;
@@ -304,6 +305,76 @@
 
 		span {
 			font-weight: 700;
+		}
+	}
+
+	&--ah {
+		padding-top: 55px;
+		padding-bottom: 55px;
+		#{$this}__inner {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			column-gap: 35px;
+		}
+		#{$this}__col:nth-child(n) {
+			padding: 0;
+		}
+		#{$this}__col:nth-child(4) {
+			grid-column: 5 / span 2;
+			padding-right: 100px;
+		} 
+		#{$this}__col:nth-child(5) {
+			grid-column: -1;
+			padding-right: 120px;
+			display: flex;
+			flex-direction: column;
+		}
+		#{$this}__title {
+			font-weight: normal;
+			font-size: 12px;
+			line-height: 17px;
+			letter-spacing: 0.2em;
+			margin-bottom: 24px;
+		}
+		#{$this}__question {
+			display: block;
+			color: #007AFF;
+			text-transform: uppercase;
+			font-size: 12px;
+			line-height: 17px;
+			letter-spacing: 0.2em;
+			margin-bottom: 24px;
+		}
+		#{$this}__address,
+		#{$this}__phone {
+			font-weight: 300;
+			font-size: 15px;
+			line-height: 160%;
+			margin: 0;
+		}
+		#{$this}__address {
+			margin-bottom: 16px;
+		}
+		#{$this}__policy {
+			margin-top: auto;
+			border: none;
+			opacity: 1;
+			a {
+				font-weight: 300;
+				font-size: 15px;
+				line-height: 160%;
+				color: #272727;
+				text-decoration: none;
+			}
+		}
+		#{$this}__copy {
+			grid-column: 1 / -1;
+			grid-row: 2;
+			margin-top: 63px;
+			font-weight: 300;
+			font-size: 13px;
+			line-height: 15px;
+			color: #AFAFAF;
 		}
 	}
 }
