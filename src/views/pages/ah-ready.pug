@@ -1,0 +1,19 @@
+extends ../layouts/default
+include ../helpers/mixins
+
+block variables
+	- const title = "AH ready"
+
+block content
+	div.page
+		div.page__header
+			include ../../blocks/modules/allhomes/header/header.pug
+	main.page__main
+
+	div.page__popup
+		include ../../blocks/modules/allhomes/popup.pug
+	div.page__footer
+		include ../../blocks/modules/allhomes/footer.pug
+block scripts
+	script(src="js/swiper-bundle.min.js")
+	script(src="js/allhomes.js")
