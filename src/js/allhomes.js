@@ -1,5 +1,4 @@
 window.addEventListener("load", function() {
-    greetings();
     header();
     heroSlider();
     loadAnimate();
@@ -7,9 +6,6 @@ window.addEventListener("load", function() {
     tripleSliderBlock();
 });
 
-const greetings = function() {
-    console.log("hello");
-};
 class Header {
     constructor(headerEl) {
         this._header = headerEl;
@@ -415,8 +411,27 @@ const tripleSliderBlock = function() {
     if(blocks.length == 0 || !blocks) {
         return false;
     }
-    console.log("AAAAA");
-    
+    blocks.forEach(block => {
+        const sliderEl = block.querySelector(".tripleslider");
+        const prevArrow = block.querySelector(".tripleslider-block__prev");
+        const nextArrow = block.querySelector(".tripleslider-block__next");
+
+        const swiper = new Swiper(sliderEl, {
+            slidesPerView: 3,
+            navigation: {
+                nextEl: nextArrow,
+                prevEl: prevArrow,
+            },
+        });
+
+        if(window.innerWidth > 768) {
+            if(swiper.slides.length <= 3) {
+                prevArrow.style.opacity = "0";
+                nextArrow.style.opacity = "0";
+            }
+        }
+    });
+
 };
 
 // подгрузка и анимирование
