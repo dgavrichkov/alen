@@ -1,0 +1,100 @@
+section.project-order-block.grid-section(style="--mt: 68px; ")
+	div.project-order-block__inner.grid-regular-box
+		div.project-order-block__tabs.ordertabs
+			div.ordertabs__controls
+				div.ordertabs__control Фасады
+				div.ordertabs__control Поэтажные планы
+			div.ordertabs__blocks
+				div.ordertabs__blocks
+					div.ordertabs__block.ordertabs__tiles
+						picture
+							img(src="/images/allhomes/facade-1.png" alt="")
+						picture
+							img(src="/images/allhomes/facade-2.png" alt="")
+						picture
+							img(src="/images/allhomes/facade-3.png" alt="")
+						picture
+							img(src="/images/allhomes/facade-4.png" alt="")
+					div.ordertabs__block.floor-tabs
+						div.floor-tabs__controls
+							button(type="button" dat) 1 этаж
+							button(type="button") 2 этаж
+							button(type="button") 3 этаж
+						div.floor-tabs__blocks
+							picture
+								img(src="/images/allhomes/floor-1.png" alt="")
+							picture
+								img(src="/images/allhomes/floor-1.png" alt="")
+							picture
+								img(src="/images/allhomes/floor-1.png" alt="")
+		div.project-order-block__detail
+			form.project-form
+				div.project-form__head
+					h2 Заказ проекта
+					div.project-form__actions.good-actions
+						button(type="button").good-actions__favorite
+						button(type="button").good-actions__compare
+				dl.project-form__info
+					dt Архитектурно-строительная часть
+					dd 18000 ₽
+				div.project-form__check
+					input(type="checkbox" name="mirror" id="order-mirror" hidden)
+					label(for="order-mirror") Зеркальный проект
+				fieldset.project-form__set
+					legend Дополнения
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-size" hidden)
+							label(for="order-size") Инженерный размер
+							div.project-form__check-price 5000 ₽
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-passport" hidden)
+							label(for="order-passport") Паспорт проекта
+							div.project-form__check-price 2999 ₽
+						span.project-form__note Требуется при оформление разрешения на строительство
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-paper" hidden)
+							label(for="order-paper") Бумажная копия проекта:
+							div.counter
+								button(type="button").counter__increase
+								input(type="text").counter__field
+								button(type="button").counter__decrease
+							div.project-form__check-price 1800 ₽
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-pdf" hidden)
+							label(for="order-pdf") PDF копия проекта:
+							div.project-form__check-price 5000 ₽
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-pdf" hidden)
+							label(for="order-pdf") DWG копия проекта
+							div.project-form__check-price 5000 ₽
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-pdf" hidden)
+							label(for="order-pdf") Генплан
+							div.project-form__check-price 4500 ₽
+						span.project-form__note Посадка дома на участке. Потребуется кадастровая выписка
+				fieldset.project-form__set
+					legend Другой тип фундамента
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-pdf" hidden)
+							label(for="order-pdf") Цокольный этаж
+							div.project-form__check-price 18000 ₽
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-pdf" hidden)
+							label(for="order-pdf") Ленточный на глубину промерзания
+							div.project-form__check-price 15000 ₽
+					div.project-form__item
+						div.project-form__check
+							input(type="checkbox" name="size" id="order-pdf" hidden)
+							label(for="order-pdf") Монолитная ж/б плита
+							div.project-form__check-price 15000 ₽
+				div.project-form__fullprice 48000 ₽
+				button(type="submit").project-form__submit Заказать проект
+			div.project-order-block__part Заказать часть проекта

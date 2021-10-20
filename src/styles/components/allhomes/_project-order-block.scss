@@ -1,0 +1,13 @@
+.project-order-block {
+	&__inner {
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+		column-gap: 20px;
+	}
+	&__tabs {
+		grid-column: 1 / span 8;
+	}
+	&__detail {
+		grid-column: -4 / -1;
+	}
+}

@@ -1,0 +1,21 @@
+.ordertabs {
+	&__tiles {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4px;
+		picture {
+			display: block;
+			position: relative;
+			width: 100%;
+			padding-top: 100%;
+			img {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				top: 0;
+				left: 0;
+			}
+		}
+	}
+}
