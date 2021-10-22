@@ -7,6 +7,8 @@ window.addEventListener("load", function() {
     filterRangeBlocks();
     tripleSliderBlock();
     footerAccordeon();
+    scrollAnimateFadeUp();
+    gallery();
 });
 
 class Header {
@@ -727,6 +729,100 @@ class Popup {
         this._popup.addEventListener("modalClear", callback);
     }
 }
+
+const gallery = () => {
+    // preview load anim
+    const preview = document.querySelector(".gallery-preview");
+    if (preview) {
+        const options = {
+            threshold: 0.75,
+        };
+        const callback = function (entries) {
+            entries.forEach(entry => {
+                const {
+                    isIntersecting
+                } = entry;
+                if (isIntersecting) {
+                    preview.classList.add("is-animed");
+                }
+            });
+        };
+        const previewObserver = new IntersectionObserver(callback, options);
+
+        previewObserver.observe(preview);
+    }
+
+    //-- gallery root initialize
+    const galleryCalls = document.querySelectorAll(".js-gallery");
+
+    if (galleryCalls.length > 0) {
+        galleryCalls.forEach(item => {
+            item.addEventListener("click", () => {
+                if (item.hasAttribute("data-gallery-img")) {
+                    const src = item.dataset.galleryImg;
+                    window.galleryComp.renderSingleImage(src);
+
+                } else if (item.hasAttribute("data-gallery-video")) {
+                    const src = item.dataset.galleryVideo;
+                    window.galleryComp.renderSingleVideo(src);
+                }
+            });
+        });
+    }
+
+    window.popup.onRender(function () {
+        const galleryEl = this.querySelector(".gallery");
+        if (galleryEl) {
+            window.galleryComp = new Gallery(galleryEl);
+            window.galleryComp.init();
+        }
+    });
+
+    window.popup.onClose(function () {
+        if (window.galleryComp) {
+            window.galleryComp.clearSingle();
+        }
+    });
+};
+
+const scrollAnimateFadeUp = function() {
+    const fadeups = document.querySelectorAll(".scroll-anim.fade-up");
+    const singles = document.querySelectorAll(".scroll-anim-single.fade-up");
+    const fadeupOptions = {
+        threshold: 0.25,
+    }
+    if(fadeups.length > 0) {    
+        fadeups.forEach(item => {
+            const childs = Array.from(item.children);
+            childs.forEach(child => {
+                const fadeupCallback = function(entries) {
+                    entries.forEach(entry => {
+                        const {isIntersecting} = entry;
+                        if(isIntersecting) {
+                            child.classList.add("is-animed");
+                        }
+                    })     
+                }
+                const fadeUpObserver = new IntersectionObserver(fadeupCallback, fadeupOptions);
+                fadeUpObserver.observe(child);
+            });
+        });
+    };
+    if(singles.length > 0) {
+        singles.forEach(item => {
+            const fadeSingleUpCallback = function(entries) {
+                entries.forEach(entry => {
+                    const {isIntersecting} = entry;
+                    if(isIntersecting) {
+                        item.classList.add("is-animed");
+                    }
+                })
+            }
+            const singleFadeObserver = new IntersectionObserver(fadeSingleUpCallback, fadeupOptions);
+            singleFadeObserver.observe(item);
+        });
+    };
+};
 
 // debounce
 function debounce(func, wait, immediate) {
