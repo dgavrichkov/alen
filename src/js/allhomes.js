@@ -493,18 +493,21 @@ const loadAnimate = function () {
 };
 
 const filterRangeBlocks = function() {
-    const block = document.querySelectorAll(".filters-range");
-    if(!block || block.length === 0) {
+    const blocks = document.querySelectorAll(".filters-range");
+    if(!blocks || blocks.length === 0) {
         return false
     };
-    const slider = document.querySelector("#filter-area");
-    noUiSlider.create(slider, {
-        start: [20, 80],
-        connect: true,
-        range: {
-            'min': 0,
-            'max': 100,
-        }
+    // параметры min и max - нужно иметь возможность указать их с элемента, чтобы сервер мог управлять этим элементов. Можно добавить для этого дата-атрибуты и получать начальные значения оттуда.
+    blocks.forEach(block => {
+        slider = block.querySelector("[data-rangefilter-slider]");
+        noUiSlider.create(slider, {
+            start: [20, 80],
+            connect: true,
+            range: {
+                'min': 0,
+                'max': 100,
+            }
+        });
     });
 };
 

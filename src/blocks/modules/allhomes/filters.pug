@@ -2,10 +2,241 @@ section.filters.grid-section
 	div.filters__inner.grid-container
 		form.filters__block.grid-regular-box
 			fieldset.filters__item
-				div.filters-range
-					span.filter-range__label Площадь, м2
-					div.filters-range__slider(id="filter-area")
+				span.filters__label Площадь, м2
+				div.filters-range(data-rangefilter)
+					div.filters-range__slider(data-rangefilter-slider)
 					div.filters-range__fields
+						input(type="text" data-rangefilter-min)
+						input(type="text" data-rangefilter-max)
+			fieldset.filters__item
+				span.filter__label Ширина дома, м
+				div.filters-range(data-rangefilter)
+					div.filters-range__slider(data-rangefilter-slider)
+					div.filters-range__fields
+						input(type="text" data-rangefilter-min)
+						input(type="text" data-rangefilter-max)
+			fieldset.filters__item
+				span.filters__label Глубина дома, м
+				div.filters-range(data-rangefilter)
+					div.filters-range__slider(data-rangefilter-slider)
+					div.filters-range__fields
+						input(type="text" data-rangefilter-min)
+						input(type="text" data-rangefilter-max)
+			fieldset.filters__item
+				span.filters__label Этажей
+				div.filters-group.filters-group--check
+					//- если инпут внутри лейбла - атрибут for не нужен
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Цокольный этаж
+				div.filters-group.filters-group--radio
+					label.filter-group__wrap
+						input.filter-group__input(type="radio" name="filter-lowfloor" data-value="есть" value="есть")
+						span есть
+					label.filter-group__wrap
+						input.filter-group__input(type="radio" name="filter-lowflooe" data-value="нет" value="нет")
+						span нет
+			fieldset.filters__item
+				span.filters__label Мансарда
+				div.filters-group.filters-group--radio
+					label.filter-group__wrap
+						input.filter-group__input(type="radio" name="filter-attic" data-value="есть" value="есть")
+						span есть
+					label.filter-group__wrap
+						input.filter-group__input(type="radio" name="filter-attic" data-value="нет" value="нет")
+						span нет
+			fieldset.filters__item
+				span.filters__label Гараж
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Спален
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Санузлов
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Основной материал
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Облицовочный материал
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Наружная отделка
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Каркас
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Кровля
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Тип перекрытий
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-1" data-value="1" value="1")
+						span 1
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-2" data-value="2" value="2")
+						span 2
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-floor-3" data-value="3" value="3")
+						span 3
+			fieldset.filters__item
+				span.filters__label Фундамент
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-found-1" data-value="монолитная ж/ б плита" value="монолитная ж/ б плита")
+						span монолитная ж/ б плита
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-found-2" data-value="свайно-ростверковый" value="свайно-ростверковый")
+						span свайно-ростверковый
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-found-3" data-value="ленточный" value="ленточный")
+						span ленточный
+			fieldset.filters__item
+				span.filters__label Стиль
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-style-1" data-value="ренессанс" value="ренессанс")
+						span ренессанс
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-style-2" data-value="барокко" value="барокко")
+						span барокко
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-style-3" data-value="готика" value="готика")
+						span готика
+			fieldset.filters__item
+				span.filters__label Площадь застройки, м2
+				div.filters-range(data-rangefilter)
+					div.filters-range__slider(data-rangefilter-slider)
+					div.filters-range__fields
+						input(type="text" data-rangefilter-min)
+						input(type="text" data-rangefilter-max)
+			fieldset.filters__item
+				span.filters__label Бассейн
+				div.filters-group.filters-group--radio
+					label.filter-group__wrap
+						input.filter-group__input(type="radio" name="filter-pool" data-value="есть" value="есть")
+						span есть
+					label.filter-group__wrap
+						input.filter-group__input(type="radio" name="filter-pool" data-value="нет" value="нет")
+						span нет
+			fieldset.filters__item
+				span.filters__label Особенности
+				div.filters-group.filters-group--check
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-specials-1" data-value="много окон" value="много окон")
+						span много окон
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-specialsr-2" data-value="второй свет" value="второй свет")
+						span второй свет
+					label.filter-group__wrap
+						input.filter-group__input(type="checkbox" name="filter-specials-3" data-value="низкий цоколь" value="низкий цоколь")
+						span низкий цоколь
+			fieldset.filters__item
+				span.filters__label Примерная стоимость материалов, тыс. руб.
+				div.filters-range(data-rangefilter)
+					div.filters-range__slider(data-rangefilter-slider)
+					div.filters-range__fields
+						input(type="text" data-rangefilter-min)
+						input(type="text" data-rangefilter-max)
+			fieldset.filters__item
+				span.filters__label Высота первого этажа, м
+				div.filters-range(data-rangefilter)
+					div.filters-range__slider(data-rangefilter-slider)
+					div.filters-range__fields
+						input(type="text" data-rangefilter-min)
+						input(type="text" data-rangefilter-max)
+			fieldset.filters__item
+				span.filters__label Высота второго этажа, м
+				div.filters-range(data-rangefilter)
+					div.filters-range__slider(data-rangefilter-slider)
+					div.filters-range__fields
+						input(type="text" data-rangefilter-min)
+						input(type="text" data-rangefilter-max)
+			button.filters__switcher
+				span + Больше параметров
+				span - Меньше параметров
 			div.filters__controls
 				button(type="submit").filters__submit Применить
 				button(type="button").filters__clear Сбросить
